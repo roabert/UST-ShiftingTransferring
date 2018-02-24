@@ -17,7 +17,12 @@ import ust.registrar.model.main.RegisterTransferDAO;
 
 import javax.servlet.http.Part;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import java.sql.*;
+import java.util.List;
 
 /**
  * Servlet implementation class registerprocess
@@ -73,22 +78,26 @@ public class registerprocess extends HttpServlet {
 		 String get_transferoldprogram = request.getParameter("transfer_oldprogram");
 		 String get_transfernewcollege = request.getParameter("transfer_newcollege");
 		 String get_transfernewprogram = request.getParameter("transfer_newprogram");
-		 InputStream input = null;
 		 String savepath = "C:/workspace/UST-ShiftingTransferring/WebContent/Images";
-		 File saveid = new File(savepath);
+		 
 		 Part part = request.getPart("shifter_idpicture");
-		 String filename = extractFileName(part);
+		// String filename = extractFileName(part);
 		
 		 
-		 if(part != null) {
-			 System.out.println(part.getName());
-			 System.out.println(part.getSize());
-			 System.out.println(part.getContentType());
-		 }
+	
 		 
-        part.write(savepath + File.separator + filename);
-		 String imagepath = savepath + File.separator + filename;
+     //   part.write(savepath + File.separator + filename);
+	//	 String imagepath = savepath + File.separator + filename;
 		 HttpSession session = request.getSession();
+		 if(ServletFileUpload.isMultipartContent(request)) {
+			 List<FileItem> requirements = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+				for(FileItem item : requirements){
+					if(!item.isFormField()) {
+						String name = new File(item.getName()).getName();
+						item.write(new File(savepath + File.separator + name));
+						
+					}
+				}
 		if(gettype.equals("Shifter")) {
 			RegisterShifterDAO register = new RegisterShifterDAO();
 			register.setLname(getlname);
@@ -131,6 +140,7 @@ public class registerprocess extends HttpServlet {
 			   request.getRequestDispatcher("Transfer-Welcome.jsp")
 			   .forward(request, response);
 		}
+		 }
 	}
 	public String extractFileName(Part part) {
 		String contentDisp = part.getHeader("content-disposition");
