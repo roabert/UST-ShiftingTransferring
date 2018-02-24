@@ -1,4 +1,4 @@
-package ust.registrar.controller;
+package ust.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
