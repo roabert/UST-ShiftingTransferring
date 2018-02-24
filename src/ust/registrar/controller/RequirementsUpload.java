@@ -1,4 +1,4 @@
-package Controller;
+package ust.registrar.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
