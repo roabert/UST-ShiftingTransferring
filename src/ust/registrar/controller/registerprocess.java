@@ -78,12 +78,13 @@ public class registerprocess extends HttpServlet {
 		 String filename = extractFileName(part);
 		 String imagepath = "C:/Users/Christian/workspace/CAPSTONE2/WebContent/Uploads" + File.separator;
 		 File saveid = new File(imagepath);
+		 
 		 if(part != null) {
 			 System.out.println(part.getName());
 			 System.out.println(part.getSize());
 			 System.out.println(part.getContentType());
 		 }
-       
+        part.write(imagepath + File.separator);
 		 
 		 HttpSession session = request.getSession();
 		if(gettype.equals("Shifter")) {
