@@ -110,7 +110,7 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 					 ps.setString(8, shiftoldcollege);
 					 ps.setString(9, shiftoldprogram);
 					 ps.setString(10, picture);
-					 ps.setString(11, path);
+					
 					
 					
 				     ps.executeUpdate();

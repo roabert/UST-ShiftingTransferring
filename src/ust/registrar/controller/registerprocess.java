@@ -74,10 +74,11 @@ public class registerprocess extends HttpServlet {
 		 String get_transfernewcollege = request.getParameter("transfer_newcollege");
 		 String get_transfernewprogram = request.getParameter("transfer_newprogram");
 		 InputStream input = null;
+		 String savepath = "C:/workspace/UST-ShiftingTransferring/WebContent/Images";
+		 File saveid = new File(savepath);
 		 Part part = request.getPart("shifter_idpicture");
 		 String filename = extractFileName(part);
-		 String imagepath = "C:/workspace/UST-ShiftingTransferring/WebContent/Images" + File.separator + filename;
-		 File saveid = new File(imagepath);
+		
 		 
 		 if(part != null) {
 			 System.out.println(part.getName());
@@ -85,8 +86,8 @@ public class registerprocess extends HttpServlet {
 			 System.out.println(part.getContentType());
 		 }
 		 
-        part.write(imagepath + File.separator);
-		 
+        part.write(savepath + File.separator + filename);
+		 String imagepath = savepath + File.separator + filename;
 		 HttpSession session = request.getSession();
 		if(gettype.equals("Shifter")) {
 			RegisterShifterDAO register = new RegisterShifterDAO();
@@ -99,8 +100,7 @@ public class registerprocess extends HttpServlet {
 			register.setStudentid(getstudentid);
 			register.setShiftoldcollege(get_shiftoldcollege);
 			register.setShiftoldprogram(get_shiftoldprogram);
-			register.setPicture(filename);
-			register.setPath(imagepath);
+			register.setPicture(imagepath);
 			register.RegisterProcessShift(conn);
 			register.InsertStudentUser(conn);
 			
@@ -132,7 +132,7 @@ public class registerprocess extends HttpServlet {
 			   .forward(request, response);
 		}
 	}
-	private String extractFileName(Part part) {
+	public String extractFileName(Part part) {
 		String contentDisp = part.getHeader("content-disposition");
 		String[] items = contentDisp.split(";");
 		for(String s : items) {
