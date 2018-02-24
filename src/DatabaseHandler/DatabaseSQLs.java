@@ -2,8 +2,8 @@ package DatabaseHandler;
 
 public interface DatabaseSQLs {
 	String shiftRegisterSQL = "INSERT INTO student_shifter (lastname, firstname, middlei, gender, typeofstudent, birthday, studentid"
-	 		+ ", oldcourse, oldprogram, path) "
-	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	 		+ ", oldcourse, oldprogram, idpicture, picturepath) "
+	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	 String transferRegisterSQL = "INSERT INTO student_transfer (userid, lastname, firstname, middlei, gender, typeofstudent, birthday, oldschool"
 	 		+ ", oldcourse, oldprogram, newcourse, newprogram) "
 	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

@@ -71,7 +71,7 @@
                <tr>
                  <td>Name </td>
                  <td><input type="text" size="60" value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>" class="form-control" readonly></td>
-                 <td rowspan = "5"><center><img src="Images/dp.png" style="width:50%; height:50%;" class="responsive"></center></td>
+                 <td rowspan = "5"><center><img src="<%=usercontent.getString("idpicture") %>" style="width:50%; height:50%;" class="responsive"></center></td>
                </tr>
                <tr>
                  <td>ID </td>

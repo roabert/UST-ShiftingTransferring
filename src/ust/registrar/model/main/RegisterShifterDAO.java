@@ -10,10 +10,16 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 	String lname, fname, mname, gender, bdate, type;
 	 // for Shifters
 	 String studentid, shiftoldcollege, shiftoldprogram, shiftnewcollege, shiftnewprogram;
-	 String path;
+	 String path, picture;
 	
 	 
-	 public String getPath() {
+	 public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public String getPath() {
 		return path;
 	}
 	public void setPath(String path) {
@@ -103,8 +109,8 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 					 ps.setString(7, studentid);
 					 ps.setString(8, shiftoldcollege);
 					 ps.setString(9, shiftoldprogram);
-					 ps.setString(10, path);
-					
+					 ps.setString(10, picture);
+					 ps.setString(11, path);
 					
 					
 				     ps.executeUpdate();

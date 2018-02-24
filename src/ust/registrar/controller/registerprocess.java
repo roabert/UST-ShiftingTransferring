@@ -76,7 +76,7 @@ public class registerprocess extends HttpServlet {
 		 InputStream input = null;
 		 Part part = request.getPart("shifter_idpicture");
 		 String filename = extractFileName(part);
-		 String imagepath = "C:/Users/Christian/workspace/CAPSTONE2/WebContent/Uploads" + File.separator;
+		 String imagepath = "C:/workspace/UST-ShiftingTransferring/WebContent/Images" + File.separator + filename;
 		 File saveid = new File(imagepath);
 		 
 		 if(part != null) {
@@ -84,6 +84,7 @@ public class registerprocess extends HttpServlet {
 			 System.out.println(part.getSize());
 			 System.out.println(part.getContentType());
 		 }
+		 
         part.write(imagepath + File.separator);
 		 
 		 HttpSession session = request.getSession();
@@ -98,8 +99,8 @@ public class registerprocess extends HttpServlet {
 			register.setStudentid(getstudentid);
 			register.setShiftoldcollege(get_shiftoldcollege);
 			register.setShiftoldprogram(get_shiftoldprogram);
-			register.setShiftnewcollege(get_shiftnewcollege);
-			register.setShiftnewprogram(get_shiftnewprogram);
+			register.setPicture(filename);
+			register.setPath(imagepath);
 			register.RegisterProcessShift(conn);
 			register.InsertStudentUser(conn);
 			
@@ -130,6 +131,16 @@ public class registerprocess extends HttpServlet {
 			   request.getRequestDispatcher("Transfer-Welcome.jsp")
 			   .forward(request, response);
 		}
+	}
+	private String extractFileName(Part part) {
+		String contentDisp = part.getHeader("content-disposition");
+		String[] items = contentDisp.split(";");
+		for(String s : items) {
+			if(s.trim().startsWith("filename")) 
+			{
+				return s.substring(s.indexOf("*") + 2, s.length()-1);			}
+		}
+		return "";
 	}
 
 }
