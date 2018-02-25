@@ -14,14 +14,14 @@ import DatabaseHandler.SingletonDB;
  * Servlet implementation class admindisplayusers
  */
 @WebServlet("/AdminDisplayUsers")
-public class AdminDisplayUsers extends HttpServlet {
+public class AdminEditUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
 	Connection conn = null;
-    public AdminDisplayUsers() {
+    public AdminEditUsers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,7 +41,7 @@ public class AdminDisplayUsers extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  String getuserid = request.getParameter("getid");
+		  
 		  
 		
 	}

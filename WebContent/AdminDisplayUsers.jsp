@@ -54,59 +54,39 @@ if(getuser == null) {
 <img src="Images/usthead2.PNG" style="width:80%; height:auto;"/> 
 </center>
 </div>
-     
+     <%String getuserid = request.getParameter("edituser"); %>
     <br>
      <div class="container">
-     <legend><p><i>Create Accounts</i></p>
-     </legend>
-     </div>
-      <div class="container-fluid">
-       <div class="table-responsive" style="overflow-x:auto; height:450px;">
-      <center>
-      <form action = "AdminDisplayUsers.jsp">
-      <table class="table">
+     <legend><p>Edit Profile(<%=getuserid%>)</p></legend>
+     <div class="row">
+       <div class="column">
+       <table>
         <tr>
-          <th>User ID</th>
-          <th>Name</th>
-          <th>Type</th>
-          
-          <th>Edit Users</th>
-         
+        <td>Last Name: <input type="text" class="form-control" size="50" value = "<%%>" name = "edit_lname"></td>
         </tr>
-        
-        
-        <%
-         try{
-             String displayusers = "SELECT userid, last_name, first_name, middle_name, type FROM admins UNION SELECT userid, last_name, first_name, middle_name, type FROM dean UNION SELECT userid, last_name, first_name, middle_name, type FROM ofad UNION SELECT userid, last_name, first_name, middle_name, type FROM osa UNION SELECT userid, last_name, first_name, middle_name, type FROM registrar UNION SELECT userid, last_name, first_name, middle_name, type FROM secgen";
-        PreparedStatement ps = conn.prepareStatement(displayusers); 
-        ResultSet rs = ps.executeQuery();
-           while(rs.next()) {
-        %>
         <tr>
-        <td><%=rs.getString("userid") %></td>
-        <td><%=rs.getString("first_name") %> <%=rs.getString("middle_name") %>. <%=rs.getString("last_name") %></td>
-        <td><%=rs.getString("type") %></td>
-        
-        <td><input type= "hidden" value = "<%=rs.getString("userid")%>" name="edituser">
-         <button type="submit" class="btn btn-warning">Edit</button>
-        </td>
-        
+        <td>First Name: <input type="text" class="form-control" size="50" value = "<%%>" name = "edit_fname"></td>
         </tr>
-        <%}
-           
-         }catch(Exception e) {
-        	e.printStackTrace();
-        } %>
-        
-      </table>
-      </form>
-      </center>
-      
+        <tr>
+        <td>Middle Initial: <input type="text" class="form-control" size="25" value = "<%%>" name = "edit_mname"></td>
+        <td>Gender: <input type = "text" class="form-control" size="25" value="<%%>" name = "edit_gender"></td>
+        </tr>
+        </table>
+       </div>
+       <div class="column">
+          <table>
+           <tr>
+             <td>Position: <input type="text" class="form-control" size="50" value="<%%>" name="edit_type"></td>
+           </tr>
+            <tr>
+             <td>College/Faculty(If Dean): <input type="text" class="form-control" size="50" value="<%%>" name="edit_type"></td>
+           </tr>
+          </table>
+       </div>
+       <br><br>
+       <center><button type = "submit" class="btn btn-warning btn-lg">Modify</button></center>
       </div>
-      </div>
-      <div class="container">
-      <form action ="AdminsCreateUsers.jsp"><button type="submit" class="btn btn-warning btn-lg pull-right">Create</button></form>
-      </div>
+     
       <br><br>
 </div>
 
