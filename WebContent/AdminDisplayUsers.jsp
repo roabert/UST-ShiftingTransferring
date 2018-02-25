@@ -54,39 +54,60 @@ if(getuser == null) {
 <img src="Images/usthead2.PNG" style="width:80%; height:auto;"/> 
 </center>
 </div>
-     <%String getuserid = request.getParameter("edituser"); %>
+     <%
+     String userget = request.getParameter("edituser"); 
+     String getusersql = "SELECT userid, last_name, first_name, middle_name, type FROM admins WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM dean WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM ofad WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM osa WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM registrar WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM secgen WHERE userid = ?";
+     try {
+     PreparedStatement ps = conn.prepareStatement(getusersql);
+      ps.setString(1, userget);
+      ps.setString(2, userget);
+      ps.setString(3, userget);
+      ps.setString(4, userget);
+      ps.setString(5, userget);
+      ps.setString(6, userget);
+      
+      ResultSet rs = ps.executeQuery();
+    while(rs.next()) {
+     %>
     <br>
      <div class="container">
-     <legend><p>Edit Profile(<%=getuserid%>)</p></legend>
-     <div class="row">
-       <div class="column">
-       <table>
-        <tr>
-        <td>Last Name: <input type="text" class="form-control" size="50" value = "<%%>" name = "edit_lname"></td>
-        </tr>
-        <tr>
-        <td>First Name: <input type="text" class="form-control" size="50" value = "<%%>" name = "edit_fname"></td>
-        </tr>
-        <tr>
-        <td>Middle Initial: <input type="text" class="form-control" size="25" value = "<%%>" name = "edit_mname"></td>
-        <td>Gender: <input type = "text" class="form-control" size="25" value="<%%>" name = "edit_gender"></td>
-        </tr>
-        </table>
-       </div>
-       <div class="column">
-          <table>
-           <tr>
-             <td>Position: <input type="text" class="form-control" size="50" value="<%%>" name="edit_type"></td>
-           </tr>
-            <tr>
-             <td>College/Faculty(If Dean): <input type="text" class="form-control" size="50" value="<%%>" name="edit_type"></td>
-           </tr>
-          </table>
-       </div>
-       <br><br>
-       <center><button type = "submit" class="btn btn-warning btn-lg">Modify</button></center>
-      </div>
      
+     <legend><p><i>Edit Profile(<%=rs.getString("userid") %>)</i></p></legend>
+  
+     <form action = "AdminEditUsers" method="post">
+      <div class="col-sm-12">
+      <table>
+      
+       <p>Last Name: <input type="hidden" name = "useridget" value = "<%=rs.getString("userid")%>"> <input type="text" class="form-control" size="50" value = "<%=rs.getString("last_name")%>" name = "edit_lname"></p>
+      
+            
+      <p>First Name: <input type="text" class="form-control" size="50" value = "<%=rs.getString("first_name")%>" name = "edit_fname"></p>
+     
+    
+    <p>  Middle Initial: <input type="text" class="form-control" size="50" value = "<%=rs.getString("middle_name")%>" name = "edit_mname"></p>
+        
+       
+     
+       
+            <p>Position: <input type="text" class="form-control" size="50" value="<%=rs.getString("type")%>" name="edit_type" readonly></p>
+     
+
+     <p>College/Faculty(If Dean): <input type="text" class="form-control" size="50" value="<%%>" name="edit_college"></p>
+         
+        
+      
+       <br><br> </table>
+       <center><button type = "submit" class="btn btn-warning btn-lg">Modify</button></center>
+       
+       </div>
+       </form>
+      
+      </div>
+     <% }
+     }catch(Exception e) {
+    	 out.println(e);
+     }
+     %>
       <br><br>
 </div>
 
