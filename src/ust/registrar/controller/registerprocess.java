@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,8 @@ import java.util.List;
  * Servlet implementation class registerprocess
  */
 @WebServlet("/registerprocess")
+@MultipartConfig
+
 public class registerprocess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -72,6 +75,7 @@ public class registerprocess extends HttpServlet {
 		 String get_shiftoldprogram = request.getParameter("shift_oldprogram");
 		 String get_shiftnewcollege = request.getParameter("shift_newcollege");
 		 String get_shiftnewprogram = request.getParameter("shift_newprogram");
+		 Part get_shiftpic = request.getPart("shifter_idpicture");
 	 // List of Variables for Transferees
 		 String getoldschool = request.getParameter("transfer_school");
 		 String get_transferoldcollege = request.getParameter("transfer_oldcollege");
@@ -87,7 +91,7 @@ public class registerprocess extends HttpServlet {
 	//	 String imagepath = savepath + File.separator + filename;
 		 HttpSession session = request.getSession();
 
-		if(gettype.equals("Shifter")) {
+		if(gettype.toUpperCase().equals("SHIFTER")) {
 			RegisterShifterDAO register = new RegisterShifterDAO();
 			register.setLname(getlname);
 			register.setFname(getfname);
@@ -98,7 +102,7 @@ public class registerprocess extends HttpServlet {
 			register.setStudentid(getstudentid);
 			register.setShiftoldcollege(get_shiftoldcollege);
 			register.setShiftoldprogram(get_shiftoldprogram);
-			register.setPicture("");
+			register.setPicture(get_shiftpic);
 			register.RegisterProcessShift(conn);
 			register.InsertStudentUser(conn);
 			
@@ -107,7 +111,7 @@ public class registerprocess extends HttpServlet {
 			   .forward(request, response);
 			
 		}
-		else if(gettype.equals("Transferee")) {
+		else if(gettype.toUpperCase().equals("TRANSFEREE")) {
 			
 			RegisterTransferDAO register = new RegisterTransferDAO();
 			register.setLname(getlname);
