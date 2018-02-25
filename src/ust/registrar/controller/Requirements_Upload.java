@@ -44,7 +44,7 @@ public class Requirements_Upload extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		if(ServletFileUpload.isMultipartContent(request)) {
+		
 			
 			try{
 				List<FileItem> requirements = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
