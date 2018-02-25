@@ -21,4 +21,32 @@ public interface DatabaseSQLs {
 	// SecGen approve student
 	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ? WHERE shifter_id = ?";
 	 
+	 //Admin Modify Users (for admin)
+	 String Admin_editUsersSQL = "UPDATE admins SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
+	//Admin Modify Users (for registrar)
+		 String Admin_Registrar_editUsersSQL = "UPDATE registrar SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
+		//Admin Modify Users (for secgen)
+		 String Admin_OSG_editUsersSQL = "UPDATE secgen SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
+		//Admin Modify Users (for admin)
+		 String Admin_Dean_editUsersSQL = "UPDATE dean SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
+		//Admin Modify Users (for osa)
+		 String Admin_OSA_editUsersSQL = "UPDATE osa SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
+		//Admin Modify Users (for ofad)
+		 String Admin_Ofad_editUsersSQL = "UPDATE ofad SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
+		 
+		 //Admin create users
+		 String InsertUsersSQL = "INSERT INTO useraccounts (userid, password, type) VALUES (?, ?, ?)";
+		 // Admin Create user details (for admin)
+		 String Admin_InsertUsersSQL = "INSERT INTO admins (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 // Admin Create user details (for admin)
+		 String Admin_Registrar_InsertUsersSQL = "INSERT INTO registrar (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 // Admin Create user details (for admin)
+		 String Admin_OSG_InsertUsersSQL = "INSERT INTO secgen (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 // Admin Create user details (for admin)
+		 String Admin_Dean_InsertUsersSQL = "INSERT INTO dean (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 // Admin Create user details (for admin)
+		 String Admin_OSA_InsertUsersSQL = "INSERT INTO osa (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 // Admin Create user details (for admin)
+		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 
 }
