@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="CSS/Login_CSS.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head>
+<meta charset="ISO-8859-1">
+<title>UST - Shifting and Transferring System</title>
+</head>
+
+<body>
+    <div id="wrapper">
+       <div class="header" ><center>
+ <img src="Images/usthead2.PNG" style="width:80%; height:auto;"/>
+</center>
+
+  </div>
+  
+  
+<div class="container-fluid">
+<div class="col-sm-8">
+<h1>Shifting Guidelines</h1>
+ <div style="background-color:#edeeef; word-wrap: break-word; height:350px; width:100%">
+
+</div>
+<h1>Transferring Guidelines</h1>
+ <div style="background-color:#edeeef; word-wrap: break-word; height:350px; width:100%">
+ </div>
+ <br><br>
+</div>
+
+<div class="one">
+<div class="col-sm-4">
+<br>
+
+
+<br>
+<form method="post" action="loginprocess">
+<!-- <p style="color:gold; font-size: 3vw; font-size: 3vh;">Login your account:</p> -->
+<br>
+<h1>Welcome</h1><br>
+<input type="text" name="userbox" class="form-control" style="width:100%; height:auto;" placeholder="User ID"/> <br>
+<input type="password" name="pwdbox" class="form-control" style="width:100%; height:auto;" placeholder="Password"/><br>
+<a href="">Forgot your password?</a>
+<br><br>
+<center><button type="submit" class="pull-center btn btn-lg btn-warning">Login</button></center>
+
+</form>
+<center><a href="javascript:;" data-toggle="modal" data-target=".register" style="color:black;"><h4> or Register here</h4></a></center>
+<br><br>
+<br>
+
+</div>
+</div>
+</div>
+
+<script>
+function id(x) {
+	return document.getElementById(x);
+}
+function determineStudent() {
+	var lname = id("register_lname").value;
+	var fname = id("register_fname").value;
+	var mi = id("register_mi").value;
+	var gender = id("register_gender").value;
+	var bdate = id("register_bday").value;
+	var type = id("register_typeofstudent");
+	var getType = type.options[type.selectedIndex].text;
+	
+	if(lname.length > 0 && fname.length > 0 && mi.length > 0 && gender.length > 0 && type.length > 0 && bdate.length > 0){
+    // id("loadingstep2").innerHTML = "<div id=\"loader\"></div>";
+    if(getType == "Shifter") {
+    id("titleregister").innerHTML = "Register(Shifter)";
+	id("step1").style.display ="none";
+	id("step2transferee").style.display ="none";
+	id("step2shifter").style.display ="block";
+     }
+    else if(getType == "Transferee") {
+    	 id("titleregister").innerHTML = "Register(Transferee)";
+    	id("step1").style.display ="none";
+    	id("step2shifter").style.display ="none";
+    	id("step2transferee").style.display ="block";
+    }
+   }
+	else{
+		alert("Please fill in the fields.");
+	}
+}
+function goBack() {
+	 id("titleregister").innerHTML = "Register";
+	id("step1").style.display ="block";
+	id("step2transferee").style.display ="none";
+	id("step2shifter").style.display ="none";
+}
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 2000);
+}
+
+function showPage() {
+  id("loader").style.display = "none";
+  id("myDiv").style.display = "block";
+}
+function shifterSubmit() {
+	id("registerform").method = "post";
+	id("registerform").action = "registerprocess";
+	id("registerform").submit();
+}
+function transferSubmit() {
+	id("registerform").method = "post";
+	id("registerform").action = "registerprocess";
+	id("registerform").submit();
+}
+</script>
+
+<div class="modal fade register" role="dialog">
+   <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+     <div class="modal-header">
+       <h1 class="modal-title" id="titleregister">Register</h1>
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+     </div>
+     <div class="modal-body row">
+   <form id="registerform" onsubmit="return false">
+     
+       <div id="step1">
+       <div class="col-sm-12">
+         <div class="col-sm-12">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Last Name:</i></p>
+         <input type="text" name="register_lname" id="register_lname" class="form-control"/> <br>
+         </div>
+         <div class="col-sm-6">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>First Name: </i></p>
+          <input type="text" name="register_fname" id="register_fname" class="form-control"/> 
+          </div>
+          <div class="col-sm-6">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Birth Date: </i></p>
+          <input type="date" name="register_bday" id="register_bday" class="form-control"/> <br>
+          </div>
+          
+          <div class="col-sm-4">
+          <p style="font-size:2vw; font-size: 2vh;"><i>MI</i></p>
+           <input type="text" name="register_mi" id="register_mi" class="form-control"  />
+          </div>
+          <div class="col-sm-4">
+          <p style="font-size:2vw; font-size: 2vh;"><i>Gender</i></p>
+          <select name="register_gender" id="register_gender" class="form-control"  >
+           <option selected="true" value="" disabled="disabled">&lt;Select Gender&gt;</option>
+           <option value="Male">Male</option>
+           <option value="Female">Female</option>
+          </select>
+          </div>
+          <div class="col-sm-4">
+          <p style="font-size:2vw; font-size: 2vh;"><i>Type</i></p>
+          <select name="register_typeofstudent" id="register_typeofstudent" class="form-control"  >
+           <option selected="true" value="" disabled="disabled">&lt;Select Type&gt;</option>
+           <option value="Shifter">Shifter</option>
+           <option value="Transferee">Transferee</option>
+          </select><br><br>	
+          </div>
+          <br>
+          <br><p><br></p>
+      <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="determineStudent()">Next</button></center>
+       </div>
+     
+       </div>
+       <div id="step2shifter">
+    
+        <div class = "col-sm-12">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Student ID:</i></p>
+         <input type="text" name="register_studentid" id="register_studentid" class="form-control" /> <br>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Current College</i></p>
+         <select name="shift_oldcollege" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="AB">AB</option>
+          <option value="Engineering">Engineering</option>
+          <option value="IICS">IICS</option>
+          <option value="Architecture">Architecture</option>
+         </select> <br>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
+         <select name="shift_oldprogram" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="IT">Information Technology</option>
+          <option value="IS">Information Systems</option>
+          <option value="CS">Computer Science</option>
+          
+         </select> <br>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing College</i></p>
+         <select name="shift_newcollege" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="AB">AB</option>
+          <option value="Engineering">Engineering</option>
+          <option value="IICS">IICS</option>
+          <option value="Architecture">Architecture</option>
+         </select> <br>
+          <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing Program</i></p>
+         <select name="shift_newprogram" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="IT">Information Technology</option>
+          <option value="IS">Information Systems</option>
+          <option value="CS">Computer Science</option>
+          
+         </select> <br><br>
+       <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="shifterSubmit()" class="btn btn-warning btn-lg">Submit & Login</button></center>
+      
+       </div>
+          <div id="loadingstep2"></div>
+       </div>
+         <div id="step2transferee">
+    
+        <div class = "col-sm-12">
+           
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Current School</i></p>
+         <input type="text" name="transfer_school" class="form-control"/>
+          <br>
+           <p style="font-size: 2vw; font-size: 2vh;"><i>Current College</i></p>
+         <select name="transfer_oldcollege" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="AB">AB</option>
+          <option value="Engineering">Engineering</option>
+          <option value="IICS">IICS</option>
+          <option value="Architecture">Architecture</option>
+         </select> <br>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
+         <select name="transfer_oldprogram" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="IT">Information Technology</option>
+          <option value="IS">Information Systems</option>
+          <option value="CS">Computer Science</option>
+          
+         </select> <br>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing College</i></p>
+         <select name="transfer_newcollege" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="AB">AB</option>
+          <option value="Engineering">Engineering</option>
+          <option value="IICS">IICS</option>
+          <option value="Architecture">Architecture</option>
+         </select> <br>
+          <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing Program</i></p>
+         <select name="transfer_newprogram" class="form-control">
+          <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
+          <option value="IT">Information Technology</option>
+          <option value="IS">Information Systems</option>
+          <option value="CS">Computer Science</option>
+          
+         </select> <br><br>
+       <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="transferSubmit()" class="btn btn-warning btn-lg">Submit & Login</button></center>
+      
+       </div>
+          <div id="loadingstep2"></div>
+       </div>
+    
+     </form>
+       
+     </div>
+       
+       
+    
+  </div>
+  </div>
+  
+   </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>
