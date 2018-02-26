@@ -1,6 +1,9 @@
 package ust.registrar.model.main;
 
+import java.io.IOException;
 import java.sql.*;
+
+import javax.servlet.http.Part;
 
 import DatabaseHandler.DatabaseSQLs;
 
@@ -10,20 +13,15 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 	String lname, fname, mname, gender, bdate, type;
 	 // for Shifters
 	 String studentid, shiftoldcollege, shiftoldprogram, shiftnewcollege, shiftnewprogram;
-	 String path, picture;
+	 Part picture;
 	
 	 
-	 public String getPicture() {
+	public Part getPicture() {
 		return picture;
 	}
-	public void setPicture(String picture) {
+	 
+	public void setPicture(Part picture) {
 		this.picture = picture;
-	}
-	public String getPath() {
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
 	}
 	public String getLname() {
 		return lname;
@@ -99,7 +97,7 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 				// Class.forName("com.mysql.jdbc.Driver");
 				// Connection con = DriverManager.getConnection(url, "ustregistrar", "ustadmin@2018");
 			
-					 PreparedStatement ps = conn.prepareStatement(shiftRegisterSQL);
+					 PreparedStatement ps = conn.prepareStatement("INSERT INTO student_shifter(lastname, firstname, middlei, gender, typeofstudent, birthday, studentid, oldcourse, oldprogram, newcourse, newprogram, idpicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 					 ps.setString(1, lname);
 					 ps.setString(2, fname);
 					 ps.setString(3, mname);
@@ -109,10 +107,10 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 					 ps.setString(7, studentid);
 					 ps.setString(8, shiftoldcollege);
 					 ps.setString(9, shiftoldprogram);
-					 ps.setString(10, picture);
-					
-					
-					
+					 ps.setString(10, "");
+					 ps.setString(11, "");
+					 ps.setBinaryStream(12, picture.getInputStream(), (int) picture.getSize());					
+										
 				     ps.executeUpdate();
 				     
 				  //   request.setAttribute("sessionUser", getstudentid);
@@ -122,7 +120,10 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 				  
 			 }catch(SQLException sql) {
 				 sql.printStackTrace();
-			 }
+			 } catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	public void InsertStudentUser(Connection conn) {
 		 try{
@@ -130,7 +131,7 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 				// Class.forName("com.mysql.jdbc.Driver");
 				// Connection con = DriverManager.getConnection(url, "ustregistrar", "ustadmin@2018");
 			
-					 PreparedStatement ps = conn.prepareStatement(insertStudentUser);
+					 PreparedStatement ps = conn.prepareStatement("INSERT INTO useraccounts (userid, password, type) VALUES (?, ?, ?)");
 					 ps.setString(1, studentid);
 					 ps.setString(2, bdate);
 					 ps.setString(3, type);
