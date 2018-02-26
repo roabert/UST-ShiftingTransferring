@@ -10,10 +10,9 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/CssBody.css">
-<link rel="stylesheet" href="CSS/MainBody.css">
-<link rel="stylesheet" href="CSS/Login_CSS.css">
-<link rel="stylesheet" href="CSS/style.css">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/style.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -33,28 +32,55 @@ if(getuser == null) {
 
 
 
-<div id="mySidenav" class="sidenav">
-<center>
-<img src="Images/dp.png" style="width:40%; height:15%;">
-<a href="Adminspage.jsp"><%=getuser %></a>
+<div off-canvas="slidebar-1 left reveal">
+		<div>
+		<br>
+			<center><img src="Images/dp.png" style="width:40%; height:15%;">
+			<h1>Administrator<br></h1>
+			<p><span><%=getuser %></span><br>
+			</center>
+			 <nav class="navigation">
+    <ul class="mainmenu">
+    <li><a href="Adminspage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="AdminsAccount.jsp" class="active"><span class="glyphicon glyphicon-duplicate"></span> Accounts</a></li>
+    <li><a href="AdminsStudent.jsp"><span class="glyphicon glyphicon-pencil"></span> Students</a>
+<!--       <ul class="submenu">
+        <li><a href="">Tops</a></li>
+        <li><a href="">Bottoms</a></li>
+        <li><a href="">Footwear</a></li>
+      </ul>
+ -->    </li>
+    <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+  </ul>
+</nav>
+			</div>
 
-</center>
-<br>
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="Adminspage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a>
-  <a href="AdminsAccount.jsp"><span class="glyphicon glyphicon-arrow-right"></span> &nbsp&nbsp <span class="glyphicon glyphicon-duplicate"></span> Accounts</a>
-  <a href="AdminsStudent.jsp"><span class="glyphicon glyphicon-pencil"></span> Students</a>
-  <a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
-</div>
 
+
+		</div>
+
+<div canvas="contain">
 <div id="main">
+<div id="wrapper">
 
-<div class="header" ><center>
-      <span style="font-size:30px;margin-top:-20px;cursor:pointer" onclick="openNav()">&#9776;</span>  
-<img src="Images/usthead2.PNG" style="width:80%; height:auto;"/> 
-</center>
+
+<div class="header">
+ <a class="logo" >
+ <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
+ UNIVERSITY OF SANTO TOMAS</a>
+  <div class="header-right">  
+    <a class="active">Shifting and Transferring System</a>
+  </div>
 </div>
-     <%
+<div class="topnav">
+  <a href="#">MyUSTe</a>
+  <a href="#">Programs</a>
+  <a href="#" >Guidelines</a>
+</div>
+
+
+<br>
+ <%
      String userget = request.getParameter("edituser"); 
      String getusersql = "SELECT userid, last_name, first_name, middle_name, type FROM admins WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM dean WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM ofad WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM osa WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM registrar WHERE userid = ? UNION SELECT userid, last_name, first_name, middle_name, type FROM secgen WHERE userid = ?";
      try {
@@ -69,10 +95,13 @@ if(getuser == null) {
       ResultSet rs = ps.executeQuery();
     while(rs.next()) {
      %>
+            <p><i>Edit Profile(<%=rs.getString("userid") %>)</i></p>
+</div>
+    
     <br>
      <div class="container">
      
-     <legend><p><i>Edit Profile(<%=rs.getString("userid") %>)</i></p></legend>
+     
   
      <form action = "AdminEditUsers" method="post">
       <div class="col-sm-12">
@@ -110,9 +139,18 @@ if(getuser == null) {
      %>
       <br><br>
 </div>
+   <footer class="footer-distributed">
 
+			<div class="footer-left">
+				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
+			</div>
 
+					</footer>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";

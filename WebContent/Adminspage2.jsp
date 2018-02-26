@@ -15,7 +15,31 @@
 </head>
 <body>
 
+<div off-canvas="slidebar-1 left reveal">
+		<div>
+			<center><img src="../images/dp.png" style="width:40%; height:15%;">
+			<h1>Shifter<br></h1>
+			<p><span>2014069622</span><br>
+			</center>
+			 <nav class="navigation">
+    <ul class="mainmenu">
+    <li><a href="../Student-Shifter/Student-Shifter-Index.jsp"class="active">PROFILE</a></li>
+    <li><a href="../Student-Shifter/Student-Shifter-Shifting.jsp" >SHIFTING</a></li>
+    <li><a href="../Student-Shifter/Student-Shifter-Tracker.jsp">TRACKER</a>
+<!--       <ul class="submenu">
+        <li><a href="">Tops</a></li>
+        <li><a href="">Bottoms</a></li>
+        <li><a href="">Footwear</a></li>
+      </ul>
+ -->    </li>
+    <li><a href="">LOGOUT</a></li>
+  </ul>
+</nav>
+			</div>
 
+
+
+		</div>
 
 
 
@@ -52,7 +76,7 @@
                <tr>
                  <td><strong>Name </strong></td>
                  <td><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly></td>
-                 <td rowspan = "5"><center><img src="Images/dp.png" style="width:50%; height:50%;"></center></td>
+                 <td rowspan = "5"><center><img src="../images/dp.png" style="width:50%; height:50%;"></center></td>
                </tr>
                <tr>
                  <td><strong>ID </strong></td>
@@ -93,34 +117,10 @@
 
 		</div>
 
-		<div off-canvas="slidebar-1 left reveal">
-		<div>
-			<center><img src="../images/dp.png" style="width:40%; height:15%;">
-			<h1>Administrator<br></h1>
-			<p><span>2014069622</span><br>
-			</center>
-			 <nav class="navigation">
-    <ul class="mainmenu">
-    <li><a href="../Student-Shifter/Student-Shifter-Index.jsp"class="active">PROFILE</a></li>
-    <li><a href="../Student-Shifter/Student-Shifter-Shifting.jsp" >SHIFTING</a></li>
-    <li><a href="../Student-Shifter/Student-Shifter-Tracker.jsp">TRACKER</a>
-<!--       <ul class="submenu">
-        <li><a href="">Tops</a></li>
-        <li><a href="">Bottoms</a></li>
-        <li><a href="">Footwear</a></li>
-      </ul>
- -->    </li>
-    <li><a href="">LOGOUT</a></li>
-  </ul>
-</nav>
-			</div>
-
-
-
-		</div>
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script src="../scripts/slidebars.js"></script>
-		<script src="../scripts/scripts.js"></script>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
 		 
 </body>
 </html>
