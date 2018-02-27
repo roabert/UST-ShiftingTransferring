@@ -160,7 +160,7 @@ if(getuser == null) {
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
-<script>
+
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";

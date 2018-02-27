@@ -50,8 +50,8 @@ if(getuser == null) {
     </li>
     <li><a href="#" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
       <ul class="submenu">
-        <li><a href="OfadExam_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="OfadExam_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadExam_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
@@ -139,7 +139,21 @@ if(getuser == null) {
   </fieldset>
   </div>
 </div>
+<footer class="footer-distributed">
 
+			<div class="footer-left">
+				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
+			</div>
+
+					</footer>
+					
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
 
 
 <script>

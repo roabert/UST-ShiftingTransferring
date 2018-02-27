@@ -41,16 +41,16 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Ofadpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a>
     <ul class="submenu">
-        <li><a href="OfadTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadTransaction_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
+    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
       <ul class="submenu">
-        <li><a href="OfadExam_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
@@ -91,7 +91,7 @@ if(getuser == null) {
 
 
 <br>
-            <p><i>Exam Results</i></p> <br>
+            <p><i>Transactions</i></p> <br>
 </div>
  <div class="container-fluid">
   <fieldset>
@@ -112,13 +112,14 @@ if(getuser == null) {
         
         <%
          try{
+        String displaystudents_ofad = "SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.id UNION SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM shifters_status INNER JOIN student_shifter on shifters_status.shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved' AND dean_verified = 'Approved' ";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
-        PreparedStatement ps = conn.prepareStatement(displaystudent); 
+        PreparedStatement ps = conn.prepareStatement(displaystudents_ofad); 
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
         %>
         <tr>
-        <td><%=rs.getString("studentid") %></td>
+        <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("typeofstudent") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
@@ -139,6 +140,21 @@ if(getuser == null) {
   </fieldset>
   </div>
 </div>
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
+			</div>
+
+					</footer>
+					
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
 
 
 

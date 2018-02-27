@@ -139,7 +139,21 @@ if(getuser == null) {
   </fieldset>
   </div>
 </div>
+<footer class="footer-distributed">
 
+			<div class="footer-left">
+				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
+			</div>
+
+					</footer>
+					
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
 
 
 <script>

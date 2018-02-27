@@ -31,7 +31,7 @@ if(getuser == null) {
 }
 %>
 
-
+<!--
 
 <div id="mySidenav" class="sidenav">
 
@@ -45,7 +45,7 @@ if(getuser == null) {
   <a href="OsgTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a>
   <a href="OsgEndorsement.jsp"><span class="glyphicon glyphicon-pencil"></span> Endorsement</a>
   <a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
-</div>
+</div> -->
 
 <div id="main">
 
