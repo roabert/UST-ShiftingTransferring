@@ -41,18 +41,18 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Registrarpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-random"></span> Endorsement</a>
     <ul class="submenu">
-        <li><a href="RegistrarTransaction_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="RegistrarTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="RegistrarEndorse_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="RegistrarEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
 
  <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Completed Memos</a>
   <ul class="submenu">
-        <li><a href="RegistrarEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="RegistrarEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="RegistrarMemo_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="RegistrarMemo_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
  </li>

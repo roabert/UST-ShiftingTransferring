@@ -8,61 +8,75 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/MainBody.css">
-<link rel="stylesheet" href="CSS/style.css">
-<link rel="stylesheet" href="shiftform.css">
-<link rel="stylesheet" href="CSS/CssBody.css">
-<link rel="stylesheet" href="CSS/Login_CSS.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Welcome! | Shifting</title>
-
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		 
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
 </style>
 <body>
-<%String getuser = (String)session.getAttribute("setuser"); 
- if(getuser == null) {
+<%
+String getuser = (String)session.getAttribute("setuser"); 
+if(getuser == null) {
 	 response.sendRedirect("index.html");
- }%>
-<div id="mySidenav" class="sidenav">
+}	
+%>
 
-<center>
-<img src="Images/dp.png" style="width:40%; height:15%;">
-<a href="Shifter-Welcome.jsp"><%=getuser %></a>
-<br>
-</center>
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="Shifter-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a>
-  <a href="Shifter-Shifting.jsp"><span class="glyphicon glyphicon-arrow-right"></span> &nbsp&nbsp <span class="glyphicon glyphicon-random"></span> Shifting</a>
-  <a href="Shifter-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a>
-  <a href="logout.jsp">Log Out</a>
-</div>
+<div off-canvas="slidebar-1 left reveal">
+		<div>
+		<br>
+			<center><img src="Images/dp.png" style="width:40%; height:15%;">
+			<h1>Administrator<br></h1>
+			<p><span><%=getuser %></span><br>
+			</center>
+			 <nav class="navigation">
+    <ul class="mainmenu">
+    <li><a href="Shifter-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="Shifter-Shifting.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Shifting</a></li>
+    <li><a href="Shifter-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a></li>
+    <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+  </ul>
+</nav>
+			</div>
 
+
+
+		</div>
+<div canvas="contain">
 <div id="main">
-<div class="header" ><center>
-      <span style="font-size:30px;margin-top:-20px;cursor:pointer" onclick="openNav()">&#9776;</span>  
-<img src="Images/usthead2.PNG" style="width:80%; height:auto;"/> 
-</center>
-</div>
+<div id="wrapper">
 
- 
- <%
-    
-   
-    
-    %>
-    <br>
-    
+
+<div class="header">
+ <a class="logo" >
+ <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
+ UNIVERSITY OF SANTO TOMAS</a>
+  <div class="header-right">  
+    <a class="active">Shifting and Transferring System</a>
+  </div>
+</div>
+<div class="topnav">
+  <a href="#">MyUSTe</a>
+  <a href="#">Programs</a>
+  <a href="#" >Guidelines</a>
+</div>
+         
+</div><br>
+    <p id="text_steps"><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
      <div class="container">
      <form id="step1shifter" onsubmit = "false" enctype="multipart/form-data">
      <div id = "choosecollege">
-     <p><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
+     
      <br>
 <div class="row">
   <div class="column">
@@ -103,12 +117,26 @@
  </div>
  <div id = "fileuploading">
     <div class="container">
-  <p><i>SHIFTING(Step 1-b): UPLOAD REQUIREMENTS</i></p> <br>
+
 		 	<fieldset>
-		<legend><p>Browse your files here: </p></legend>
+		 	 <div class="announcement">
+  <h3>Instructions</h3>
+  <p>1.) File Must Be In JPEG format.</p>
+  <p>2.) Maximum file size is 2MB.</p>
+  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
+  <h3>Documents Needed:</h3>
+  <p>1.) Official OTR</p>
+  <p>2.) Certificate of Good Moral.</p>
+  <p>3.) Letter to the Dean</p>
+  <p>4.) Letter to the Guidance</p>
+  <p>5.) Photocopy of ID</p>
+</div><br>
 		<center>
 		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
 		</center>
+ 
+</table>
+		
 		 </fieldset>
         
 		
@@ -123,6 +151,21 @@
  </form>
           </div>
   </div>
+  <footer class="footer-distributed">
+
+			<div class="footer-left">
+				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
+			</div>
+
+					</footer>
+					
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
   
 <script>
 function id(x) {
@@ -143,10 +186,12 @@ function swapImage(){
 	image.src = dropd.value;	
 };
 function nextstep() {
+	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
 }
 function goback() {
+	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
 	id("choosecollege").style.display = "block";
 	id("fileuploading").style.display = "none";
 }

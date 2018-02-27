@@ -29,22 +29,6 @@ if(getuser == null) {
 }	
 %>
 
-
-
-<!-- <div id="mySidenav" class="sidenav">
-<center>
-<img src="Images/dp.png" style="width:40%; height:15%;">
-<a href="Adminspage.jsp"></a>
-
-</center>
-<br>
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="Adminspage.jsp"><span class="glyphicon glyphicon-arrow-right"></span> &nbsp&nbsp <span class="glyphicon glyphicon-user"></span> Profile</a>
-  <a href="AdminsAccount.jsp"><span class="glyphicon glyphicon-duplicate"></span> Accounts</a>
-  <a href="AdminsStudent.jsp"><span class="glyphicon glyphicon-pencil"></span> Students</a>
-  <a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
-</div>
-    -->
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>
@@ -56,13 +40,7 @@ if(getuser == null) {
     <ul class="mainmenu">
     <li><a href="Adminspage.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="AdminsAccount.jsp"><span class="glyphicon glyphicon-duplicate"></span> Accounts</a></li>
-    <li><a href="AdminsStudent.jsp"><span class="glyphicon glyphicon-pencil"></span> Students</a>
-<!--       <ul class="submenu">
-        <li><a href="">Tops</a></li>
-        <li><a href="">Bottoms</a></li>
-        <li><a href="">Footwear</a></li>
-      </ul>
- -->    </li>
+    <li><a href="AdminsStudent.jsp"><span class="glyphicon glyphicon-pencil"></span> Students</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
