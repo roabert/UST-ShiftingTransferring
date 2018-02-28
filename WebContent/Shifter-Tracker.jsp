@@ -11,12 +11,8 @@
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/shiftform.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
 		 
 <head>
 <meta charset="ISO-8859-1">
@@ -34,7 +30,7 @@ if(getuser == null) {
 		<div>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
-			<h1>Administrator<br></h1>
+			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
 			 <nav class="navigation">

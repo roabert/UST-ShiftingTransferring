@@ -34,7 +34,7 @@ if(getuser == null) {
 		<div>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
-			<h1>Administrator<br></h1>
+			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
 			 <nav class="navigation">

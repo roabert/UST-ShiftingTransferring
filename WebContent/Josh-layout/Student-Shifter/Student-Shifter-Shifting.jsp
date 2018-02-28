@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../scripts/list.js"></script>
+ 
 <title>Shifting | UST Student-Shifter</title>
 </head>
 <body>
@@ -57,7 +57,7 @@
     <h2>Current Program</h2>
    
 
-</select>
+
 <br>
 <br>
  <img id="imageToSwap" style="width:auto;height:180px;"/>
@@ -72,14 +72,14 @@
     <center>
     <h2>Incoming Faculty</h2>
     
-      <select id="country" name="country"></select>
+      <select id="country" ></select>
     <h2>Incoming Program</h2>
-    <select name="state" id="state"></select>
+    <select id="state"></select>
 
-</select>
+
 <br>
 <br>
- <img id="imageToSwap2" style="width:auto;height:180px;"/>
+
     </center>
     
   </div>

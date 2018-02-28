@@ -9,94 +9,159 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/MainBody.css">
-<link rel="stylesheet" href="CSS/Login_CSS.css">
-<link rel="stylesheet" href="CSS/CssBody.css">
-<link rel="stylesheet" href="CSS/style.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Welcome Student!</title>
-
+	<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		  <script src="scripts/list.js"></script>
+<head>
+<style>
+ form#step1transfer > #fileuploading {display:none;}
+ select {
+    width: 50%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Welcome</title>
 </head>
-
 <body>
-<%String getuser = (String)session.getAttribute("setuser"); 
- if(getuser == null) {
+<%
+String getuser = (String)session.getAttribute("setuser"); 
+if(getuser == null) {
 	 response.sendRedirect("index.html");
- }
+}	
 %>
-<div id="mySidenav" class="sidenav">
-<center>
-<img src="Images/dp.png" style="width:40%; height:15%;">
-<a href="Transfer-Welcome.jsp"><%=getuser %></a>
-<br>
-</center>
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="Transfer-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a>
-  <a href="Transfer-Transferring.jsp"><span class="glyphicon glyphicon-arrow-right"></span> &nbsp&nbsp <span class="glyphicon glyphicon-random"></span> Transferring</a>
-  <a href="Transfer-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a>
-  <a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
-</div>
 
+<div off-canvas="slidebar-1 left reveal">
+		<div>
+		<br>
+			<center><img src="Images/dp.png" style="width:40%; height:15%;">
+			<h1>Student<br></h1>
+			<p><span><%=getuser %></span><br>
+			</center>
+			 <nav class="navigation">
+    <ul class="mainmenu">
+    <li><a href="Transfer-Welcome.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="Transfer-Transferring.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transferring</a></li>
+    <li><a href="Transfer-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a></li>
+    <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+  </ul>
+</nav>
+			</div>
+
+
+
+		</div>
+<div canvas="contain">
 <div id="main">
-<div class="header" ><center>
-      <span style="font-size:30px;margin-top:-20px;cursor:pointer" onclick="openNav()">&#9776;</span>  
-<img src="Images/usthead2.PNG" style="width:80%; height:auto;"/> 
-</center>
-</div>
-<br>
- <div class="container">
- <p><i>SHIFTING: SELECT OUTGOING PROGRAM</i></p><br>
-<div class="row">
-  <div class="column">
-    
-    <center>
-    <h2>Column 1</h2>
-    <select id="dlist" onChange="swapImage()" class="form-control">
-<option value="images/a.gif">Institute of Information and Computing Sciences</option>
-<option value="images/b.gif">Faculty of Engineering</option>
-<option value="images/c.gif">College of Fine Arts and Design</option>
-</select>
-    <h2>Column 1</h2>
-    <select id="dlist" onChange="swapImage()" class="form-control">
-<option value="images/a.gif">Institute of Information and Computing Sciences</option>
-<option value="images/b.gif">Faculty of Engineering</option>
-<option value="images/c.gif">College of Fine Arts and Design</option>
-</select>
+<div id="wrapper">
 
-    </center>
-    <img id="imageToSwap" src="images/d.gif" />
-  </div>
-  
-  
-  
-  
-  <div class="column">
-    <center>
-    <h2>Column 1</h2>
-    <select id="dlist" onChange="swapImage()" class="form-control">
-<option value="images/a.gif">Institute of Information and Computing Sciences</option>
-<option value="images/b.gif">Faculty of Engineering</option>
-<option value="images/c.gif">College of Fine Arts and Design</option>
-</select>
-    <h2>Column 1</h2>
-    <select id="dlist" onChange="swapImage()" class="form-control">
-<option value="images/a.gif">Institute of Information and Computing Sciences</option>
-<option value="images/b.gif">Faculty of Engineering</option>
-<option value="images/c.gif">College of Fine Arts and Design</option>
-</select>
 
-    </center>
-    <img id="imageToSwap" src="images/d.gif" />
+<div class="header">
+ <a class="logo" >
+ <span style="fo	nt-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
+ UNIVERSITY OF SANTO TOMAS</a>
+  <div class="header-right">  
+    <a class="active">Shifting and Transferring System</a>
   </div>
 </div>
+<div class="topnav">
+  <a href="#">MyUSTe</a>
+  <a href="#">Programs</a>
+  <a href="#" >Guidelines</a>
+</div>
+       <br>     
+</div>
+ <p id="text_steps"><i>TRANSFERRING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
+     <div class="container">
+     <form id="step1transfer" onsubmit = "false" enctype="multipart/form-data">
+     <div id = "choosecollege">
+     
+     <br>  
+    <center>
+    <h2>Outgoing College</h2>
+    <select id="country" name="outgoing_college">
+
+</select>
+    <h2>Outgoing Program</h2>
+    <select id="state" name="outgoing_program">
+
+</select>
+
+   <br>
+    <img id="imageToSwap" src="images/d.gif" />
+  <br><br>
+ 
+  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
+  </center>
+ </div>
+ <div id = "fileuploading">
+    <div class="container">
+
+		 	<fieldset>
+		 	 <div class="announcement">
+ <h3>Instructions</h3>
+  <p>1.) File Must Be In JPEG format.</p>
+  <p>2.) Maximum file size is 2MB.</p>
+  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
+  <h3>Documents Needed:</h3>
+  <p>1.) Official OTR</p>
+  <p>2.) Certificate of Good Moral.</p>
+  <p>3.) Letter to the Dean</p>
+  <p>4.) Letter to the Guidance</p>
+</div><br>
+		<center>
+		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
+		</center>
+ 
+</table>
+		
+		 </fieldset>
+        
+		
+	
+</div>
+<br><br>
+   <center>
+   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg">Back</button>
+   <button onclick="step1Submit()" class="btn btn-warning btn-lg">Transfer Now</button>
+   </center>
+ </div>
+ </form>
           </div>
-  </div>
+   </div>      
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
+			</div>
+
+					</footer>
+					
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
   
+  <script language="javascript">
+populateCountries("country", "state");
+</script>
 <script>
+
+function id(x) {
+	return document.getElementById(x);
+}
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
@@ -105,6 +170,26 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function swapImage(){
+	var image = document.getElementById("imageToSwap");
+	var dropd = document.getElementById("dlist");
+	image.src = dropd.value;	
+};
+function nextstep() {
+	id("text_steps").innerHTML = "<p><i>TRANSFERRING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
+	id("choosecollege").style.display = "none";
+	id("fileuploading").style.display = "block";
+}
+function goback() {
+	id("text_steps").innerHTML = "<p><i>TRANSFERRING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
+	id("choosecollege").style.display = "block";
+	id("fileuploading").style.display = "none";
+}
+function step1Submit() {
+	id("step1transfer").method = "post";
+	id("step1transfer").action = "Requirements_Upload";
+	id("step1transfer").submit();
 }
 </script>
 </body>

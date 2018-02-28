@@ -16,13 +16,20 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		 
+		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
+  select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
 </style>
 <body>
 <%
@@ -36,7 +43,7 @@ if(getuser == null) {
 		<div>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
-			<h1>Administrator<br></h1>
+			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
 			 <nav class="navigation">
@@ -71,9 +78,10 @@ if(getuser == null) {
   <a href="#" >Guidelines</a>
 </div>
          
-</div><br>
-    <p id="text_steps"><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
+</div>
+<br>    <p id="text_steps"><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
      <div class="container">
+     
      <form id="step1shifter" onsubmit = "false" enctype="multipart/form-data">
      <div id = "choosecollege">
      
@@ -82,11 +90,24 @@ if(getuser == null) {
   <div class="column">
     
     <center>
+    <%
+      String getcoursesql = "SELECT studentid, oldcourse, oldprogram FROM student_shifter WHERE studentid = ?";
+    try{
+    PreparedStatement ps = conn.prepareStatement(getcoursesql);
+    ps.setString(1, getuser);
+    ResultSet rs = ps.executeQuery();
+    while(rs.next()) {
+    %>
+    <input type="hidden" name="studentid" value="<%=rs.getString("studentid")%>">
     <h2>Current College</h2>
-     <p><% %></p>
+     <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldcourse") %></u></b></p>
     <h2>Current Program</h2>
-     <p><% %></p>
-
+     <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldprogram") %></u></b></p>
+     
+    <%} 
+    } catch(Exception e) {
+    	out.print(e);
+    } %>
     </center>
     <img id="imageToSwap" src="images/d.gif" />
   </div>
@@ -94,16 +115,12 @@ if(getuser == null) {
   <div class="column">
     <center>
     <h2>Outgoing College</h2>
-    <select id="dlist" name="outgoing_college" class="form-control" onChange="swapImage()">
-<option value="images/a.gif">Institute of Information and Computing Sciences</option>
-<option value="images/b.gif">Faculty of Engineering</option>
-<option value="images/c.gif">College of Fine Arts and Design</option>
+    <select id="country" name="outgoing_college">
+
 </select>
     <h2>Outgoing Program</h2>
-    <select id="dlist" name="outgoing_program" class = "form-control" onChange="swapImage()">
-<option value="images/a.gif">Institute of Information and Computing Sciences</option>
-<option value="images/b.gif">Faculty of Engineering</option>
-<option value="images/c.gif">College of Fine Arts and Design</option>
+    <select id="state" name="outgoing_program">
+
 </select>
 
     </center>
@@ -111,6 +128,7 @@ if(getuser == null) {
   </div>
 </div>
   <br><br>
+  
   <center>
   <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
   </center>
@@ -161,13 +179,16 @@ if(getuser == null) {
 					
 
 </div>
-
+<script language="javascript">
+populateCountries("country", "state");
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
-  
+       
 <script>
+
 function id(x) {
 	return document.getElementById(x);
 }
