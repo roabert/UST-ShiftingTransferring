@@ -35,30 +35,30 @@ if(getuser == null) {
 		<div>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
-			<h1>OFAD<br></h1>
+			<h1>Secretary General<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
 			 <nav class="navigation">
-    <ul class="mainmenu">
-    <li><a href="Ofadpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+     <ul class="mainmenu">
+    <li><a href="Osgpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions</a>
     <ul class="submenu">
-        <li><a href="OfadTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="OsgTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
-      <ul class="submenu">
-        <li><a href="OfadExam_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+ <li><a href="#" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
+ <ul class="submenu">
+        <li><a href="OsgExam_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgExam_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
-    </li>
- <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Encode Scores</a>
+      </li>
+ <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Endorsement</a>
   <ul class="submenu">
-        <li><a href="OfadScores_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadScores_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="OsgEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
  </li>

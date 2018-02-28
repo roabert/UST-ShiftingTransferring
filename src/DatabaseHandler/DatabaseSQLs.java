@@ -20,7 +20,8 @@ public interface DatabaseSQLs {
 	 String Dean_approveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
 	// SecGen approve student
 	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ? WHERE shifter_id = ?";
-	 
+	 String Ofad_approveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ? WHERE shifter_id = ?";
+	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time) VALUES (?, ?, ?, ?)";
 	 //Admin Modify Users (for admin)
 	 String Admin_editUsersSQL = "UPDATE admins SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
 	//Admin Modify Users (for registrar)

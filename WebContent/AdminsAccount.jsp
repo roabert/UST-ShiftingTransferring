@@ -80,7 +80,7 @@ if(getuser == null) {
 
 
 <br>
-            <p><i>Create Accounts</i></p>
+            <p><i>Accounts Details</i></p>
 </div>
       <div class="container">
        <div class="table-responsive" style="overflow-x:auto; height:450px;">
@@ -148,7 +148,7 @@ if(getuser == null) {
        <form id = "form1" onsubmit="false">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h1>Create Users</h1>
+           <p><i>Create Users</i></p>
           </div>
           <div class="modal-body">
             <div class="col-sm-12">

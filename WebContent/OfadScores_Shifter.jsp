@@ -48,19 +48,15 @@ if(getuser == null) {
         
       </ul>
     </li>
-    <li><a href="#" ><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
+    <li><a href="#" ><span class="glyphicon glyphicon-list-alt"></span> Exam Scheduling</a>
       <ul class="submenu">
         <li><a href="OfadExam_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
- <li><a href="#" class="active"><span class="glyphicon glyphicon-pencil"></span> Encode Scores</a>
-  <ul class="submenu">
-        <li><a href="OfadScores_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadScores_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
-        
-      </ul>
+ <li><a href="OfadExamScheduler.jsp" class="active"><span class="glyphicon glyphicon-pencil"></span> Encode Scores</a>
+ 
  </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>

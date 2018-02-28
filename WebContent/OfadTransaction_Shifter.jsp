@@ -48,12 +48,8 @@ if(getuser == null) {
         
       </ul>
     </li>
-    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
-      <ul class="submenu">
-        <li><a href="OfadExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
-        
-      </ul>
+    <li><a href="OfadExamScheduler.jsp"><span class="glyphicon glyphicon-list-alt"></span> Exam Scheduling</a>
+      
     </li>
  <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Encode Scores</a>
   <ul class="submenu">
@@ -112,24 +108,37 @@ if(getuser == null) {
         
         <%
          try{
+        String displaystudent_ofad = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified is NULL AND secgen_verified = 'Approved'";
         String displaystudents_ofad = "SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.id UNION SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM shifters_status INNER JOIN student_shifter on shifters_status.shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved' AND dean_verified = 'Approved' ";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
-        PreparedStatement ps = conn.prepareStatement(displaystudents_ofad); 
+        PreparedStatement ps = conn.prepareStatement(displaystudent_ofad); 
         ResultSet rs = ps.executeQuery();
-           while(rs.next()) {
+        if(!rs.next()){
+        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
+        }
+        else {
+           do {
+           
         %>
+        <form action = "Ofad_verifyprocess" method = "post">
         <tr>
-        <td><%=rs.getString("transferee_id") %></td>
+        <td><input type="hidden" value="<%=getuser%>" name="getuser">
+        <input type = "hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid"><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("typeofstudent") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</a></td>
-        <td><input type = "date" class="form-control" name="examdate"></td>
+        <td><select class="form-control" name="remarks">
+        <option value="Approved">Approve</option>
+        <option value="Disapproved">Disapprove</option>
+        
+        </select></td>	
         <td><button type="submit" class="btn btn-warning">Submit</button></td>
         </tr>
-        <%}
-           
+        </form>
+        <%}while(rs.next());
+           }
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

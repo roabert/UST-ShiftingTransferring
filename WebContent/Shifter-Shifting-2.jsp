@@ -81,22 +81,18 @@ if(getuser == null) {
          PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND ofad_verified = 'Approved'");
          ps.setString(1, getuser);
          ResultSet rs = ps.executeQuery();
-         if(rs.next()) {
-       	 response.sendRedirect("Shifter-Shifting-2.jsp");
-         }
-     
+         if(!rs.next()) {
+      	 response.sendRedirect("Shifter-Step1Done.jsp");
+       }
+      //   else {
+      //  	 response.sendRedirect("Shifter-Shifting-2.jsp");
+      //   }
          %>
 </div>
-<br>    <p id="text_steps"><i>FILES UPLOADED! SEE TRACKER FOR UPDATESS</i></p>
+<br>    <p id="text_steps"><i>STEP 2: TAKE EXAM</i></p>
 
      <div class="container">
-<br>
-<br>
-       <center>
-       <p><span class="glyphicon glyphicon-search" style="font-size:100px;"></span></p>
-       <br><br><br>
-       <form action="Shifter-Tracker.jsp"><button type="submit" class="btn btn-lg btn-warning">See Tracker</button></form>
-       </center>
+
           </div>
   </div>
   <footer class="footer-distributed">

@@ -78,16 +78,35 @@ if(getuser == null) {
     PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
     ps.setString(1, getuser);
     ResultSet rs = ps.executeQuery();
-  
+    while(rs.next()) {
     %>
-	<%if(rs.next()) {%>e
-	<a class="modal-btn inp" href="#open-modal">Dean Verification</a>   
-	<%} else { %>
-       <a class="modal-btn" href="#open-modal">Dean Verification</a>
-	<% }
-	%> 
-	<a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
-	<a class="modal-btn" href="#open-modal">OFAD Verification</a>
+	<% if(rs.getString("dean_verified").equals("Approved"))  {%> 
+	<a class="modal-btn active" href="#open-modal">Dean Verification</a>  
+	<%} else if(rs.getString("dean_verified").equals("")) { %>
+       <a class="modal-btn inp" href="#open-modal">Dean Verification</a>
+       <%} else if(rs.getString("dean_verified").equals("Disapproved")){%>
+       <a class="modal-btn reject" href="#open-modal">Dean Verification</a>
+       <%} %>
+       
+       
+       <%if(rs.getString("secgen_verified").equals("Approved"))  {%> 
+	<a class="modal-btn active" href="#open-modal">Sec Gen Endorsement</a>
+	<%} else if(rs.getString("secgen_verified").equals("")) { %>
+	<a class="modal-btn inp" href="#open-modal">Sec Gen Endorsement</a>
+	   <%} else if(rs.getString("secgen_verified").equals("Disapproved")){%>
+       <a class="modal-btn reject" href="#open-modal">Sec Gen Endorsement</a>
+       <%} %>
+       
+       
+        <% if(rs.getString("ofad_verified").equals("Approved"))  {%> 
+	<a class="modal-btn active" href="#open-modal">OFAD Verification</a>
+	<%} else if(rs.getString("ofad_verified").equals("")) { %>
+	<a class="modal-btn inp" href="#open-modal">OFAD Verification</a>
+	 <%} else if(rs.getString("ofad_verified").equals("Disapproved")){%>
+	 <a class="modal-btn reject" href="#open-modal">OFAD Verification</a>
+	 <%} %>
+	 
+	 
 	<a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
 	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
 	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
@@ -99,6 +118,7 @@ if(getuser == null) {
 	<a href="#" class="">Memo Endorsement: Sec Gen</a>
 	<a href="#">Memo Confirmation: Registrar & Dean</a>
 	<%  
+    }
     }
      catch(SQLException e) {
     	 out.print(e);
