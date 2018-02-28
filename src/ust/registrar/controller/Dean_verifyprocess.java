@@ -60,7 +60,7 @@ public class Dean_verifyprocess extends HttpServlet {
 		d.verifyStudent(conn);
 		
 		
-		response.sendRedirect("DeanTransaction.jsp");
+		response.sendRedirect("DeanTransaction_Shifter.jsp");
 		
 		
 	}

@@ -73,10 +73,22 @@ if(getuser == null) {
 <center>
 <ol class="progress-meter">
     <div class="breadcrumb flat">
-	<a class="modal-btn" href="#open-modal">Dean Verification</a>
+    <%
+    try {
+    PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
+    ps.setString(1, getuser);
+    ResultSet rs = ps.executeQuery();
+  
+    %>
+	<%if(rs.next()) {%>e
+	<a class="modal-btn inp" href="#open-modal">Dean Verification</a>   
+	<%} else { %>
+       <a class="modal-btn" href="#open-modal">Dean Verification</a>
+	<% }
+	%> 
 	<a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
 	<a class="modal-btn" href="#open-modal">OFAD Verification</a>
-	<a class="modal-btn" href="#open-modal2"">OFAD Exam Schedule</a>
+	<a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
 	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
 	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
 	</div>
@@ -86,6 +98,12 @@ if(getuser == null) {
 	<a href="#" class="">Memo Endorsement: Registrar</a>
 	<a href="#" class="">Memo Endorsement: Sec Gen</a>
 	<a href="#">Memo Confirmation: Registrar & Dean</a>
+	<%  
+    }
+     catch(SQLException e) {
+    	 out.print(e);
+     }
+    %>
 	</div>
 </ol>
 
