@@ -19,7 +19,7 @@
 		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Files Uploaded!</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
@@ -37,14 +37,6 @@ String getuser = (String)session.getAttribute("setuser");
 if(getuser == null) {
 	 response.sendRedirect("index.html");
 }	
-
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
-pst.setString(1, getuser);
-ResultSet rst = pst.executeQuery();
-if(rst.next()) {
-	 response.sendRedirect("Shifter-Step1Done.jsp");
-}
-
 %>
 
 <div off-canvas="slidebar-1 left reveal">
@@ -85,96 +77,28 @@ if(rst.next()) {
   <a href="#">Programs</a>
   <a href="#" >Guidelines</a>
 </div>
-         
+         <%
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND dean_verified = 'Approved'");
+         ps.setString(1, getuser);
+         ResultSet rs = ps.executeQuery();
+       //  if(!rs.next()) {
+    //    	 response.sendRedirect("Shifter-Step1Done.jsp");
+     //    }
+      //   else {
+      //  	 response.sendRedirect("Shifter-Shifting-2.jsp");
+      //   }
+         %>
 </div>
-<br>    <p id="text_steps"><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
+<br>    <p id="text_steps"><i>FILES UPLOADED! SEE TRACKER FOR UPDATES</i></p>
+
      <div class="container">
-     
-     <form id="step1shifter" onsubmit = "return false" enctype="multipart/form-data">
-     <div id = "choosecollege">
-     
-     <br>
-<div class="row">
-  <div class="column">
-    
-    <center>
-    <%
-      String getcoursesql = "SELECT studentid, oldcourse, oldprogram FROM student_shifter WHERE studentid = ?";
-    try{
-    PreparedStatement ps = conn.prepareStatement(getcoursesql);
-    ps.setString(1, getuser);
-    ResultSet rs = ps.executeQuery();
-    while(rs.next()) {
-    %>
-    <input type="hidden" name="studentid" value="<%=rs.getString("studentid")%>">
-    <h2>Current College</h2>
-     <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldcourse") %></u></b></p>
-    <h2>Current Program</h2>
-     <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldprogram") %></u></b></p>
-     
-    <%} 
-    } catch(Exception e) {
-    	out.print(e);
-    } %>
-    </center>
-    <img id="imageToSwap" src="images/d.gif" />
-  </div>
- 
-  <div class="column">
-    <center>
-    <h2>Outgoing College</h2>
-    <select id="country" name="outgoing_college">
-
-</select>
-    <h2>Outgoing Program</h2>
-    <select id="state" name="outgoing_program">
-
-</select>
-
-    </center>
-    <img id="imageToSwap" src="images/d.gif" />
-  </div>
-</div>
-  <br><br>
-  
-  <center>
-  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
-  </center>
- </div>
- <div id = "fileuploading">
-    <div class="container">
-
-		 	<fieldset>
-		 	 <div class="announcement">
-  <h3>Instructions</h3>
-  <p>1.) File Must Be In JPEG format.</p>
-  <p>2.) Maximum file size is 2MB.</p>
-  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
-  <h3>Documents Needed:</h3>
-  <p>1.) Official OTR</p>
-  <p>2.) Certificate of Good Moral.</p>
-  <p>3.) Letter to the Dean</p>
-  <p>4.) Letter to the Guidance</p>
-  <p>5.) Photocopy of ID</p>
-</div><br>
-		<center>
-		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
-		</center>
- 
-</table>
-		
-		 </fieldset>
-        
-		
-	
-</div>
-<br><br>
-   <center>
-   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg">Back</button>
-   <button onclick="step1Submit()" class="btn btn-warning btn-lg">Shift Now</button>
-   </center>
- </div>
- </form>
+<br>
+<br>
+       <center>
+       <p><span class="glyphicon glyphicon-search" style="font-size:100px;"></span></p>
+       <br><br><br>
+       <form action="Shifter-Tracker.jsp"><button type="submit" class="btn btn-lg btn-warning">See Tracker</button></form>
+       </center>
           </div>
   </div>
   <footer class="footer-distributed">
