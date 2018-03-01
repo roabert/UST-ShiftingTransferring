@@ -115,7 +115,7 @@ if(getuser == null) {
         
         <%
          try{
-        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified is NULL AND dean_verified = 'Approved'";
+        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'In-progress' AND dean_verified = 'Approved'";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
         ResultSet rs = ps.executeQuery();

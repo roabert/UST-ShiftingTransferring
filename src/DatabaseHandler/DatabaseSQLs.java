@@ -17,9 +17,9 @@ public interface DatabaseSQLs {
 	 String insertStudentUser =  "INSERT INTO useraccounts (userid, password, type) VALUES (?, ?, ?)";
 
 	 // Dean approve student
-	 String Dean_approveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
+	 String Dean_approveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ?, secgen_verified = 'In-progress' WHERE shifter_id = ?";
 	// SecGen approve student
-	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ? WHERE shifter_id = ?";
+	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE shifter_id = ?";
 	 String Ofad_approveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ? WHERE shifter_id = ?";
 	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time) VALUES (?, ?, ?, ?)";
 	 //Admin Modify Users (for admin)

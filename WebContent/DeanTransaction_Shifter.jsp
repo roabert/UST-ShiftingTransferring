@@ -119,7 +119,7 @@ if(getuser == null) {
         
         <%
          try{
-        String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified is NULL";
+        String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified = 'In-progress'";
         PreparedStatement ps = conn.prepareStatement(displaystudent); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){

@@ -101,7 +101,7 @@ public void setIdPhotocopy(Part idPhotocopy) {
 	 try {
 		 PreparedStatement ps1 = conn.prepareStatement("INSERT INTO shifters_status (shifter_id, dean_verified) VALUES (?, ?)");
 			ps1.setString(1, studentid);
-			ps1.setString(2, "in-progress");
+			ps1.setString(2, "In-progress");
 			ps1.executeUpdate(); 
 		 }
 		 catch(SQLException e) {

@@ -81,11 +81,11 @@ if(getuser == null) {
     if(rs.next()) {
     %>
        <%if(rs.getString("dean_verified")!=null){
-       if(rs.getString("dean_verified").equals("approved"))  {%> 
+       if(rs.getString("dean_verified").equals("Approved"))  {%> 
    	<a class="modal-btn active" href="#open-modal">Dean Verification</a>
-   	<%} else if(rs.getString("dean_verified").equals("in-progress")) { %>
+   	<%} else if(rs.getString("dean_verified").equals("In-progress")) { %>
    	<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
-   	   <%} else if(rs.getString("dean_verified").equals("disapproved")){%>
+   	   <%} else if(rs.getString("dean_verified").equals("Disapproved")){%>
           <a class="modal-btn reject" href="#open-modal">Dean Verification</a>
           <%} %>
        <%
@@ -96,11 +96,11 @@ if(getuser == null) {
        }%>
        
        <%if(rs.getString("secgen_verified")!=null){
-       if(rs.getString("secgen_verified").equals("approved"))  {%> 
+       if(rs.getString("secgen_verified").equals("Approved"))  {%> 
    	<a class="modal-btn active" href="#open-modal">Sec Gen Endorsement</a>
-   	<%} else if(rs.getString("secgen_verified").equals("in-progress")) { %>
+   	<%} else if(rs.getString("secgen_verified").equals("In-progress")) { %>
    	<a class="modal-btn inp" href="#open-modal">Sec Gen Endorsement</a>
-   	   <%} else if(rs.getString("secgen_verified").equals("disapproved")){%>
+   	   <%} else if(rs.getString("secgen_verified").equals("Disapproved")){%>
           <a class="modal-btn reject" href="#open-modal">Sec Gen Endorsement</a>
           <%} %>
        <%
@@ -111,11 +111,11 @@ if(getuser == null) {
        }%>
        
        <%if(rs.getString("ofad_verified")!=null){
-       if(rs.getString("ofad_verified").equals("approved"))  {%> 
+       if(rs.getString("ofad_verified").equals("Approved"))  {%> 
    	<a class="modal-btn active" href="#open-modal">OFAD Verification</a>
-   	<%} else if(rs.getString("ofad_verified").equals("in-progress")) { %>
+   	<%} else if(rs.getString("ofad_verified").equals("In-progress")) { %>
    	<a class="modal-btn inp" href="#open-modal">OFAD Verification</a>
-   	   <%} else if(rs.getString("ofad_verified").equals("disapproved")){%>
+   	   <%} else if(rs.getString("ofad_verified").equals("Disapproved")){%>
           <a class="modal-btn reject" href="#open-modal">OFAD Verification</a>
           <%} %>
        <%
