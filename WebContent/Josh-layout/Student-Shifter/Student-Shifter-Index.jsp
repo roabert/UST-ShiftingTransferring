@@ -47,7 +47,7 @@
             <center>
             <div class="table-responsive">
                <br>
-            <table class="table">
+         <!-- <table class="table">
          
                <tr>
                  <td><strong>Name </strong></td>
@@ -77,9 +77,31 @@
                  <button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Change Password</button>
                </center></td>
                </tr>
-            </table>
-           
+            </table> --> 
+            
+            <div class="col-lg-4 col-md-4 col-sm-12 pull-right">
+            	<div>
+	            	<img src="../images/dp.png" style="width:50%; height:50%;">
+	            	<br><br>
+	            	<button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit Profile</button>
+                 <button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Change Password</button>
+            	
+	            </div>
+         	</div>
+            
+            <div class="col-lg-8 col-md-8 col-sm-12">
+            	<div>
+                	
+            	</div>
+            	<div>
+            		<strong>Name</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
+            		<strong>ID</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
+            		<strong>Program</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
+            		<strong>Outgoing</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
+            		</div>
             </div>
+            	
+            
              </center>
           </div>
 </div>

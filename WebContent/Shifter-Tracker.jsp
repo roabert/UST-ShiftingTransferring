@@ -137,6 +137,22 @@ if(getuser == null) {
 	<a href="#" class="">Memo Endorsement: Sec Gen</a>
 	<a href="#">Memo Confirmation: Registrar & Dean</a>
 	<%  
+    }else{
+    	%>
+    <a class="modal-btn" href="#open-modal">Dean Verification</a>
+    <a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
+    <a class="modal-btn" href="#open-modal">OFAD Verification</a>
+	<a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
+	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
+	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
+	</div>
+	<br><br><br><br>
+	<div class="breadcrumb flat">
+	<a href="#" class="">Memo Form Now Active</a>
+	<a href="#" class="">Memo Endorsement: Registrar</a>
+	<a href="#" class="">Memo Endorsement: Sec Gen</a>
+	<a href="#">Memo Confirmation: Registrar & Dean</a>
+    <%
     }
     }
      catch(SQLException e) {

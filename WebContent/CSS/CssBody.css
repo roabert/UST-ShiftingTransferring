@@ -37,6 +37,10 @@ body {
     margin-left: 50px;
 }
 
+strong{
+	float:left;
+}
+
 #main {
     transition: margin-left .5s;
    
