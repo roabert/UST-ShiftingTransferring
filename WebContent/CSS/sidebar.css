@@ -61,7 +61,7 @@ html, body {
 	overflow: hidden;
 	background-size: 300px 800px;
 	overflow-y: auto;
-	background-image: url("../Images/sidebarbg.jpg"); /* Basic background color, overwrite this in your own css. */
+	background-image: url("../images/sidebarbg.png"); /* Basic background color, overwrite this in your own css. */
 
 	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }

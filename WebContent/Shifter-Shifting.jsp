@@ -149,14 +149,15 @@ if(rst.next()) {
   <h3>Instructions</h3>
   <p>1.) File Must Be In JPEG format.</p>
   <p>2.) Maximum file size is 2MB.</p>
-  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
+  <p>3.) Filename must be in this format: <strong>studentnumber-documentname*</strong></p>
   <h3>Documents Needed:</h3>
-  <p>1.) Official OTR</p>
-  <p>2.) Certificate of Good Moral.</p>
-  <p>3.) Letter to the Dean</p>
-  <p>4.) Letter to the Guidance</p>
-  <p>5.) Photocopy of ID</p>
+  <p>1.) Official OTR (studentnumber-otr)</p>
+  <p>2.) Certificate of Good Moral (studentnumber-goodmoral)</p>
+  <p>3.) Letter to the Dean (studentnumber-lettertodean)</p>
+  <p>4.) Letter to the Guidance(studentnumber-lettertoguidance)</p>
+  <p>5.) Photocopy of ID (studentnumber-id)</p>
 </div><br>
+
 		<center>
 		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
 		</center>
@@ -174,7 +175,7 @@ if(rst.next()) {
    <button onclick="step1Submit()" class="btn btn-warning btn-lg">Shift Now</button>
    </center>
  </div>
- </form>
+
           </div>
   </div>
   <footer class="footer-distributed">

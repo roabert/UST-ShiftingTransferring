@@ -19,7 +19,14 @@ public String getNewprogram() {
 public void setNewprogram(String newprogram) {
 	this.newprogram = newprogram;
 }
-Part requirements;
+
+private Part requirements;
+private Part oTR;
+private Part certGoodMoral;
+private Part letterToDean;
+private Part lettertoGuidance;
+private Part idPhotocopy;
+
 public String getStudentid() {
 	return studentid;
 }
@@ -32,12 +39,45 @@ public Part getRequirements() {
 public void setRequirements(Part requirements) {
 	this.requirements = requirements;
 }
-
+public Part getOTR() {
+	return oTR;
+}
+public void setOTR(Part oTR) {
+	this.oTR = oTR;
+}
+public Part getCertGoodMoral() {
+	return certGoodMoral;
+}
+public void setCertGoodMoral(Part certGoodMoral) {
+	this.certGoodMoral = certGoodMoral;
+}
+public Part getLetterToDean() {
+	return letterToDean;
+}
+public void setLetterToDean(Part letterToDean) {
+	this.letterToDean = letterToDean;
+}
+public Part getLettertoGuidance() {
+	return lettertoGuidance;
+}
+public void setLettertoGuidance(Part lettertoGuidance) {
+	this.lettertoGuidance= lettertoGuidance;
+}
+public Part getIdPhotocopy() {
+	return idPhotocopy;
+}
+public void setIdPhotocopy(Part idPhotocopy) {
+	this.idPhotocopy = idPhotocopy;
+}
  public void submitRequirements(Connection conn) throws IOException {
 	 try {
-		PreparedStatement ps = conn.prepareStatement("INSERT INTO shifters_requirements (shifter_id, requirementsimage) VALUES (?, ?)");
+		PreparedStatement ps = conn.prepareStatement("INSERT INTO `shifters_requirements` (`id`, `shifter_id`, `official-otr`, `cert-good-moral`, `letter-to-dean`, `letter-to-guidance`, `photocopy-id`) VALUES (NULL, ?, ?, ?, ?, ?, ?)");
 		ps.setString(1, studentid);
-	   ps.setBinaryStream(2, requirements.getInputStream(), (int) requirements.getSize());	
+		ps.setBinaryStream(2, oTR.getInputStream(), (int) oTR.getSize());
+		ps.setBinaryStream(3, oTR.getInputStream(), (int) oTR.getSize());
+		ps.setBinaryStream(4, oTR.getInputStream(), (int) oTR.getSize());
+		ps.setBinaryStream(5, oTR.getInputStream(), (int) oTR.getSize());
+		ps.setBinaryStream(6, oTR.getInputStream(), (int) oTR.getSize());
 		ps.executeUpdate();
 	 }
 	 catch(SQLException e) {
@@ -59,8 +99,9 @@ public void setRequirements(Part requirements) {
  }
  public void step1Status(Connection conn) {
 	 try {
-		 PreparedStatement ps1 = conn.prepareStatement("INSERT INTO shifters_status (shifter_id) VALUES (?)");
+		 PreparedStatement ps1 = conn.prepareStatement("INSERT INTO shifters_status (shifter_id, dean_verified) VALUES (?, ?)");
 			ps1.setString(1, studentid);
+			ps1.setString(2, "in-progress");
 			ps1.executeUpdate(); 
 		 }
 		 catch(SQLException e) {

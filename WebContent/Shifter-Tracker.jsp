@@ -78,14 +78,26 @@ if(getuser == null) {
     PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
     ps.setString(1, getuser);
     ResultSet rs = ps.executeQuery();
-  
+  	
     %>
-	<%if(rs.next()) {%>e
-	<a class="modal-btn inp" href="#open-modal">Dean Verification</a>   
+    
+	<%if(rs.next()) {%>
+	
+		<%if(rs.getString("dean_verified").equals("in-progress")) {%>
+		<a class="modal-btn inp" href="#open-modal">Dean Verification</a>   
+		<%}else if(rs.getString("dean_verified").equals("approved")){%>
+		<a class="modal-btn active" href="#open-modal">Dean Verification</a>   
+		<%}else if(rs.getString("dean_verified").equals("rejected")){%>
+		<a class="modal-btn inp" href="#open-modal">Dean Verification</a>   
+		<%}else{%>
+		<a class="modal-btn" href="#open-modal">Dean Verification</a>   
+		<%}%> 
+	 
 	<%} else { %>
        <a class="modal-btn" href="#open-modal">Dean Verification</a>
 	<% }
 	%> 
+	
 	<a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
 	<a class="modal-btn" href="#open-modal">OFAD Verification</a>
 	<a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>

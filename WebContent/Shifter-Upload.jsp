@@ -3,8 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-			<link rel="stylesheet" href="CSS/sidebar.css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css">
+		<link rel="stylesheet" href="CSS/sidebar.css">
 		<link rel="stylesheet" href="CSS/style.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
@@ -33,46 +32,11 @@
 </div>
 <div class="container">
  <form action="#">
-			<legend>Official OTR</legend>
-			<table>
+			<legend>Upload Files</legend>
+<table>
   <tr>
-    <th><input type="file" name="file" id="file" /></th>
-    <th><input type="submit" name="upload" id="upload" value="Upload ( .JPG)" /></th>
-    
-  </tr>
- 
-</table>
-			<legend>Certificate of Good Moral</legend>
-			<table>
-  <tr>
-    <th><input type="file" name="file" id="file" /></th>
-    <th><input type="submit" name="upload" id="upload" value="Upload ( .JPG)" /></th>
-    
-  </tr>
- 
-</table>
-			<legend>Letter to the Guidance</legend>
-			<table>
-  <tr>
-    <th><input type="file" name="file" id="file" /></th>
-    <th><input type="submit" name="upload" id="upload" value="Upload ( .JPG)" /></th>
-    
-  </tr>
- 
-</table>
-			<legend>Letter to the Dean</legend>
-			<table>
-  <tr>
-    <th><input type="file" name="file" id="file" /></th>
-    <th><input type="submit" name="upload" id="upload" value="Upload ( .JPG)" /></th>
-    
-  </tr>
- 
-</table>
-			<legend>Photocopy of ID</legend>
-			<table>
-  <tr>
-    <th><input type="file" name="file" id="file" /></th>
+  
+    <th><input type="file" name="file" id="file" multiple/></th>
     <th><input type="submit" name="upload" id="upload" value="Upload ( .JPG)" /></th>
     
   </tr>

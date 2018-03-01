@@ -3,8 +3,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.io.*"%>
- <%@ page import = "DatabaseHandler.SingletonDB" %>
-   <% Connection conn = SingletonDB.getConnection(); %>
+<%@ page import = "DatabaseHandler.SingletonDB" %>
+<% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html>
 <html>
     <head>
