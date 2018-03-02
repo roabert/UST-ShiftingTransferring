@@ -89,13 +89,20 @@ if(getuser == null) {
   <a href="#" >Guidelines</a>
 </div>
          <%
-         PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND ofad_verified = 'Approved'");
+    
+         PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (secgen_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
+         pss.setString(1, getuser);
+         ResultSet rss = pss.executeQuery();
+         if(rss.next()) {
+         
+         	 response.sendRedirect("Shifter-ShiftFailed.jsp");
+         }
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is NOT NULL");
          ps.setString(1, getuser);
          ResultSet rs = ps.executeQuery();
          if(rs.next()) {
-       	 response.sendRedirect("Shifter-Shifting-2.jsp");
-         }
-     
+      	 response.sendRedirect("Shifter-Shifting-2.jsp");
+       }
          %>
 </div>
 <br>    <p id="text_steps"><i>FILES UPLOADED! SEE TRACKER FOR UPDATES</i></p>

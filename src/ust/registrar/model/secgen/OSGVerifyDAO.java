@@ -44,4 +44,18 @@ public class OSGVerifyDAO implements DatabaseSQLs {
 		}
 		
 	}
+public void dontverifyStudent(Connection conn) {
+		
+		try {
+			PreparedStatement pst = conn.prepareStatement(OSG_disapproveStudent);
+			pst.setString(1, osgname);
+			pst.setString(2, remarks);
+			pst.setString(3, studentid);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

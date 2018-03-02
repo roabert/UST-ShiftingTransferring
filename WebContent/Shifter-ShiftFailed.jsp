@@ -19,7 +19,7 @@
 		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Step 2</title>
+<title>Files Uploaded!</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
@@ -42,7 +42,7 @@ if(getuser == null) {
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>
-				 <%
+			 <%
     
     String returnsql1 = "SELECT * FROM student_shifter WHERE studentid = ?";
     try{
@@ -89,19 +89,19 @@ if(getuser == null) {
   <a href="#" >Guidelines</a>
 </div>
          <%
-         PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is NOT NULL");
-         ps.setString(1, getuser);
-         ResultSet rs = ps.executeQuery();
-         if(!rs.next()) {
-      	 response.sendRedirect("Shifter-Step1Done.jsp");
-       }
-  
+        
          %>
 </div>
-<br>    <p id="text_steps"><i>STEP 2: TAKE EXAM</i></p>
+<br>    <p id="text_steps"><i>PROCESS CANCELLED</i></p>
 
      <div class="container">
-
+<br>
+<br>
+       <center>
+       <p><span class="glyphicon glyphicon-remove-sign" style="font-size:100px; color:red;"></span></p>
+       <br><br><br>
+         <p style="font-size:30px;">We regret to inform you that your application for shifting has failed. Please try another course for shifting.</p>
+       </center>
           </div>
   </div>
   <footer class="footer-distributed">

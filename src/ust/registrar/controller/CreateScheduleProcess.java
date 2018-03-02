@@ -1,6 +1,7 @@
 package ust.registrar.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.ServletConfig;
@@ -11,21 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
-import ust.registrar.model.ofad.OFADVerifyDAO;
+import ust.registrar.model.ofad.SetExamScheduleDAO;
 
 /**
- * Servlet implementation class Ofad_verifyprocess
+ * Servlet implementation class CreateScheduleProcess
  */
-@WebServlet("/Ofad_verifyprocess")
-public class Ofad_verifyprocess extends HttpServlet {
+@WebServlet("/CreateScheduleProcess")
+public class CreateScheduleProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	Connection conn = null;
-	
-    public Ofad_verifyprocess() {
+    public CreateScheduleProcess() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +32,7 @@ public class Ofad_verifyprocess extends HttpServlet {
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
+    Connection conn = null;
 	public void init(ServletConfig config) throws ServletException {
 		conn = SingletonDB.getConnection();
 	}
@@ -42,28 +42,35 @@ public class Ofad_verifyprocess extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
+		doGet(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String getstudentid = request.getParameter("studentid");
-		String getofadid = request.getParameter("getuser");
-		String getremarks = request.getParameter("remarks");
+		PrintWriter out = response.getWriter();
 		
-		OFADVerifyDAO ofad = new OFADVerifyDAO();
-		ofad.setOfadid(getofadid);
-		ofad.setRemarks(getremarks);
-		ofad.setStudentid(getstudentid);
-		if(getremarks.equals("Approved")) 
-		ofad.doVerifyStudent(conn);
-		else if(getremarks.equals("Disapproved"))
-		ofad.dontverifyOfad(conn);
-         
-		response.sendRedirect("OfadTransaction_Shifter.jsp");
+		String getstudents[] = request.getParameterValues("selectstudent");
+		String getexamdate = request.getParameter("examdate");
+		String getstarttime = request.getParameter("starttime");
+		String getendtime = request.getParameter("endttime");
+		String remarks = request.getParameter("exam_remarks");
+		
+		SetExamScheduleDAO set = new SetExamScheduleDAO();
+		  
+		for(int i = 0; i < getstudents.length; i ++) {
+			set.setStudentid(getstudents[i]);
+			set.setExamdate(getexamdate);
+			set.setStart(getstarttime);
+			set.setEnd(getendtime);
+			set.setRemarks(remarks);
+			set.doSetExam(conn);
+			
+		}
+		response.sendRedirect("OfadExamScheduler.jsp");
+		
+		
 	}
 
 }

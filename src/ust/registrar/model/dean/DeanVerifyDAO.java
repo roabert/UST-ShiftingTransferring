@@ -57,4 +57,17 @@ public class DeanVerifyDAO implements DatabaseSQLs {
 			e.printStackTrace();
 		}
 	}
+	public void dontverifyStudent(Connection conn) {
+		try {
+			PreparedStatement pst = conn.prepareStatement(Dean_disapproveStudent);
+			pst.setString(1, deanname);
+			pst.setString(2, approved);
+			pst.setString(3, studentid);
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

@@ -57,9 +57,12 @@ public class Dean_verifyprocess extends HttpServlet {
 		d.setDeanname(getdeanname);
 		d.setApproved(remarks);
 		d.setStudentid(getstudentid);
+		
+	    if(remarks.equals("Approved"))
 		d.verifyStudent(conn);
-		
-		
+	    else if(remarks.equals("Disappproved"))
+		d.dontverifyStudent(conn);
+	    
 		response.sendRedirect("DeanTransaction_Shifter.jsp");
 		
 		

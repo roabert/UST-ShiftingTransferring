@@ -40,8 +40,33 @@ public void setOfadid(String ofadid) {
 		e.printStackTrace();
 	}
    }
+   public void dontverifyOfad(Connection conn) {
+	   try {
+		PreparedStatement ps = conn.prepareStatement(Ofad_approveStudent);
+		ps.setString(1, ofadid);
+		ps.setString(2, remarks);
+		ps.setString(3, studentid);
+		ps.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+   }
    // Set exam schedule for student
+   public void studentForExam(Connection conn) {
+	   try {
+		PreparedStatement ps = conn.prepareStatement(Ofad_studentForExam);
+		ps.setString(1, studentid);
+		ps.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+   }
    
-   
+   public void doVerifyStudent(Connection conn) {
+	   verifyOfad(conn);
+	   studentForExam(conn);
+   }
 
 }

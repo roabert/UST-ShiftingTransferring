@@ -87,55 +87,45 @@ if(getuser == null) {
 
 
 <br>
-            <p><i>Exam Scheduler</i></p> 
+           
             <div class="container">
+             <p><i>Create Schedule</i></p> <br>
+             <div class = "col-sm-4">
+                <p>Date of Exam</p>
+               <input type = "date" class="form-control" name = "examdate">
+             </div>
+             <div class = "col-sm-4">
+                <p>Start Time</p>
+               <input type = "time" class="form-control" name = "starttime">
+             </div>
+             <div class = "col-sm-4">
+                <p>End Time</p>
+               <input type = "time" class="form-control" name = "endttime"><br>
+             </div><br><br><br>
             <form action="javascript:;">
-            <button class="btn btn-lg btn-warning pull-right" type="button" data-target=".createsched" data-toggle="modal">
-            Create Exam Schedule
+            <button class="btn btn-warning" type="button" data-target=".insertstudent" data-toggle="modal">
+            Add Student
             </button>
             </form>
+            <fieldset>
+             <legend><p></p></legend>
+              <div class="table-responsive" style="overflow:auto; height:150px;">
+             <table class="table">
+               
+             </table>
+             </div>
+             <br>
+         
+            </fieldset>
             </div>
+            
+            <br>
+            <center>   <textarea rows="10" cols="100%" placeholder="Remarks"></textarea><br><br>
+            <button type="submit" class="btn btn-warning btn-lg">Create</button></center>
 </div>
      
     <br>
-      <div class="container">
-          <fieldset>
-          <div class="table-responsive" style="overflow-x:auto; height:500px;">
-              <table class="table">
-              <tr>
-                  <th>Date</th>
-                 <th>Time</th>
-                 <th>Venue</th>
-                 <th>Remarks</th>
-                 <th>View Students</th>
-                 <th></th>
-              </tr>
-              <%
-               try{
-            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, remarks FROM exam_schedules_shifters");
-            	   ResultSet r = p.executeQuery();
-            	     if(!r.next()){
-            	        	out.println("<tr><p style=color:red>No exam schedule set for students</p></tr>");
-            	        }
-            	        else {
-            	           do {
-              %>
-              <tr>
-                   <td><%=r.getString("date") %></td>
-                <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
-      <td></td>
-                <td><%=r.getString("remarks") %></td>
-                <td><a href="">View Students</a></td>
-                <td><button type="submit" class="btn btn-warning">Edit</button></td>
-              </tr>
-              <%}while(r.next());
-                    }
-               } catch(SQLException e) {out.print(e);}
-              %>
-              </table>
-              </div>
-          </fieldset>
-     </div>
+      
 </div>
  <footer class="footer-distributed">
 
@@ -148,43 +138,23 @@ if(getuser == null) {
 
 </div>
 
-<div class="modal fade createsched" role="dialog">
-   <div class="modal-dialog modal-lg" style="width:1250px;">
+<div class="modal fade insertstudent" role="dialog">
+   <div class="modal-dialog modal-lg">
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <p class=""><i><span class="glyphicon glyphicon-list-alt"> Create Schedule</span></i></p>
+            <p class=""><i><span class="glyphicon glyphicon-list-alt"> List of students</span></i></p>
          </div>
-         <form action="CreateScheduleProcess" method="post">
-         <div class="modal-body" style="overflow-x:auto;">
-          <div class="container">
-            
-           <table>
-           <tr>
-              <th>  <h4>Date of Exam</h4></th>
-              <th> <input type = "date" class="form-control" name = "examdate"></th>
-       </tr>
-          <tr>
-               <th> <h4>Start Time</h4></th>
-               <th><input type = "time" class="form-control" name = "starttime"></th>
-          </tr>
-           <tr>
-               <th> <h4>End Time</h4></th>
-               <th><input type = "time" class="form-control" name = "endttime"><br></th>
-               </tr>
-            </table><br><br>
-            <fieldset>
-            
-            <legend><p>Add Student</p></legend>
-            <div style="border-style:groove;">
-            <br>
-            
+         <form></form>
+         <div class="modal-body" style="overflow:auto;">
+       
+         <div class="container">
+          <div class="table-responsive" style="overflow-x:auto; height:300px;">
           <%try {
-        	  PreparedStatement ps = conn.prepareStatement("SELECT shifter_id, lastname, firstname, middlei, newcourse, newprogram FROM shifters_exams INNER JOIN student_shifter on shifters_exams.shifter_id = student_shifter.studentid WHERE exam_schedule_date is NULL");
+        	  PreparedStatement ps = conn.prepareStatement("SELECT shifter_id, lastname, firstname, middlei, newcourse, newprogram FROM shifters_exams INNER JOIN student_shifter on shifters_exams.shifter_id = student_shifter.studentid");
         	  ResultSet rs = ps.executeQuery();
         	  
-           %><div class="table-responsive" style="overflow:auto; height:300px;">
-           <center>
+           %>
              <table class="table">
                  <tr>
                  <th><input type="checkbox" value="<%%>"></th>
@@ -194,7 +164,7 @@ if(getuser == null) {
                  </tr>
                  <%while(rs.next()) { %>
                  <tr>
-                  <td><input type="checkbox" name="selectstudent" value ="<%=rs.getString("shifter_id") %>"></td>
+                  <td><input type="checkbox" value ="<%=rs.getString("shifter_id") %>"></td>
                   <td><%=rs.getString("shifter_id") %></td>
                   <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
                   <td><%=rs.getString("newcourse") %>, <%=rs.getString("newprogram") %></td>
@@ -203,21 +173,13 @@ if(getuser == null) {
                    }  
                  } catch(SQLException e){out.print(e);} %>
              </table>
-         </center>
+           
+             </div>
          </div>
-             <br>
-         </div>
-            </fieldset>
-            </div>
-            
-            <br>
-            <center>   <textarea rows="10" cols="100%" name = "exam_remarks" placeholder="Remarks"></textarea><br><br>
-           </center>
          </div>
          <div class="modal-footer">
-           <button type="submit" class="btn btn-warning">Submit</button>
+           <button type="type" class="btn btn-warning">Confirm</button>
          </div>
-         </form>
       </div>
    </div>
 </div>

@@ -38,13 +38,14 @@ if(getuser == null) {
 	 response.sendRedirect("index.html");
 }	
 
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND dean_verified = 'approved' OR dean_verified = 'in-progress'");
+String webpage = "";
+PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'Approved' OR dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR ofad_verified = 'In-progress')");
 pst.setString(1, getuser);
 ResultSet rst = pst.executeQuery();
 if(rst.next()) {
-	 response.sendRedirect("Shifter-Step1Done.jsp");
+	webpage = "Shifter-Step1Done.jsp";
+	 response.sendRedirect(webpage);
 }
-
 %>
 
 <div off-canvas="slidebar-1 left reveal">

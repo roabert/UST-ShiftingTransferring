@@ -55,7 +55,12 @@ public class OSG_verifyprocess extends HttpServlet {
 		osg.setOsgname(getosgname);
 		osg.setRemarks(remarks);
 		osg.setStudentid(getstudentid);
+		
+		if(remarks.equals("Approved"))
 		osg.verifyStudent(conn);
+		else if(remarks.equals("Disapproved"))
+	    osg.dontverifyStudent(conn);
+		
 		//out.println(getstudentid + getosgname + remarks);
 		response.sendRedirect("OsgTransaction_Shifter.jsp");
 	}
