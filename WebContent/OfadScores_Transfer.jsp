@@ -38,22 +38,22 @@ if(getuser == null) {
 			<h1>OFAD<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
-			 <nav class="navigation">
+			<nav class="navigation">
     <ul class="mainmenu">
-    <li><a href="Ofadpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="Ofadpage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-random"></span> Transactions</a>
     <ul class="submenu">
-        <li><a href="OfadTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
     <li><a href="OfadExamScheduler.jsp" ><span class="glyphicon glyphicon-list-alt"></span> Exam Scheduling</a>
-      
+     
     </li>
  <li><a href="#" class="active"><span class="glyphicon glyphicon-pencil"></span> Encode Scores</a>
   <ul class="submenu">
-        <li><a href="OfadScores_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadScores_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadScores_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>

@@ -71,8 +71,20 @@ public void setRemarks(String remarks) {
 		e.printStackTrace();
 	}
   }
+  public void readyForEncode(Connection conn) {
+	  try {
+			PreparedStatement ps = conn.prepareStatement(Ofad_setEncode);
+		
+			ps.setString(1, studentid);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  }
     public void doSetExam(Connection conn) {
     	setExamSchedule(conn);
     	fillExamDate(conn);
+    	readyForEncode(conn);
     }
 }

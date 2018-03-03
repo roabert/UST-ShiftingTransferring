@@ -167,10 +167,11 @@ if(getuser == null) {
     <%}else{
     	%>
     	 <a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
+    	 <a class="modal-btn inp" href="#open-modal">OFAD Encode Scores</a>
     	<%
     } %>
     
-	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
+	
 	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
 	</div>
 	<br><br><br><br>

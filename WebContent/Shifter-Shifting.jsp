@@ -39,12 +39,19 @@ if(getuser == null) {
 }	
 
 String webpage = "";
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'Approved' OR dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR ofad_verified = 'In-progress')");
+PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR ofad_verified = 'In-progress')");
 pst.setString(1, getuser);
 ResultSet rst = pst.executeQuery();
 if(rst.next()) {
 	webpage = "Shifter-Step1Done.jsp";
 	 response.sendRedirect(webpage);
+}
+PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (secgen_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
+pss.setString(1, getuser);
+ResultSet rss = pss.executeQuery();
+if(rss.next()) {
+
+	 response.sendRedirect("Shifter-ShiftFailed.jsp");
 }
 %>
 

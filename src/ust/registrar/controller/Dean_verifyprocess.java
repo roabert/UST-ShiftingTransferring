@@ -60,7 +60,7 @@ public class Dean_verifyprocess extends HttpServlet {
 		
 	    if(remarks.equals("Approved"))
 		d.verifyStudent(conn);
-	    else if(remarks.equals("Disappproved"))
+	    else if(remarks.equals("Disapproved"))
 		d.dontverifyStudent(conn);
 	    
 		response.sendRedirect("DeanTransaction_Shifter.jsp");
