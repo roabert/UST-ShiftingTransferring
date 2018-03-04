@@ -38,7 +38,7 @@ if(getuser == null) {
 	 response.sendRedirect("index.html");
 }	
 
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND dean_verified = 'approved' OR dean_verified = 'in-progress'");
+PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
 pst.setString(1, getuser);
 ResultSet rst = pst.executeQuery();
 if(rst.next()) {

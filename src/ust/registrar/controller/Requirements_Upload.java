@@ -67,43 +67,20 @@ Connection conn = null;
 				String getstudent = request.getParameter("studentid");				
 				//Requirement Upload//
 				RequirementsDAO r = new RequirementsDAO();
+				 
+				r.setNewcourse(newcourse);
+				r.setNewprogram(newprogram);
 				r.setStudentid(getstudent);
+				
 				 for (Part part : request.getParts()) {
 				        if(part.getContentType() == null) {
 				            continue;
 				        }
-				        
-				       String upload = part.getSubmittedFileName();
-				       String[] parts = upload.split("-");
-					       switch (parts[1]) {
-							case "otr.jpg":
-							case "otr.jpeg":
-								r.setOTR(part);
-								break;
-							case "goodmoral.jpg":
-							case "goodmoral.jpeg":
-								r.setCertGoodMoral(part);
-								break;
-							case "lettertodean.jpg":
-							case "lettertodean.jpeg":
-								r.setLetterToDean(part);
-								break;
-							case "lettertoguidance.jpg":
-							case "lettertoguidance.jpeg":
-								r.setLettertoGuidance(part);
-								break;
-							case "id.jpg":
-							case "id.jpeg":
-								r.setIdPhotocopy(part);
-								break;
-							default:
-							}
+						
+						r.setRequirements(part);
+						r.submitRequirements(conn);
 				        
 				 }
-				 
-				r.setNewcourse(newcourse);
-				r.setNewprogram(newprogram);
-				
 				r.doStep1(conn);
 				
 				response.sendRedirect("Shifter-Step1Done.jsp");
