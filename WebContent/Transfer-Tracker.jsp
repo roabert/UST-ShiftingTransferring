@@ -73,6 +73,7 @@ if(getuser == null) {
     <div class="breadcrumb flat">
     <%try { 
      PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ?");
+     ps.setString(1, getuser);
      ResultSet rs = ps.executeQuery();
      while(rs.next())  {
     %>
@@ -84,13 +85,28 @@ if(getuser == null) {
 	<%}else if(rs.getString("osa_verified").equals("Disapproved")) {%>
 	<a class="modal-btn rejected" href="#open-modal">OSA Verification</a>
 	<%} %>
+	
 	<%if (rs.getString("dean_verified").equals("Approved")) { %>
 	<a class="modal-btn active" href="#open-modal">Dean Verification</a>
 		<%}else if(rs.getString("dean_verified").equals("In-progress")) {%>
 		<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
-		<%} %>
-	<a class="modal-btn" href="#open-modal">OSG Verification</a>
-	<a class="modal-btn" href="#open-modal">OFAD Verification</a>
+		<%} else if(rs.getString("dean_verified").equals("Disapproved")) {%>
+		
+		<a class="modal-btn inp" href="#open-modal">Dean Verification</a> <%} %>
+		<%if (rs.getString("secgen_verified").equals("Approved")) { %>
+	<a class="modal-btn active" href="#open-modal">OSG Verification</a>
+	<%}else if(rs.getString("secgen_verified").equals("In-progress")) { %>
+	<a class="modal-btn inp" href="#open-modal">OSG Verification</a>
+	<%}else if(rs.getString("secgen_verified").equals("Disapproved")) {%>
+	<a class="modal-btn rejected" href="#open-modal">OSG Verification</a> <%} %>
+	
+	<%if(rs.getString("ofad_verified").equals("Approved")) {%>
+	<a class="modal-btn active" href="#open-modal">OFAD Verification</a>
+	<%}else if(rs.getString("ofad_verified").equals("In-progress")) {%>
+	<a class="modal-btn inp" href="#open-modal">OFAD Verification</a>
+	<%}else if(rs.getString("ofad_verified").equals("Disapproved")) {%>
+	<a class="modal-btn rejected" href="#open-modal">OFAD Verification</a> <%} %>
+	
 	<%} } catch(SQLException e) {out.print(e);} %>
 	<a class="modal-btn" href="#open-modal2"">OFAD Exam Schedule</a>
 	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>

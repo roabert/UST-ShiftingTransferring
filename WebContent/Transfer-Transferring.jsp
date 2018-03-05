@@ -81,11 +81,11 @@ if(getuser == null) {
        <br>     
        <%
 String webpage = "";
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (dean_verified = 'In-progress' OR osa_verified = 'In-progress' OR ofad_verified = 'In-progress')");
+PreparedStatement pst = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR osa_verified = 'In-progress' OR ofad_verified = 'In-progress' OR dean_verified = 'Approved' OR secgen_verified = 'Approved' OR osa_verified = 'Approved' OR ofad_verified = 'Approved')");
 pst.setString(1, getuser);
 ResultSet rst = pst.executeQuery();
 if(rst.next()) {
-	webpage = "Transferee-Step1Done.jsp";
+	webpage = "Transfer-Step1Done.jsp";
 	 response.sendRedirect(webpage);
 }
 PreparedStatement pss = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
