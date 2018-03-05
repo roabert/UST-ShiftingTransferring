@@ -13,20 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.ofad.OFADVerifyDAO;
+import ust.registrar.model.ofad.OFADVerifyTransferDAO;
 
 /**
- * Servlet implementation class Ofad_verifyprocess
+ * Servlet implementation class Ofad_verifyTransfer
  */
-@WebServlet("/Ofad_verifyprocess")
-public class Ofad_verifyprocess extends HttpServlet {
+@WebServlet("/Ofad_verifyTransfer")
+public class Ofad_verifyTransfer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	Connection conn = null;
-	
-    public Ofad_verifyprocess() {
+    public Ofad_verifyTransfer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,6 +33,7 @@ public class Ofad_verifyprocess extends HttpServlet {
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
+    Connection conn = null;
 	public void init(ServletConfig config) throws ServletException {
 		conn = SingletonDB.getConnection();
 	}
@@ -52,20 +52,20 @@ public class Ofad_verifyprocess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String getstudentid = request.getParameter("studentid");
+		String gettransferid = request.getParameter("getstudent");
 		String getofadid = request.getParameter("getuser");
 		String getremarks = request.getParameter("remarks");
 		
-		OFADVerifyDAO ofad = new OFADVerifyDAO();
+		OFADVerifyTransferDAO ofad = new OFADVerifyTransferDAO();
 		ofad.setOfadid(getofadid);
 		ofad.setRemarks(getremarks);
-		ofad.setStudentid(getstudentid);
+		ofad.setTransferid(gettransferid);
 		if(getremarks.equals("Approved")) 
 		ofad.doVerifyStudent(conn);
 		else if(getremarks.equals("Disapproved"))
 		ofad.dontverifyOfad(conn);
          
-		request.getRequestDispatcher("OfadTransaction_Shifter.jsp").include(request, response);
+		request.getRequestDispatcher("OfadTransaction_Transfer.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");
 	}
 

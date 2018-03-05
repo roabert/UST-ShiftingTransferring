@@ -1,6 +1,7 @@
 package ust.registrar.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.ServletException;
@@ -44,6 +45,7 @@ public class AdminCreateUsers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
 		String getuserid = request.getParameter("new_userid");
 		String getpassword = request.getParameter("new_password");
 		String getlname = request.getParameter("new_lname");
@@ -112,7 +114,8 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.Registrar_insertDetails(conn);
 		}
 		
-		response.sendRedirect("AdminsAccount.jsp");
+		request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);
+		out.print("<script>alert('Creation Successful!');</script>");
 	}
 
 }

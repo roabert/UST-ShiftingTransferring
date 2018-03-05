@@ -5,8 +5,8 @@ public interface DatabaseSQLs {
 	 		+ ", oldcourse, oldprogram, idpicture) "
 	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	 String transferRegisterSQL = "INSERT INTO student_transfer (userid, lastname, firstname, middlei, gender, typeofstudent, birthday, oldschool"
-	 		+ ", oldcourse, oldprogram, newcourse, newprogram) "
-	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	 		+ ", oldcourse, oldprogram, newcourse, newprogram, idpicture) "
+	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
 	 String loginsql = "SELECT userid, password, roles FROM users WHERE userid = ? AND password = ? "
 				+ "UNION"
 				+ " SELECT studentid, birthday, typeofstudent FROM student_shifter WHERE studentid = ? AND birthday = ?"
@@ -18,6 +18,8 @@ public interface DatabaseSQLs {
 
 	 // Dean approve student
 	 String Dean_approveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ?, secgen_verified = 'In-progress' WHERE shifter_id = ?";
+	 String Dean_approveTransfer = "UPDATE transferees_status SET dean_id = ?, dean_verified = ?, ofad_verified = 'In-progress' WHERE transferee_id = ?";
+	 String Dean_disapproveTransfer = "UPDATE transferees_status SET dean_id = ?, dean_verified = ? WHERE transferee_id = ?";
 	 // Dean disapprove student
 	 String Dean_disapproveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
 	// SecGen approve student
@@ -29,7 +31,15 @@ public interface DatabaseSQLs {
 	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time, remarks) VALUES (?, ?, ?, ?, ?)";
 	String Ofad_setexam = "UPDATE shifters_exams SET exam_schedule_date = ? WHERE shifter_id = ?";
 	 String Ofad_setEncode = "INSERT INTO shifters_scores (shifter_id) VALUES (?)";
-	 
+	 //OFAD Tranasferee
+	 String Ofad_approveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ? WHERE transferee_id = ?";
+	 String Ofad_transferForExam = "INSERT INTO transferees_exams (transferee_id) VALUES (?)";
+	 String Ofad_examschedTransfer = "INSERT INTO exam_schedules_transferees (transferee_id, date, start_time, end_time, remarks) VALUES (?, ?, ?, ?, ?)";
+	 String Ofad_setexamTransfer = "UPDATE transferes_exams SET exam_schedule_date = ? WHERE transferee_id = ?";
+	 String Ofad_setTransferEncode = "INSERT INTO transferees_scores (transferee_id) VALUES (?)";
+	 // OSA approve transferee
+	 String OSA_approveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, dean_verified = 'In-progress' WHERE transferee_id = ?";
+	 String OSA_disapproveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ? WHERE transferee_id = ?";
 	 
 	 //Admin Modify Users (for admin)
 	 String Admin_editUsersSQL = "UPDATE admins SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";

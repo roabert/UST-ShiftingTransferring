@@ -12,24 +12,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
-import ust.registrar.model.ofad.OFADVerifyDAO;
+import ust.registrar.model.dean.DeanVerifyDAO;
+import ust.registrar.model.dean.DeanVerifyTransferDAO;
 
 /**
- * Servlet implementation class Ofad_verifyprocess
+ * Servlet implementation class Dean_verifyTransfer
  */
-@WebServlet("/Ofad_verifyprocess")
-public class Ofad_verifyprocess extends HttpServlet {
+@WebServlet("/Dean_verifyTransfer")
+public class Dean_verifyTransfer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	Connection conn = null;
-	
-    public Ofad_verifyprocess() {
+    public Dean_verifyTransfer() {
         super();
         // TODO Auto-generated constructor stub
     }
+    Connection conn = null;
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -43,30 +43,31 @@ public class Ofad_verifyprocess extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
+		doGet(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String getstudentid = request.getParameter("studentid");
-		String getofadid = request.getParameter("getuser");
-		String getremarks = request.getParameter("remarks");
+		String gettransferid = request.getParameter("getstudent");
+		String getdeanid = request.getParameter("getuser");
+		String remarks = request.getParameter("remarks");
+		 
+		DeanVerifyTransferDAO d = new DeanVerifyTransferDAO();
+		d.setDeanid(getdeanid);
+		d.setRemarks(remarks);
+		d.setTransferid(gettransferid);
 		
-		OFADVerifyDAO ofad = new OFADVerifyDAO();
-		ofad.setOfadid(getofadid);
-		ofad.setRemarks(getremarks);
-		ofad.setStudentid(getstudentid);
-		if(getremarks.equals("Approved")) 
-		ofad.doVerifyStudent(conn);
-		else if(getremarks.equals("Disapproved"))
-		ofad.dontverifyOfad(conn);
-         
-		request.getRequestDispatcher("OfadTransaction_Shifter.jsp").include(request, response);
+	    if(remarks.equals("Approved"))
+		d.verifyStudent(conn);
+	    else if(remarks.equals("Disapproved"))
+		d.dontverifyStudent(conn);
+	    
+		request.getRequestDispatcher("DeanTransaction_Transfer.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");
+	
 	}
 
 }

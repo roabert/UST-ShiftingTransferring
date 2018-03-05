@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import DatabaseHandler.SingletonDB;
-import ust.registrar.model.shifting.RequirementsDAO;
+import ust.registrar.model.studentprocess.RequirementsDAO;
 
 import java.sql.*;
 
@@ -64,28 +64,45 @@ Connection conn = null;
 		PrintWriter out = response.getWriter();
 				String newcourse = request.getParameter("outgoing_college");
 				String newprogram = request.getParameter("outgoing_program");
-				String getstudent = request.getParameter("studentid");				
+				String getstudent = request.getParameter("studentid");		
+				String gettype = request.getParameter("typeofstudent");
 				//Requirement Upload//
 				RequirementsDAO r = new RequirementsDAO();
 				 
 				r.setNewcourse(newcourse);
 				r.setNewprogram(newprogram);
 				r.setStudentid(getstudent);
-				
+				 if(gettype.equals("Shifter")) {
 				 for (Part part : request.getParts()) {
 				        if(part.getContentType() == null) {
 				            continue;
 				        }
 						
 						r.setRequirements(part);
-						r.submitRequirements(conn);
+						r.submitRequirementsShifter(conn);
 				        
 				 }
-				r.doStep1(conn);
+				
+				r.doStep1Shifter(conn);
 				
 				response.sendRedirect("Shifter-Step1Done.jsp");
-				
-		
+				 }
+				 
+				 else if(gettype.equals("Transferee")) {
+					 for (Part part : request.getParts()) {
+					        if(part.getContentType() == null) {
+					            continue;
+					        }
+							
+							r.setRequirements(part);
+							r.submitRequirementsTransfer(conn);
+					        
+					 }
+					
+					r.doStep1Transfer(conn);
+					
+					response.sendRedirect("Transfer-Step1Done.jsp");
+					 }
 			
 		}
 	}

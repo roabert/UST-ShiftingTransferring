@@ -1,4 +1,4 @@
-var country_arr = new Array("AMV College of Accountancy", "College of Architecture", "College of Commerce and Business Administration", "College of Education", "College of Fine Arts and Design", "College of Nursing", "Institute of Information and Computing Sciences", "College of Rehabilitation Sciences", "College of Science", "College of Tourism and Hospitality Management", "Conservatory of Music", "Faculty of Arts and Letters", "Faculty of Engineering", "Faculty of Pharmacy", "Institute of Physical Education and Athletics");
+var country_arr = new Array("AMV College of Accountancy", "College of Architecture", "College of Commerce and Business Administration", "College of Education", "College of Fine Arts and Design", "College of Nursing", "Institute of Information and Computing Sciences", "College of Rehabilitation Sciences", "College of Science", "College of Tourism and Hospitality Management", "Conservatory of Music", "Faculty of Arts and Letters", "Faculty of Engineering", "Faculty of Pharmacy", "Institute of Physical Education and Athletics", "Undergraduate");
 
 // States
 var s_a = new Array();
@@ -18,6 +18,7 @@ s_a[12] = "AB English Language Studies|AB Sociology|AB Asian Studies|AB Communic
 s_a[13] = "BS Civil Engineering|BS Electrical Engineering|BS Electronics Engineering|BS Chemical Engineering|BS Industrial Engineering|BS Mechanical Engineering";
 s_a[14] = "BS Medical Technology|BS Pharmacy|BS Biochemistry";
 s_a[15] = "Bachelor of Physical Education - Sports and Wellness Management";
+s_a[16] = "Senior High School|High School";
 
 
 function populateStates(countryElementId, stateElementId) {

@@ -1,7 +1,10 @@
 
 package ust.registrar.model.main;
 
+import java.io.IOException;
 import java.sql.*;
+
+import javax.servlet.http.Part;
 
 import DatabaseHandler.DatabaseSQLs;
 
@@ -9,9 +12,15 @@ import DatabaseHandler.DatabaseSQLs;
 public class RegisterTransferDAO implements DatabaseSQLs {
 
 	String lname, fname, mname, gender, bdate, type, userid;
-
+    Part idpic;
 	 public String getUserid() {
 		return userid;
+	}
+	public Part getIdpic() {
+		return idpic;
+	}
+	public void setIdpic(Part idpic) {
+		this.idpic = idpic;
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
@@ -101,9 +110,9 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 						 ps.setString(8, oldschool);
 						 ps.setString(9, transferoldcollege);
 						 ps.setString(10, transferoldprogram);
-						 ps.setString(11, transfernewcollege);
-						 ps.setString(12, transfernewprogram);
-						
+						 ps.setString(11, "");
+						 ps.setString(12, "");
+						 ps.setBinaryStream(13, idpic.getInputStream(), (int) idpic.getSize());	
 						
 					     ps.executeUpdate();
 					     
@@ -113,7 +122,10 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 				   
 			 }catch(SQLException sql) {
 				 sql.printStackTrace();
-			 }
+			 } catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	}
 	public void InsertStudentUser(Connection conn) {
 		 try{
@@ -136,6 +148,10 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 			 }catch(SQLException sql) {
 				 sql.printStackTrace();
 			 }
+	}
+	public void registerProcess(Connection conn) {
+		InsertStudentUser(conn);
+		RegisterProcessTransfer(conn);
 	}
 	
 }

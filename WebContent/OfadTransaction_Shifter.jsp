@@ -101,7 +101,7 @@ if(getuser == null) {
           <th>Outgoing</th>
           <th>Incoming</th>
           <th>Verify Docs</th>
-          <th>Exam Schedule</th>
+          <th>Remarks</th>
           <th>Done</th>
         </tr>
         

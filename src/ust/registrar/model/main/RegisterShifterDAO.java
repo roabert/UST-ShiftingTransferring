@@ -147,5 +147,8 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 				 sql.printStackTrace();
 			 }
 	}
-	
+	public void registerProcess(Connection conn) {
+		RegisterProcessShift(conn);
+		InsertStudentUser(conn);
+	}
 }

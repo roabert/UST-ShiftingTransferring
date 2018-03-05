@@ -82,9 +82,10 @@ public class registerprocess extends HttpServlet {
 		 String get_transferoldprogram = request.getParameter("transfer_oldprogram");
 		 String get_transfernewcollege = request.getParameter("transfer_newcollege");
 		 String get_transfernewprogram = request.getParameter("transfer_newprogram");
+		 Part get_transferpic = request.getPart("transfer_idpicture");
 		// String filename = extractFileName(part);
 		
-		 
+		 String generateUsername = getlname+getfname+getmname;
 	
 		 
      //   part.write(savepath + File.separator + filename);
@@ -103,8 +104,7 @@ public class registerprocess extends HttpServlet {
 			register.setShiftoldcollege(get_shiftoldcollege);
 			register.setShiftoldprogram(get_shiftoldprogram);
 			register.setPicture(get_shiftpic);
-			register.RegisterProcessShift(conn);
-			register.InsertStudentUser(conn);
+			register.registerProcess(conn);
 			
 			   session.setAttribute("setuser", getstudentid);
 			   request.getRequestDispatcher("Shifter-Welcome.jsp")
@@ -119,17 +119,15 @@ public class registerprocess extends HttpServlet {
 			register.setMname(getmname);
 			register.setGender(getgender);
 			register.setBdate(getbdate);
-			register.setUserid(generateID);
+			register.setUserid(generateUsername);
 			register.setType(gettype);
 			register.setOldschool(getoldschool);
 			register.setTransferoldcollege(get_transferoldcollege);
 			register.setTransferoldprogram(get_transferoldprogram);
-			register.setTransfernewcollege(get_transfernewcollege);
-			register.setTransfernewprogram(get_transfernewprogram);
-			register.RegisterProcessTransfer(conn);
-			register.InsertStudentUser(conn);
+	        register.setIdpic(get_transferpic);
+			register.registerProcess(conn);
 			
-			   session.setAttribute("setuser", generateID);
+			   session.setAttribute("setuser", generateUsername);
 			   request.getRequestDispatcher("Transfer-Welcome.jsp")
 			   .forward(request, response);
 		}

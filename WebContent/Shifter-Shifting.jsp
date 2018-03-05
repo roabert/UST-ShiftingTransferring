@@ -118,7 +118,7 @@ if(rss.next()) {
     
     <center>
     <%
-      String getcoursesql = "SELECT studentid, oldcourse, oldprogram FROM student_shifter WHERE studentid = ?";
+      String getcoursesql = "SELECT * FROM student_shifter WHERE studentid = ?";
     try{
     PreparedStatement ps = conn.prepareStatement(getcoursesql);
     ps.setString(1, getuser);
@@ -126,6 +126,7 @@ if(rss.next()) {
     while(rs.next()) {
     %>
     <input type="hidden" name="studentid" value="<%=rs.getString("studentid")%>">
+    <input type="hidden" name="typeofstudent" value="<%=rs.getString("typeofstudent")%>">
     <h2>Current College</h2>
      <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldcourse") %></u></b></p>
     <h2>Current Program</h2>

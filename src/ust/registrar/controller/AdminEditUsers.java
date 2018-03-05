@@ -96,7 +96,8 @@ public class AdminEditUsers extends HttpServlet {
 			  edit.modify_Ofad(conn);
 		  }
 		  
-		  response.sendRedirect("AdminsAccount.jsp"); 
+		  request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);
+		  out.print("<script>alert('User "+getuserid+" Modified!');</script>");
 		
 	}
 

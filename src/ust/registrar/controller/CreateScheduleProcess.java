@@ -68,8 +68,8 @@ public class CreateScheduleProcess extends HttpServlet {
 			set.doSetExam(conn);
 			
 		}
-		response.sendRedirect("OfadExamScheduler.jsp");
-		
+		request.getRequestDispatcher("OfadExamScheduler.jsp").include(request, response);
+		out.print("<script>alert('Exam Schedule: "+getexamdate+"');</script>");
 		
 	}
 

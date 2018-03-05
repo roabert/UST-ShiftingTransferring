@@ -134,16 +134,34 @@ function shifterFinalStep(){
 	id("step3shifter").style.display ="block";
 	}
 }
+function transferFinalStep(){
+	var getoldschool = id("oldschool").value;
+	  if(getoldschool == "University of Santo Tomas" || getoldschool == "UST" || getoldschool == "UNIVERISTY OF SANTO TOMAS") {
+		  alert("You can't transfer from the same school!");
+	  }
+	  else if(getoldschool.length <= 5) {
+		 alert("Acronyms of school not allowed!");  
+	  }
+	  else {
+	id("step2transferee").style.display ="none";
+	id("step3transferee").style.display ="block";
+	}
+}
 function goBack() {
-	 id("titleregister").innerHTML = "Register";
+	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register";
 	id("step1").style.display ="block";
 	id("step2transferee").style.display ="none";
 	id("step2shifter").style.display ="none";
 }
 function goBack2Shift() {
-
+	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register(Shifter)";
 	id("step2shifter").style.display ="block";
 	id("step3shifter").style.display ="none";
+}
+function goBack2Transfer() {
+	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register(Transferee)";
+	id("step2transfer").style.display ="block";
+	id("step3transfer").style.display ="none";
 }
 var myVar;
 
@@ -163,18 +181,11 @@ function shifterSubmit() {
 	
 }
 function transferSubmit() {
-	var getoldschool = id("oldschool").value;
-  if(getoldschool == "University of Santo Tomas" || getoldschool == "UST") {
-	  alert("You can't transfer from the same school!");
-  }
-  else if(getoldschool.length <= 5) {
-	 alert("Acronyms of school not allowed!");  
-  }
-  else {
+
 	id("registerform").method = "post";
 	id("registerform").action = "registerprocess";
 	id("registerform").submit();
-  }
+  
 }
 </script>
 
@@ -312,7 +323,7 @@ function transferSubmit() {
           <option value="CS">Computer Science</option>
           
          </select> --> <br>
-         <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing College</i></p>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Current College</i></p>
 <!--          <select name="transfer_newcollege" class="form-control">
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="AB">AB</option>
@@ -320,25 +331,36 @@ function transferSubmit() {
           <option value="IICS">IICS</option>
           <option value="Architecture">Architecture</option>
          </select> --> 
-         <select class="form-control" id="transfer_newcollege" name="transfer_newcollege"></select>
+         <select class="form-control" id="transfer_oldcollege" name="transfer_oldcollege"></select>
          
          <br>
-          <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing Program</i></p>
+          <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
 <!--          <select name="transfer_newprogram" class="form-control">
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
-          <option value="IT">Information Technology</option>
+          <option value="IT">Information Technology</option>transferFinalStep()
           <option value="IS">Information Systems</option>
           <option value="CS">Computer Science</option>
           
          </select> -->
-         <select class="form-control" name="transfer_newprogram" id="transfer_newprogram"></select>
+         <select class="form-control" name="transfer_oldprogram" id="transfer_oldprogram"></select>
           <br><br>
-       <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="transferSubmit()" class="btn btn-warning btn-lg">Submit & Login</button></center>
+       <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="transferFinalStep()" class="btn btn-warning btn-lg">Next</button></center>
       
        </div>
           <div id="loadingstep2"></div>
        </div>
-    
+       <div id = "step3transferee">
+         <div class="col-sm-12"><br>
+         
+         
+         <center>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture </i></p><br>
+         <input type="file" type="file" name="transfer_idpicture" size="50"><br><br><br><br>
+         <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Transfer()">Back</button>
+          <button onclick="transferSubmit()" class="btn btn-warning btn-lg">Submit & Login</button>
+          </center>
+         </div>
+       </div>
      </form>
        
      </div>
@@ -356,7 +378,7 @@ function transferSubmit() {
             populateCountries("shift_oldcollege", "shift_oldprogram");
         </script>
             		<script language="javascript">
-            populateCountries("transfer_newcollege", "transfer_newprogram");
+            populateCountries("transfer_oldcollege", "transfer_oldprogram");
         </script>
         <script src="scripts/list-login.js"></script>
 </body>

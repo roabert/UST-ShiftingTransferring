@@ -173,17 +173,20 @@ if(getuser == null) {
                <th><input type = "time" class="form-control" name = "endttime"><br></th>
                </tr>
             </table><br><br>
-            <fieldset>
+         
             
-            <legend><p>Add Student</p></legend>
+            <legend><p>List of students for examination</p></legend>
             <div style="border-style:groove;">
             <br>
             
-          <%try {
-        	  PreparedStatement ps = conn.prepareStatement("SELECT shifter_id, lastname, firstname, middlei, newcourse, newprogram FROM shifters_exams INNER JOIN student_shifter on shifters_exams.shifter_id = student_shifter.studentid WHERE exam_schedule_date is NULL");
-        	  ResultSet rs = ps.executeQuery();
-        	  
-           %><div class="table-responsive" style="overflow:auto; height:300px;">
+              
+              <ul class = "nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#shifters">Shifters</a></li>
+          <li><a data-toggle="tab" href="#transferees">Transferees</a></li>
+          </ul>
+          <div class="tab-content">
+          <div id="shifters" class="tab-pane fade in active">
+           <div class="table-responsive" style="overflow:auto; height:300px;">
            <center>
              <table class="table">
                  <tr>
@@ -192,9 +195,12 @@ if(getuser == null) {
                  <th>Student Name</th>
                  <th>Outgoing</th>
                  </tr>
-                 <%while(rs.next()) { %>
+                 <%try {
+               	  PreparedStatement ps = conn.prepareStatement("SELECT shifter_id, lastname, firstname, middlei, newcourse, newprogram FROM shifters_exams INNER JOIN student_shifter on shifters_exams.shifter_id = student_shifter.studentid WHERE exam_schedule_date is NULL");
+               	  ResultSet rs = ps.executeQuery();
+                 while(rs.next()) { %>
                  <tr>
-                  <td><input type="checkbox" name="selectstudent" value ="<%=rs.getString("shifter_id") %>"></td>
+                  <td><input type="checkbox" name="selectshifters" value ="<%=rs.getString("shifter_id") %>"></td>
                   <td><%=rs.getString("shifter_id") %></td>
                   <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
                   <td><%=rs.getString("newcourse") %>, <%=rs.getString("newprogram") %></td>
@@ -205,9 +211,39 @@ if(getuser == null) {
              </table>
          </center>
          </div>
-             <br>
+            </div>
+            <div id = "transferees" class="tab-pane fade">
+            <div class="table-responsive" style="overflow:auto; height:300px;">
+           <center>
+             <table class="table">
+                 <tr>
+                 <th><input type="checkbox" value="<%%>"></th>
+                 <th>ID</th>
+                 <th>Student Name</th>
+                 <th>Outgoing</th>
+                 </tr>
+                 <%try {
+               	  PreparedStatement ps2 = conn.prepareStatement("SELECT transferee_id, lastname, firstname, middlei, newcourse, newprogram FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
+               	  ResultSet rs2 = ps2.executeQuery();
+                 while(rs2.next()) { %>
+                 <tr>
+                  <td><input type="checkbox" name="selectstransferees" value ="<%=rs2.getString("transferee_id") %>"></td>
+                  <td><%=rs2.getString("transferee_id") %></td>
+                  <td><%=rs2.getString("lastname") %>, <%=rs2.getString("firstname") %> <%=rs2.getString("middlei") %></td>
+                  <td><%=rs2.getString("newcourse") %>, <%=rs2.getString("newprogram") %></td>
+                  </tr>
+                   <%
+                   }  
+                 } catch(SQLException e){out.print(e);} %>
+             </table>
+         </center>
          </div>
-            </fieldset>
+            </div>
+            </div>
+             <br>
+            
+         </div>
+           
             </div>
             
             <br>

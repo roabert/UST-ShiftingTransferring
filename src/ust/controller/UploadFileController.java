@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import ust.registrar.model.shifting.fileUpload;
+import ust.registrar.model.studentprocess.fileUpload;
 
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;

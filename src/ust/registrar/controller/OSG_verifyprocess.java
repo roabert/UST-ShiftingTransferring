@@ -62,7 +62,8 @@ public class OSG_verifyprocess extends HttpServlet {
 	    osg.dontverifyStudent(conn);
 		
 		//out.println(getstudentid + getosgname + remarks);
-		response.sendRedirect("OsgTransaction_Shifter.jsp");
+		request.getRequestDispatcher("OsgTransaction_Shifter.jsp").include(request, response);
+		out.print("<script>alert('Submitted!');</script>");
 	}
 
 }

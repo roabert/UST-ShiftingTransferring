@@ -84,6 +84,11 @@ public class loginprocess extends HttpServlet {
 			    	request.getRequestDispatcher("Osgpage.jsp")
 			    	.forward(request, response);
 			    }
+			    else if(login.getType().equals("OSA")) {
+			    	session.setAttribute("setuser", uname_get);
+			    	request.getRequestDispatcher("Osapage.jsp")
+			    	.forward(request, response);
+			    }
 			    else if(login.getType().equals("Shifter")) {
 			    	session.setAttribute("setuser", uname_get);
 			    	request.getRequestDispatcher("Shifter-Welcome.jsp")

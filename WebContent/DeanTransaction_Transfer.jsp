@@ -108,8 +108,8 @@ if(getuser == null) {
         <tr>
           <th>ID</th>
           <th>Student Name</th>
-          <th>Type</th>
-          <th>Outgoing</th>
+          <th>Current School</th>
+          <th>Current Course</th>
           <th>Incoming</th>
           <th>Verify Docs</th>
           <th>Remarks</th>
@@ -119,7 +119,7 @@ if(getuser == null) {
         
         <%
          try{
-        String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified is NULL";
+        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE dean_verified = 'In-progress' AND osa_verified = 'Approved'";
         PreparedStatement ps = conn.prepareStatement(displaystudent); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
@@ -128,12 +128,12 @@ if(getuser == null) {
         else {
           do {
         %>
-         <form action = "Dean_verifyprocess" method = "post">
+         <form action = "Dean_verifyTransfer" method = "post">
         <tr>
-        <td><input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
-        <input type="hidden" value = "<%=getuser%>" name = "getuser"><%=rs.getString("shifter_id") %></td>
+        <td><input type="hidden" value = "<%=rs.getString("transferee_id")%>" name = "getstudent">
+        <input type="hidden" value = "<%=getuser%>" name = "getuser"><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><%=rs.getString("typeofstudent") %></td>
+        <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</a></td>

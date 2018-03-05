@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-        <%@ page import ="java.util.*" %>
+    
+    <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
-    <%@ page import = "DatabaseHandler.SingletonDB" %>
+        <%@ page import = "DatabaseHandler.SingletonDB" %>
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/style.css"type="text/css">
@@ -33,24 +32,15 @@ if(getuser == null) {
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>
-			<%     String returnsql1 = "SELECT * FROM student_transfer WHERE userid= ?";
-    try{
-    PreparedStatement psts = conn.prepareStatement(returnsql1);
-    psts.setString(1, getuser);
-    ResultSet rs = psts.executeQuery();
-     
-    while(rs.next()) {
-    %>
-			<center><img src="DisplayProfilePic?pkey=<%=rs.getString("userid")%>" width ="120" height = "120">
-			<%} }catch(SQLException e) {out.print(e);} %>
-			<h1>Student<br></h1>
+			<center><img src="Images/dp.png" style="width:40%; height:15%;">
+			<h1>OSA<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
 			 <nav class="navigation">
     <ul class="mainmenu">
-    <li><a href="Transfer-Welcome.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="Transfer-Transferring.jsp"><span class="glyphicon glyphicon-random"></span> Transferring</a></li>
-    <li><a href="Transfer-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a></li>
+    <li><a href="Osapage.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+   
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -77,12 +67,13 @@ if(getuser == null) {
   <a href="#">Programs</a>
   <a href="#" >Guidelines</a>
 </div>
-       <br>     <p><i>PROFILE INFORMATION</i></p>
+
+
+<br>
+            <p><i>PROFILE INFORMATION</i></p>
 </div>
- 
- <%
-    
-    String returnsql = "SELECT * FROM student_transfer WHERE userid = ?";
+     <%
+    String returnsql = "SELECT * FROM osa WHERE userid = ?";
     try{
     PreparedStatement pst = conn.prepareStatement(returnsql);
     pst.setString(1, getuser);
@@ -91,40 +82,54 @@ if(getuser == null) {
     
     %>
     <br>
-     <div class="container">
+
+      <div class="container">
           <fieldset>
-   
+           
             <center>
             <div class="table-responsive">
             <% while(usercontent.next()) { %>
             <table class="table">
                <tr>
-                 <td>Name </td>
-                 <td><input type="text" size="60" value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>" class="form-control" readonly></td>
-                 <td rowspan = "5"><center><img src="DisplayProfilePic?pkey=<%=usercontent.getString("userid")%>" width = "250" height = "250" class="responsive"></center></td>
+                 <td>Name</td>
+                 <td><input type="text" size="60" value="<%=usercontent.getString("last_name") %>, <%=usercontent.getString("first_name") %> <%=usercontent.getString("middle_name") %>" readonly class="form-control"></td>
+                 <td rowspan = "3"><center><img src="Images/dp.png" style="width:50%; height:50%;" class="responsive"></center></td>
                </tr>
                <tr>
                  <td>ID </td>
                  <td><input type="text" size="60" value="<%=usercontent.getString("userid")%>" class="form-control" readonly></td>
                </tr>
                <tr>
-                 <td>Current School </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("oldschool") %>" class="form-control" readonly></td>
-               </tr>
-               <tr>
                  <td>Type </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("typeofstudent") %>" class="form-control" readonly></td>
+                 <td><input type="text" size="60" value="<%=usercontent.getString("type") %>" class="form-control" readonly></td>
                </tr>
                <tr>
                  <td>Gender </td>
                  <td><input type="text" size="60" value="<%=usercontent.getString("gender") %>" class="form-control" readonly></td>
-               </tr>
-               <tr>
-                 <td>Outgoing: </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("newprogram") %>" class="form-control" readonly></td>
-                 <td><center><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit Profile</button></center></td>
+                 <td><center><button type="button" onclick = "editProfile()" id="editprofile" class="btn btn-warning btn-sm">
+                 <span class="glyphicon glyphicon-pencil"></span> &nbsp Edit Profile
+                 </button>
+                 <button type="button" onclick = "cancelEdit()" id="cancelbutton" class="btn btn-danger btn-sm" style="display:none;">
+                 <span class="glyphicon glyphicon-remove"></span> &nbsp Cancel 	
+                 </button>
+                 <button type="button" onclick = "successEdit()" id="confirmbutton" class="btn btn-success btn-sm" style="display:none;">
+                 <span class="glyphicon glyphicon-ok"></span> &nbsp Confirm
+                 </button>
+                 </center></td>
                </tr>
             </table>
+            <script>
+            function editProfile() {
+            	document.getElementById("editprofile").style.display = "none";
+            	document.getElementById("cancelbutton").style.display = "block";
+            	document.getElementById("confirmbutton").style.display = "block";
+            }
+            function cancelEdit() {
+            	document.getElementById("editprofile").style.display = "block";
+            	document.getElementById("cancelbutton").style.display = "none";
+            	document.getElementById("confirmbutton").style.display = "none";
+            }
+            </script>
             <%
                }
             }   catch(Exception e) {
@@ -135,23 +140,21 @@ if(getuser == null) {
              </center>
           </fieldset>
      </div>
-  </div>
-  <footer class="footer-distributed">
+</div>
+
+
+ <footer class="footer-distributed">
 
 			<div class="footer-left">
 				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
 			</div>
 
 					</footer>
-					
-
-</div>
-
-
+					</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
-  
+
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
@@ -162,6 +165,9 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
+
+
 </script>
+     
 </body>
 </html>

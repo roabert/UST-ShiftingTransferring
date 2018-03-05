@@ -1,4 +1,4 @@
-package ust.registrar.model.shifting;
+package ust.registrar.model.studentprocess;
 
 import java.io.IOException;
 import java.io.InputStream;

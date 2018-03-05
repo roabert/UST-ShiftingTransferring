@@ -101,34 +101,45 @@ if(getuser == null) {
         <tr>
           <th>ID</th>
           <th>Student Name</th>
-          <th>Type</th>
-          <th>Outgoing</th>
+          <th>Current School</th>
+          <th>Current Course/Program</th>
           <th>Incoming</th>
           <th>Verify Docs</th>
-          <th>Exam Schedule</th>
+          <th>Remarks</th>
           <th>Done</th>
         </tr>
         
         
         <%
          try{
-        String displaystudents_ofad = "SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.id UNION SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM shifters_status INNER JOIN student_shifter on shifters_status.shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved' AND dean_verified = 'Approved' ";
+        String displaystudents_ofad = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE dean_verified = 'Approved' AND ofad_verified = 'In-progress'";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displaystudents_ofad); 
         ResultSet rs = ps.executeQuery();
-           while(rs.next()) {
+        if(!rs.next()){
+        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
+        }
+        else {
+           do {
         %>
+        <form action = "Ofad_verifyTransfer" method = "post">
         <tr>
-        <td><%=rs.getString("transferee_id") %></td>
-        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><%=rs.getString("typeofstudent") %></td>
+        <td><input type = "hidden" name="getstudent" value = "<%=rs.getString("transferee_id")%>"><%=rs.getString("transferee_id") %></td>
+        <td><input type="hidden" name="getuser" value = "<%=getuser%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</a></td>
-        <td><input type = "date" class="form-control" name="examdate"></td>
-        <td><button type="submit" class="btn btn-warning">Submit</button></td>
+        <td><select class="form-control" name="remarks">
+        <option value="Approved">Approve</option>
+        <option value="Disapproved">Disapprove</option>
+        
+        </select></td>
+        <td><button type="submit" onclick = "return confirm ('Are you sure?');" class="btn btn-warning">Submit</button></td>
         </tr>
-        <%}
+        </form>
+        <%}while(rs.next());
+        }
            
          }catch(Exception e) {
         	e.printStackTrace();
