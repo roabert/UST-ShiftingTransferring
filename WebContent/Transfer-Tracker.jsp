@@ -71,18 +71,36 @@ if(getuser == null) {
 <center>
 <ol class="progress-meter">
     <div class="breadcrumb flat">
+    <%try { 
+     PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ?");
+     ResultSet rs = ps.executeQuery();
+     while(rs.next())  {
+    %>
+   <%if (rs.getString("osa_verified").equals("Approved")) {%>
+	<a class="modal-btn active" href="#open-modal">OSA Verification</a>
+	<%}else if(rs.getString("osa_verified").equals("In-progress")) {%>
+	<a class="modal-btn inp" href="#open-modal">OSA Verification</a>
+	<% %>
+	<%}else if(rs.getString("osa_verified").equals("Disapproved")) {%>
+	<a class="modal-btn rejected" href="#open-modal">OSA Verification</a>
+	<%} %>
+	<%if (rs.getString("dean_verified").equals("Approved")) { %>
 	<a class="modal-btn active" href="#open-modal">Dean Verification</a>
-	<a class="modal-btn active" href="#open-modal">Sec Gen Endorsement</a>
-	<a class="modal-btn active" href="#open-modal">OFAD Verification</a>
-	<a class="modal-btn active" href="#open-modal2"">OFAD Exam Schedule</a>
-	<a class="modal-btn active" href="#open-modal">OFAD Encode Scores</a>
-	<a class="modal-btn active" href="#open-modal">Dean Verifies Results</a>
+		<%}else if(rs.getString("dean_verified").equals("In-progress")) {%>
+		<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
+		<%} %>
+	<a class="modal-btn" href="#open-modal">OSG Verification</a>
+	<a class="modal-btn" href="#open-modal">OFAD Verification</a>
+	<%} } catch(SQLException e) {out.print(e);} %>
+	<a class="modal-btn" href="#open-modal2"">OFAD Exam Schedule</a>
+	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
+	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
 	</div>
 	<br><br><br><br>
 	<div class="breadcrumb flat">
-	<a href="#" class="active">Memo Form Now Active</a>
-	<a href="#" class="inp">Memo Endorsement: Registrar</a>
-	<a href="#" class="reject">Memo Endorsement: Sec Gen</a>
+	<a href="#" class="">Memo Form Now Active</a>
+	<a href="#" class="">Memo Endorsement: Registrar</a>
+	<a href="#" class="">Memo Endorsement: Sec Gen</a>
 	<a href="#">Memo Confirmation: Registrar & Dean</a>
 	</div>
 </ol>
