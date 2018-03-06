@@ -11,13 +11,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/style.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><!-- Add jQuery library -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+
+
+	<!-- Add jQuery library -->
+	<script type="text/javascript" src="fancybox/lib/jquery-1.10.2.min.js"></script>
+
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
@@ -128,6 +151,8 @@ if(getuser == null) {
         else {
           do {
         %>
+
+         
          <form action = "Dean_verifyprocess" method = "post">
         <tr>
         <td><input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
@@ -136,7 +161,9 @@ if(getuser == null) {
         <td><%=rs.getString("typeofstudent") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</a></td>
+        <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>
+
+        
         <td><select class="form-control" name="remarks">
         <option value="Approved">Approve</option>
         <option value="Disapproved">Disapprove</option>
@@ -171,7 +198,6 @@ if(getuser == null) {
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
@@ -186,7 +212,52 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
-</script>
-     
+</script>    
+        <!-- 
+        Requirements
+         -->
+         <script type="text/javascript">
+		 $(document).ready(function() {
+		        <%
+		         try{
+		        String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified = 'In-progress'";
+		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
+		        ResultSet rs2 = ps2.executeQuery();
+		        if(!rs2.next()){
+		        }
+		        else {
+		          do {
+		        %>   
+				$("#<%=rs2.getString("shifter_id")%>").click(function() {
+					$.fancybox.open([
+				        <%
+				        String displayrequirement = "SELECT * FROM shifters_requirements WHERE shifter_id = ?";
+				        PreparedStatement ps3 = conn.prepareStatement(displayrequirement); 
+				        ps3.setString(1, rs2.getString("shifter_id"));
+				        ResultSet rs3 = ps3.executeQuery();
+				        while(rs3.next()){
+				        %>
+						{
+							href : "DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg"
+						},
+						<%
+				        }
+						%>
+					], {
+						helpers : {
+							thumbs : {
+								width: 75,
+								height: 50
+							}
+						}
+					});
+	         	});
+	        <%} while(rs2.next());
+		         }  
+		         }catch(Exception e) {
+		        	e.printStackTrace();
+		        } %> 
+         })
+         </script>     
 </body>
 </html>
