@@ -12,17 +12,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="CSS/style.css"type="text/css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><!-- Add jQuery library -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<!-- Add jQuery library -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	
-
-
-	<!-- Add jQuery library -->
-	<script type="text/javascript" src="fancybox/lib/jquery-1.10.2.min.js"></script>
 
 	<!-- Add mousewheel plugin (this is optional) -->
 	<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
@@ -161,9 +157,7 @@ if(getuser == null) {
         <td><%=rs.getString("typeofstudent") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>
-
-        
+        <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>   
         <td><select class="form-control" name="remarks">
         <option value="Approved">Approve</option>
         <option value="Disapproved">Disapprove</option>
@@ -196,7 +190,6 @@ if(getuser == null) {
 					
 
 </div>
-
 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
