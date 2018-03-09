@@ -102,8 +102,8 @@ if(getuser == null) {
        
               
            <ul class = "nav nav-tabs">
-          <li class="active"><a href="OfadExamScheduler.jsp">Shifters</a></li>
-          <li><a href="OfadExamScheduler2.jsp">Transferees</a></li>
+          <li><a href="OfadExamScheduler.jsp">Shifters</a></li>
+          <li class="active"><a href="OfadExamScheduler2.jsp">Transferees</a></li>
           </ul>
           <div class="tab-content">
           <fieldset>
@@ -119,10 +119,10 @@ if(getuser == null) {
               </tr>
               <%
                try{
-            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, remarks FROM exam_schedules_shifters");
+            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, remarks FROM exam_schedules_transferees");
             	   ResultSet r = p.executeQuery();
             	     if(!r.next()){
-            	        	out.println("<tr><p style=color:red>No exam schedule set for students</p></tr>");
+            	        	out.println("<center><p style=color:red>No exam schedule set for students</p></center>");
             	        }
             	        else {
             	           do {
@@ -163,7 +163,7 @@ if(getuser == null) {
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <p class=""><i><span class="glyphicon glyphicon-list-alt"> Create Schedule</span></i></p>
          </div>
-         <form action="CreateScheduleProcess" method="post">
+         <form action="CreateScheduleProcess2" method="post">
          <div class="modal-body" style="overflow-x:auto;">
           <div class="container">
             
@@ -183,36 +183,9 @@ if(getuser == null) {
             </table><br><br>
          
             
-            <legend><p>List of students for examination(Shifters)</p></legend>
+            <legend><p>List of students for examination(Transferees)</p></legend>
             <div style="border-style:groove;">
             <br>
-           <div class="table-responsive" style="overflow:auto; height:300px;">
-           <center>
-             <table class="table">
-                 <tr>
-                 <th><input type="checkbox" value="<%%>"></th>
-                 <th>ID</th>
-                 <th>Student Name</th>
-                 <th>Outgoing</th>
-                 </tr>
-                 <%try {
-               	  PreparedStatement ps = conn.prepareStatement("SELECT shifter_id, lastname, firstname, middlei, newcourse, newprogram FROM shifters_exams INNER JOIN student_shifter on shifters_exams.shifter_id = student_shifter.studentid WHERE exam_schedule_date is NULL");
-               	  ResultSet rs = ps.executeQuery();
-                 while(rs.next()) { %>
-                 <tr>
-                  <td><input type="checkbox" name="selectshifters" value ="<%=rs.getString("shifter_id") %>"></td>
-                  <td><%=rs.getString("shifter_id") %></td>
-                  <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-                  <td><%=rs.getString("newcourse") %>, <%=rs.getString("newprogram") %></td>
-                  </tr>
-                   <%
-                   }  
-                 } catch(SQLException e){out.print(e);} %>
-             </table>
-         </center>
-         </div>
-        
-         <!--    <div id = "transferees" class="tab-pane fade">
             <div class="table-responsive" style="overflow:auto; height:300px;">
            <center>
              <table class="table">
@@ -238,7 +211,7 @@ if(getuser == null) {
              </table>
          </center>
          </div>
-            </div> -->
+          
             
              <br>
             

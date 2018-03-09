@@ -3,14 +3,22 @@ import java.sql.*;
 
 import DatabaseHandler.DatabaseSQLs;
 public class SetExamScheduleDAO implements DatabaseSQLs{
-   public String studentid, examdate, start, end, remarks;
+   public String shifterid, transferid, examdate, start, end, remarks;
 
-public String getStudentid() {
-	return studentid;
+public String getTransferid() {
+	return transferid;
 }
 
-public void setStudentid(String studentid) {
-	this.studentid = studentid;
+public void setTransferid(String transferid) {
+	this.transferid = transferid;
+}
+
+public String getShiftertid() {
+	return shifterid;
+}
+
+public void setShifterid(String studentid) {
+	this.shifterid = studentid;
 }
 
 public String getExamdate() {
@@ -49,7 +57,7 @@ public void setRemarks(String remarks) {
 	  
 	  try {
 		PreparedStatement ps = conn.prepareStatement(Ofad_examsched);
-		ps.setString(1, studentid);
+		ps.setString(1, shifterid);
 		ps.setString(2, examdate);
 		ps.setString(3, start);
 		ps.setString(4, end);
@@ -64,7 +72,7 @@ public void setRemarks(String remarks) {
 	  try {
 		PreparedStatement ps = conn.prepareStatement(Ofad_setexam);
 		ps.setString(1, examdate);
-		ps.setString(2, studentid);
+		ps.setString(2, shifterid);
 		ps.executeUpdate();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -75,7 +83,7 @@ public void setRemarks(String remarks) {
 	  try {
 			PreparedStatement ps = conn.prepareStatement(Ofad_setEncode);
 		
-			ps.setString(1, studentid);
+			ps.setString(1, shifterid);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -86,5 +94,49 @@ public void setRemarks(String remarks) {
     	setExamSchedule(conn);
     	fillExamDate(conn);
     	readyForEncode(conn);
+    	
+    }
+    public void doSetExam2(Connection conn) {
+    	setExamSchedule2(conn);
+    	fillExamDate2(conn);
+    	readyForEncode2(conn);
+    }
+    
+    public void setExamSchedule2(Connection conn) {
+  	  
+  	  try {
+  		PreparedStatement ps = conn.prepareStatement(Ofad_examschedTransfer);
+  		ps.setString(1, transferid);
+  		ps.setString(2, examdate);
+  		ps.setString(3, start);
+  		ps.setString(4, end);
+  		ps.setString(5, remarks);
+  		ps.executeUpdate();
+  	} catch (SQLException e) {
+  		// TODO Auto-generated catch block
+  		e.printStackTrace();
+  	}
+    }
+    public void fillExamDate2(Connection conn) {
+  	  try {
+  		PreparedStatement ps = conn.prepareStatement(Ofad_setexamTransfer);
+  		ps.setString(1, examdate);
+  		ps.setString(2, transferid);
+  		ps.executeUpdate();
+  	} catch (SQLException e) {
+  		// TODO Auto-generated catch block
+  		e.printStackTrace();
+  	}
+    }
+    public void readyForEncode2(Connection conn) {
+  	  try {
+  			PreparedStatement ps = conn.prepareStatement(Ofad_setTransferEncode);
+  		
+  			ps.setString(1, transferid);
+  			ps.executeUpdate();
+  		} catch (SQLException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		}
     }
 }

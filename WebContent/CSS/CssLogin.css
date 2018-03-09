@@ -71,8 +71,11 @@ html, body {
     margin-bottom: -100px;
 }
 footer {
-    height: 100px;
+    height: 80px;
     background-color: #00F;
+    position:absolute;
+    bottom:0;
+    left:0;
 }
 h1 {
  font-size: 4vw;

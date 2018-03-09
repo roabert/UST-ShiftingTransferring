@@ -17,14 +17,14 @@ import ust.registrar.model.ofad.SetExamScheduleDAO;
 /**
  * Servlet implementation class CreateScheduleProcess
  */
-@WebServlet("/CreateScheduleProcess")
-public class CreateScheduleProcess extends HttpServlet {
+@WebServlet("/CreateScheduleProcess2")
+public class CreateScheduleProcess2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateScheduleProcess() {
+    public CreateScheduleProcess2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -59,18 +59,8 @@ public class CreateScheduleProcess extends HttpServlet {
 		String remarks = request.getParameter("exam_remarks");
 		
 		SetExamScheduleDAO set = new SetExamScheduleDAO();
-		 
-	for(int i = 0; i < getshifters.length; i ++) {
-			set.setShifterid(getshifters[i]);
-			set.setExamdate(getexamdate);
-			set.setStart(getstarttime);
-			set.setEnd(getendtime);
-			set.setRemarks(remarks);
-			set.doSetExam(conn);
-			
-		}
-		  
-	/**    for(int i = 0; i < gettransfers.length; i ++) {
+
+	   for(int i = 0; i < gettransfers.length; i ++) {
 					set.setTransferid(gettransfers[i]);
 					set.setExamdate(getexamdate);
 					set.setStart(getstarttime);
@@ -78,8 +68,8 @@ public class CreateScheduleProcess extends HttpServlet {
 					set.setRemarks(remarks);
 					set.doSetExam2(conn);
 					
-		} */
-		request.getRequestDispatcher("OfadExamScheduler.jsp").include(request, response);
+		}
+		request.getRequestDispatcher("OfadExamScheduler2.jsp").include(request, response);
 		out.print("<script>alert('Exam Schedule: "+getexamdate+"');</script>");
 		
 	}

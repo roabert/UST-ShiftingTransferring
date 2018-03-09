@@ -101,8 +101,8 @@ if(getuser == null) {
                <tr>
                  <td>Name </td>
                  <td><input type="text" size="60" value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>" class="form-control" readonly></td>
-                 <td rowspan = "5"><center><img src="DisplayProfilePic?pkey=<%=usercontent.getString("userid")%>" width = "250" height = "250" class="responsive"></center></td>
-               </tr>
+                 <td rowspan = "5"><center><img src="DisplayProfileTransfer?pkey=<%=usercontent.getString("userid")%>" width = "250" height = "250" class="responsive"></center></td>
+               </tr>	
                <tr>
                  <td>ID </td>
                  <td><input type="text" size="60" value="<%=usercontent.getString("userid")%>" class="form-control" readonly></td>

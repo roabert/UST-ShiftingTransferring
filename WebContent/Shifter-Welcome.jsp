@@ -10,7 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/style.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
@@ -62,7 +61,6 @@ if(getuser == null) {
 
 		</div>
 <div canvas="contain">
-<div id="main">
 <div id="wrapper">
 
 
@@ -83,7 +81,7 @@ if(getuser == null) {
 
 <br>
             <p><i>PROFILE INFORMATION</i></p>
-</div>
+
  
  <%
     
@@ -99,8 +97,33 @@ if(getuser == null) {
      <div class="container">
           <fieldset>
     
-            <center>
-            <div class="table-responsive">
+            <div class="col-lg-4 col-md-4 col-sm-12 pull right">
+            <% while(usercontent.next()) { %>
+               <center>
+               <br>
+            <img src="DisplayProfilePic?pkey=<%=usercontent.getInt("studentid")%>" width = "250" height = "250" class="responsive">
+            <br><br>
+         
+            <button type="button" class="btn button btn-warning btn-lg"><span class="glyphicon glyphicon-pencil"></span>Edit Profile</button>
+            </center>
+             </div>
+            <div class="col-lg-8 col-md-8 col-sm-11 pull right">
+            <label for="name">Name</label> <input type="text" size="60" id=name value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>" class="form-control" readonly>
+            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getInt("studentid")%>" class="form-control" readonly>
+            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("oldprogram") %>" class="form-control" readonly>
+            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("typeofstudent") %>" class="form-control" readonly>
+            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("gender") %>" class="form-control" readonly>
+            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("newprogram") %>" class="form-control" readonly>
+             <%
+               }
+            }   catch(Exception e) {
+            	e.printStackTrace();
+            }         
+            %>
+            </div>
+            
+            
+            <%-- <div class="table-responsive">
             <% while(usercontent.next()) { %>
             <table class="table">
                <tr>
@@ -139,20 +162,13 @@ if(getuser == null) {
             	e.printStackTrace();
             }         
             %>
-            </div>
-             </center>
+            </div> --%>
+            
           </fieldset>
      </div>
-  </div>
-  <footer class="footer-distributed">
 
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
 					
-
+</div>
 </div>
 
 
@@ -161,6 +177,7 @@ if(getuser == null) {
 		<script src="scripts/scripts.js"></script>
   
 <script>
+
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
@@ -171,5 +188,6 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
+
 </body>
 </html>

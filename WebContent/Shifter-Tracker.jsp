@@ -85,93 +85,68 @@ if(getuser == null) {
 <ol class="progress-meter">
     <div class="breadcrumb flat">
     <%
-    try {
-    PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
-    ps.setString(1, getuser);
-    ResultSet rs = ps.executeQuery();
-    if(rs.next()) {
+      try {
+    	  PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
+    	  ps.setString(1, getuser);
+    	  ResultSet rs = ps.executeQuery();
+    	  while(rs.next()) {
     %>
-       <%if(rs.getString("dean_verified")!=null){
-       if(rs.getString("dean_verified").equals("Approved"))  {%> 
-   	<a class="modal-btn active" href="#open-modal">Dean Verification</a>
-   	<%} else if(rs.getString("dean_verified").equals("In-progress")) { %>
-   	<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
-   	   <%} else if(rs.getString("dean_verified").equals("Disapproved")){%>
-          <a class="modal-btn reject" href="#open-modal">Dean Verification</a>
-          <%} %>
-       <%
-       } else{
-    	%>
-    	<a class="modal-btn" href="#open-modal">Dean Verification</a>
-    	<%
-       }%>
-       
-       <%if(rs.getString("secgen_verified")!=null){
-       if(rs.getString("secgen_verified").equals("Approved"))  {%> 
-   	<a class="modal-btn active" href="#open-modal">Sec Gen Endorsement</a>
-   	<%} else if(rs.getString("secgen_verified").equals("In-progress")) { %>
-   	<a class="modal-btn inp" href="#open-modal">Sec Gen Endorsement</a>
-   	   <%} else if(rs.getString("secgen_verified").equals("Disapproved")){%>
-          <a class="modal-btn reject" href="#open-modal">Sec Gen Endorsement</a>
-          <%} %>
-       <%
-       } else{
-    	%>
-    	<a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
-    	<%
-       }%>
-       
-       <%if(rs.getString("ofad_verified")!=null){
-       if(rs.getString("ofad_verified").equals("Approved"))  {%> 
-   	<a class="modal-btn active" href="#open-modal">OFAD Verification</a>
-   	<%} else if(rs.getString("ofad_verified").equals("In-progress")) { %>
-   	<a class="modal-btn inp" href="#open-modal">OFAD Verification</a>
-   	   <%} else if(rs.getString("ofad_verified").equals("Disapproved")){%>
-          <a class="modal-btn reject" href="#open-modal">OFAD Verification</a>
-          <%} %>
-       <%
-       } else{
-    	%>
-    	<a class="modal-btn" href="#open-modal">OFAD Verification</a>
-    	<%
-       }%>
-	 
-	 
+      <%if(rs.getString("dean_verified")!= null) { %>
+         <%if(rs.getString("dean_verified").equals("Approved")) { %>
+	   <a class="modal-btn active" href="#open-modal">Dean Verification</a>
+	   <%} else if(rs.getString("dean_verified").equals("In-progress")) {%>
+	       <a class="modal-btn inp" href="#open-modal">Dean Verification</a>
+	      <%} else if(rs.getString("dean_verified").equals("Disapproved")) {%>
+	     <a class="modal-btn rejected" href="#open-modal">Dean Verification</a>
+	     <%} %>   
+	  <%} else { %>
+	  <a class="modal-btn" href="#open-modal">Dean Verification</a>
+	  <%} %>
+	  
+	  <%if(rs.getString("secgen_verified")!= null) { %>
+         <%if(rs.getString("secgen_verified").equals("Approved")) { %>
+	   <a class="modal-btn active" href="#open-modal">Sec Gen Endorsement</a>
+	   <%} else if(rs.getString("secgen_verified").equals("In-progress")) {%>
+	      <a class="modal-btn inp" href="#open-modal">Sec Gen Endorsement</a>
+	      <%} else if(rs.getString("secgen_verified").equals("Disapproved")) {%>
+	    <a class="modal-btn rejected" href="#open-modal">Sec Gen Endorsement</a>
+	     <%} %>   
+	  <%} else { %>
+	 <a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
+	  <%} %>
+	  
+	  
+	  <%if(rs.getString("ofad_verified")!= null) { %>
+         <%if(rs.getString("ofad_verified").equals("Approved")) { %>
+	   <a class="modal-btn active" href="#open-modal">OFAD Verifiction</a>
+	   <%} else if(rs.getString("ofad_verified").equals("In-progress")) {%>
+	      <a class="modal-btn inp" href="#open-modal">OFAD Verifiction</a>
+	      <%} else if(rs.getString("ofad_verified").equals("Disapproved")) {%>
+	    <a class="modal-btn rejected" href="#open-modal">OFAD Verifiction</a>
+	     <%} %>   
+	  <%} else { %>
+	<a class="modal-btn" href="#open-modal">OFAD Verifiction</a>
+	  <%} %>
+	  
+	  
+	<%}}catch(SQLException e) {out.print(e);} %>
 	
-	<%  
-    }else{
-    	%>
-   <a class="modal-btn" href="#open-modal">Dean Verification</a>
-	<a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
-	<a class="modal-btn" href="#open-modal">OFAD Verification</a>
-	
-    <%
-    }
-    }
-     catch(SQLException e) {
-    	 out.print(e);
-     }
-    %>
-    <%
-      
-    %>
-    <% 
-     try {
-    	 PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ?");
-    	 ps2.setString(1, getuser);
-    	 ResultSet rs2 = ps2.executeQuery();
-    	 if(rs2.next()) {
-    %>
-    <%if(rs2.getString("exam_schedule_date")==null){ %>
-    <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
-    <%}else{
-    	%>
-    	 <a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
-    	 <a class="modal-btn inp" href="#open-modal">OFAD Encode Scores</a>
-    	<%
-    } %>
-    
-	
+	 <%try { 
+		 PreparedStatement p1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ?");
+   	  p1.setString(1, getuser);
+   	  ResultSet r1 = p1.executeQuery();
+   	  while(r1.next()) {
+	 %>
+	<%if(r1.getString("exam_schedule_date") != null && r1.getString("shifter_id") != null){ %>
+	   
+       	<a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
+	<%} else if(r1.getString("shifter_id") != null && r1.getString("exam_schedule_date") == null ){%>
+	   <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
+	  <%} else {%>
+	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
+	  <%} %>
+	<%}}catch(SQLException e) {out.print(e);} %>
+	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
 	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
 	</div>
 	<br><br><br><br>
@@ -180,28 +155,13 @@ if(getuser == null) {
 	<a href="#" class="">Memo Endorsement: Registrar</a>
 	<a href="#" class="">Memo Endorsement: Sec Gen</a>
 	<a href="#">Memo Confirmation: Registrar & Dean</a>
-	<%}
-    	 else {
-    		 %>
-    		 <a class="modal-btn" href="#open-modal2"">OFAD Exam Schedule</a>
-	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
-	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a><br><br><br><br>
-	<a href="#" class="">Memo Form Now Active</a>
-	<a href="#" class="">Memo Endorsement: Registrar</a>
-	<a href="#" class="">Memo Endorsement: Sec Gen</a>
-	<a href="#">Memo Confirmation: Registrar & Dean</a>
-    		 <%
-    	 }	 
-     }catch(SQLException e){
-		out.print(e);
-	} %>
 	</div>
-	
 </ol>
 
 
   </div>
 
+  </ol>
   
 
 

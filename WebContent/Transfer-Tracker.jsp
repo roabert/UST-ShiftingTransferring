@@ -77,6 +77,7 @@ if(getuser == null) {
      ResultSet rs = ps.executeQuery();
      while(rs.next())  {
     %>
+    <%if (rs.getString("osa_verified") != null) { %>
    <%if (rs.getString("osa_verified").equals("Approved")) {%>
 	<a class="modal-btn active" href="#open-modal">OSA Verification</a>
 	<%}else if(rs.getString("osa_verified").equals("In-progress")) {%>
@@ -84,31 +85,60 @@ if(getuser == null) {
 	<% %>
 	<%}else if(rs.getString("osa_verified").equals("Disapproved")) {%>
 	<a class="modal-btn rejected" href="#open-modal">OSA Verification</a>
+	<%} 
+	} else {%>
+	  <a class="modal-btn" href="#open-modal">OSA Verification</a>
 	<%} %>
 	
+	<%if (rs.getString("dean_verified") != null) { %>
 	<%if (rs.getString("dean_verified").equals("Approved")) { %>
 	<a class="modal-btn active" href="#open-modal">Dean Verification</a>
 		<%}else if(rs.getString("dean_verified").equals("In-progress")) {%>
 		<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
 		<%} else if(rs.getString("dean_verified").equals("Disapproved")) {%>
-		
 		<a class="modal-btn inp" href="#open-modal">Dean Verification</a> <%} %>
+	<%} else { %>
+	  	<a class="modal-btn" href="#open-modal">Dean Verification</a>
+	<%} %>
+	
+	<%if(rs.getString("secgen_verified") != null) { %>
 		<%if (rs.getString("secgen_verified").equals("Approved")) { %>
 	<a class="modal-btn active" href="#open-modal">OSG Verification</a>
 	<%}else if(rs.getString("secgen_verified").equals("In-progress")) { %>
 	<a class="modal-btn inp" href="#open-modal">OSG Verification</a>
 	<%}else if(rs.getString("secgen_verified").equals("Disapproved")) {%>
 	<a class="modal-btn rejected" href="#open-modal">OSG Verification</a> <%} %>
+	<%} else { %>
+	   <a class="modal-btn" href="#open-modal">OSG Verification</a>
+	<%} %>
 	
+	<%if(rs.getString("ofad_verified")!=null) { %>
 	<%if(rs.getString("ofad_verified").equals("Approved")) {%>
 	<a class="modal-btn active" href="#open-modal">OFAD Verification</a>
 	<%}else if(rs.getString("ofad_verified").equals("In-progress")) {%>
 	<a class="modal-btn inp" href="#open-modal">OFAD Verification</a>
 	<%}else if(rs.getString("ofad_verified").equals("Disapproved")) {%>
 	<a class="modal-btn rejected" href="#open-modal">OFAD Verification</a> <%} %>
+	<%}else{ %>
+	    <a class="modal-btn" href="#open-modal">OFAD Verification</a>
+	<%} %>
 	
 	<%} } catch(SQLException e) {out.print(e);} %>
-	<a class="modal-btn" href="#open-modal2"">OFAD Exam Schedule</a>
+	<%try {
+		PreparedStatement p1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ?");
+		p1.setString(1, getuser);
+		ResultSet r1 = p1.executeQuery();
+		while(r1.next()){
+		%>
+	<%if(r1.getString("exam_schedule_date") != null && r1.getString("transferee_id") != null){ %>
+	   
+       	<a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
+	<%} else if(r1.getString("transferee_id") != null && r1.getString("exam_schedule_date") == null ){%>
+	   <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
+	  <%} else {%>
+	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
+	  <%} %>
+	<%}}catch(SQLException e) {out.print(e);} %>
 	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
 	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
 	</div>
