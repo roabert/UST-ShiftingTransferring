@@ -117,9 +117,8 @@ if(getuser == null) {
         <tr>
           <th>ID</th>
           <th>Student Name</th>
-          <th>Type</th>
-          <th>Outgoing</th>
-          <th>Incoming</th>
+          <th>Current Course/Program</th>
+          <th>Incoming Course/Program</th>
           <th>Verify Docs</th>
           <th>Remarks</th>
           <th>Done</th>
@@ -145,7 +144,7 @@ if(getuser == null) {
         <td><input type="hidden" value="<%=getuser%>" name="getuser">
         <input type = "hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid"><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><%=rs.getString("typeofstudent") %></td>
+   
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>
