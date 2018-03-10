@@ -159,9 +159,9 @@ if(getuser == null) {
 <div class="modal fade createsched" role="dialog">
    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
-         <div class="modal-header">
+         <div class="modal-header" style="background-color:black">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <p class=""><i><span class="glyphicon glyphicon-list-alt"> Create Schedule</span></i></p>
+            <p class=""><i>Create Schedule</i></p>
          </div>
          <form action="CreateScheduleProcess" method="post">
          <div class="modal-body" style="overflow-x:auto;">

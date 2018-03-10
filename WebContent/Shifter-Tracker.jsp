@@ -89,7 +89,7 @@ if(getuser == null) {
     	  PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
     	  ps.setString(1, getuser);
     	  ResultSet rs = ps.executeQuery();
-    	  while(rs.next()) {
+    	  if(rs.next()) {
     %>
       <%if(rs.getString("dean_verified")!= null) { %>
          <%if(rs.getString("dean_verified").equals("Approved")) { %>
@@ -129,7 +129,13 @@ if(getuser == null) {
 	  <%} %>
 	  
 	  
-	<%}}catch(SQLException e) {out.print(e);} %>
+	<%}else {
+		%>
+		  <a class="modal-btn" href="#open-modal">Dean Verification</a>
+		  <a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
+		  <a class="modal-btn" href="#open-modal">OFAD Verifiction</a>
+		<%
+	}}catch(SQLException e) {out.print(e);} %>
 	
 	 <%try { 
 		 PreparedStatement p1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ?");

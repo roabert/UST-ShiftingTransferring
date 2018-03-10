@@ -64,7 +64,7 @@ if(getuser == null) {
   <a href="#">Programs</a>
   <a href="#" >Guidelines</a>
 </div>
-       <br>     <p><i>PROFILE INFORMATION</i></p>
+       <br>     <p><i>STEP 1: UPLOAD PRE-REQUIREMENTS</i></p>
 </div>
   <div class="container">
 <div class="row">
@@ -75,7 +75,7 @@ if(getuser == null) {
      PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ?");
      ps.setString(1, getuser);
      ResultSet rs = ps.executeQuery();
-     while(rs.next())  {
+     if(rs.next())  {
     %>
     <%if (rs.getString("osa_verified") != null) { %>
    <%if (rs.getString("osa_verified").equals("Approved")) {%>
@@ -96,7 +96,7 @@ if(getuser == null) {
 		<%}else if(rs.getString("dean_verified").equals("In-progress")) {%>
 		<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
 		<%} else if(rs.getString("dean_verified").equals("Disapproved")) {%>
-		<a class="modal-btn inp" href="#open-modal">Dean Verification</a> <%} %>
+		<a class="modal-btn rejected" href="#open-modal">Dean Verification</a> <%} %>
 	<%} else { %>
 	  	<a class="modal-btn" href="#open-modal">Dean Verification</a>
 	<%} %>
@@ -123,7 +123,18 @@ if(getuser == null) {
 	    <a class="modal-btn" href="#open-modal">OFAD Verification</a>
 	<%} %>
 	
-	<%} } catch(SQLException e) {out.print(e);} %>
+	<%} 
+     else {%>
+     	<a class="modal-btn" href="#open-modal">OSA Verification</a>
+	<a class="modal-btn" href="#open-modal">Dean Verification</a>
+	 <a class="modal-btn" href="#open-modal">OSG Verification</a>
+	 <a class="modal-btn" href="#open-modal">OFAD Verification</a>
+     <% 
+    }
+     } catch(SQLException e) {out.print(e);} %>
+	
+	
+
 	<%try {
 		PreparedStatement p1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ?");
 		p1.setString(1, getuser);

@@ -85,7 +85,7 @@ if(getuser == null) {
       <div class="container">
        <div class="table-responsive" style="overflow-x:auto; height:450px;">
       <center>
-         <table class="table">
+         <table class="table table-striped">
         <tr>
           <th>User ID</th>
           <th>Name</th>
@@ -142,11 +142,11 @@ if(getuser == null) {
 
 					</footer>
 					</div>
-  <div class="modal fade createusers" role="dialog">
+  <div id="createusers" class="modal fade createusers" role="dialog">
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
        <form id = "form1" onsubmit="false">
-          <div class="modal-header">
+          <div class="modal-header" style="background-color:black;">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
            <p><i>Create Users</i></p>
           </div>
@@ -205,7 +205,7 @@ if(getuser == null) {
        </div>
     </div>
   </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
@@ -235,6 +235,10 @@ function submitForm() {
 }
 
 </script>
-     
+      <script type="text/javascript">
+      $("#createusers").draggable({
+          handle: ".modal-header"
+      });
+      </script>
 </body>
 </html>
