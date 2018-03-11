@@ -24,6 +24,7 @@ public interface DatabaseSQLs {
 	 String Dean_disapproveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
 	//Dean pass or fail the student DeanVerifyScore
 	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ? WHERE shifter_id = ?";
+	 String Dean_passfailScoreShifter = "UPDATE shifters_scores SET dean_reviewed = ? WHERE shifter_id = ?";
 	 // SecGen approve student OSG_verifyprocess
 	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE shifter_id = ?";
 	 String OSG_disapproveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ? WHERE shifter_id = ?";

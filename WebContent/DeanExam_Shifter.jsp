@@ -102,7 +102,7 @@ if(getuser == null) {
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      <table class="table">
+      <table class="table table-striped">
         <tr>
           <th>ID</th>
           <th>Student Name</th>
@@ -115,11 +115,15 @@ if(getuser == null) {
         </tr>
           <%
          try{
-        String displaywithscore = "SELECT * FROM shifters_scores INNER JOIN student_shifter on shifter_id = student_shifter.studentid";
+        String displaywithscore = "SELECT * FROM shifters_scores INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_reviewed is NULL AND final_score is not NULL";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displaywithscore); 
         ResultSet rs = ps.executeQuery();
-           while(rs.next()) {
+          if(!rs.next()) {
+        	  out.print("<tr><p style=color:red>No scores of students encoded yet!</p></tr>");
+          }
+          else {
+        	  do{
         %>
         <form action = "DeanVerifyScore" method = "post">
         <tr>
@@ -136,7 +140,8 @@ if(getuser == null) {
         <td><button type="submit" onclick="return confirm('Are you sure? Changes will not be done once submitted.');" class="btn btn-warning">Submit</button></td>
         </tr>
         </form>
-        <%}
+        <%} while(rs.next());
+         }
            
          }catch(Exception e) {
         	e.printStackTrace();

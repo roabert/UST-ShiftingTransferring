@@ -42,5 +42,21 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 			e.printStackTrace();
 		}
 	}
+	public void PassorFailScore(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(Dean_passfailScoreShifter);
+			ps.setString(1, status);
+			ps.setString(2, studentid);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void doPassorFail(Connection conn) {
+		PassorFail(conn);
+		PassorFailScore(conn);
+	}
 
 }

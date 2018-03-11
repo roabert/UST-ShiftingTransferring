@@ -93,7 +93,7 @@ if(getuser == null) {
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      <table class="table">
+      <table class="table table-striped">
         <tr>
           <th>ID</th>
           <th>Student Name</th>
