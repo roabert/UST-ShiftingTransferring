@@ -22,7 +22,8 @@ public interface DatabaseSQLs {
 	 String Dean_disapproveTransfer = "UPDATE transferees_status SET dean_id = ?, dean_verified = ? WHERE transferee_id = ?";
 	 // Dean disapprove student
 	 String Dean_disapproveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
-	
+	//Dean pass or fail the student DeanVerifyScore
+	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ? WHERE shifter_id = ?";
 	 // SecGen approve student OSG_verifyprocess
 	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE shifter_id = ?";
 	 String OSG_disapproveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ? WHERE shifter_id = ?";
@@ -53,6 +54,11 @@ public interface DatabaseSQLs {
 	 // OSA approve transferee
 	 String OSA_approveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, dean_verified = 'In-progress' WHERE transferee_id = ?";
 	 String OSA_disapproveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ? WHERE transferee_id = ?";
+	 
+	 //OFAD encode scores shifter EncodeScoreShifter servlet
+	 
+	 String EncodeScores_Shifter = "UPDATE shifters_scores SET userid = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ? WHERE shifter_id = ?";
+	 String ExamTaken_Shifter = "UPDATE shifters_status SET exam_taken = 'Approved' WHERE shifter_id = ?";
 	 
 	 //Admin Modify Users (for admin)
 	 String Admin_editUsersSQL = "UPDATE admins SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";

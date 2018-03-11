@@ -53,6 +53,13 @@ if(rss.next()) {
 
 	 response.sendRedirect("Shifter-ShiftFailed.jsp");
 }
+PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is not NULL");
+ps1.setString(1, getuser);
+ResultSet rs1 = ps1.executeQuery();
+if(rs1.next()) {
+	webpage = "Shifter-Shifting-2.jsp";
+	 response.sendRedirect("Shifter-Shifting-2.jsp");
+}
 %>
 
 <div off-canvas="slidebar-1 left reveal">

@@ -115,26 +115,27 @@ if(getuser == null) {
         </tr>
           <%
          try{
-        String displaywithscore = "SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram, final_score from shifters_scores inner join student_shifter on shifters_scores.shifter_id = student_shifter.studentid UNION SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldprogram, oldprogram, newcourse, newprogram, final_score from transferees_scores inner join student_transfer on transferees_scores.transferee_id = student_transfer.id";
+        String displaywithscore = "SELECT * FROM shifters_scores INNER JOIN student_shifter on shifter_id = student_shifter.studentid";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displaywithscore); 
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
         %>
+        <form action = "DeanVerifyScore" method = "post">
         <tr>
-        <td><%=rs.getString("shifter_id") %></td>
-        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>"><%=rs.getString("shifter_id") %></td>
+        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("typeofstudent") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><%=rs.getString("final_score") %></td>
-        <td><select class="form-control">
-    <option value="Passed">Passed</option>
-        <option value="Pending">Pending</option>
-        <option value="Failed">Failed</option>
+        <td><select class="form-control" name="studentstatus">
+    <option value="Approved">Passed</option>
+        <option value="Disapproved">Failed</option>
         </select></td>
-        <td><button type="submit" class="btn btn-warning">Submit</button></td>
+        <td><button type="submit" onclick="return confirm('Are you sure? Changes will not be done once submitted.');" class="btn btn-warning">Submit</button></td>
         </tr>
+        </form>
         <%}
            
          }catch(Exception e) {
