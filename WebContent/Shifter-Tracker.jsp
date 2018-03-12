@@ -152,8 +152,39 @@ if(getuser == null) {
 	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
 	  <%} %>
 	<%}}catch(SQLException e) {out.print(e);} %>
+	
+	<% try{ 
+      PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ?");
+      p2.setString(1, getuser);
+      ResultSet r2 = p2.executeQuery();
+	%>
+	<%while(r2.next()){ %>
+	<% if(r2.getString("final_score") != null && r2.getString("shifter_id") != null) { %>
+	<a class="modal-btn active" href="#open-modal">OFAD Encode Scores</a>
+	<%} else if(r2.getString("final_score") == null && r2.getString("shifter_id") != null) {%>
+	<a class="modal-btn inp" href="#open-modal">OFAD Encode Scores</a>
+	<%} else {%>
 	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
-	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
+	<%} %>
+	<%}}catch(SQLException e) {out.print(e);} %>
+	
+	<%try {
+    PreparedStatement p3 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ?");
+     p3.setString(1, getuser);
+     ResultSet r3 = p3.executeQuery();
+     while(r3.next()) {
+%>   
+	<%  if(r3.getString("dean_reviewed") == null && r3.getString("final_score") != null) {%>
+	<a class="modal-btn inp" href="#open-modal">Dean Verifies Results</a>
+   <%}else if(r3.getString("dean_reviewed").equals("Approved")) { %>
+	<a class="modal-btn active" href="#open-modal">Dean Verifies Results</a>
+	<%} else if(r3.getString("dean_reviewed").equals("Disapproved")) {%>
+	<a class="modal-btn rejected" href="#open-modal">Dean Verifies Results</a>
+
+	 <%} else {%>
+	 <a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
+	 <%} %>
+	<%}}catch(SQLException e) {out.print(e);} %>
 	</div>
 	<br><br><br><br>
 	<div class="breadcrumb flat">

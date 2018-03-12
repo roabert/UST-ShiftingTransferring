@@ -89,4 +89,7 @@ public interface DatabaseSQLs {
 		 // Admin Create user details (for admin)
 		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 
+		 // FOR TRACKER ShiftingTrackerDAO
+		 String encodeExamShifter  = "SELECT * FROM shifters_scores WHERE shifter_id = ?";
+		 
 }
