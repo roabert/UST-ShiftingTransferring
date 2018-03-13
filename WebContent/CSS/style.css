@@ -641,3 +641,14 @@ select#country option[value="Institute of Information and Computing Sciences"]  
   background-color: #f9f9f9;
   border-radius: 4px;
 }
+
+.modal {
+  width:100%;
+  height: 100%;
+  overflow:auto;
+  position:fixed;
+}
+
+.modal-content {
+    background: #f0f8ff;
+}
