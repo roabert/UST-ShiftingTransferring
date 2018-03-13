@@ -25,6 +25,7 @@ public interface DatabaseSQLs {
 	//Dean pass or fail the student DeanVerifyScore
 	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ? WHERE shifter_id = ?";
 	 String Dean_passfailScoreShifter = "UPDATE shifters_scores SET dean_reviewed = ? WHERE shifter_id = ?";
+	 
 	 // SecGen approve student OSG_verifyprocess
 	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE shifter_id = ?";
 	 String OSG_disapproveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ? WHERE shifter_id = ?";
@@ -89,6 +90,9 @@ public interface DatabaseSQLs {
 		 // Admin Create user details (for admin)
 		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 
+		 // LETTER OF INDORSEMENT SHIFTER
+		 String MemoForm_Shifter = "INSERT INTO shifters_indorsement (shifter_id) VALUES (?)";
+		 String removeExamSchedShifter = "DELETE FROM shifters_exams WHERE shifter_id = ?";
 		 // FOR TRACKER ShiftingTrackerDAO
 		 String encodeExamShifter  = "SELECT * FROM shifters_scores WHERE shifter_id = ?";
 		 

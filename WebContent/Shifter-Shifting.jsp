@@ -3,6 +3,7 @@
         <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "ust.registrar.model.shifting.*" %>
      <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -59,6 +60,12 @@ ResultSet rs1 = ps1.executeQuery();
 if(rs1.next()) {
 	webpage = "Shifter-Shifting-2.jsp";
 	 response.sendRedirect("Shifter-Shifting-2.jsp");
+} 
+MemoPrivelegeDAO m = new MemoPrivelegeDAO();
+m.setUserid(getuser);
+m.showMemo(conn);
+if(m.getUserid() != null) {
+	 response.sendRedirect("Shifter-Memo.jsp");
 }
 %>
 

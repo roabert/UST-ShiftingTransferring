@@ -407,7 +407,7 @@ form#registerform > #step2shifter, #step2transferee {display:none;}
 @import url(https://fonts.googleapis.com/css?family=Merriweather+Sans);
 
 * {margin: 0; padding: 0;}
-input[type=text], select{
+input[type=text], select, input[type=number], input[type=date]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

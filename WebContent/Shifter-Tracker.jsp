@@ -142,13 +142,15 @@ if(getuser == null) {
    	  p1.setString(1, getuser);
    	  ResultSet r1 = p1.executeQuery();
    	  while(r1.next()) {
+   		  if(r1.next()){
 	 %>
 	<%if(r1.getString("exam_schedule_date") != null && r1.getString("shifter_id") != null){ %>
 	   
        	<a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
 	<%} else if(r1.getString("shifter_id") != null && r1.getString("exam_schedule_date") == null ){%>
 	   <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
-	  <%} else {%>
+	  <%} 
+   	  }else {%>
 	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
 	  <%} %>
 	<%}}catch(SQLException e) {out.print(e);} %>

@@ -54,9 +54,38 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 			e.printStackTrace();
 		}
 	}
-	public void doPassorFail(Connection conn) {
+	public void removeStudentSchedule(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(removeExamSchedShifter);
+			ps.setString(1, studentid);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void readyForIndorsement(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(MemoForm_Shifter);
+			ps.setString(1, studentid);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void doPassStudent(Connection conn) {
 		PassorFail(conn);
 		PassorFailScore(conn);
+		removeStudentSchedule(conn);
+		readyForIndorsement(conn);
+	}
+	public void doFailStudent(Connection conn) {
+		PassorFail(conn);
+		PassorFailScore(conn);
+		removeStudentSchedule(conn);
 	}
 
 }
