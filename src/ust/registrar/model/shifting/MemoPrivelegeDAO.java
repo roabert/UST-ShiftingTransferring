@@ -18,7 +18,7 @@ public class MemoPrivelegeDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				if(rs.next())
-				 rs.getString("shifter_id");
+				userid = rs.getString("shifter_id");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
