@@ -9,14 +9,14 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+<link rel="stylesheet" href="CSS/style.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
@@ -103,6 +103,7 @@ if(getuser == null) {
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
       <table class="table table-striped">
+        <thead>
         <tr>
           <th>ID</th>
           <th>Student Name</th>
@@ -113,6 +114,8 @@ if(getuser == null) {
           <th>Remarks</th>
           <th>Finish</th>
         </tr>
+       	</thead>
+       	<tbody>
           <%
          try{
         String displaywithscore = "SELECT * FROM shifters_scores INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_reviewed is NULL AND final_score is not NULL";
@@ -146,6 +149,7 @@ if(getuser == null) {
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
+        </tbody>
       </table>
       </center>
       </div>
@@ -164,14 +168,15 @@ if(getuser == null) {
 
 </div>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script src="scripts/slidebars.js"></script>
-		<script src="scripts/scripts.js"></script>
+<script src="scripts/slidebars.js"></script>
+<script src="scripts/scripts.js"></script>
 
 
 
 <script>
+$(document).ready(function() {
+    $('table.table').DataTable();
+} );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
