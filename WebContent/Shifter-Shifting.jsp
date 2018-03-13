@@ -61,19 +61,19 @@ if(rs1.next()) {
 	webpage = "Shifter-Shifting-2.jsp";
 	 response.sendRedirect("Shifter-Shifting-2.jsp");
 } 
-MemoPrivelegeDAO m = new MemoPrivelegeDAO();
-m.setUserid(getuser);
-m.showMemo(conn);
-if(m.getUserid() != null) {
-	 response.sendRedirect("Shifter-Memo.jsp");
-}
+PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND dean_reviewed = 'Approved'");
+ps2.setString(1, getuser);
+ResultSet rs2 = ps2.executeQuery();
 
-MemoDoneDAO md = new MemoDoneDAO();
-md.setStudentid(getuser);
-md.memoDoneStatus(conn);
-if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) {
-	 response.sendRedirect("Shifter-MemoDone.jsp");
-}
+	if(rs2.next()) {
+   response.sendRedirect("Shifter-Memo.jsp");
+	}
+/**	PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND (dean_indorsed = 'In-progress' OR secgen_indorsed = 'In-progress'  OR registrar_indorsed = 'In-progress')");
+	ps3.setString(1, getuser);
+	ResultSet rs3 = ps3.executeQuery();*/
+
+
+
 %>
 
 <div off-canvas="slidebar-1 left reveal">

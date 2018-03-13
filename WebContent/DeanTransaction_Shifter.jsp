@@ -119,7 +119,7 @@ if(getuser == null) {
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
      
-      <table class="table">
+      <table class="table-striped">
       	<thead>
 	        <tr>
 	          <th>ID</th>
@@ -193,7 +193,7 @@ if(getuser == null) {
 
 <script>
 $(document).ready(function() {
-    $('table.table').DataTable();
+    $('table.table-striped').DataTable();
 } );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";

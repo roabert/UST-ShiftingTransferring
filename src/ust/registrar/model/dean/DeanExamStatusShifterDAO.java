@@ -80,7 +80,7 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 		PassorFail(conn);
 		PassorFailScore(conn);
 		removeStudentSchedule(conn);
-		readyForIndorsement(conn);
+		
 	}
 	public void doFailStudent(Connection conn) {
 		PassorFail(conn);
