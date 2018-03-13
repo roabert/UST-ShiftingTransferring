@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="datatables/js/jquery.dataTables.min.js"></script>
 <head>
 <meta charset="ISO-8859-1">
