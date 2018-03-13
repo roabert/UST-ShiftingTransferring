@@ -17,9 +17,36 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<!-- Add jQuery library -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
+<script>
+$(document).ready(function() {
+
+	$('.fancybox').fancybox(); 
+	
+	})
+</script>
 </head>
 
 <body>
@@ -132,9 +159,27 @@ if(getuser == null) {
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
       <td></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><a href="">View Students</a></td>
+                <td><a  class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
                 <td><button type="submit" class="btn btn-warning">Edit</button></td>
               </tr>
+			    <div id="<%=r.getString("date") %>" style="width:400px;display: none;">
+					<%
+						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_schedule_date = ?");
+						p2.setString(1, r.getString("date"));
+	            	   	ResultSet r2 = p2.executeQuery();
+	            	   	while(r2.next()){
+						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM student_shifter where studentid = ?");
+						p3.setString(1, r2.getString("shifter_id"));
+	            	   	ResultSet r3 = p3.executeQuery();
+	            	   	while(r3.next()){
+	            	   		%>
+	            	   		<p><%=r3.getString("studentid") %> - <%=r3.getString("lastname") %>, <%=r3.getString("firstname") %>, <%=r3.getString("middlei") %></p>
+	            	<% 
+	            	   		}
+					 
+            	        }
+					%>
+				</div>
               <%}while(r.next());
                     }
                } catch(SQLException e) {out.print(e);}
@@ -143,6 +188,7 @@ if(getuser == null) {
               </div>
           </fieldset>
           </div>
+          
      </div>
 </div>
  <footer class="footer-distributed">
@@ -258,8 +304,6 @@ if(getuser == null) {
    </div>
 </div>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
