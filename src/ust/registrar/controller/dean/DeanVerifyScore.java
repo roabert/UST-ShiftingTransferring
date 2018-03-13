@@ -58,7 +58,13 @@ public class DeanVerifyScore extends HttpServlet {
 		d.setDeanid(getdeanid);
 		d.setStatus(getstatus);
 		d.setStudentid(getstudent);
-		d.doPassorFail(conn);
+		
+		if(getstatus.equals("Approved")) {
+			d.doPassStudent(conn);
+		}
+		else if(getstatus.equals("Disapproved")) {
+			d.doFailStudent(conn);
+		}
 		
 		request.getRequestDispatcher("DeanExam_Shifter.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");

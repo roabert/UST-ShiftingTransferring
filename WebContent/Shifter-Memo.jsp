@@ -3,7 +3,7 @@
         <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
-    <%@ page import="ust.registrar.model.shifting.*" %>
+    <%@ page import = "ust.registrar.model.shifting.*" %>
      <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -91,32 +91,72 @@ if(getuser == null) {
 </div>
          <%
     
-         PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (secgen_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
-         pss.setString(1, getuser);
-         ResultSet rss = pss.executeQuery();
-         if(rss.next()) {
-         
-         	 response.sendRedirect("Shifter-ShiftFailed.jsp");
-         }
-         PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is NOT NULL");
-         ps.setString(1, getuser);
-         ResultSet rs = ps.executeQuery();
-         if(rs.next()) {
-      	 response.sendRedirect("Shifter-Shifting-2.jsp");
-       }
          %>
 </div>
-<br>    <p id="text_steps"><i>FILES UPLOADED! SEE TRACKER FOR UPDATES</i></p>
+<br>    <p id="text_steps"><i>STEP 3: FILL UP MEMO</i></p>
 
      <div class="container">
+<div class="memo">
 <br>
-<br>
-       <center>
-       <p><span class="glyphicon glyphicon-search" style="font-size:100px;"></span></p>
-       <br><br><br>
-       <form action="Shifter-Tracker.jsp"><button type="submit" class="btn btn-lg btn-warning">See Tracker</button></form>
-       </center>
-          </div>
+<form>
+Student Number: <input type="text" id="fname" name="studentid" placeholder="Student Number string here" > Date: <input type="date" align="right" name="date" placeholder="Date today" ><br><br>
+<p>I, <input type="text" id="fname" name="fullname" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
+Faculty/College/Institute <br><br><input type="text" id="fname" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
+Term # <input type="number" id="fname" name="semester" placeholder="Term #" style="width:50px">AY 20- <input type="number" id="fname" name="firstyear" placeholder="" style="width:50px">
+- 20<input type="number" id="fname" name="secondyear" placeholder="" style="width:50px"> <br><br> My complete college attendance to date:  <input type="text" id="fname" name="currentcourse" placeholder="Current Faculty" style="width:500px"  >
+</p>
+<center>
+<p>
+<table class="table-year">
+   <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="firstterm" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="firstterm_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="firstterm_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="specialterm_1" placeholder="" style="width:50px"></td>
+  </tr> 
+     <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="secondterm" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="secondterm_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="secondterm_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="summerterm_2" placeholder="" style="width:50px"></td>
+  </tr> 
+     <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="thirdterm" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="thirdterm_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="thirdterm_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="summerterm_3" placeholder="" style="width:50px"></td>
+  </tr> 
+     <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="fourthyear" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="fourthyear_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="fourthyear_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="specialterm_4" placeholder="" style="width:50px"></td>
+  </tr> 
+ 
+</table><br><br>
+<input type="checkbox" name="termsandcondition" value="Agree" id="termcheckbox">I agree that my enrollment will be AUTOMATICALLY CANCELLED if it turns out that I have been debarred from the prevoius college.
+</p><br><br>
+<button type="submit" class="btn btn-warning btn-lg">Submit</button>
+</center>
+ </form>
+</div>
+   </div>
   </div>
   <footer class="footer-distributed">
 

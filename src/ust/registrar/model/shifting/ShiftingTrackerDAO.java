@@ -1,4 +1,4 @@
-package ust.registrar.model.tracker;
+package ust.registrar.model.shifting;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
