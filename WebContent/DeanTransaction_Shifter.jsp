@@ -118,7 +118,7 @@ if(getuser == null) {
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-     
+     <form action = "Dean_verifyprocess" method = "post">
       <table class="table">
       	<thead>
 	        <tr>
@@ -146,7 +146,7 @@ if(getuser == null) {
         %>
 
          
-         <form action = "Dean_verifyprocess" method = "post">
+         
         <tr>
         <td><input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
         <input type="hidden" value = "<%=getuser%>" name = "getuser"><%=rs.getString("shifter_id") %></td>
@@ -154,6 +154,7 @@ if(getuser == null) {
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>   
+       
         <td><select class="form-control" name="remarks">
         <option value="Approved">Approve</option>
         <option value="Disapproved">Disapprove</option>
@@ -161,7 +162,7 @@ if(getuser == null) {
         </select></td>
         <td><button type="submit" class="btn btn-warning" onclick= "return confirm('Are you sure?');">Submit</button> </td>
         </tr>
-        </form>
+        
         <%} while(rs.next());
          }  
          }catch(Exception e) {
@@ -169,6 +170,7 @@ if(getuser == null) {
         } %>
         </tbody>
       </table>
+      </form>
      
       </center>
       </div>
