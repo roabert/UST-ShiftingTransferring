@@ -162,18 +162,19 @@ if(getuser == null) {
                 <td><a  class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
                 <td><button type="submit" class="btn btn-warning">Edit</button></td>
               </tr>
-			    <div id="<%=r.getString("date") %>" style="width:400px;display: none;">
+			    <div id="<%=r.getString("date") %>" style="overflow:auto;width:500px; height:400px;display: none;">
+			    <h4>List of Student Shifters</h4><br>
 					<%
 						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_schedule_date = ?");
 						p2.setString(1, r.getString("date"));
 	            	   	ResultSet r2 = p2.executeQuery();
 	            	   	while(r2.next()){
-						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM student_shifter where studentid = ?");
-						p3.setString(1, r2.getString("shifter_id"));
+						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM exam_schedules_shifters INNER JOIN student_shifter ON shifter_id = student_shifter.studentid");
+		
 	            	   	ResultSet r3 = p3.executeQuery();
 	            	   	while(r3.next()){
 	            	   		%>
-	            	   		<p><%=r3.getString("studentid") %> - <%=r3.getString("lastname") %>, <%=r3.getString("firstname") %>, <%=r3.getString("middlei") %></p>
+	            	   		<p><%=r3.getString("shifter_id") %> - <%=r3.getString("lastname") %>, <%=r3.getString("firstname") %>, <%=r3.getString("middlei") %></p>
 	            	<% 
 	            	   		}
 					 
@@ -225,6 +226,10 @@ if(getuser == null) {
            <tr>
                <th> <h4>End Time</h4></th>
                <th><input type = "time" class="form-control" name = "endttime"><br></th>
+               </tr>
+               <tr>
+               <th> <h4>Venue</h4></th>
+               <th><input type = "text" class="form-control" name = "venueexam"><br></th>
                </tr>
             </table><br><br>
          

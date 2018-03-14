@@ -103,15 +103,34 @@ if(getuser == null) {
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      <table>
+      <table class="table table-striped">
         <tr>        
-          <th>Student Name</th>
-          <th>Type</th> 
+          <th>Student Name</th> 
           <th>Incoming</th>
           <th>Memo</th>
           <th>Finish</th>
         </tr>
-        <% %>
+        
+        <% 
+          try {
+        	  PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_indorsed = 'In-progress'");
+        	  ResultSet rs = ps.executeQuery();
+        	  if(!rs.next()){
+        		  out.println("<tr><p style=color:red>No Memo form received!</p></tr>");
+        	  }
+        	  else{
+        	  while(rs.next()) {
+        %>
+        <form action = "DeanIndorseProcess" method = "post">
+        <tr>
+          <td><input type = "hidden" name = "studentid" value="<%=rs.getString("shifter_id")%>">
+          <%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+          <td><input type="hidden" name = "getuser" value = "<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
+          <td><a id = "<%=rs.getString("shifter_id")%>" href="javascript:;">View Memo</a></td>
+          <td><button type="submit" class = "btn btn-warning">Submit</button></td>
+        </tr>
+        </form>
+        <%} } } catch(SQLException e) {out.print(e);} %>
       </table>
       </center>
       </div>

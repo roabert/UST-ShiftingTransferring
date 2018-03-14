@@ -40,7 +40,7 @@ public interface DatabaseSQLs {
 	 
 	 //OFAD exam schedss
 	 //for shifter SetExamScheduleDAO
-	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time, remarks) VALUES (?, ?, ?, ?, ?)";
+	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time, venue, remarks) VALUES (?, ?, ?, ?, ?, ?)";
 	String Ofad_setexam = "UPDATE shifters_exams SET exam_schedule_date = ? WHERE shifter_id = ?";
 	 String Ofad_setEncode = "INSERT INTO shifters_scores (shifter_id) VALUES (?)";
 	//for transferee

@@ -119,7 +119,7 @@ if(getuser == null) {
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
      
-      <table class="table-striped">
+      <table class="table table-striped">
       	<thead>
 	        <tr>
 	          <th>ID</th>
@@ -134,18 +134,15 @@ if(getuser == null) {
         
         <tbody>
         <%
-         try{
-        String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified = 'In-progress'";
-        PreparedStatement ps = conn.prepareStatement(displaystudent); 
-        ResultSet rs = ps.executeQuery();
-        if(!rs.next()){
-        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-        }
-        else {
-          do {
-        %>
-
-         
+        try{
+            String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified = 'In-progress'";
+            PreparedStatement ps = conn.prepareStatement(displaystudent); 
+            ResultSet rs = ps.executeQuery();
+            if(!rs.next()){
+            	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
+            }
+            else {
+            	do{%>
          <form action = "Dean_verifyprocess" method = "post">
         <tr>
         <td><input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
@@ -159,12 +156,13 @@ if(getuser == null) {
         <option value="Disapproved">Disapprove</option>
         
         </select></td>
-        <td><button type="submit" class="btn btn-warning" onclick= "return confirm('Are you sure?');">Submit</button> </td>
+        <td><button type="submit" class="btn btn-warning" onclick= "return confirm('Are you sure?');">Submit</button></td>
         </tr>
         </form>
-        <%} while(rs.next());
-         }  
-         }catch(Exception e) {
+        <%}while(rs.next());
+         } 
+        }
+         catch(Exception e) {
         	e.printStackTrace();
         } %>
         </tbody>

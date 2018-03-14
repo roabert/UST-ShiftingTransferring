@@ -3,7 +3,19 @@ import java.sql.*;
 
 import DatabaseHandler.DatabaseSQLs;
 public class SetExamScheduleDAO implements DatabaseSQLs{
-   public String shifterid, transferid, examdate, start, end, remarks;
+   public String shifterid, transferid, examdate, start, end, venue, remarks;
+
+public String getVenue() {
+	return venue;
+}
+
+public void setVenue(String venue) {
+	this.venue = venue;
+}
+
+public String getShifterid() {
+	return shifterid;
+}
 
 public String getTransferid() {
 	return transferid;
@@ -61,7 +73,8 @@ public void setRemarks(String remarks) {
 		ps.setString(2, examdate);
 		ps.setString(3, start);
 		ps.setString(4, end);
-		ps.setString(5, remarks);
+		ps.setString(5, venue);
+		ps.setString(6, remarks);
 		ps.executeUpdate();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

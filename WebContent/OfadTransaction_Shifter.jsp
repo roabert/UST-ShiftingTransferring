@@ -132,11 +132,12 @@ if(getuser == null) {
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displaystudent_ofad); 
         ResultSet rs = ps.executeQuery();
-        while(rs.next()) {
+        
            if(!rs.next()) {
         	   out.println("<tr><p style=color:red>No transactions returned</p></tr>");
            }
            else {
+        	 do {
         %>
         <form action = "Ofad_verifyprocess" method = "post">
         <tr>
@@ -155,7 +156,7 @@ if(getuser == null) {
         <td><button type="submit" class="btn btn-warning">Submit</button></td>
         </tr>
         </form>
-        <%}
+        <%}  while(rs.next());
            }
          }catch(Exception e) {
         	e.printStackTrace();
