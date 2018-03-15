@@ -119,7 +119,11 @@ if(getuser == null) {
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
      
+<<<<<<< HEAD
       <table class="table">
+=======
+      <table class="table-striped">
+>>>>>>> parent of 1c2602a... asdlasdoasdo
       	<thead>
 	        <tr>
 	          <th>ID</th>
