@@ -40,7 +40,7 @@ public interface DatabaseSQLs {
 	 
 	 //OFAD exam schedss
 	 //for shifter SetExamScheduleDAO
-	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time, remarks) VALUES (?, ?, ?, ?, ?)";
+	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time, venue, remarks) VALUES (?, ?, ?, ?, ?, ?)";
 	String Ofad_setexam = "UPDATE shifters_exams SET exam_schedule_date = ? WHERE shifter_id = ?";
 	 String Ofad_setEncode = "INSERT INTO shifters_scores (shifter_id) VALUES (?)";
 	//for transferee
@@ -97,5 +97,9 @@ public interface DatabaseSQLs {
 		 String encodeExamShifter  = "SELECT * FROM shifters_scores WHERE shifter_id = ?";
 		 // Step 3 MEMO SHIFTER
 		 String generateMemoShifter = "INSERT INTO shifters_memo (shifter_id, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		 String DeanStatusShifter = "UPDATE shifters_indorsement SET dean_indorsed = 'In-progress' WHERE shifter_id = ?";
+		 String DeanStatusShifter = "INSERT INTO shifters_indorsement (shifter_id, dean_indorsed) VALUES (?, 'In-progress')";
+		 
+		 
+		 
+		 
 }

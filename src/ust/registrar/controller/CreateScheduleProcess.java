@@ -56,6 +56,7 @@ public class CreateScheduleProcess extends HttpServlet {
 		String getexamdate = request.getParameter("examdate");
 		String getstarttime = request.getParameter("starttime");
 		String getendtime = request.getParameter("endttime");
+		String getvenue = request.getParameter("venueexam");
 		String remarks = request.getParameter("exam_remarks");
 		
 		SetExamScheduleDAO set = new SetExamScheduleDAO();
