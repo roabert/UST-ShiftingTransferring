@@ -67,6 +67,13 @@ m.showMemo(conn);
 if(m.getUserid() != null) {
 	 response.sendRedirect("Shifter-Memo.jsp");
 }
+
+MemoDoneDAO md = new MemoDoneDAO();
+md.setStudentid(getuser);
+md.memoDoneStatus(conn);
+if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) {
+	 response.sendRedirect("Shifter-MemoDone.jsp");
+}
 %>
 
 <div off-canvas="slidebar-1 left reveal">

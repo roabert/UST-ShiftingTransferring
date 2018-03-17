@@ -211,9 +211,9 @@ if(getuser == null) {
 
 
 <script>
-$(document).ready(function() {
+<!-- $(document).ready(function() {
     $('table.table').DataTable();
-} );
+} );   -->
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
