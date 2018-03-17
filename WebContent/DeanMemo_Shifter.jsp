@@ -119,7 +119,7 @@ if(getuser == null) {
         		  out.println("<tr><p style=color:red>No Memo form received!</p></tr>");
         	  }
         	  else{
-        	  while(rs.next()) {
+        	   do{
         %>
         <form action = "DeanIndorseProcess" method = "post">
         <tr>
@@ -127,10 +127,10 @@ if(getuser == null) {
           <%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
           <td><input type="hidden" name = "getuser" value = "<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
           <td><a id = "<%=rs.getString("shifter_id")%>" href="javascript:;">View Memo</a></td>
-          <td><button type="submit" class = "btn btn-warning">Submit</button></td>
+          <td><button type="submit" class = "btn btn-warning" onclick="return confirm('Are you sure you want to forward the memo of <%=rs.getString("firstname")%>?')">Submit</button></td>
         </tr>
         </form>
-        <%} } } catch(SQLException e) {out.print(e);} %>
+        <%}while(rs.next()); } } catch(SQLException e) {out.print(e);} %>
       </table>
       </center>
       </div>

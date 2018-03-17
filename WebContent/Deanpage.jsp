@@ -47,14 +47,14 @@ if(getuser == null) {
         
       </ul>
     </li>
-    <li><a href="DeanExamResults.jsp"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
+    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
       <ul class="submenu">
         <li><a href="DeanExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
         
       </ul>
     </li>
- <li><a href=""><span class="glyphicon glyphicon-folder-open"></span> Memo</a>
+ <li><a href="#"><span class="glyphicon glyphicon-folder-open"></span> Memo</a>
   <ul class="submenu">
         <li><a href="DeanMemo_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanMemo_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>

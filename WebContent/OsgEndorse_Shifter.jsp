@@ -103,7 +103,6 @@ if(getuser == null) {
       <table class="table">
         <tr>
           <th>Student Name</th>
-          <th>Type</th>
           <th>Incoming</th>
           <th>Memo</th>
           <th>First Indorsement</th>
@@ -113,23 +112,28 @@ if(getuser == null) {
         
         <%
          try{
-        String displayindorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE dean_indorsed = 'Approved' AND secgen_indorsed is NULL;";
+        String displayindorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE dean_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
         String displaystudent_osg = "SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM shifters_status INNER JOIN student_shifter on shifters_status.shifter_id = student_shifter.studentid UNION SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.id WHERE osa_verified = 'Approved' OR dean_verified ='Approved'";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displayindorsement_osg); 
         ResultSet rs = ps.executeQuery();
-           while(rs.next()) {
+        if(!rs.next()){
+  		  out.println("<tr><p style=color:red>No Memo form received!</p></tr>");
+  	  }
+  	  else{
+  	   do{
         %>
+        <form action = "OSGIndorseProcess" method="post">
         <tr>
-        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><%=rs.getString("typeofstudent") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Memo</a></td>
         <td><a href="javascript:;" data-target=".viewdocumentdean" data-toggle="modal">View Dean's Memo</a></td>
-        <td><button type="submit" class="btn btn-warning">Submit</button></td>
+        <td><button type="submit" class="btn btn-warning" onclick = "return confirm('Are you sure you want to forward the memo of <%=rs.getString("lastname")%>?')">Submit</button></td>
         </tr>
-        <%}
-           
+        </form>
+        <%}while(rs.next());
+  	  }
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
