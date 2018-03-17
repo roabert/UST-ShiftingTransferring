@@ -120,7 +120,11 @@ if(getuser == null) {
       <center>
      
 <<<<<<< HEAD
+<<<<<<< HEAD
       <table class="table">
+=======
+      <table class="table-striped">
+>>>>>>> parent of 1c2602a... asdlasdoasdo
 =======
       <table class="table-striped">
 >>>>>>> parent of 1c2602a... asdlasdoasdo
