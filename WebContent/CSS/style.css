@@ -1,654 +1,919 @@
-* {
-    margin: 0;
-    padding: 0;
+/*--
+Author: DesignMaz
+Author URL: https://www.designmaz.net
+License URL: https://www.designmaz.net/licence/
+--*/
+/* start editing from here */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+/*--login form start here--*/ 
+@font-face {
+    font-family: 'PoiretOne-Regular';
+    src:url(../fonts/PoiretOne-Regular.ttf) format('truetype');
 }
-
+@font-face {
+    font-family: 'SourceSansPro-Regular';
+    src:url(../fonts/SourceSansPro-Regular.ttf) format('truetype');
+}
 body {
- 	margin: 0;
- 	padding: 0;
- 	height: 100%;
- 	min-height: 100%;
-  	display: flex;
-  	flex-direction: column;
-    position: relative;/* 
-    background-image:"../Images/background.jpg"; */
-}
+    background: #16214d;
+	font-weight:bold;
+	font-family: 'Segoe UI';
+	font-size: 100%;
+	    /* The image used */
+    background-image: url("../images/login-wall.jpg");
 
-html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-  	min-height: 100%;
-}
+    /* Full height */
+    height: 100%; 
 
-i{
- 	padding: 11px;
-    color: white;
-    background-color: black;
-    clear: left;
-    text-align: left;
-    font-family: Segoe UI;
-    width: 45%;
-    font-size:30px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    border-radius: 15px 30px 800px 5px;
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
-    box-shadow: 5px 7px #F5C53D;
-    font-weight: bold;
-	
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.sidehead {
-    background-color: grey;
+.logo-top h1 {
+    font-size: 2.4em;
+    color: #fff;
+    text-align: center;
+    font-family: 'Segoe UI';
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
-
-.header {
-  overflow: hidden;
-  background-color: #F5C53D;
-  padding: 20px 10px;
-  font-family: Segoe UI;
-}
-
-.header a {
-  float: left;
-  color: white;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 30px; 
-  line-height: 25px;
-  border-radius: 4px;
-}
-
-.header a.logo {
-  font-size: 50px;
-  font-weight: bold;
-   text-decoration: none;
-   text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-             0px 8px 13px rgba(0,0,0,0.1),
-             0px 18px 23px rgba(0,0,0,0.1);
-}
-
-.header a.active {
-  color: black;
-    font-size: 35px;
-     text-decoration: none;
-    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
-}
-.header a:hover {
-  color: white;
-}
-.header-right a:hover {
-  color: black;
-}
-.header-right {
-  float: right;
-  font-weight: 620;
-}
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-     text-decoration: none;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
+.logo-top h2 {
+    font-size: 1.2em;
     color: black;
-  }
+    text-align: center;
+    font-family: 'Segoe UI';
 }
-.topnav {
-  overflow: hidden;
-  background-color: #2b2b2b;
+.logo-bottom {
+    margin-top: 8.5%;
 }
-
-.topnav a {
-  float: right;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 10px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  font-family: 'Segoe UI';
+.head {
+    width: 50%;
+    margin: 7% auto 0;
+    background: #fff;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+	box-shadow:
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+.logo {
+    width: 45%;
+    float: left;
+    background: #F5C53D;
+    padding: 11.57% 0;
 	
 }
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-  text-decoration: none;
+img {
+    max-width: 100%;
+    height: auto;
+	float: center
 }
-
-.topnav a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-#wrapper {
-    min-height: 100%;
-    position:relative;
-    
-}
-#container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
-    height:250px;
-    top: 50%;
-    left: 50%;
-    margin: -125px 0 0 -100px;
-    position: absolute;
-    padding:10px;
-    padding-bottom:80px;
-}
-#main {
-    transition: margin-left .5s;
-    flex: 1;
-
-}
-.sidenav a {
-    padding: 8px 8px 8px 32px;
+.button {
+	background-color: white;
+	border: 2px solid #F5C53D;
+    color: F5C53D;
+    padding: 16px 32px;
+    text-align: center;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-html, body {
-    font-family: Segoe UI;
-}
-
-/* define a fixed width for the entire menu */
-.navigation {
-  width: 300px;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family:'Segoe UI';
 }
 
-h1{
-   font-family: 'Segoe UI';
 
-}
-/* reset our lists to remove bullet points and padding */
-.mainmenu, .submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.mainmenu a.active {
-  background-color: #F5C53D;
-  color: white;
-}
-/* make ALL links (main and submenu) have padding and background color */
-.mainmenu a {
-  display: block;
-  background-color: transparent;
-  text-decoration: none;
-  padding: 10px;
-  color: #000;
-  font-family: 'Segoe UI';
-  font-weight: 600;
-  font-size: 20px;
-}
-
-/* add hover behaviour */
-.mainmenu a:hover {
+.button:hover {
     background-color: #F5C53D;
     color: white;
 }
 
-
-/* when hovering over a .mainmenu item,
-  display the submenu inside it.
-  we're changing the submenu's max-height from 0 to 200px;
-*/
-
-.mainmenu li:hover .submenu {
-  display: block;
-  max-height: 200px;
+.login {
+    width: 55%;
+    float: right;
+    padding: 4% 0;
+	background:#fff;
 }
-
-/*
-  we now overwrite the background-color for .submenu links only.
-  CSS reads down the page, so code at the bottom will overwrite the code at the top.
-*/
-
-.submenu a {
-  background-color: #999;
+.login input[type="text"], .login input[type="password"] {
+    outline: none;
+    font-size: 16px;
+    color: black;
+    padding: 20px 30px 10px 10px;
+    margin: 0;
+    width: 89.87%;
+    border: none;
+    border-bottom: 2px solid #cecfd3;
+    -webkit-appearance: none;
 }
-
-/* hover behaviour for links inside .submenu */
-.submenu a:hover {
-  background-color: #666;
-}
-
-/* this is the initial state of all submenus.
-  we set it to max-height: 0, and hide the overflowed content.
-*/
-.submenu {
-  overflow: hidden;
-  max-height: 0;
-  -webkit-transition: all 0.5s ease-out;
-}
- @media (min-width: 1200px) {
-    .container-fluid{
-        max-width: 1500px;
-    }
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
+.login input[type="text"]:focus, .login input[type="password"]:focus {
     
-    padding: 8px;
-}
+    border-bottom: 2px solid #F5C53D;
 
-td{
-    text-align: left;
-    
-    }
-th{
-    text-align: center;
-    }
-
-tr:nth-child(even) {
-    
 }
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
-}
-
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
-}
-
-#myDiv {
-  display: none;
- 
-}
-
-.modal {
-  width:100%;
-  height: 100%;
-  overflow:auto;
-  position:fixed;
-}
-form#registerform > #step2shifter, #step2transferee {display:none;}
-
-* {
-    box-sizing: border-box;
-}
-
-
-/* Create two equal columns that floats next to each other */
-.column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/*progressbar*/
-#progressbar {
-	margin-bottom: 30px;
-	overflow: hidden;
-	/*CSS counters to number the steps*/
-	counter-reset: step;
-}
-#progressbar li {
-	list-style-type: none;
-	color: white;
-	text-transform: uppercase;
-	font-size: 9px;
-	width: 33.33%;
-	float: left;
-	position: relative;
-}
-#progressbar li:before {
-	content: counter(step);
-	counter-increment: step;
-	width: 20px;
-	line-height: 20px;
-	display: block;
-	font-size: 10px;
-	color: #2b2b2b;
-	background: white;
-	border-radius: 3px;
-	margin: 0 auto 5px auto;
-}
-/*progressbar connectors*/
-#progressbar li:after {
-	content: '';
-	width: 100%;
-	height: 2px;
-	background: white;
-	position: absolute;
-	left: -50%;
-	top: 9px;
-	z-index: -1; /*put it behind the numbers*/
-}
-#progressbar li:first-child:after {
-	/*connector not needed before the first step*/
-	content: none; 
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
-	background: #fff404;
-	color: white;
-}
-
-#footer {
-	width:100%;
-    height: 80px;
-    background-color: #00F;
-    position:absolute;
-    bottom:0;
-    left:0;
-}
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 10px;
-}
-
-.button:hover {
-	background-color: #3e8e41
-	}
-	img {
-    border-radius: 50%;
-}
-	
-.progress-meter {
-  padding: 40px;
-}
-
-
-@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans);
-
-* {margin: 0; padding: 0;}
-input[type=text], select, input[type=number], input[type=date]{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-	font-size:30px;
-	font-family:Segoe UI;
-	font-weight: 400;
-	padding: 20px;
-}
-.breadcrumb {
-	/*centering*/
-	display: inline-block;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
-	overflow: hidden;
-	border-radius: 5px;
-	/*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
-	counter-reset: flag; 
-}
-
-.breadcrumb a {
-	text-decoration: none;
-	outline: none;
-	display: block;
-	float: left;
-	font-size: 15px;
-	line-height: 36px;
-	color: white;
-	/*need more margin on the left of links to accomodate the numbers*/
-	padding: 0 10px 0 60px;
-	background: #666;
-	background: linear-gradient(#666, #333);
-	position: relative;
-}
-/*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
-.breadcrumb a:first-child {
-	padding-left: 46px;
-	border-radius: 5px 0 0 5px; /*to match with the parent's radius*/
-}
-.breadcrumb a:first-child:before {
-	left: 14px;
-}
-.breadcrumb a:last-child {
-	border-radius: 0 5px 5px 0; /*this was to prevent glitches on hover*/
-	padding-right: 20px;
-}
-
-/*hover/active styles*/
-.breadcrumb a.active, .breadcrumb a:hover{
-	background: #333;
-	background: linear-gradient(#333, #000);
-}
-.breadcrumb a.active:after, .breadcrumb a:hover:after {
-	background: #333;
-	background: linear-gradient(135deg, #333, #000);
-}
-
-.breadcrumb a.reject, .breadcrumb a:hover{
-	background: #333;
-	background: linear-gradient(#333, #000);
-}
-.breadcrumb a.reject:after, .breadcrumb a:hover:after {
-	background: #333;
-	background: linear-gradient(135deg, #333, #000);
-}
-.breadcrumb a.inp, .breadcrumb a:hover{
-	background: #333;
-	background: linear-gradient(#333, #000);
-}
-.breadcrumb a.inp:after, .breadcrumb a:hover:after {
-	background: #333;
-	background: linear-gradient(135deg, #333, #000);
-}
-
-/*adding the arrows for the breadcrumbs using rotated pseudo elements*/
-.breadcrumb a:after {
-	content: '';
-	position: absolute;
-	top: 0; 
-	right: -18px; /*half of square's length*/
-	/*same dimension as the line-height of .breadcrumb a */
-	width: 36px; 
-	height: 36px;
-	/*as you see the rotated square takes a larger height. which makes it tough to position it properly. So we are going to scale it down so that the diagonals become equal to the line-height of the link. We scale it to 70.7% because if square's: 
-	length = 1; diagonal = (1^2 + 1^2)^0.5 = 1.414 (pythagoras theorem)
-	if diagonal required = 1; length = 1/1.414 = 0.707*/
-	transform: scale(0.707) rotate(45deg);
-	/*we need to prevent the arrows from getting buried under the next link*/
-	z-index: 1;
-	/*background same as links but the gradient will be rotated to compensate with the transform applied*/
-	background: #666;
-	background: linear-gradient(135deg, #666, #333);
-	/*stylish arrow design using box shadow*/
-	box-shadow: 
-		2px -2px 0 2px rgba(0, 0, 0, 0.4), 
-		3px -3px 0 2px rgba(255, 255, 255, 0.1);
-	/*
-		5px - for rounded arrows and 
-		50px - to prevent hover glitches on the border created using shadows*/
-	border-radius: 0 5px 0 50px;
-}
-/*we dont need an arrow after the last link*/
-.breadcrumb a:last-child:after {
-	content: none;
-}
-/*we will use the :before element to show numbers*/
-.breadcrumb a:before {
-	content: counter(flag);
-	counter-increment: flag;
-	/*some styles now*/
-	border-radius: 100%;
-	width: 20px;
-	height: 20px;
-	line-height: 20px;
-	margin: 8px 0;
-	position: absolute;
-	top: 0;
-	left: 30px;
-	background: #444;
-	background: linear-gradient(#444, #222);
-	font-weight: bold;
-}
-
-
-.flat a, .flat a:after {
-	background: #929292;
-	color: white;
-	transition: all 0.5s;
-}
-.flat a:before {
-	background: white;
-	box-shadow: 0 0 0 1px #ccc;
-}
-.flat a.active, 
- .flat a.active:after{
-	background: #9EEB62;
-}
-
-.flat a.reject, 
- .flat a.reject:after{
-	background: #f00000;
-}
-.flat a.inp, 
- .flat a.inp:after{
-	background: #ffce00;
-}
-
-
-//MODAL
-
-
-.modal-btn {
-  background-color: #fff;
-  padding: 1em 3em;
-  border-radius: 3px;
-  text-decoration: none;
-}
-
-.modal-window {
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.15);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-  box-shadow:
-}
-
-.modal-window:target {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-window>div {
-  width: 400px;
-  height: 400px;
-  position: relative;
-  margin: 10% auto;
-  padding: 2rem;
-  box-shadow:2px 4px 3px rgba(0,0,0,0.3);
-  background: #fff;
-  color: #444;
-}
-
-.modal-window header {
-  font-weight: bold;
-}
-
-.modal-close {
-  color: #aaa;
-  line-height: 50px;
-  font-size: 80%;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 0;
-  width: 70px;
-  text-decoration: none;
-}
-select#country option[value="Institute of Information and Computing Sciences"]   { background-image:url("../images/ust-ics.jpg");   }
-.modal-close:hover {
-  color: #000;
-}
-
-.modal-window h1 {
-  font-size: 150%;
-  margin: 0 0 15px;
-}
-
-
-.legend { list-style: none; float: right     width: 50px;
-    height: 80px;
-    border: 1px solid black;
-    padding: 5px;}
-.legend span { border: 1px solid #ccc; float: right; width: 12px; height: 12px; margin: 2px; }
-/* your colors */
-.legend .approved { background-color: #9EEB62; }
-.legend .rejected { background-color: #f00000; }
-.legend .inprogress { background-color: #ffce00; }
 .announcement {
   padding: 1px 15px 0px;
   border: 1px solid #e1e1e1;
   background-color: #f9f9f9;
   border-radius: 4px;
 }
+.login input.name {
+    background: url(../images/l1.png) no-repeat 98% 67%;
+}
+.login input.email {
+    background: url(../images/l2.png) no-repeat 98% 67%;
+}
+.login input.password {
+    background: url(../images/l3.png) no-repeat 98% 67%;
+}
+.login-top {
+    padding: 0px 25px;
+    margin-top: 25%;
+}
+.submit{
+	float:left;
+}
+.login-bottom ul{
+	padding:0;
+	float:right;
+}
+.login-bottom ul li{
+	list-style:none;
+	display:inline-block;
+	vertical-align: middle;
+	margin-left: 16px;
+}
+.login-bottom ul li p{
+	color:#b7b9c6;
+	font-size:15px;
+}
+.login-bottom ul li span{
+	background:url(../images/social.png) no-repeat;
+	width:34px;
+	height:34px;
+	display:block;
+}
+.login-bottom ul li span:hover{
+	transition: 0.5s all ease;
+	-webkit-transition: 0.5s all ease;
+	-moz-transition: 0.5s all ease;
+	-o-transition: 0.5s all ease;
+	-ms-transition: 0.5s all ease;
+	opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+.login-bottom ul li span.fb{
+	background-position:0px 0px;
+}
+.login-bottom ul li span.twit{
+	background-position:-34px 0px;
+}
+.login-bottom ul li span.google{
+	background-position:-68px 0px;
+}
+.login-bottom {
+    margin-top: 17%;
+}
+.login-bottom1{
+	margin-top: 28%;
+}
+.submit input[type="submit"] {
+    font-size: 13px;
+    color: #44c7f4;
+    background: #fff;
+    border: 2px solid #44c7f4;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+    -ms-border-radius: 20px;
+    padding: 6px 13px;
+    font-family: 'SourceSansPro-Regular';
+}
+.submit input[type="submit"]:hover{
+	background:#44c7f4;
+	color:#fff;
+	transition: 0.5s all ease;
+	-webkit-transition: 0.5s all ease;
+	-moz-transition: 0.5s all ease;
+	-o-transition: 0.5s all ease;
+	-ms-transition: 0.5s all ease;
+}
+/* radios and checkboxes */
+.row1{
+	outline:none;
+	padding: 20px;
+	overflow: auto;
+	height: 200px;
+}
+.sky-form.col.col-4 ul {
+padding: 0;
+list-style: none;
+}
+.sky-form h4{
+	margin-top: 10px;
+	background: #ECECEC;
+	padding: 10px 20px;
+	color: #333333;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	font-size:16px;
+}
+.sky-form h1{
+	 font-size: 1em;
+    color: black;
+    font-family: 'Segoe UI';
+}
+.sky-form section {
+	margin-bottom: 20px;
+}
+.sky-form .label {
+	display: block;
+	margin-bottom: 6px;
+	line-height: 19px;
+}
+.sky-form .label.col {
+	margin: 0;
+	padding-top: 10px;
+}
+.sky-form .input,
+.sky-form .select,
+.sky-form .textarea,
+.sky-form .radio,
+.sky-form .checkbox,
+.sky-form .toggle,
+.sky-form .button {
+	position: relative;
+	display: block;
+}
+/* selects */
+.sky-form .select i {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	width: 1px;
+	height: 11px;
+	background: #fff;
+	box-shadow: 0 0 0 12px #fff;
+}
+.sky-form .select i:after,
+.sky-form .select i:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}
+.sky-form .select i:after {
+	bottom: 0;
+	border-top: 4px solid #404040;
+}
+.sky-form .select i:before {
+	top: 0;
+	border-bottom: 4px solid #404040;
+}
+.sky-form .select-multiple select {
+	height: auto;
+}
+/* radios and checkboxes */
+.sky-form .radio {
+	outline:none;
+	border:none;
+	margin-bottom: 7px;
+	padding-left: 22px;
+	font-size: 16px;
+	line-height: 27px;
+	color: #fff;
+	cursor: pointer;
+	margin-top: 0;
+}
+.sky-form .radio:last-child,
+.sky-form .checkbox:last-child {
+	margin-bottom: 0;
+}
+.sky-form .radio input,
+.sky-form .checkbox input {
+	position: absolute;
+	left: -9999px;
+}
+.sky-form .radio i{
+    position: absolute;
+    top: 6px;
+    left: 0;
+    display: block;
+    width: 10px;
+    height: 10px;
+    outline: none;
+    border-width: 2px;
+    border-style: solid;
+}
+.sky-form .radio i {
+	border-radius: 50%;
+}
+.sky-form .radio input + i:after{
+	position: absolute;
+	opacity: 0;
+	transition: opacity 0.1s;
+	-o-transition: opacity 0.1s;
+	-ms-transition: opacity 0.1s;
+	-moz-transition: opacity 0.1s;
+	-webkit-transition: opacity 0.1s;
+}
+.sky-form .radio input + i:after {
+    content: '';
+    top: 3px;
+    left: 3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+}
+.sky-form .checkbox input + i:after {
+	content: '';
+	top: 3px;
+	left: 2px;
+	width: 10px;
+	height: 7px;
+	background: url(../images/tick.png) no-repeat;
+	text-align: center;
+}
+.sky-form .radio input:checked + i:after,
+.sky-form .checkbox input:checked + i:after {
+	opacity: 1;
+}
+.sky-form .inline-group {
+	margin: 0 -30px -4px 0;
+}
+.sky-form .inline-group:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.sky-form .inline-group .radio{
+	float: left;
+	margin-right: 30px;
+}
+.sky-form .inline-group .radio:last-child{
+	margin-bottom: 4px;
+}
+/* icons */
 
-.modal {
-  width:100%;
-  height: 100%;
-  overflow:auto;
-  position:fixed;
+.sky-form [class^="icon-"] {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+}
+/* normal state */
+.sky-form .input input,
+.sky-form .select select,
+.sky-form .textarea textarea,
+.sky-form .radio i,
+.sky-form .checkbox i,
+.sky-form .toggle i,
+.sky-form .icon-append,
+.sky-form .icon-prepend {
+	border-color: #fff;
+	transition: border-color 0.3s;
+	-o-transition: border-color 0.3s;
+	-ms-transition: border-color 0.3s;
+	-moz-transition: border-color 0.3s;
+	-webkit-transition: border-color 0.3s;
+}
+.sky-form .toggle i:before {
+	background-color: #fff;	
+}
+/* hover state */
+.sky-form .input:hover input,
+.sky-form .select:hover select,
+.sky-form .textarea:hover textarea,
+.sky-form .radio:hover i,
+.sky-form .checkbox:hover i,
+.sky-form .toggle:hover i {
+	border-color: #fff;
+}
+.sky-form .button:hover {
+	opacity: 1;
+}
+/* focus state */
+.sky-form .input input:focus,
+.sky-form .select select:focus,
+.sky-form .textarea textarea:focus,
+.sky-form .radio input:focus + i,
+.sky-form .checkbox input:focus + i,
+.sky-form .toggle input:focus + i {
+	border-color: #fff;
+}
+/* checked state */
+.sky-form .radio input + i:after {
+	background-color: #fff;	
+}
+.sky-form .checkbox input + i:after {
+	color: #fff;
+}
+.sky-form .radio input:checked + i,
+.sky-form .checkbox input:checked + i,
+.sky-form .toggle input:checked + i {
+	border-color: #fff;
+}
+/* error state */
+.sky-form .state-error input,
+.sky-form .state-error select,
+.sky-form .state-error textarea,
+.sky-form .radio.state-error i,
+.sky-form .checkbox.state-error i,
+.sky-form .toggle.state-error i {
+	background: #fff;
+}
+/* success state */
+.sky-form .state-success input,
+.sky-form .state-success select,
+.sky-form .state-success textarea,
+.sky-form .radio.state-success i,
+.sky-form .checkbox.state-success i,
+.sky-form .toggle.state-success i {
+	background: #fff;
+}
+/* disabled state */
+.sky-form .input.state-disabled input,
+.sky-form .select.state-disabled,
+.sky-form .textarea.state-disabled,
+.sky-form .radio.state-disabled,
+.sky-form .checkbox.state-disabled,
+.sky-form .toggle.state-disabled,
+.sky-form .button.state-disabled {
+	cursor: default;
+	opacity: 0.5;
+}
+.sky-form .input.state-disabled:hover input,
+.sky-form .select.state-disabled:hover select,
+.sky-form .textarea.state-disabled:hover textarea,
+.sky-form .radio.state-disabled:hover i,
+.sky-form .checkbox.state-disabled:hover i,
+.sky-form .toggle.state-disabled:hover i {
+	border-color: #e5e5e5;
+}
+section.sky-form {
+    margin-left: 16%;
+}
+/******** SAP ************/
+.sap_tabs{
+	clear:both;
+}
+.tab_box{
+	background:#fd926d;
+	padding: 2em;
+}
+.top1{
+	margin-top: 2%;
+}
+.resp-tabs-list {
+    list-style: none;
+    padding-left: 19px;
+    text-align: left;
+}
+.resp-tab-item {
+    color: #d8dcdf;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0px 0px;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+    outline: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    margin: 0 5px;
+}
+.resp-tab-active {
+    text-shadow: none;
+    color: black;
+}
+.resp-tabs-container {
+	padding: 0px;
+	background-color: #fff;
+	clear: left;
+}
+h2.resp-accordion {
+	cursor: pointer;
+	padding: 5px;
+	display: none;
+}
+.resp-tab-content {
+	display: none;
+}
+.resp-content-active, .resp-accordion-active {
+   display: block;
+}
+.resp-tab-item label{
+	margin-right:8px;
+}
+/*-----------------*/
+.account ul {
+    padding: 0;
+    width: 17%;
+    margin: 1% auto 0;
+}
+.account ul li{
+	list-style:none;
+	display:inline-block;
+}
+.account ul li p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+}
+.account ul li p a{
+	color:#fff;
+}
+.account ul li p a:hover{
+	color:#44c7f4;
+	-webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.account ul span {
+    margin-left: 23px;
+    vertical-align: top;
+    display: inline-block;
+    color: #fff;
+    font-size: 13px;
+}
+.account ul li:nth-child(1){
+	float:left;
+}
+.account ul li:nth-child(3){
+	float:right;
+}
+.footer {
+    text-align: center;
+    margin-top: 10%;
+}
+.footer p{
+	font-size:16px;
+	color:#fff;
+}
+.footer p a{
+	color:#fff;
+}
+.footer p a:hover{
+	text-decoration:none;
+	color:#44c7f4;
+	-webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+/*--meadia-quiries-start-here--*/
+@media(max-width:1440px){
+.logo {
+    padding: 12.1% 0;
+}
+.account ul span {
+    margin-left: 22px;
+}
+.account ul {
+    width: 19%;
+}
+.login input[type="text"], .login input[type="password"] {
+    width: 88.4%;
+}
+}
+@media(max-width:1366px){
+.logo-top h1 {
+    font-size: 2.25em;
+}
+.head {
+    width: 52%;
+	margin: 10.5% auto 0;
+	
+
+}
+.logo-top {
+    margin-top: 1.1%;
+}
+.footer {
+    margin-top: 6%;
+}
+.logo {
+    padding: 12.15% 0;
+}
+.login input[type="text"], .login input[type="password"] {
+    width: 88.3%;
+}
+}
+@media(max-width:1280px){
+.logo-top h1 {
+    font-size: 2.05em;
+}
+.login input[type="text"], .login input[type="password"] {
+    font-size: 15px;
+    padding: 18px 27px 10px 10px;
+}
+.submit input[type="submit"] {
+    font-size: 12px;
+}
+.login-bottom ul li {
+    margin-left: 9px;
+}
+section.sky-form {
+    margin-left: 10%;
+}
+.sky-form .radio {
+    font-size: 15px;
+}
+.account ul {
+    width: 21.38%;
+}
+.footer {
+    margin-top: 11%;
+}
+.head {
+    margin: 11.5% auto 0;
+}
+}
+@media(max-width:1024px){
+.logo-top h1 {
+    font-size: 2em;
+}
+.head {
+    margin: 16% auto 0;
+    width: 65%;
+}
+.login-bottom ul li {
+    margin-left: 3px;
+}
+section.sky-form {
+    margin-left: 13.5%;
+}
+.account ul {
+    width: 26.38%;
+}
+.footer {
+    margin-top: 14%;
+}
+}
+@media(max-width:768px){
+.head {
+    margin: 23% auto 0;
+    width: 80%;
+}
+.submit input[type="submit"] {
+    padding: 4px 13px;
+}
+.logo-top h1 {
+    font-size: 1.9em;
+}
+.login input[type="text"], .login input[type="password"] {
+    font-size: 14px;
+    padding: 16px 23px 10px 10px;
+}
+.login-bottom ul li p {
+    font-size: 14px;
+}
+.login-bottom ul li span {
+    width: 31px;
+    height: 31px;
+    background-size: 300%;
+}
+.login-bottom ul li span.twit {
+    background-position: -31px 0px;
+}
+.login-bottom ul li span.google {
+    background-position: -62px 0px;
+}
+.account ul {
+    width: 35%;
+}
+.account ul span {
+    margin-left: 20px;
+}
+.footer p {
+    font-size: 15px;
+}
+.footer {
+    margin-top: 23%;
+}
+}
+@media(max-width:640px){
+.logo-top h1 {
+    font-size: 1.75em;
+}
+.login input[type="text"], .login input[type="password"] {
+    width: 87.6%;
+}
+section.sky-form {
+    margin-left: 10%;
+}
+.login-top {
+    padding: 0px 20px;
+    margin-top: 3%;
+}
+.submit input[type="submit"] {
+    font-size: 11px;
+    padding: 4px 11px;
+}
+.login-bottom ul li p {
+    font-size: 13px;
+}
+.login-bottom ul li span {
+    width: 29px;
+    height: 29px;
+}
+.login-bottom ul li span.twit {
+    background-position: -29px 0px;
+}
+.login-bottom ul li span.google {
+    background-position: -58px 0px;
+}
+.login-bottom ul li {
+    margin-left: 1px;
+}
+.head {
+    margin: 29% auto 0;
+    width: 87%;
+}
+.sky-form .radio {
+    font-size: 14px;
+}
+.sky-form .radio i {
+    width: 9px;
+    height: 9px;
+}
+.sky-form .radio {
+    padding-left: 18px;
+}
+.login-bottom {
+    margin-top: 15.7%;
+}
+.account ul {
+    width: 42%;
+	margin: 2.5% auto 0;
+}
+.footer {
+    margin-top: 37%;
+}
+.login input.name {
+    background: url(../images/l1.png) no-repeat 98% 60%;
+    background-size: 5%;
+}
+.login input.email {
+    background: url(../images/l2.png) no-repeat 98% 60%;
+	background-size: 5%;
+}
+.login input.password {
+    background: url(../images/l3.png) no-repeat 98% 60%;
+	background-size: 5%;
+}
+}
+@media(max-width:480px){
+.logo {
+    padding: 7% 0;
+    width: 100%;
+}
+.submit input[type="submit"] {
+    font-size: 12px;
+}
+.login input.name {
+    background: url(../images/l1.png) no-repeat 99% 60%;
+    background-size: 4.5%;
+}
+.login input.email {
+    background: url(../images/l2.png) no-repeat 99% 60%;
+	background-size: 4.5%;
+}
+.login input.password {
+    background: url(../images/l3.png) no-repeat 99% 60%;
+	background-size: 4.5%;
+}
+.logo-bottom {
+    margin-top: 4.5%;
+}
+section.sky-form {
+    margin-left: 27%;
+}
+.login {
+    width: 100%;
+    padding: 8% 0;
+}
+.login-bottom {
+    margin-top: 12.7%;
+}
+.account ul {
+    width: 57.8%;
+    margin: 3.5% auto 0;
+}
+.footer {
+    margin-top: 14%;
+}
+.footer p {
+    font-size: 14px;
+}
+.head {
+    margin: 20% auto 0;
+}
+}
+@media(max-width:320px){
+.logo-top h1 {
+    font-size: 1.55em;
+}
+section.sky-form {
+    margin-left: 14%;
+}
+.login input.name {
+    background: url(../images/l1.png) no-repeat 98.5% 60%;
+    background-size: 5%;
+}
+.login input.email {
+    background: url(../images/l2.png) no-repeat 98.5% 60%;
+	background-size: 5%;
+}
+.login input.password {
+    background: url(../images/l3.png) no-repeat 98.5% 60%;
+	background-size: 5%;
+}
+.sky-form .radio {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+.resp-tab-item {
+    font-size: 16px;
+}
+.login input[type="text"], .login input[type="password"] {
+    font-size: 11px;
+    padding: 15px 17px 6px 10px;
+}
+.account ul li p {
+    font-size: 12px;
+}
+.account ul span {
+    margin-left: 15px;
+}
+.account ul {
+    width: 80%;
+    margin: 4% auto 0;
+}
+.footer p {
+    line-height: 1.6em;
+}
+.login-bottom ul li p {
+    font-size: 12px;
+}
+.login-bottom ul li span {
+    width: 25px;
+    height: 25px;
+}
+.login-bottom ul li span.google {
+    background-position: -50px 0px;
+}
+.login-bottom ul li span.twit {
+    background-position: -25px 0px;
+}
+.head {
+    margin: 15% auto 0;
+}
+.submit input[type="submit"] {
+    font-size: 11px;
+    padding: 3px 11px;
+}
 }
 
-.modal-content {
-    background: #f0f8ff;
-}
+/*--meadia-quiries-end-here--*/

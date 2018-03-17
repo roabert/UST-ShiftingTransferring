@@ -36,11 +36,16 @@ html, body {
 
 [canvas=contain] {
 	width: 100%;
-	height: 100%;
-	  padding-bottom:30px;
+	height: 130%;
+	padding-bottom:30px;
 	overflow-y: auto;
 	position: relative;
-	background-color: white; /* Basic background color, overwrite this in your own css. */
+ 	background-image: url("../Images/body-bg.jpg");
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }
 
@@ -61,7 +66,7 @@ html, body {
 	overflow: hidden;
 	background-size: 300px 800px;
 	overflow-y: auto;
-	background-image: url("../Images/sidebarbg.jpg"); /* Basic background color, overwrite this in your own css. */
+	background-image: url("../Images/sidebarbg-3.png"); /* Basic background color, overwrite this in your own css. */
 
 	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }

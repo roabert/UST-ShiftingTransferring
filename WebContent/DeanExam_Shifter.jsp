@@ -9,18 +9,17 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-<link rel="stylesheet" href="CSS/style.css"type="text/css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
 <!-- Add jQuery library -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="datatables/js/jquery.dataTables.min.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Dean | Exam Results</title>
 </head>
 
 <body>
@@ -33,29 +32,32 @@ if(getuser == null) {
 
   <div off-canvas="slidebar-1 left reveal">
 		<div>
+		<navhead>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
 			<h1>Dean<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			
+		</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
-    <li><a href="Deanpage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href=""><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="Deanpage.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-random"></span> Transactions</a>
     <ul class="submenu">
         <li><a href="DeanTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
         
       </ul>
     </li>
-    <li><a href="" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
+    <li><a href="DeanExamResults.jsp"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
       <ul class="submenu">
-        <li><a href="DeanExam_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
+        <li><a href="DeanExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
         
       </ul>
     </li>
-  <li><a href=""><span class="glyphicon glyphicon-folder-open"></span> Memo</a>
+ <li><a href=""><span class="glyphicon glyphicon-folder-open"></span> Memo</a>
   <ul class="submenu">
         <li><a href="DeanMemo_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanMemo_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
@@ -71,34 +73,38 @@ if(getuser == null) {
 
 		</div>
 <div canvas="contain">
-<div id="main">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+   EXAM RESULTS : SHIFTERS
+   </a>
+   </center>
 </div>
 
 
 <br>
-           <<p><i>Exam Results</i></p>
-</div>
 <br>
-  <div class="container">
+  <div id="content">
+    <div class="container">
     
- 
-
- </div>
   <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
@@ -157,16 +163,8 @@ if(getuser == null) {
   </fieldset>
   </div>
 </div>
-
-<footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
+</div>
+</div>
 </div>
 
 <script src="scripts/slidebars.js"></script>
@@ -189,5 +187,6 @@ function closeNav() {
 }
 </script>
      
+     <div class="footer"></div>
 </body>
 </html>

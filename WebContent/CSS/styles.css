@@ -1,0 +1,331 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+.header-fixed {
+	background-color:#F5C53D;
+	box-shadow:0 1px 1px #ccc;
+	padding: 20px 40px;
+	height: 60px;
+	color: #ffffff;
+	box-sizing: border-box;
+	top:-100px;
+	text-decoration: none;
+	-webkit-transition:top 0.3s;
+	transition:top 0.3s;
+	
+	
+}
+
+.extra-row {
+	background-color:#ededede;
+	padding: 20px 40px;
+	height: 60px;
+	top:-100px;
+	text-decoration: none;
+	-webkit-transition:top 0.3s;
+	transition:top 0.3s;
+}
+
+.extra-row .row-limiter h1 {
+	float: left;
+	font-family: 'Segoe UI';
+	line-height: 15px;
+	margin: 0;
+   	font-size: 3.2w;
+   	font-weight: bold;
+   	text-decoration: none;
+    
+}
+
+fieldset legend {
+	background: #F5C53D;
+	padding: 4px;
+	font-weight: bold;
+	color:white;
+	font-family:'Segoe UI';
+
+}
+.header-fixed .header-limiter {
+	max-width: 1200px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+/*	The header placeholder. It is displayed when the header is fixed to the top of the
+	browser window, in order to prevent the content of the page from jumping up. */
+
+.header-fixed-placeholder{
+	height: 80px;
+	display: none;
+}
+
+/* Logo */
+
+.header-fixed .header-limiter h1 {
+	float: left;
+	font-family: 'Segoe UI';
+	line-height: 15px;
+	margin: 0;
+   	font-size: 3.2w;
+   	font-weight: bold;
+   	text-decoration: none;
+   	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    
+}
+
+.header-fixed .header-limiter h1 span {
+	color: #5383d3;
+}
+
+/* The navigation links */
+
+.header-fixed .header-limiter a {
+	color: black;
+	text-decoration: none;
+}
+
+.header-fixed .header-limiter nav {
+	font-family: 'Segoe UI';
+	line-height: 20px;
+	float: right;
+	font-weight: bold;
+	font-size: 2vw;
+}
+
+.header-fixed .header-limiter nav a{
+	display: inline-block;
+	text-decoration:none;
+	color: black;
+	opacity: 0.9;
+}
+
+
+body.fixed .header-fixed {
+	padding: 10px 40px;
+	height: 50px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+body.fixed .header-fixed-placeholder {
+	display: block;
+}
+
+body.fixed .header-fixed .header-limiter h1 {
+	font-size: 24px;
+	line-height: 30px;
+}
+
+body.fixed .header-fixed .header-limiter nav {
+	line-height: 28px;
+	font-size: 13px;
+}
+
+
+/* Making the header responsive */
+
+@media all and (max-width: 600px) {
+
+	.header-fixed {
+		padding: 20px 0;
+		height: 100px;
+	}
+
+	.header-fixed .header-limiter h1 {
+		float: none;
+		margin: -8px 0 10px;
+		text-align: center;
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	.header-fixed .header-limiter nav {
+		line-height: 1;
+		float:none;
+	}
+
+	.header-fixed .header-limiter nav a {
+		font-size: 20px;
+	}
+
+	body.fixed .header-fixed {
+		display: none;
+	}
+
+}
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height:250px;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0 0 -100px;
+    position: absolute;
+     padding:10px;
+    padding-bottom:80px;
+}
+#main {
+    transition: margin-left .5s;
+    flex: 1;
+
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.1s;
+}
+.navigation {
+  width: 300px;
+}
+
+h1{
+   font-family: 'Segoe UI';
+
+}
+/* reset our lists to remove bullet points and padding */
+
+navhead{
+	background-color: yellow;
+	color:white;
+}
+
+.mainmenu, .submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+.mainmenu a.active {
+  background-color: #F5C53D;
+  color: white;
+}
+/* make ALL links (main and submenu) have padding and background color */
+.mainmenu a {
+  display: block;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 10px;
+  color: white;
+  font-family: 'Segoe UI';
+  font-weight: 600;
+  font-size: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* add hover behaviour */
+.mainmenu a:hover {
+    background-color: #F5C53D;
+    color: white;
+    
+}
+
+
+/* when hovering over a .mainmenu item,
+  display the submenu inside it.
+  we're changing the submenu's max-height from 0 to 200px;
+*/
+
+.mainmenu li:hover .submenu {
+  display: block;
+  max-height: 200px;
+}
+
+/*
+  we now overwrite the background-color for .submenu links only.
+  CSS reads down the page, so code at the bottom will overwrite the code at the top.
+*/
+
+.submenu a {
+  background-color: #999;
+}
+
+/* hover behaviour for links inside .submenu */
+.submenu a:hover {
+  background-color: #666;
+}
+
+/* this is the initial state of all submenus.
+  we set it to max-height: 0, and hide the overflowed content.
+*/
+.submenu {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: all 0.5s ease-out;
+}
+ @media (min-width: 1200px) {
+    .container-fluid{
+        max-width: 1500px;
+    }
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #2d3436;
+}
+
+.topnav a {
+  color: white;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 21px;
+  font-family: 'Segoe UI';
+  line-height: 50px;
+  font-weight: bold;
+  
+	
+}
+#content {
+  padding-bottom: 100px;
+  /* Height of the footer element */
+}
+/*footer*/
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #2b2b2b;
+  color:white;
+  text-align: right;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    
+    padding: 8px;
+}
+
+td{
+    text-align: left;
+    
+    }
+th{
+    text-align: center;
+    }
+
+tr:nth-child(even) {
+    
+}
