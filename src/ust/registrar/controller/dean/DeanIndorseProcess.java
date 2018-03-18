@@ -53,15 +53,28 @@ public class DeanIndorseProcess extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String getstudentid = request.getParameter("studentid");
 		String getdeanid = request.getParameter("getuser");
+		String getremarks = request.getParameter("endorsement");
+		String ifchecked = request.getParameter("approval");
 		
 		DeanIndorseStudentDAO d = new DeanIndorseStudentDAO();
 		d.setDeanid(getdeanid);
 		d.setStudentid(getstudentid);
-		d.deanIndorsed(conn);
+		d.setIndorsement(getremarks);
 		
-	    request.getRequestDispatcher("DeanMemo_Shifter.jsp")
-	    .include(request, response);
-	    out.print("<script>alert('Memo of "+getstudentid+" forwarded!');</script>");
+		if(ifchecked != null){
+		d.deanIndorsed(conn);
+		 request.getRequestDispatcher("DeanMemo_Shifter.jsp")
+		    .include(request, response);
+		    out.print("<script>alert('Memo of "+getstudentid+" forwarded!');</script>");
+		}
+		else {
+		d.deanNotIndorsed(conn);
+		 request.getRequestDispatcher("DeanMemo_Shifter.jsp")
+		    .include(request, response);
+		    out.print("<script>alert('Memo of "+getstudentid+" was rejected!');</script>");
+		}
+		
+	   
 	    
 		
 	}

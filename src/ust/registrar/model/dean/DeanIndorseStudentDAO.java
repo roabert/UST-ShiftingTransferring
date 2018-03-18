@@ -2,7 +2,15 @@ package ust.registrar.model.dean;
 import java.sql.*;
 public class DeanIndorseStudentDAO {
 
-	public String studentid, deanid;
+	public String studentid, deanid, indorsement;
+
+	public String getIndorsement() {
+		return indorsement;
+	}
+
+	public void setIndorsement(String indorsement) {
+		this.indorsement = indorsement;
+	}
 
 	public String getStudentid() {
 		return studentid;
@@ -23,9 +31,11 @@ public class DeanIndorseStudentDAO {
 	
 	public void deanIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE shifters_indorsement SET dean_id = ?, dean_indorsed = 'Approved', secgen_indorsed = 'In-progress' WHERE shifter_id = ?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE shifters_indorsement SET dean_id = ?, dean_indorsed = 'Approved', dean_indorsement = ? ,secgen_indorsed = 'In-progress' WHERE shifter_id = ?");
 			ps.setString(1, deanid);
-			ps.setString(2, studentid);
+			ps.setString(2, indorsement);
+			ps.setString(3, studentid);
+			
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -34,9 +44,10 @@ public class DeanIndorseStudentDAO {
 	}
 	public void deanNotIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE shifters_indorsement SET dean_id = ?, dean_indorsed = 'Disapproved' WHERE shifter_id = ?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE shifters_indorsement SET dean_id = ?, dean_indorsed = 'Disapproved', dean_indorsement = ? WHERE shifter_id = ?");
 			ps.setString(1, deanid);
-			ps.setString(2, studentid);
+			ps.setString(2, indorsement);
+			ps.setString(3, studentid);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
