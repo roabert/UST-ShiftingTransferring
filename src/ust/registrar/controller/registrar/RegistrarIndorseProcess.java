@@ -1,4 +1,4 @@
-package ust.registrar.controller.secgen;
+package ust.registrar.controller.registrar;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,27 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
-import ust.registrar.model.secgen.OSGIndorseStudentDAO;
+import ust.registrar.model.registrar.*;
 
 /**
- * Servlet implementation class OSGIndorseProcess
+ * Servlet implementation class DeanIndorseProcess
  */
-@WebServlet("/OSGIndorseProcess")
-public class OSGIndorseProcess extends HttpServlet {
+@WebServlet("/RegistrarIndorseProcess")
+public class RegistrarIndorseProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OSGIndorseProcess() {
+    public RegistrarIndorseProcess() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see Servlet#init(ServletConfig)
-	 */
-    Connection conn = null;
+	 */Connection conn = null;
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		conn = SingletonDB.getConnection();
@@ -43,7 +42,7 @@ public class OSGIndorseProcess extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -52,28 +51,32 @@ public class OSGIndorseProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-	
-        String getstudentid = request.getParameter("studentid");
-        String getsecgen = request.getParameter("getuser");
-        String getremarks = request.getParameter("endorsement");
-        String getapproval = request.getParameter("approval");
-        
-        OSGIndorseStudentDAO o = new OSGIndorseStudentDAO();
-        o.setSecgen(getsecgen);
-        o.setStudentid(getstudentid);
-        o.setRemarks(getremarks);
-        if(getapproval != null) {
-        o.IndorseStudent(conn);
-        request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
-        out.print("<script>alert('Memo of "+getstudentid+" approved! Student has been shifted!')</script>");
-        }
-        else { 
-        o.dontIndorseStudent(conn);
-        request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
-        out.print("<script>alert('Memo of "+getstudentid+" has been disapproved!')</script>");
-        }
-        
-        
+		String getstudentid = request.getParameter("studentid");
+		String getdeanid = request.getParameter("getuser");
+		String getremarks = request.getParameter("endorsement");
+		String ifchecked = request.getParameter("approval");
+		
+		RegistrarIndorseDAO d = new RegistrarIndorseDAO();
+		d.setRegistrar(getdeanid);
+		d.setStudentid(getstudentid);
+		d.setIndorsement(getremarks);
+		
+		if(ifchecked != null){
+		d.registrarIndorsed(conn);
+		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
+		    .include(request, response);
+		    out.print("<script>alert('Memo of "+getstudentid+" forwarded!');</script>");
+		}
+		else {
+		d.registrarNotIndorsed(conn);
+		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
+		    .include(request, response);
+		    out.print("<script>alert('Memo of "+getstudentid+" was rejected!');</script>");
+		}
+		
+	   
+	    
+		
 	}
 
 }

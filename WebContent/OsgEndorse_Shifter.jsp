@@ -112,7 +112,7 @@ if(getuser == null) {
         
         <%
          try{
-        String displayindorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE dean_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
+        String displayindorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
         String displaystudent_osg = "SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM shifters_status INNER JOIN student_shifter on shifters_status.shifter_id = student_shifter.studentid UNION SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.id WHERE osa_verified = 'Approved' OR dean_verified ='Approved'";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displayindorsement_osg); 
@@ -126,10 +126,16 @@ if(getuser == null) {
         <form action = "OSGIndorseProcess" method="post">
         <tr>
         <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><a href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Memo</a></td>
-        <td><a href="javascript:;" data-target=".viewdocumentdean" data-toggle="modal">View Dean's Memo</a></td>
-        <td><button type="submit" class="btn btn-warning" onclick = "return confirm('Are you sure you want to forward the memo of <%=rs.getString("lastname")%>?')">Submit</button></td>
+        <td><a href="javascript:;" data-target=".viewdocumentdean" data-toggle="modal">View Registrar's Memo</a></td>
+        <td><button type="button" class = "btn btn-warning osg_indorsement"
+           data-target=".osgIndorse"
+           data-toggle="modal"
+           data-shifter_id = "<%=rs.getString("shifter_id") %>"
+           data-getuser = "<%=getuser %>"
+           data-newcourse = "<%=rs.getString("newcourse") %>"
+           >Endorse</button></td>
         </tr>
         </form>
         <%}while(rs.next());
@@ -154,26 +160,32 @@ if(getuser == null) {
 					
 
 </div>
-<div class="deanIndorse modal fade" role="dialog">
+<div class="osgIndorse modal fade" role="dialog">
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
-     <form action="DeanIndorseProcess" method="post">
+     <form action="OSGIndorseProcess" method="post">
          <div class="modal-header">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b>Secretary General Endorsement</b></h4>
+             <h4 class="modal-title"><b>Secretary General Approval</b></h4>
          </div>
          <div class="modal-body"><br>
           <input class="shifter_id" type="hidden" name="studentid">
           <input class="getuser" type="hidden" name="getuser">
-          <p>To the Registrar Office,</p>
-          <p>recommending approval of the application</p>
-           <center>
-          <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 660px; height: 334px;"></textarea><br><br>
-            <p><input type="checkbox" name="approval" value="Approved"> Approve Endorsement</p>
+          <p>To the Dean of the <i id="newcourse"></i></p>
+         
+          <br>
+            <center>
+              <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 660px; height: 334px;"></textarea><br><br>
+          <p>This student may enroll in your college</p>
+         <br>
+          <p><input type="checkbox" name="approval" value="Approved"> Approve Endorsement</p>
             </center>
          </div>
          <div class="modal-footer">
+         <center>
           <button type="submit" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
+          &nbsp&nbsp<button type="button" class="btn btn-warning btn-lg" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
+          </center>
          </div>
          </form>
      </div>
@@ -199,6 +211,18 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-     
+       <script>
+     $(document).on( "click", '.osg_indorsement',function(e) 
+    		 {
+    	    var shifter_id = $(this).data('shifter_id');
+    	    var getuser = $(this).data('getuser');
+    	    var newcourse = $(this).data('newcourse');
+
+    	    $(".shifter_id").val(shifter_id);
+    	    $(".getuser").val(getuser);
+    	    $("#newcourse").html(newcourse);
+    	//    tinyMCE.get('business_skill_content').setContent(content);   
+    	});
+        </script>
 </body>
 </html>

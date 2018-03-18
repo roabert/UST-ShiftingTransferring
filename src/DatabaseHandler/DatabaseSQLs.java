@@ -97,10 +97,12 @@ public interface DatabaseSQLs {
 		 String encodeExamShifter  = "SELECT * FROM shifters_scores WHERE shifter_id = ?";
 		 // Step 3 MEMO SHIFTER
 		 String generateMemoShifter = "INSERT INTO shifters_memo (shifter_id, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		 // Dean memo approval
-		 String DeanStatusShifter = "INSERT INTO shifters_indorsement (shifter_id, dean_indorsed) VALUES (?, 'In-progress')";
+		 // Registrar memo approval
+		 String RegistrarStatusShifter = "INSERT INTO shifters_indorsement (shifter_id, registrar_indorsed) VALUES (?, 'In-progress')";
 		 // Secgen memo approval
-		 String OSGStatusShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', registrar_indorsed = 'In-progress' WHERE shifter_id = ?";
+		 String OSGapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, shifter_shifting_approved = 'Approved' WHERE shifter_id = ?";
+		 // Secgen memo disapproval
+		 String OSGdisapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?  WHERE shifter_id = ?";
 		 
 		 
 		 

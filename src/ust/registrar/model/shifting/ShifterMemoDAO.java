@@ -190,7 +190,7 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 	
 	public void submitMemoIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement(DeanStatusShifter);
+			PreparedStatement ps = conn.prepareStatement(RegistrarStatusShifter);
 			ps.setString(1, studentid);
 			ps.executeUpdate();
 		} catch (SQLException e) {

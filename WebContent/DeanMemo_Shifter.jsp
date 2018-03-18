@@ -154,31 +154,7 @@ if(getuser == null) {
 
 </div>
 
-<div class="deanIndorse modal fade" role="dialog">
-  <div class="modal-dialog" style="width:700px; height:800px;">
-     <div class="modal-content">
-     <form action="DeanIndorseProcess" method="post">
-         <div class="modal-header">
-             <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b>Dean Endorsement</b></h4>
-         </div>
-         <div class="modal-body"><br>
-          <input class="shifter_id" type="hidden" name="studentid">
-          <input class="getuser" type="hidden" name="getuser">
-          <p>To the Secretary General,</p>
-          <p>recommending approval of the application</p>
-           <center>
-          <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 660px; height: 334px;"></textarea><br><br>
-            <p><input type="checkbox" name="approval" value="Approved"> Approve Endorsement</p>
-            </center>
-         </div>
-         <div class="modal-footer">
-          <button type="submit" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
-         </div>
-         </form>
-     </div>
-  </div>
-</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
@@ -196,17 +172,7 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-     <script>
-     $(document).on( "click", '.dean_indorsement',function(e) 
-    		 {
-    	    var shifter_id = $(this).data('shifter_id');
-    	    var getuser = $(this).data('getuser');
-
-    	    $(".shifter_id").val(shifter_id);
-    	    $(".getuser").val(getuser);
-    	//    tinyMCE.get('business_skill_content').setContent(content);   
-    	});
-     </script>
+    
      
 </body>
 </html>

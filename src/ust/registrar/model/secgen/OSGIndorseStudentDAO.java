@@ -8,7 +8,15 @@ import DatabaseHandler.DatabaseSQLs;
 
 public class OSGIndorseStudentDAO implements DatabaseSQLs {
 
-	public String studentid, secgen;
+	public String studentid, secgen, remarks;
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 
 	public String getStudentid() {
 		return studentid;
@@ -25,11 +33,25 @@ public class OSGIndorseStudentDAO implements DatabaseSQLs {
 	public void setSecgen(String secgen) {
 		this.secgen = secgen;
 	}
-	public void indorseStudent(Connection conn) {
+	public void IndorseStudent(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement(OSGStatusShifter);
+			PreparedStatement ps = conn.prepareStatement(OSGapproveShifter);
 			ps.setString(1, secgen);
-			ps.setString(2, studentid);
+			ps.setString(2, remarks);
+			ps.setString(3, studentid);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void dontIndorseStudent(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(OSGdisapproveShifter);
+			ps.setString(1, secgen);
+			ps.setString(1, remarks);
+			ps.setString(3, studentid);
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
