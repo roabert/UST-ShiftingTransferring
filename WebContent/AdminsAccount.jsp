@@ -10,8 +10,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -33,12 +32,16 @@ if(getuser == null) {
 
 
 <div off-canvas="slidebar-1 left reveal">
+<navhead>
 		<div>
+		
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
 			<h1>Administrator<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			
+</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Adminspage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -56,7 +59,6 @@ if(getuser == null) {
 			</div>
 
 
-
 		</div>
 
 <div canvas="contain">
@@ -64,23 +66,32 @@ if(getuser == null) {
 <div id="wrapper">
 
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+   ACCOUNT DETAILS
+   </a>
+   </center>
 </div>
 
 
 <br>
-            <p><i>Accounts Details</i></p>
 </div>
       <div class="container">
        <div class="table-responsive" style="overflow-x:auto; height:450px;">
@@ -134,13 +145,6 @@ if(getuser == null) {
       <br><br>
 </div>
 
- <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
 					</div>
   <div id="createusers" class="modal fade createusers" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -240,5 +244,6 @@ function submitForm() {
           handle: ".modal-header"
       });
       </script>
+         <div class="footer"></div>
 </body>
 </html>
