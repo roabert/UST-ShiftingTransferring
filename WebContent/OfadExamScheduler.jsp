@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 	$('.fancybox').fancybox(); 
 	
-	})
+	});
 </script>
 </head>
 
@@ -159,7 +159,7 @@ if(getuser == null) {
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
       <td></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><a  class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
+                <td><a class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
                 <td><button type="submit" class="btn btn-warning">Edit</button></td>
               </tr>
 			    <div id="<%=r.getString("date") %>" style="width:400px;display: none;">
