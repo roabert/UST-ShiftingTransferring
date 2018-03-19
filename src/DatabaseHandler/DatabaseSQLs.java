@@ -25,6 +25,9 @@ public interface DatabaseSQLs {
 	//Dean pass or fail the student DeanVerifyScore
 	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ? WHERE shifter_id = ?";
 	 String Dean_passfailScoreShifter = "UPDATE shifters_scores SET dean_reviewed = ? WHERE shifter_id = ?";
+	 ///Dean pass or fail student transfer DeanVerifyScoreTransfer
+	 String Dean_passfailTransfer = "UPDATE transferees_status SET dean_id_reviewed = ?, dean_reviewed = ? WHERE transferee_id = ?";
+	 String Dean_passfailScoreTransfer = "UPDATE transferees_scores SET dean_reviewed = ? WHERE transferee_id = ?";
 	 
 	 // SecGen approve student OSG_verifyprocess
 	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE shifter_id = ?";
@@ -50,7 +53,7 @@ public interface DatabaseSQLs {
 	 String Ofad_approveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ? WHERE transferee_id = ?";
 	 String Ofad_transferForExam = "INSERT INTO transferees_exams (transferee_id) VALUES (?)";
 	 //OFAD approve scheduling for SetExamScheduleDAO
-	 String Ofad_examschedTransfer = "INSERT INTO exam_schedules_transferees (transferee_id, date, start_time, end_time, remarks) VALUES (?, ?, ?, ?, ?)";
+	 String Ofad_examschedTransfer = "INSERT INTO exam_schedules_transferees (transferee_id, date, start_time, end_time, venue, remarks) VALUES (?, ?, ?, ?, ?, ?)";
 	 String Ofad_setexamTransfer = "UPDATE transferees_exams SET exam_schedule_date = ? WHERE transferee_id = ?";
 	 String Ofad_setTransferEncode = "INSERT INTO transferees_scores (transferee_id) VALUES (?)";
 	 // OSA approve transferee
@@ -61,6 +64,9 @@ public interface DatabaseSQLs {
 	 
 	 String EncodeScores_Shifter = "UPDATE shifters_scores SET userid = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ? WHERE shifter_id = ?";
 	 String ExamTaken_Shifter = "UPDATE shifters_status SET exam_taken = 'Approved' WHERE shifter_id = ?";
+	 // OFAD encode scores transfer EncodeScoreTransfer servlet
+	 String EncodeScores_Transfer = "UPDATE transferees_scores SET ofad_id = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ? WHERE transferee_id = ?";
+	 String ExamTaken_Transfer = "UPDATE transferees_status SET exam_taken = 'Approved' WHERE transferee_id = ?";
 	 
 	 //Admin Modify Users (for admin)
 	 String Admin_editUsersSQL = "UPDATE admins SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
@@ -93,6 +99,11 @@ public interface DatabaseSQLs {
 		 // LETTER OF INDORSEMENT SHIFTER
 		 String MemoForm_Shifter = "INSERT INTO shifters_indorsement (shifter_id) VALUES (?)";
 		 String removeExamSchedShifter = "DELETE FROM shifters_exams WHERE shifter_id = ?";
+		 //LETTER OF INDORSEMENT TRANSFER
+		 String MemoForm_Tranfer = "INSERT INTO transferees_indorsement (transferee_id) VALUES (?)";
+		 String removeExamSchedTransfer = "DELETE FROM transferees_exams WHERE transferee_id = ?";
+		 
+		 
 		 // FOR TRACKER ShiftingTrackerDAO
 		 String encodeExamShifter  = "SELECT * FROM shifters_scores WHERE shifter_id = ?";
 		 // Step 3 MEMO SHIFTER

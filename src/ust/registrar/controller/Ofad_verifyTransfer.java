@@ -39,7 +39,7 @@ public class Ofad_verifyTransfer extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServl	etResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -60,6 +60,7 @@ public class Ofad_verifyTransfer extends HttpServlet {
 		ofad.setOfadid(getofadid);
 		ofad.setRemarks(getremarks);
 		ofad.setTransferid(gettransferid);
+		
 		if(getremarks.equals("Approved")) 
 		ofad.doVerifyStudent(conn);
 		else if(getremarks.equals("Disapproved"))

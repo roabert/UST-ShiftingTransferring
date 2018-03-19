@@ -157,7 +157,7 @@ if(getuser == null) {
 </div>
 
 <div class="modal fade createsched" role="dialog">
-   <div class="modal-dialog modal-lg" style="width:1250px;">
+   <div class="modal-dialog modal-lg" style="width:1100px;">
       <div class="modal-content">
          <div class="modal-header" style="background-color:black">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -180,6 +180,10 @@ if(getuser == null) {
                <th> <h4>End Time</h4></th>
                <th><input type = "time" class="form-control" name = "endttime"><br></th>
                </tr>
+                <tr>
+               <th> <h4>Venue</h4></th>
+               <th><input type = "text" class="form-control" name = "venueexam"><br></th>
+               </tr>
             </table><br><br>
          
             
@@ -196,7 +200,7 @@ if(getuser == null) {
                  <th>Outgoing</th>
                  </tr>
                  <%try {
-               	  PreparedStatement ps2 = conn.prepareStatement("SELECT transferee_id, lastname, firstname, middlei, newcourse, newprogram FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
+               	  PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
                	  ResultSet rs2 = ps2.executeQuery();
                  while(rs2.next()) { %>
                  <tr>

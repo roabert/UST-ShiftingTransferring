@@ -123,7 +123,8 @@ public void setRemarks(String remarks) {
   		ps.setString(2, examdate);
   		ps.setString(3, start);
   		ps.setString(4, end);
-  		ps.setString(5, remarks);
+  		ps.setString(5, venue);
+  		ps.setString(6, remarks);
   		ps.executeUpdate();
   	} catch (SQLException e) {
   		// TODO Auto-generated catch block

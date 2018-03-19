@@ -97,33 +97,45 @@ if(getuser == null) {
         <tr>
           <th>ID</th>
           <th>Student Name</th>
-          <th>Type</th>
-          <th>Outgoing</th>
-          <th>Incoming</th>
-          <th>Score</th>
+          <th>Current School</th>
+          <th>Current Course/Program</th>
+          <th>Incoming Course/Program</th>
+          <th>Math Score</th>
+          <th>Science Score</th>
+          <th>English Score</th>
+          <th>IQ Score</th>
           <th>Done</th>
         </tr>
         
         
         <%
          try{
-        String displayscores = "SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.id UNION SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM shifters_status INNER JOIN student_shifter on shifters_status.shifter_id = student_shifter.studentid WHERE ofad_verified = 'Approved'";
+        String displayscores = "SELECT * FROM transferees_scores INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE transferee_id is not NULL AND ofad_id is NULL";
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displayscores); 
         ResultSet rs = ps.executeQuery();
-           while(rs.next()) {
+        if(!rs.next()) {
+        	out.print("<tr><p style=color:red>No students have taken the exam yet!</p></tr>");
+        }
+        else {
+           do {
         %>
+        <form action = "EncodeScoresTransfer" method = "post">
         <tr>
-        <td><%=rs.getString("transferee_id") %></td>
-        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><%=rs.getString("typeofstudent") %></td>
+        <td><input type="hidden" name="getstudent" value = "<%=rs.getString("transferee_id")%>"><%=rs.getString("transferee_id") %></td>
+        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><input type = "number" size="30" class="form-control" name="examscore_students"></td>
-        <td><button type="submit" class="btn btn-warning">Submit</button></td>
+        <td><input type = "number" size="30" min="0" max="100" class="form-control" name="mathscore" required></td>
+        <td><input type = "number" size="30" min="0" max="100" class="form-control" name="sciencescore" required></td>
+        <td><input type = "number" size="30" min="0" max="100" class="form-control" name="englishscore" required></td>
+        <td><input type = "number" size="30" min="0" max="100" class="form-control" name="iqscore" required></td>
+        <td><button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure? Changes cannot be done after submitting.')">Submit</button></td>
         </tr>
-        <%}
-           
+        </form>
+        <%}while(rs.next());
+        }
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
