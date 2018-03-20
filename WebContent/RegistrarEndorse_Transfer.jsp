@@ -131,11 +131,7 @@ if(getuser == null) {
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(display_indorsement); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()) {
-      	  out.print("<tr><p style=color:red>No Student Memo pending!</p></tr>");
-        }
-        else {
-           do {
+           while(rs.next()) {
         %>
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
@@ -144,7 +140,7 @@ if(getuser == null) {
         <td><button type="button" class = "btn btn-warning registrar_indorsement"
            data-target=".regIndorse"
            data-toggle="modal"
-           data-transferee_id = "<%=rs.getString("transferee_id") %>"
+           data-shifter_id = "<%=rs.getString("transferee_id") %>"
            data-getuser = "<%=getuser %>"
            >Endorse</button></td>
         </tr>
@@ -181,8 +177,8 @@ if(getuser == null) {
             	       
 					%>
 				</div>
-        <%}while(rs.next());
-         }
+        <%}
+           
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
@@ -256,16 +252,6 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-      <script>
-     $(document).on( "click", '.registrar_indorsement',function(e) 
-    		 {
-    	    var transferee_id = $(this).data('transferee_id');
-    	    var getuser = $(this).data('getuser');
-
-    	    $(".transferee_id").val(transferee_id);
-    	    $(".getuser").val(getuser);
-    	//    tinyMCE.get('business_skill_content').setContent(content);   
-    	});
-     </script>
+     
 </body>
 </html>

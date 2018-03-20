@@ -1,18 +1,12 @@
 package ust.registrar.controller.registrar;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import DatabaseHandler.SingletonDB;
-import ust.registrar.model.registrar.RegistrarIndorseTransferDAO;
 
 /**
  * Servlet implementation class RegistrarIndorseTransferProcess
@@ -32,10 +26,8 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
-    Connection conn = null;
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		conn = SingletonDB.getConnection();
 	}
 
 	/**
@@ -43,7 +35,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -51,29 +43,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		String gettransferid = request.getParameter("transferid");
-		String getdeanid = request.getParameter("getuser");
-		String getremarks = request.getParameter("endorsement");
-		String ifchecked = request.getParameter("approval");
-		
-		RegistrarIndorseTransferDAO d = new RegistrarIndorseTransferDAO();
-		d.setRegistrar(getdeanid);
-		d.setTransferid(gettransferid);
-		d.setIndorsement(getremarks);
-		
-		if(ifchecked != null){
-		d.registrarIndorsed(conn);
-		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
-		    .include(request, response);
-		    out.print("<script>alert('Memo of "+gettransferid+" forwarded!');</script>");
-		}
-		else {
-		d.registrarNotIndorsed(conn);
-		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
-		    .include(request, response);
-		    out.print("<script>alert('Memo of "+gettransferid+" was rejected!');</script>");
-		}
+		doGet(request, response);
 	}
 
 }

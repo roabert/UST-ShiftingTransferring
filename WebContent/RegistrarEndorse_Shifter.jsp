@@ -131,12 +131,7 @@ if(getuser == null) {
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(display_indorsement); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()) {
-        	  out.print("<tr><p style=color:red>No Student Memo pending!</p></tr>");
-          }
-          else {
-             do {
-         
+           while(rs.next()) {
         %>
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
@@ -184,8 +179,8 @@ if(getuser == null) {
             	       
 					%>
 				</div>
-        <%}  while(rs.next());
-          }
+        <%}
+           
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
