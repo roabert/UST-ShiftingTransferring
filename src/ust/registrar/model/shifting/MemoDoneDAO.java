@@ -39,7 +39,7 @@ public class MemoDoneDAO implements DatabaseSQLs {
 	}
 	public void memoDoneStatus(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND (dean_indorsed = 'In-progress' OR secgen_indorsed = 'In-progress' OR registrar_indorsed = 'In-progress')");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND (secgen_indorsed = 'In-progress' OR registrar_indorsed = 'In-progress')");
 			ps.setString(1, studentid);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

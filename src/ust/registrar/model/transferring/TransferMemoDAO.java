@@ -1,22 +1,19 @@
-package ust.registrar.model.shifting;
-import java.sql.*;
+package ust.registrar.model.transferring;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import DatabaseHandler.DatabaseSQLs;
 
-public class ShifterMemoDAO implements DatabaseSQLs{
-
-	public String shifterid, studentid, date, fullname, newcourse, semester, currentcourse, firstterm, secondterm, thirdterm, fourthterm, specialterm_1,
+public class TransferMemoDAO implements DatabaseSQLs{
+	public String transferid, date, fullname, newcourse, semester, currentcourse, firstterm, secondterm, thirdterm, fourthterm, specialterm_1,
 	specialterm_2, specialterm_3, specialterm_4;
-	public String getShifterid() {
-		return shifterid;
+	public String getTransferid() {
+		return transferid;
 	}
-	public void setShifterid(String shifterid) {
-		this.shifterid = shifterid;
-	}
-	public String getStudentid() {
-		return studentid;
-	}
-	public void setStudentid(String studentid) {
-		this.studentid = studentid;
+	public void setTransferid(String transferid) {
+		this.transferid = transferid;
 	}
 	public String getDate() {
 		return date;
@@ -162,32 +159,31 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 	
 	public void generateMemo(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement(generateMemoShifter);
-			ps.setString(1, shifterid);
-			ps.setString(2, studentid);
-			ps.setString(3, date);
-			ps.setString(4, fullname);
-			ps.setString(5, newcourse);
-			ps.setString(6, semester);
-			ps.setInt(7, firstyear);
-			ps.setInt(8, secondyear);
-			ps.setString(9, currentcourse);
-			ps.setString(10, firstterm);
-			ps.setInt(11, firstterm_1year);
-			ps.setInt(12, firstterm_2year);
-			ps.setString(13, specialterm_1);
-			ps.setString(14, secondterm);
-			ps.setInt(15, secondterm_1year);
-			ps.setInt(16, secondterm_2year);
-			ps.setString(17, specialterm_2);
-			ps.setString(18, thirdterm);
-			ps.setInt(19, thirdterm_1year);
-			ps.setInt(20, thirdterm_2year);
-			ps.setString(21, specialterm_3);
-			ps.setString(22, fourthterm);
-			ps.setInt(23, fourthterm_1year);
-			ps.setInt(24, fourthterm_2year);
-			ps.setString(25, specialterm_4);
+			PreparedStatement ps = conn.prepareStatement(generateMemoTransfer);
+			ps.setString(1, transferid);
+			ps.setString(2, date);
+			ps.setString(3, fullname);
+			ps.setString(4, newcourse);
+			ps.setString(5, semester);
+			ps.setInt(6, firstyear);
+			ps.setInt(7, secondyear);
+			ps.setString(8, currentcourse);
+			ps.setString(9, firstterm);
+			ps.setInt(10, firstterm_1year);
+			ps.setInt(11, firstterm_2year);
+			ps.setString(12, specialterm_1);
+			ps.setString(13, secondterm);
+			ps.setInt(14, secondterm_1year);
+			ps.setInt(15, secondterm_2year);
+			ps.setString(16, specialterm_2);
+			ps.setString(17, thirdterm);
+			ps.setInt(18, thirdterm_1year);
+			ps.setInt(19, thirdterm_2year);
+			ps.setString(20, specialterm_3);
+			ps.setString(21, fourthterm);
+			ps.setInt(22, fourthterm_1year);
+			ps.setInt(23, fourthterm_2year);
+			ps.setString(24, specialterm_4);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -197,8 +193,8 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 	
 	public void submitMemoIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement(RegistrarStatusShifter);
-			ps.setString(1, studentid);
+			PreparedStatement ps = conn.prepareStatement(RegistrarStatusTransfer);
+			ps.setString(1, transferid);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -209,8 +205,4 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 		generateMemo(conn);
 		submitMemoIndorsed(conn);
 	}
-	
-	
-	
-	
 }

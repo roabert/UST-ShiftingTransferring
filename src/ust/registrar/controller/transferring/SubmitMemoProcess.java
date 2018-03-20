@@ -1,4 +1,4 @@
-package ust.registrar.controller.shifting;
+package ust.registrar.controller.transferring;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.shifting.ShifterMemoDAO;
+import ust.registrar.model.transferring.TransferMemoDAO;
 
 /**
  * Servlet implementation class SubmitMemoProcess
  */
-@WebServlet("/SubmitMemoProcess")
+@WebServlet(name = "SubmitMemoTransferProcess", urlPatterns = { "/SubmitMemoTransferProcess" })
 public class SubmitMemoProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,7 +35,6 @@ public class SubmitMemoProcess extends HttpServlet {
 	 */
     Connection conn = null;
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 		conn = SingletonDB.getConnection();
 	}
 
@@ -43,17 +43,16 @@ public class SubmitMemoProcess extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String getshifterid = request.getParameter("getstudent");
-		String getstudentid = request.getParameter("studentid");
+		String gettransferid = request.getParameter("getstudent");
+
 		String getdate = request.getParameter("date");
 		String getfullname = request.getParameter("fullname");
 		String getnewcourse = request.getParameter("newcourse");
@@ -78,9 +77,9 @@ public class SubmitMemoProcess extends HttpServlet {
 		String getspecial3 = request.getParameter("specialterm_3");
 		String getspecial4 = request.getParameter("specialterm_4");
 		
-		ShifterMemoDAO s = new ShifterMemoDAO();
-		s.setShifterid(getshifterid);
-		s.setStudentid(getstudentid);
+		TransferMemoDAO s = new TransferMemoDAO();
+		s.setTransferid(gettransferid);
+
 		s.setDate(getdate);
 		s.setFullname(getfullname);
 		s.setNewcourse(getnewcourse);
@@ -106,7 +105,8 @@ public class SubmitMemoProcess extends HttpServlet {
 		s.setSpecialterm_4(getspecial4);
 		s.doStep3Indorsed(conn);
 		
-		response.sendRedirect("Shifter-MemoDone.jsp");
+		response.sendRedirect("Transferee-MemoDone.jsp");
+
 	}
 
 }

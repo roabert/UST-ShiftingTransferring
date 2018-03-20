@@ -78,111 +78,29 @@ if(getuser == null) {
   <a href="#">Programs</a>
   <a href="#" >Guidelines</a>
 </div>
-       <br>     
        <%
-String webpage = "";
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR osa_verified = 'In-progress' OR ofad_verified = 'In-progress')");
-pst.setString(1, getuser);
-ResultSet rst = pst.executeQuery();
-if(rst.next()) {
-	webpage = "Transfer-Step1Done.jsp";
-	 response.sendRedirect(webpage);
-}
-PreparedStatement pss = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
-pss.setString(1, getuser);
-ResultSet rss = pss.executeQuery();
-if(rss.next()) {
-
-	 response.sendRedirect("Transfer-TransferFailed.jsp");
-}
-PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND exam_schedule_date is not NULL");
-ps1.setString(1, getuser);
-ResultSet rs1 = ps1.executeQuery();
-if(rs1.next()) {
-	
-	 response.sendRedirect("Transfer-Transferring-2.jsp");
-} 
-PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ?");
-ps2.setString(1, getuser);
-ResultSet rs2 = ps2.executeQuery();
-if(rs2.next()) {
-	
-	 response.sendRedirect("Transfer-Memo.jsp");
-} 
-%>
+    
+       PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND exam_schedule_date is NOT NULL");
+       ps.setString(1, getuser);
+       ResultSet rs = ps.executeQuery();
+       if(!rs.next()) {
+    	 response.sendRedirect("Transfer-Step1Done.jsp");
+     }
+         %>
 </div>
- <p id="text_steps"><i>TRANSFERRING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
+<br>    <p id="text_steps"><i>STEP 2: TAKE EXAM</i></p>
+
      <div class="container">
-     <form id="step1transfer" onsubmit = "false" enctype="multipart/form-data">
-     <div id = "choosecollege">
-     
-     <br>  
-      <%
-      String getcoursesql = "SELECT * FROM student_transfer WHERE userid = ?";
-    try{
-    PreparedStatement ps = conn.prepareStatement(getcoursesql);
-    ps.setString(1, getuser);
-    ResultSet rs = ps.executeQuery();
-    while(rs.next()) {
-    %>
-    <input type= "hidden" name="studentid" value = "<%=rs.getString("userid")%>">
-    <input type= "hidden" name="typeofstudent" value = "<%=rs.getString("typeofstudent")%>">
-    <%}
-     } catch(Exception e) {
-    	out.print(e);
-    } %>
-    <center>
-    <h2>Outgoing College</h2>
-    <select id="country" name="outgoing_college">
-
-</select>
-    <h2>Outgoing Program</h2>
-    <select id="state" name="outgoing_program">
-
-</select>
-
-   <br>
-    <img id="imageToSwap" src="images/d.gif" />
-  <br><br>
- 
-  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
-  </center>
- </div>
- <div id = "fileuploading">
-    <div class="container">
-
-		 	<fieldset>
-		 	 <div class="announcement">
- <h3>Instructions</h3>
-  <p>1.) File Must Be In JPEG format.</p>
-  <p>2.) Maximum file size is 2MB.</p>
-  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
-  <h3>Documents Needed:</h3>
-  <p>1.) Official OTR</p>
-  <p>2.) Certificate of Good Moral.</p>
-  <p>3.) Letter to the Dean</p>
-  <p>4.) Letter to the Guidance</p>
-</div><br>
-		<center>
-		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
-		</center>
- 
-</table>
-		
-		 </fieldset>
-        
-		
-	
-</div>
-<br><br>
-   <center>
-   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg">Back</button>
-   <button onclick="step1Submit()" class="btn btn-warning btn-lg">Transfer Now</button>
-   </center>
- </div>
- </form>
+<br>
+<br>
+       <center>
+       <p><span class="glyphicon glyphicon-search" style="font-size:100px;"></span></p>
+       <br><br><br>
+       <form action="Transfer-Tracker.jsp"><button type="submit" class="btn btn-lg btn-warning">See Tracker</button></form>
+       </center>
           </div>
-   </div>      
+  </div>
+     
 <footer class="footer-distributed">
 
 			<div class="footer-left">
@@ -193,6 +111,7 @@ if(rs2.next()) {
 					
 
 </div>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>

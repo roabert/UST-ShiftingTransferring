@@ -158,6 +158,7 @@ if(getuser == null) {
 	            	   		</center>
 	            	   		<br>
 	            	   		<p>Date: <u><%=r3.getString("date") %></u></p><br>
+	            	   		<p>Student ID: <%=r3.getString("studentid") %></p>
 	            	   		<p>I, <u><%=r3.getString("full_name") %></u> from college of <u><%=r3.getString("oldcourse") %></u></p>
 	            	   		<p>wish to apply for admission to the College of <u><%=r3.getString("newcourse") %></u>, <u><%=r3.getString("semester_start") %></u>
 	            	   		 Sem, 20<u><%=r3.getString("firstyear_start") %></u> - 20<u><%=r3.getString("secondyear_start") %></u></p>

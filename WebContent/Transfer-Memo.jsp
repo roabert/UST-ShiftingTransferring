@@ -78,111 +78,76 @@ if(getuser == null) {
   <a href="#">Programs</a>
   <a href="#" >Guidelines</a>
 </div>
-       <br>     
-       <%
-String webpage = "";
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR osa_verified = 'In-progress' OR ofad_verified = 'In-progress')");
-pst.setString(1, getuser);
-ResultSet rst = pst.executeQuery();
-if(rst.next()) {
-	webpage = "Transfer-Step1Done.jsp";
-	 response.sendRedirect(webpage);
-}
-PreparedStatement pss = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
-pss.setString(1, getuser);
-ResultSet rss = pss.executeQuery();
-if(rss.next()) {
-
-	 response.sendRedirect("Transfer-TransferFailed.jsp");
-}
-PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND exam_schedule_date is not NULL");
-ps1.setString(1, getuser);
-ResultSet rs1 = ps1.executeQuery();
-if(rs1.next()) {
-	
-	 response.sendRedirect("Transfer-Transferring-2.jsp");
-} 
-PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ?");
-ps2.setString(1, getuser);
-ResultSet rs2 = ps2.executeQuery();
-if(rs2.next()) {
-	
-	 response.sendRedirect("Transfer-Memo.jsp");
-} 
-%>
+      
 </div>
- <p id="text_steps"><i>TRANSFERRING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
+<br>    <p id="text_steps"><i>STEP 3: FILL UP MEMO</i></p>
+
      <div class="container">
-     <form id="step1transfer" onsubmit = "false" enctype="multipart/form-data">
-     <div id = "choosecollege">
-     
-     <br>  
-      <%
-      String getcoursesql = "SELECT * FROM student_transfer WHERE userid = ?";
-    try{
-    PreparedStatement ps = conn.prepareStatement(getcoursesql);
-    ps.setString(1, getuser);
-    ResultSet rs = ps.executeQuery();
-    while(rs.next()) {
-    %>
-    <input type= "hidden" name="studentid" value = "<%=rs.getString("userid")%>">
-    <input type= "hidden" name="typeofstudent" value = "<%=rs.getString("typeofstudent")%>">
-    <%}
-     } catch(Exception e) {
-    	out.print(e);
-    } %>
-    <center>
-    <h2>Outgoing College</h2>
-    <select id="country" name="outgoing_college">
-
-</select>
-    <h2>Outgoing Program</h2>
-    <select id="state" name="outgoing_program">
-
-</select>
-
-   <br>
-    <img id="imageToSwap" src="images/d.gif" />
-  <br><br>
+  <div class="memo">
+<br>
+<form action = "SubmitMemoTransferProcess" method="post">
+<input type="hidden" name="getstudent" value="<%=getuser%>">
+Date: <input type="date" align="right" name="date" placeholder="Date today" ><br><br>
+<p>I, <input type="text" id="fname" name="fullname" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
+Faculty/College/Institute <br><br><input type="text" id="fname" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
+Term # <input type="number" id="fname" name="semester" placeholder="Term #" style="width:50px">AY 20- <input type="number" id="fname" name="firstyear" placeholder="" style="width:50px">
+- 20<input type="number" id="fname" name="secondyear" placeholder="" style="width:50px"> <br><br> My complete college attendance to date:  <input type="text" id="fname" name="currentcourse" placeholder="Current School and Faculty/Program" style="width:500px"  >
+</p>
+<center>
+<p>
+<table class="table-year">
+   <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="firstterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="firstterm_1year" placeholder="" style="width:50px">
+- 20<input type="number" id="fname" name="firstterm_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="specialterm_1" placeholder="" style="width:50px"></td>
+  </tr> 
+     <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="secondterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="secondterm_1year" placeholder="" style="width:50px">
+- 20<input type="number" id="fname" name="secondterm_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="specialterm_2" placeholder="" style="width:50px"></td>
+  </tr> 
+     <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="thirdterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="thirdterm_1year" placeholder="" style="width:50px">
+- 20<input type="number" id="fname" name="thirdterm_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="specialterm_3" placeholder="" style="width:50px"></td>
+  </tr> 
+     <tr>
+    <td>1st Term</td>
+    <td>-</td>
+    <td>2nd Term</td>
+    <td>:</td>
+    <td>Term <input type="text" id="fname" name="fourthterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="fourthterm_1year" placeholder="" style="width:50px">
+- 20<input type="number" id="fname" name="fourthterm_2year" placeholder="" style="width:50px"></td>
+    <td>:</td>
+    <td>Special Term <input type="text" id="fname" name="specialterm_4" placeholder="" style="width:50px"></td>
+  </tr> 
  
-  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
-  </center>
- </div>
- <div id = "fileuploading">
-    <div class="container">
-
-		 	<fieldset>
-		 	 <div class="announcement">
- <h3>Instructions</h3>
-  <p>1.) File Must Be In JPEG format.</p>
-  <p>2.) Maximum file size is 2MB.</p>
-  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
-  <h3>Documents Needed:</h3>
-  <p>1.) Official OTR</p>
-  <p>2.) Certificate of Good Moral.</p>
-  <p>3.) Letter to the Dean</p>
-  <p>4.) Letter to the Guidance</p>
-</div><br>
-		<center>
-		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
-		</center>
- 
-</table>
-		
-		 </fieldset>
-        
-		
-	
-</div>
-<br><br>
-   <center>
-   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg">Back</button>
-   <button onclick="step1Submit()" class="btn btn-warning btn-lg">Transfer Now</button>
-   </center>
- </div>
+</table><br><br>
+<input type="checkbox" name="termsandcondition" value="Agree" id="termcheckbox">I agree that my enrollment will be AUTOMATICALLY CANCELLED if it turns out that I have been debarred from the prevoius college.
+</p><br><br>
+<button type="submit" class="btn btn-warning btn-lg">Submit</button>
+</center>
  </form>
+</div>
+     
           </div>
-   </div>      
+  </div>
+     
 <footer class="footer-distributed">
 
 			<div class="footer-left">
@@ -193,6 +158,7 @@ if(rs2.next()) {
 					
 
 </div>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
