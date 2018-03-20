@@ -1,4 +1,4 @@
-package ust.registrar.controller.registrar;
+package ust.registrar.controller.secgen;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
-import ust.registrar.model.registrar.RegistrarIndorseTransferDAO;
+import ust.registrar.model.secgen.OSGIndorseTransfereeDAO;
 
 /**
- * Servlet implementation class RegistrarIndorseTransferProcess
+ * Servlet implementation class OSGIndorseTransferProcess
  */
-@WebServlet("/RegistrarIndorseTransferProcess")
-public class RegistrarIndorseTransferProcess extends HttpServlet {
+@WebServlet("/OSGIndorseTransferProcess")
+public class OSGIndorseTransferProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrarIndorseTransferProcess() {
+    public OSGIndorseTransferProcess() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,28 +52,26 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String gettransferid = request.getParameter("transferid");
-		String getdeanid = request.getParameter("getuser");
-		String getremarks = request.getParameter("endorsement");
-		String ifchecked = request.getParameter("approval");
 		
-		RegistrarIndorseTransferDAO d = new RegistrarIndorseTransferDAO();
-		d.setRegistrar(getdeanid);
-		d.setTransferid(gettransferid);
-		d.setIndorsement(getremarks);
-		
-		if(ifchecked != null){
-		d.registrarIndorsed(conn);
-		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
-		    .include(request, response);
-		    out.print("<script>alert('Memo of "+gettransferid+" forwarded!');</script>");
-		}
-		else {
-		d.registrarNotIndorsed(conn);
-		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
-		    .include(request, response);
-		    out.print("<script>alert('Memo of "+gettransferid+" was rejected!');</script>");
-		}
+        String gettransferid = request.getParameter("transferid");
+        String getsecgen = request.getParameter("getuser");
+        String getremarks = request.getParameter("endorsement");
+        String getapproval = request.getParameter("approval");
+        
+        OSGIndorseTransfereeDAO o = new OSGIndorseTransfereeDAO();
+        o.setSecgen(getsecgen);
+        o.setTransferid(gettransferid);
+        o.setRemarks(getremarks);
+        if(getapproval != null) {
+        o.IndorseStudent(conn);
+        request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
+        out.print("<script>alert('Memo of "+gettransferid+" approved! Student has been transferred!')</script>");
+        }
+        else { 
+        o.dontIndorseStudent(conn);
+        request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
+        out.print("<script>alert('Memo of "+gettransferid+" has been disapproved!')</script>");
+        }
 	}
 
 }
