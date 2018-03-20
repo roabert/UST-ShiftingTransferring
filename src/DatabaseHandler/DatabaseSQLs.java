@@ -110,7 +110,7 @@ public interface DatabaseSQLs {
 		 // Step 3 MEMO SHIFTER
 		 String generateMemoShifter = "INSERT INTO shifters_memo (shifter_id, studentid, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		// Registrar memo approval
-		 String RegistrarStatusShifter = "INSERT INTO shifters_indorsement (shifter_id, registrar_indorsed) VALUES (?, 'In-progress')";
+		 String RegistrarStatusShifter = "UPDATE shifters_indorsement SET registrar_indorsed = 'In-progress' WHERE shifter_id = ?";
 		 // Secgen memo approval
 		 String OSGapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, shifter_shifting_approved = 'Approved' WHERE shifter_id = ?";
 		 // Secgen memo disapproval
@@ -119,5 +119,9 @@ public interface DatabaseSQLs {
 		 // Step 3 MEMO TRANSFER
 		 String generateMemoTransfer = "INSERT INTO transferees_memo (transferee_id, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 // Registrar memo approval
-		 String RegistrarStatusTransfer = "INSERT INTO transferees_indorsement (transferee_id, registrar_indorsed) VALUES (?, 'In-progress')";
+		 String RegistrarStatusTransfer = "UPDATE transferees_indorsement SET registrar_indorsed = 'In-progress' WHERE transferee_id = ?";
+		 //Secgen memo approval
+		 String OSGapproveTransfer = "UPDATE transferees_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, transfer_transferring_approved = 'Approved' WHERE transferee_id = ?";
+		 //SEcgen memo disapproval
+		 String OSGdisapproveTransfer = "UPDATE transferees_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?  WHERE transferee_id = ?";
 }
