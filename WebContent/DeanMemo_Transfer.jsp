@@ -126,7 +126,6 @@ MEMO: TRANSFERRING
           <th>Student Name</th> 
           <th>Incoming</th>
           <th>Memo</th>
-          <th>Finish</th>
         </thead>
         <% %>
         <tbody>

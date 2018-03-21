@@ -152,14 +152,19 @@ if(getuser == null) {
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>   
-        <td><input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
-        <input type="hidden" value = "<%=getuser%>" name = "getuser">
-		<form action = "Dean_verifyprocess" method = "post"><select class="form-control" name="remarks">
-        <option value="Approved">Approve</option>
-        <option value="Disapproved">Disapprove</option>
-        
-        </select><button type="submit" class="btn btn-warning" onclick= "return confirm('Are you sure?');">Submit</button></form></td>
-        </tr>
+        <td>
+			<form action = "Dean_verifyprocess" method = "post">
+			<select class="form-control" name="remarks">
+		        <option value="Approved">Approve</option>
+		        <option value="Disapproved">Disapprove</option>
+	        </select>
+	        <input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
+	        <input type="hidden" value = "<%=getuser %>" name = "getuser">
+	        <button type="submit" class="btn btn-warning" 
+	        onclick= "return confirm('Are you sure?');">Submit</button>
+	        </form>
+        </td>
+        </tr>	
         
         <%}while(rs.next());
          } 

@@ -10,7 +10,6 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -34,7 +33,6 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <!-- Add Media helper (this is optional) -->
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-
 <head>
 <meta charset="ISO-8859-1">
 <title>Dean | Transactions</title>
@@ -123,7 +121,8 @@ if(getuser == null) {
       <center>
      
       <table class="table table-sortable">
-        <thead>
+	  <thead>
+        <tr>
           <th>ID</th>
           <th>Student Name</th>
           <th>Current School</th>
@@ -131,7 +130,9 @@ if(getuser == null) {
           <th>Incoming</th>
           <th>Verify Docs</th>
           <th>Remarks</th>
-        </thead>
+          <th>Done</th>
+        </tr>
+		</thead>
         
         <tbody>
         <%
@@ -145,30 +146,34 @@ if(getuser == null) {
         else {
           do {
         %>
-         <form action = "Dean_verifyTransfer" method = "post">
+         
         <tr>
-        <td><input type="hidden" value = "<%=rs.getString("transferee_id")%>" name = "getstudent">
-        <input type="hidden" value = "<%=getuser%>" name = "getuser"><%=rs.getString("transferee_id") %></td>
+        <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a href="javascript:;" id="<%=rs.getString("transferee_id")%>">View Documents</a></td>
-        <td><select class="form-control" name="remarks">
-        <option value="Approved">Approve</option>
-        <option value="Disapproved">Disapprove</option>
-        
-        </select></td>
-        <td><button type="submit" class="btn btn-warning" onclick= "return confirm('Are you sure?');">Submit</button> </td>
+        <td>
+		<form action = "Dean_verifyTransfer" method = "post">
+		<input type="hidden" value = "<%=rs.getString("transferee_id")%>" name = "getstudent">
+        <input type="hidden" value = "<%=getuser%>" name = "getuser">
+		<select class="form-control" name="remarks">   
+			<option value="Approved">Approve</option>
+			<option value="Disapproved">Disapprove</option>       
+        </select>
+		<button type="submit" class="btn btn-warning" 
+		onclick= "return confirm('Are you sure?');">Submit</button> 
+		</form>
+		</td>
         </tr>
-        </form>
+        
         <%} while(rs.next());
          }  
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
-		</tbody>
-        
+        </tbody>
       </table>
      
       </center>
@@ -186,7 +191,7 @@ if(getuser == null) {
 
 <script>
 $(document).ready(function() {
-    $('table.table-sortable').DataTable();
+    $('table.table-striped').DataTable();
 } );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";

@@ -141,16 +141,7 @@ MEMO: SHIFTING
           <td>
           <%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
           <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-          <td><a id = "<%=rs.getString("shifter_id")%>" href="javascript:;">View Memo</a>
-          <button type="button" class = "btn btn-warning dean_indorsement"
-           data-target=".deanIndorse"
-           data-toggle="modal"
-           data-shifter_id = "<%=rs.getString("shifter_id") %>"
-           data-getuser = "<%=getuser %>"
-           >
-           <input type="hidden" name = "getuser" value = "<%=getuser%>">
-           <input type = "hidden" name = "studentid" value="<%=rs.getString("shifter_id")%>">
-           Endorse</button></td>
+          <td><a id = "<%=rs.getString("shifter_id")%>" href="javascript:;">View Memo</a></td>
         </tr>
   
         <%}while(rs.next()); } } catch(SQLException e) {out.print(e);} %>

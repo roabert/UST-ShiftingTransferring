@@ -9,17 +9,34 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!-- Add Button helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<!-- Add Thumbnail helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<!-- Add Media helper (this is optional) -->
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>OFAD | Exam Schedule</title>
 </head>
 
 <body>
@@ -32,12 +49,15 @@ if(getuser == null) {
 
 
  <div off-canvas="slidebar-1 left reveal">
+
 		<div>
+		 <navhead>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
 			<h1>OFAD<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Ofadpage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -67,40 +87,44 @@ if(getuser == null) {
 
 		</div>
 <div canvas="contain">
-<div id="main">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+   Exam Scheduler
+   </a>
+   </center>
 </div>
-
-
 <br>
-            <p><i>Exam Scheduler</i></p> 
-            <div class="container">
+ <div id="content">
+    <div class="container">
+<br>
+            
             <form action="javascript:;">
             <button class="btn btn-lg btn-warning pull-right" type="button" data-target=".createsched" data-toggle="modal">
             Create Exam Schedule
             </button>
             </form>
-            </div>
 </div>
      
     <br>
-      <div class="container">
-       
-              
            <ul class = "nav nav-tabs">
           <li><a href="OfadExamScheduler.jsp">Shifters</a></li>
           <li class="active"><a href="OfadExamScheduler2.jsp">Transferees</a></li>
@@ -108,15 +132,16 @@ if(getuser == null) {
           <div class="tab-content">
           <fieldset>
           <div class="table-responsive" style="overflow-x:auto; height:500px;">
-              <table class="table table-stripped">
-              <tr>
+              <table class="table table-stripped table-sortable">
+              <thead>
                   <th>Date</th>
                  <th>Time</th>
                  <th>Venue</th>
                  <th>Remarks</th>
                  <th>View Students</th>
                  <th></th>
-              </tr>
+              </thead>
+			  <tbody>
               <%
                try{
             	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, remarks FROM exam_schedules_transferees");
@@ -139,25 +164,18 @@ if(getuser == null) {
                     }
                } catch(SQLException e) {out.print(e);}
               %>
+			  </tbody>
               </table>
               </div>
           </fieldset>
           </div>
      </div>
 </div>
- <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
 </div>
 
+<div class="footer"></div>
 <div class="modal fade createsched" role="dialog">
-   <div class="modal-dialog modal-lg" style="width:1100px;">
+   <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
          <div class="modal-header" style="background-color:black">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -180,10 +198,6 @@ if(getuser == null) {
                <th> <h4>End Time</h4></th>
                <th><input type = "time" class="form-control" name = "endttime"><br></th>
                </tr>
-                <tr>
-               <th> <h4>Venue</h4></th>
-               <th><input type = "text" class="form-control" name = "venueexam"><br></th>
-               </tr>
             </table><br><br>
          
             
@@ -200,7 +214,7 @@ if(getuser == null) {
                  <th>Outgoing</th>
                  </tr>
                  <%try {
-               	  PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
+               	  PreparedStatement ps2 = conn.prepareStatement("SELECT transferee_id, lastname, firstname, middlei, newcourse, newprogram FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
                	  ResultSet rs2 = ps2.executeQuery();
                  while(rs2.next()) { %>
                  <tr>
@@ -236,13 +250,15 @@ if(getuser == null) {
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
 
 
 <script>
+$(document).ready(function() {
+    $('table.table-sortable').DataTable();
+} );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";

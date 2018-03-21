@@ -114,6 +114,7 @@ if(getuser == null) {
    </a>
    </center>
 </div>
+<br>
  <div id="content">
     <div class="container">
   <fieldset>
@@ -121,13 +122,15 @@ if(getuser == null) {
       <center>
       <table class="table table-striped table-sortable">
         <thead>
+        <tr>
           <th>ID</th>
           <th>Student Name</th>
-          <th>Type</th>
-          <th>Outgoing</th>
-          <th>Incoming</th>
+          <th>Current Course/Program</th>
+          <th>Incoming Course/Program</th>
           <th>Score</th>
           <th>Remarks</th>
+          <th>Finish</th>
+        </tr>
        	</thead>
        	<tbody>
           <%
@@ -142,25 +145,25 @@ if(getuser == null) {
           else {
         	  do{
         %>
-       
+        
         <tr>
         <td><%=rs.getString("shifter_id") %></td>
-        <td><%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><%=rs.getString("typeofstudent") %></td>
+        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><%=rs.getString("final_score") %></td>
         <td>
-		<form action = "DeanVerifyScore" method = "post">
-		<select class="form-control" name="studentstatus">
-		<option value="Approved">Passed</option>
-        <option value="Disapproved">Failed</option>
+        <form action = "DeanVerifyScore" method = "post">
+        <input type="hidden" name="getuser" value="<%=getuser%>">
+        <input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
+        <select class="form-control" name="studentstatus">
+    		<option value="Approved">Passed</option>
+        	<option value="Disapproved">Failed</option>
         </select>
-		<input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("lastname") %>
-		<input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
-        <button type="submit" onclick="return confirm('Are you sure? Changes will not be done once submitted.');" class="btn btn-warning">Submit</button>
-		</form>
-		</td>
+        <button type="submit" onclick="return confirm('Are you sure? Changes will not be done once submitted.');" 
+        class="btn btn-warning">Submit</button>
+        </form>
+        </td>
         </tr>
         
         <%} while(rs.next());

@@ -46,7 +46,7 @@ public class DeanVerifyDAO implements DatabaseSQLs {
 
 	public void verifyStudent(Connection conn) {
 		try {
-			PreparedStatement pst = conn.prepareStatement(Dean_approveStudent);
+			PreparedStatement pst = conn.prepareStatement("UPDATE shifters_status SET dean_id = ?, dean_verified = ?, secgen_verified = 'In-progress' WHERE shifter_id = ?");
 			pst.setString(1, deanname);
 			pst.setString(2, approved);
 			pst.setString(3, studentid);
@@ -59,7 +59,7 @@ public class DeanVerifyDAO implements DatabaseSQLs {
 	}
 	public void dontverifyStudent(Connection conn) {
 		try {
-			PreparedStatement pst = conn.prepareStatement(Dean_disapproveStudent);
+			PreparedStatement pst = conn.prepareStatement("UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?");
 			pst.setString(1, deanname);
 			pst.setString(2, approved);
 			pst.setString(3, studentid);

@@ -332,3 +332,6 @@ th{
 tr:nth-child(even) {
     
 }
+.modal-backdrop.in {
+    display: none;
+}
