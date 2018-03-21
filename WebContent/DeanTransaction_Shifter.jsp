@@ -10,8 +10,9 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-<link rel="stylesheet" href="CSS/style.css"type="text/css">
+<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -33,9 +34,10 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <!-- Add Media helper (this is optional) -->
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Dean | Transactions</title>
 </head>
 
 <body>
@@ -46,19 +48,22 @@ if(getuser == null) {
 }
 %>
 
-  <div off-canvas="slidebar-1 left reveal">
+ <div off-canvas="slidebar-1 left reveal">
 		<div>
+		<navhead>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
 			<h1>Dean<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			
+		</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Deanpage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="#"class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a>
     <ul class="submenu">
-        <li><a href="DeanTransaction_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
+        <li><a href="DeanTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
         
       </ul>
@@ -70,7 +75,7 @@ if(getuser == null) {
         
       </ul>
     </li>
-  <li><a href="#"><span class="glyphicon glyphicon-folder-open"></span> Memo</a>
+ <li><a href="#"><span class="glyphicon glyphicon-folder-open"></span> Memo</a>
   <ul class="submenu">
         <li><a href="DeanMemo_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanMemo_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
@@ -86,40 +91,38 @@ if(getuser == null) {
 
 		</div>
 <div canvas="contain">
-<div id="main">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
-</div>
-
-
-<br>
-           <p><i>Transactions</i></p>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+	TRANSACTIONS: SHIFTERS
+   </a>
+   </center>
 </div>
 <br>
-   <div class="container">
-    
-    
-
- </div>
- <div class="container-fluid">
+ <div id="content">
+    <div class="container">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
      
-      <table class="table table-striped">
+      <table class="table table-striped table-sortable">
       	<thead>
 	        <tr>
 	          <th>ID</th>
@@ -128,7 +131,6 @@ if(getuser == null) {
 	          <th>Incoming Course/Program</th>
 	          <th>Verify Docs</th>
 	          <th>Remarks</th>
-	          <th>Done</th>
 	        </tr>
         </thead>
         
@@ -143,22 +145,22 @@ if(getuser == null) {
             }
             else {
             	do{%>
-         <form action = "Dean_verifyprocess" method = "post">
+         
         <tr>
-        <td><input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
-        <input type="hidden" value = "<%=getuser%>" name = "getuser"><%=rs.getString("shifter_id") %></td>
+        <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>   
-        <td><select class="form-control" name="remarks">
+        <td><input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
+        <input type="hidden" value = "<%=getuser%>" name = "getuser">
+		<form action = "Dean_verifyprocess" method = "post"><select class="form-control" name="remarks">
         <option value="Approved">Approve</option>
         <option value="Disapproved">Disapprove</option>
         
-        </select></td>
-        <td><button type="submit" class="btn btn-warning" onclick= "return confirm('Are you sure?');">Submit</button></td>
+        </select><button type="submit" class="btn btn-warning" onclick= "return confirm('Are you sure?');">Submit</button></form></td>
         </tr>
-        </form>
+        
         <%}while(rs.next());
          } 
         }
@@ -174,15 +176,7 @@ if(getuser == null) {
   </div>
    
 </div>
-<footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
+</div>
 </div>
 
 <script src="scripts/slidebars.js"></script>
@@ -191,7 +185,7 @@ if(getuser == null) {
 
 <script>
 $(document).ready(function() {
-    $('table.table-striped').DataTable();
+    $('table.table-sortable').DataTable();
 } );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
@@ -249,5 +243,6 @@ function closeNav() {
 		        } %> 
          })
          </script>     
+          <div class="footer"></div>
 </body>
 </html>
