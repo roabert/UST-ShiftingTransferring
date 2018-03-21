@@ -80,12 +80,13 @@ body {
                0 20px 20px rgba(0,0,0,.15);
 }
 .logo {
-    width: 45%;
-    float: left;
-    background-image: url("../Images/login-wall2.jpg");
-    padding: 11.57% 0;
+   	 width: 45%;
+   	 float: left;
+   	 background-image: url("../Images/login-wall2.jpg");
+   	 padding: 11.57% 0;
      position: relative;
-	
+	 object-fit: cover;
+	 height: 45%;
 }
 img {
     max-width: 100%;

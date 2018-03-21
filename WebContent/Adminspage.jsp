@@ -1,21 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%@ page import ="java.util.*" %>
-    <%@ page import="java.sql.*" %>
-        <%@ page import = "DatabaseHandler.SingletonDB" %>
-   <% Connection conn = SingletonDB.getConnection(); %>
+    pageEncoding="ISO-8859-1"%>   
+<%@ page import ="java.util.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import = "DatabaseHandler.SingletonDB" %>
+<% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
+<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!-- Add Button helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<!-- Add Thumbnail helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<!-- Add Media helper (this is optional) -->
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 		 
 <head>
 <meta charset="ISO-8859-1">
@@ -31,11 +43,13 @@ if(getuser == null) {
 
 <div off-canvas="slidebar-1 left reveal">
 		<div>
+		<navhead>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
 			<h1>Administrator<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+		</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Adminspage.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -50,27 +64,30 @@ if(getuser == null) {
 
 		</div>
 <div canvas="contain">
-<div id="main">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
-</div>
-
-
-<br>
-            <p><i>PROFILE INFORMATION</i></p>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+   PERSONAL INFORMATION
+   </a>
+   </center>
 </div>
      <%
     String returnsql = "SELECT * FROM admins WHERE userid = ?";
@@ -81,9 +98,7 @@ if(getuser == null) {
      
     
     %>
-    <br>
-
-      <div class="container">
+     <%--  <div class="container">
           <fieldset>
            
             <center>
@@ -117,7 +132,32 @@ if(getuser == null) {
                  </button>
                  </center></td>
                </tr>
-            </table>
+            </table> --%>
+    <br>
+
+     <div id="content">
+    <div class="container">
+                 <% while(usercontent.next()) { %>
+                 
+<div class="profile">
+
+	<div class="wrap">
+	
+		<div class="profile-main">
+		<fieldset>
+		<legend>
+		<p>USER ID: <%=usercontent.getString("userid") %></p>
+		</legend>
+			<div class="profile-pic wthree">
+					
+				<img src="Images/dp.png" alt="">
+				<h2><%=usercontent.getString("last_name")%>, <%=usercontent.getString("first_name")%></h2>
+			</div>
+			<div class="w3-message">
+				<h5><%=usercontent.getString("type") %> <%=usercontent.getString("college") %></h5>
+			<div class="w3ls-touch">
+			</div>
+			</div>
             <script>
             function editProfile() {
             	document.getElementById("editprofile").style.display = "none";
@@ -136,22 +176,19 @@ if(getuser == null) {
             	e.printStackTrace();
             }         
             %>
-            </div>
-             </center>
-          </fieldset>
-     </div>
+           </div>
+    </fieldset>
+  </div>
+
+</div>
+</div>
+</div>
+  
 </div>
 
+</div>
 
- <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<div class="footer"></div>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
@@ -168,6 +205,5 @@ function closeNav() {
 
 
 </script>
-     
 </body>
 </html>

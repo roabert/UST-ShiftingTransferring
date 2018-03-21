@@ -9,16 +9,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!-- Add Button helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<!-- Add Thumbnail helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<!-- Add Media helper (this is optional) -->
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 		
 <head>
-<meta charset="ISO-8859-1">
 <title>Welcome</title>
 </head>
 <body>
@@ -94,17 +110,16 @@ if(getuser == null) {
 <br>
 </div>
       <div class="container">
-       <div class="table-responsive" style="overflow-x:auto; height:450px;">
+       <div class="table-responsive" style="overflow-x:auto; height:100%;">
       <center>
-         <table class="table table-striped">
-        <tr>
-          <th>User ID</th>
-          <th>Name</th>
-          <th>Type</th>
-          
-          <th>Edit Users</th>
-         
-        </tr>
+         <table class="table table-striped table-sortable">
+        <thead>
+          	<th>User ID</th>
+         	<th>Name</th>
+          	<th>Type</th>
+          	<th>Edit Users</th>
+        </thead>    
+        <tbody>
        <%
          try{
              String displayusers = "SELECT userid, last_name, first_name, middle_name, type FROM admins UNION SELECT userid, last_name, first_name, middle_name, type FROM dean UNION SELECT userid, last_name, first_name, middle_name, type FROM ofad UNION SELECT userid, last_name, first_name, middle_name, type FROM osa UNION SELECT userid, last_name, first_name, middle_name, type FROM registrar UNION SELECT userid, last_name, first_name, middle_name, type FROM secgen";
@@ -112,27 +127,28 @@ if(getuser == null) {
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
         %>
-      <form action = "AdminDisplayUsers.jsp">
+     
    
         
         
        
         <tr>
-        <td><input type= "hidden" value = "<%=rs.getString("userid")%>" name="edituser"><%=rs.getString("userid") %></td>
+        <td><%=rs.getString("userid") %></td>
         <td><%=rs.getString("first_name") %> <%=rs.getString("middle_name") %>. <%=rs.getString("last_name") %></td>
         <td><%=rs.getString("type") %></td>
         
         <td>
-         <button type="submit" class="btn btn-warning">Edit</button>
+          <form action = "AdminDisplayUsers.jsp"><input type= "hidden" value = "<%=rs.getString("userid")%>" name="edituser"><button type="submit" class="btn btn-warning">Edit</button></form>
         </td>
         
         </tr>
-        </form>
+        
         <%}
            
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
+        </tbody>
       </table>
     
         
@@ -210,10 +226,13 @@ if(getuser == null) {
     </div>
   </div>
 
-		<script src="scripts/slidebars.js"></script>
-		<script src="scripts/scripts.js"></script>
+<script src="scripts/slidebars.js"></script>
+<script src="scripts/scripts.js"></script>
 
 <script>
+$(document).ready(function() {
+    $('table.table-sortable').DataTable();
+});
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
@@ -239,11 +258,14 @@ function submitForm() {
 }
 
 </script>
-      <script type="text/javascript">
-      $("#createusers").draggable({
-          handle: ".modal-header"
-      });
-      </script>
+ <!--       
+ 	<script type="text/javascript">
+	      $("#createusers").draggable({
+	          handle: ".modal-header"
+	      });
+	</script>
+      
+-->
          <div class="footer"></div>
 </body>
 </html>
