@@ -9,18 +9,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Files Uploaded!</title>
+<title>Student-Shifter | Memo</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
@@ -42,6 +40,7 @@ if(getuser == null) {
 
 <div off-canvas="slidebar-1 left reveal">
 		<div>
+		<navhead>
 		<br>
 			 <%
     
@@ -58,6 +57,7 @@ if(getuser == null) {
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Shifter-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -66,42 +66,45 @@ if(getuser == null) {
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
+
 			</div>
 
 
 
 		</div>
 <div canvas="contain">
-<div id="main">
+<div canvas="main">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+   FILL UP MEMO
+   </a>
+   </center>
 </div>
          <%
-         PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (secgen_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
-         pss.setString(1, getuser);
-         ResultSet rss = pss.executeQuery();
-         if(rss.next()) {
-
-         	 response.sendRedirect("Shifter-ShiftFailed.jsp");
-         }
+    
          %>
 </div>
-<br>    <p id="text_steps"><i>STEP 3: FILL UP MEMO</i></p>
-
-     <div class="container">
+      <div id="content">
+    <div class="container">
 <div class="memo">
 <br>
 <form action = "SubmitMemoProcess" method="post">
@@ -165,16 +168,10 @@ Term # <input type="number" id="fname" name="semester" placeholder="Term #" styl
 </div>
    </div>
   </div>
-  <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
 </div>
+</div>
+
+  <div class="footer"></div>    
 <script language="javascript">
 populateCountries("country", "state");
 </script>

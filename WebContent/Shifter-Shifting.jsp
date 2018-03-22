@@ -8,10 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -88,12 +87,13 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
     ResultSet rs = psts.executeQuery();
      
     while(rs.next()) {
-    %>
+    %><navhead>
 			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="120" height = "120">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Shifter-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -112,24 +112,34 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
 <div id="wrapper">
 
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+    STEP 1: Choosing your course and Uploading Requirements
+   </a>
+   </center>
 </div>
-         
+
+
+<br>
 </div>
-<br>    <p id="text_steps"><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
-     <div class="container">
-     
+      <div class="container">
      <form id="step1shifter" onsubmit = "return false" enctype="multipart/form-data">
      <div id = "choosecollege">
      
@@ -146,23 +156,25 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
     ResultSet rs = ps.executeQuery();
     while(rs.next()) {
     %>
+                <div class="col-lg-6 col-md-6 col-sm-12 pull-right">
+  
+         
     <input type="hidden" name="studentid" value="<%=rs.getString("studentid")%>">
     <input type="hidden" name="typeofstudent" value="<%=rs.getString("typeofstudent")%>">
     <h2>Current College</h2>
      <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldcourse") %></u></b></p>
     <h2>Current Program</h2>
      <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldprogram") %></u></b></p>
-     
+     	</div>
     <%} 
     } catch(Exception e) {
     	out.print(e);
     } %>
     </center>
-    <img id="imageToSwap" src="images/d.gif" />
+  <!--   <img id="imageToSwap" src="images/d.gif" /> -->
   </div>
- 
-  <div class="column">
-    <center>
+                <div class="col-lg-6 col-md-6 col-sm-12 pull-right">
+   <center>
     <h2>Outgoing College</h2>
     <select id="country" name="outgoing_college">
 
@@ -173,11 +185,12 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
 </select>
 
     </center>
-    <img id="imageToSwap" src="images/d.gif" />
-  </div>
+   <!--  <img id="imageToSwap" src="images/d.gif" /> -->
+     	</div>
+
 </div>
   <br><br>
-  
+  <br><br><br><br><br>
   <center>
   <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
   </center>
@@ -203,7 +216,7 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
 		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
 		</center>
  
-</table>
+
 		
 		 </fieldset>
         
@@ -216,24 +229,15 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
    <button onclick="step1Submit()" class="btn btn-warning btn-lg">Shift Now</button>
    </center>
  </div>
-
+</form>
           </div>
-  </div>
-  <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
+  </div>			
 
 </div>
 <script language="javascript">
 populateCountries("country", "state");
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
        
@@ -257,12 +261,12 @@ function swapImage(){
 	image.src = dropd.value;	
 };
 function nextstep() {
-	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
+	//id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
 }
 function goback() {
-	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
+	//id("text_steps").innerHTML = "<p><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
 	id("choosecollege").style.display = "block";
 	id("fileuploading").style.display = "none";
 }
@@ -272,5 +276,7 @@ function step1Submit() {
 	id("step1shifter").submit();
 }
 ;</script>
+
+ <div class="footer"></div>
 </body>
 </html>

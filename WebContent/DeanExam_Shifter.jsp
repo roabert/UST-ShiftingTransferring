@@ -129,7 +129,6 @@ if(getuser == null) {
           <th>Incoming Course/Program</th>
           <th>Score</th>
           <th>Remarks</th>
-          <th>Finish</th>
         </tr>
        	</thead>
        	<tbody>
