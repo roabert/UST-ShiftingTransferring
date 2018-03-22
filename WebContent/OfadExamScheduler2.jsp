@@ -122,7 +122,6 @@ if(getuser == null) {
             Create Exam Schedule
             </button>
             </form>
-</div>
      
     <br>
            <ul class = "nav nav-tabs">
@@ -131,7 +130,7 @@ if(getuser == null) {
           </ul>
           <div class="tab-content">
           <fieldset>
-          <div class="table-responsive" style="overflow-x:auto; height:500px;">
+          <div class="table-responsive" style="overflow-x:auto; ">
               <table class="table table-stripped table-sortable">
               <thead>
                   <th>Date</th>
@@ -171,9 +170,7 @@ if(getuser == null) {
           </div>
      </div>
 </div>
-</div>
 
-<div class="footer"></div>
 <div class="modal fade createsched" role="dialog">
    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
@@ -182,7 +179,7 @@ if(getuser == null) {
             <p class=""><i>Create Schedule</i></p>
          </div>
          <form action="CreateScheduleProcess2" method="post">
-         <div class="modal-body" style="overflow-x:auto;">
+         <div class="modal-body" style="overflow-x:auto; height:500px; width:100%;">
           <div class="container">
             
            <table>
@@ -197,6 +194,10 @@ if(getuser == null) {
            <tr>
                <th> <h4>End Time</h4></th>
                <th><input type = "time" class="form-control" name = "endttime"><br></th>
+               </tr>
+                <tr>
+               <th> <h4>Venue</h4></th>
+               <th><input type = "text" class="form-control" name = "venueexam"><br></th>
                </tr>
             </table><br><br>
          
@@ -214,7 +215,7 @@ if(getuser == null) {
                  <th>Outgoing</th>
                  </tr>
                  <%try {
-               	  PreparedStatement ps2 = conn.prepareStatement("SELECT transferee_id, lastname, firstname, middlei, newcourse, newprogram FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
+               	  PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
                	  ResultSet rs2 = ps2.executeQuery();
                  while(rs2.next()) { %>
                  <tr>
@@ -248,6 +249,7 @@ if(getuser == null) {
       </div>
    </div>
 </div>
+
 
 
 		<script src="scripts/slidebars.js"></script>

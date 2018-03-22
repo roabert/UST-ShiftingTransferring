@@ -8,14 +8,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+		<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		 
 <head>
 <meta charset="ISO-8859-1">
@@ -42,10 +39,14 @@ if(getuser == null) {
      
     while(rs.next()) {
     %>
-			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="120" height = "120">
+			<center>
+			<navhead>
+			<img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>"  width = "150" height = "150" class="responsive">
+           
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
-			<p><span><%=getuser %></span><br>
+			<p><span><%=getuser %></span><br></p>
+			</navhead>
 			</center>
 			 <nav class="navigation">
     <ul class="mainmenu">
@@ -63,26 +64,29 @@ if(getuser == null) {
 <div canvas="contain">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+   PERSONAL INFORMATION
+   </a>
+   </center>
 </div>
-
-
-<br>
-            <p><i>PROFILE INFORMATION</i></p>
-
- 
  <%
     
     String returnsql = "SELECT * FROM student_shifter WHERE studentid = ?";
@@ -93,35 +97,48 @@ if(getuser == null) {
      
     
     %>
-    <br>
-     <div class="container">
-          <fieldset>
-    
-            <div class="col-lg-4 col-md-4 col-sm-12 pull right">
-            <% while(usercontent.next()) { %>
-               <center>
-               <br>
-            <img src="DisplayProfilePic?pkey=<%=usercontent.getInt("studentid")%>" width = "250" height = "250" class="responsive">
-            <br><br>
-         
-            <button type="button" class="btn button btn-warning btn-lg"><span class="glyphicon glyphicon-pencil"></span>Edit Profile</button>
-            </center>
-             </div>
-            <div class="col-lg-8 col-md-8 col-sm-11 pull right">
-            <label for="name">Name</label> <input type="text" size="60" id=name value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>" class="form-control" readonly>
-            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getInt("studentid")%>" class="form-control" readonly>
-            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("oldprogram") %>" class="form-control" readonly>
-            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("typeofstudent") %>" class="form-control" readonly>
-            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("gender") %>" class="form-control" readonly>
-            <label for="name">Name</label><input type="text" size="60" value="<%=usercontent.getString("newprogram") %>" class="form-control" readonly>
-             <%
+      <div id="content">
+    <div class="container">
+    <% while(usercontent.next()) { %>
+<div class="profile">
+
+	<div class="wrap">
+	
+		<div class="profile-main">
+		<fieldset>
+		<legend>
+		<p>USER ID: <%=usercontent.getString("studentid") %></p>
+		</legend>
+			<div class="profile-pic wthree">
+					
+				<img src="DisplayProfilePic?pkey=<%=usercontent.getInt("studentid")%>" width = "250" height = "250" class="responsive">
+           
+				<h2><%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%></h2>
+			</div>
+			
+			<div class="w3-message">
+			<a>Type</a> <br>
+				<h5><%=usercontent.getString("typeofstudent") %></h5><br><a>Program</a> 
+				<h5><%=usercontent.getString("oldprogram") %></h5>
+			<div class="w3ls-touch">
+			</div>
+			</div>
+			            <%
                }
             }   catch(Exception e) {
             	e.printStackTrace();
             }         
             %>
-            </div>
-            
+		</div>
+  </div>
+
+</div>
+</div>
+</div>
+  
+</div>
+
+</div>     
             
             <%-- <div class="table-responsive">
             <% while(usercontent.next()) { %>
@@ -164,13 +181,6 @@ if(getuser == null) {
             %>
             </div> --%>
             
-          </fieldset>
-     </div>
-
-					
-</div>
-</div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
@@ -188,6 +198,6 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-
+     <div class="footer"></div>
 </body>
 </html>

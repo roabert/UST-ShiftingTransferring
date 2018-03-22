@@ -90,7 +90,13 @@ if(getuser == null) {
   <a href="#" >Guidelines</a>
 </div>
          <%
-    
+         PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (secgen_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
+         pss.setString(1, getuser);
+         ResultSet rss = pss.executeQuery();
+         if(rss.next()) {
+
+         	 response.sendRedirect("Shifter-ShiftFailed.jsp");
+         }
          %>
 </div>
 <br>    <p id="text_steps"><i>STEP 3: FILL UP MEMO</i></p>

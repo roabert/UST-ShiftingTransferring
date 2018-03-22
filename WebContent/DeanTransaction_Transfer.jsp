@@ -191,7 +191,7 @@ if(getuser == null) {
 
 <script>
 $(document).ready(function() {
-    $('table.table-striped').DataTable();
+    $('table.table-sortable').DataTable();
 } );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";

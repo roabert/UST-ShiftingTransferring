@@ -65,6 +65,7 @@ public class CreateScheduleProcess extends HttpServlet {
 			set.setShifterid(getshifters[i]);
 			set.setExamdate(getexamdate);
 			set.setStart(getstarttime);
+			set.setVenue(getvenue);
 			set.setEnd(getendtime);
 			set.setRemarks(remarks);
 			set.doSetExam(conn);

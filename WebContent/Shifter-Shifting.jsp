@@ -20,7 +20,7 @@
 		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Student-Shifter | Memo</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
@@ -61,11 +61,11 @@ if(rs1.next()) {
 	webpage = "Shifter-Shifting-2.jsp";
 	 response.sendRedirect("Shifter-Shifting-2.jsp");
 } 
-MemoPrivelegeDAO m = new MemoPrivelegeDAO();
-m.setUserid(getuser);
-m.showMemo(conn);
-if(m.getUserid() != null) {
-	 response.sendRedirect("Shifter-Memo.jsp");
+PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND dean_reviewed = 'Approved'");
+ps2.setString(1, getuser);
+ResultSet rs2 = ps2.executeQuery();
+if(rs2.next()) {
+	response.sendRedirect("Shifter-Memo.jsp");
 }
 
 MemoDoneDAO md = new MemoDoneDAO();

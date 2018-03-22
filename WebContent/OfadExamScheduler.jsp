@@ -9,7 +9,6 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -33,7 +32,6 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <!-- Add Media helper (this is optional) -->
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-
 <head>
 <meta charset="ISO-8859-1">
 <title>OFAD | Exam Schedule</title>
@@ -128,7 +126,6 @@ if(getuser == null) {
             Create Exam Schedule
             </button>
             </form>
-</div>
      
     <br>
        
@@ -140,16 +137,19 @@ if(getuser == null) {
           <div class="tab-content">
           <fieldset>
           <div class="table-responsive" style="overflow-x:auto; height:500px;">
+
               <table class="table table-stripped table-sortable">
-              <thead>
-                 <th>Date</th>
+			  <thead>
+              <tr>
+                  <th>Date</th>
                  <th>Time</th>
                  <th>Venue</th>
                  <th>Remarks</th>
                  <th>View Students</th>
                  <th></th>
-              </thead>
-              <tbody>
+              </tr>
+			  </thead>
+			  <tbody>
               <%
                try{
             	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, remarks FROM exam_schedules_shifters");
@@ -161,11 +161,11 @@ if(getuser == null) {
             	           do {
               %>
               <tr>
-                <td><%=r.getString("date") %></td>
+                   <td><%=r.getString("date") %></td>
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
-                <td>Venue?</td>
+      <td></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><a  class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
+                <td><a class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
                 <td><button type="submit" class="btn btn-warning">Edit</button></td>
               </tr>
 			    <div id="<%=r.getString("date") %>" style="width:400px;display: none;">
@@ -190,7 +190,7 @@ if(getuser == null) {
                     }
                } catch(SQLException e) {out.print(e);}
               %>
-              </tbody>
+			  </tbody>
               </table>
               </div>
           </fieldset>
@@ -200,7 +200,6 @@ if(getuser == null) {
 </div>
 </div>
 
-<div class="footer"></div>
 <div class="modal fade createsched" role="dialog">
    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
@@ -209,7 +208,7 @@ if(getuser == null) {
             <p class=""><i>Create Schedule</i></p>
          </div>
          <form action="CreateScheduleProcess" method="post">
-         <div class="modal-body" style="overflow-x:auto;">
+         <div class="modal-body" style="overflow-x:auto; height:500px; width:100%;">
           <div class="container">
             
            <table>
@@ -224,6 +223,10 @@ if(getuser == null) {
            <tr>
                <th> <h4>End Time</h4></th>
                <th><input type = "time" class="form-control" name = "endttime"><br></th>
+               </tr>
+                  <tr>
+               <th> <h4>Venue</h4></th>
+               <th><input type = "text" class="form-control" name = "venueexam"><br></th>
                </tr>
             </table><br><br>
          
@@ -303,6 +306,7 @@ if(getuser == null) {
    </div>
 </div>
 
+
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
@@ -311,7 +315,7 @@ if(getuser == null) {
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
-} );
+});
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";

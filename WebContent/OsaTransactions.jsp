@@ -8,31 +8,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<!-- Add jQuery library -->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
-
-	<!-- Add fancyBox main JS and CSS files -->
-	<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-	<link rel="stylesheet" type="text/css" href="fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
-
-	<!-- Add Button helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
-	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-
-	<!-- Add Thumbnail helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
-	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-
-	<!-- Add Media helper (this is optional) -->
-	<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+<!-- Add Button helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<!-- Add Thumbnail helper (this is optional) -->
+<link rel="stylesheet" type="text/css" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<!-- Add Media helper (this is optional) -->
+<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>OSA | Transactions</title>
@@ -93,11 +91,14 @@ if(getuser == null) {
    </a>
    </center>
 </div> 
+<br>
+<div class="container">
  <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      <table class="table">
+      <table class="table table-sortable">
+      <thead>
         <tr>
           <th>ID</th>
           <th>Student Name</th>
@@ -106,11 +107,10 @@ if(getuser == null) {
           <th>Current</th>
           <th>Incoming</th>
           <th>View Documents</th>
-           <th>Remarks</th>
-          <th>Done</th>
+          <th>Remarks</th>
         </tr>
-        
-        
+        </thead>
+        <tbody>
         <%
          try{
         String displaystudents_ofad = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.userid WHERE osa_verified = 'In-progress'";
@@ -118,33 +118,40 @@ if(getuser == null) {
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
         %>
-        <form action = "OSA_verifyprocess" method = "post">
+        
         <tr>
-        <td><input type="hidden" name="getstudent" value = "<%=rs.getString("transferee_id")%>"><%=rs.getString("transferee_id") %></td>
-        <td><input type="hidden" value = "<%=getuser%>" name = "getuser"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><%=rs.getString("transferee_id") %></td>
+        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("typeofstudent") %></td>
         <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %>, <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><a href="javascript:;" id = "<%=rs.getString("transferee_id")%>">View Documents</a></td>
-        <td><select class="form-control" name="remarks">
+        <td>
+        <form action = "OSA_verifyprocess" method = "post">
+        <select class="form-control" name="remarks">
         <option value="Approved">Approve</option>
         <option value="Disapproved">Disapprove</option>
-        
-        </select></td>
-        <td><button type="submit" onclick="return confirm('Are you sure?');" class="btn btn-warning">Submit</button></td>
-        </tr>
+        </select>
+        <input type="hidden" value = "<%=getuser%>" name = "getuser">
+        <input type="hidden" name="getstudent" value = "<%=rs.getString("transferee_id")%>">
+        <button type="submit" onclick="return confirm('Are you sure?');" 
+        class="btn btn-warning">Submit</button>
         </form>
+        </td>
+        </tr>
+        
         <%}
            
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
-        
+        </tbody>
       </table>
       </center>
       </div>
   </fieldset>
+  </div>
   </div>
 </div>
 
@@ -154,6 +161,9 @@ if(getuser == null) {
 		<script src="scripts/scripts.js"></script>
   <div class="footer"></div>
 <script>
+$(document).ready(function() {
+    $('table.table-sortable').DataTable();
+} );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";

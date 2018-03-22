@@ -36,7 +36,7 @@ public class LoginDAO implements DatabaseSQLs {
 		
 		
 		try {
-		PreparedStatement ps = conn.prepareStatement(loginuserSQL);
+		PreparedStatement ps = conn.prepareStatement("SELECT userid, password, type FROM useraccounts WHERE userid = ? AND password = ?");
 		ps.setString(1, userid);
 		ps.setString(2, password);
 	/**	ps.setString(3, userid);

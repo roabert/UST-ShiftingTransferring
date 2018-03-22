@@ -13,7 +13,7 @@ public class MemoPrivelegeDAO {
 	}
 	public void showMemo(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND dean_reviewed = 'Approved'");
 			ps.setString(1, userid);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
