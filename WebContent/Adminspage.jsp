@@ -51,10 +51,16 @@ if(getuser == null) {
 			</center>
 		</navhead>
 			 <nav class="navigation">
-    <ul class="mainmenu">
+     <ul class="mainmenu">
     <li><a href="Adminspage.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="AdminsAccount.jsp"><span class="glyphicon glyphicon-duplicate"></span> Accounts</a></li>
-    <li><a href="AdminsStudent.jsp"><span class="glyphicon glyphicon-pencil"></span> Students</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Students</a>
+    <ul class="submenu">
+        <li><a href="AdminsStudent_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="AdminsStudent_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
+      </ul>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>

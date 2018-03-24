@@ -45,6 +45,7 @@ public class loginprocess extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 		String uname_get = request.getParameter("userbox");
 		String pwd_get = request.getParameter("pwdbox");
 
@@ -55,14 +56,14 @@ public class loginprocess extends HttpServlet {
 			HttpSession session = request.getSession();
 			   if(login.getType().equals("OFAD")) {
 			    	session.setAttribute("setuser", uname_get);
-			    	request.getRequestDispatcher("Ofadpage.jsp")
+			    	request.getRequestDispatcher("OfadTransaction_Shifter.jsp")
 			    	.forward(request, response);
 			    	
 			    }
 			     else if(login.getType().equals("Admin")) {
 			    	
 		    	session.setAttribute("setuser", uname_get);
-		    	request.getRequestDispatcher("Adminspage.jsp")
+		    	request.getRequestDispatcher("AdminsStudent_Shifter.jsp")
 		    	.forward(request, response);
 			    }
 			
@@ -70,23 +71,23 @@ public class loginprocess extends HttpServlet {
 			    
 			    else if(login.getType().equals("Dean")) {
 			    	session.setAttribute("setuser", uname_get);
-			    	request.getRequestDispatcher("Deanpage.jsp")
+			    	request.getRequestDispatcher("DeanTransaction_Shifter.jsp")
 			    	.forward(request, response);
 			    	
 			    }
 			    else if(login.getType().equals("Registrar")) {
 			    	session.setAttribute("setuser", uname_get);
-			    	request.getRequestDispatcher("Registrarpage.jsp")
+			    	request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("OSG")) {
 			    	session.setAttribute("setuser", uname_get);
-			    	request.getRequestDispatcher("Osgpage.jsp")
+			    	request.getRequestDispatcher("OsgTransaction_Shifter.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("OSA")) {
 			    	session.setAttribute("setuser", uname_get);
-			    	request.getRequestDispatcher("Osapage.jsp")
+			    	request.getRequestDispatcher("OsaTransactions.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("Shifter")) {
@@ -100,7 +101,8 @@ public class loginprocess extends HttpServlet {
 			    	.forward(request, response);
 			    }
 			    else{
-				response.sendRedirect("indexError.html");
+				request.getRequestDispatcher("index.html").include(request, response);
+				out.print("<script>alert('Invalid Credentials!');</script>");
 			    } 
 	       
 	}

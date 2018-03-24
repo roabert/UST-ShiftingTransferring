@@ -59,16 +59,16 @@ if(getuser == null) {
 			
 </navhead>
 			 <nav class="navigation">
-    <ul class="mainmenu">
+   <ul class="mainmenu">
     <li><a href="Adminspage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="AdminsAccount.jsp" class="active"><span class="glyphicon glyphicon-duplicate"></span> Accounts</a></li>
-    <li><a href="AdminsStudent.jsp"><span class="glyphicon glyphicon-pencil"></span> Students</a>
-<!--       <ul class="submenu">
-        <li><a href="">Tops</a></li>
-        <li><a href="">Bottoms</a></li>
-        <li><a href="">Footwear</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Students</a>
+    <ul class="submenu">
+        <li><a href="AdminsStudent_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="AdminsStudent_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
       </ul>
- -->    </li>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -138,7 +138,15 @@ if(getuser == null) {
         <td><%=rs.getString("type") %></td>
         
         <td>
-          <form action = "AdminDisplayUsers.jsp"><input type= "hidden" value = "<%=rs.getString("userid")%>" name="edituser"><button type="submit" class="btn btn-warning">Edit</button></form>
+         <button type="button"
+          data-target=".edit_users"
+          data-userid = "<%=rs.getString("userid") %>"
+          data-firstname="<%=rs.getString("first_name") %>"
+          data-middlename="<%=rs.getString("middle_name") %>"
+          data-lastname="<%=rs.getString("last_name") %>"
+          data-type="<%=rs.getString("type") %>"
+          data-toggle="modal"
+           class="btn btn-warning useraccounts">Edit</button>
         </td>
         
         </tr>
@@ -155,6 +163,8 @@ if(getuser == null) {
       </center>
       
       </div>
+      <br>
+      <br>
       <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Users Here</button></form>
       </div>
     
@@ -166,11 +176,11 @@ if(getuser == null) {
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
        <form id = "form1" onsubmit="false">
-          <div class="modal-header" style="background-color:black;">
+          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <p><i>Create Users</i></p>
+           <h3><i>Create Users</i></h3>
           </div>
-          <div class="modal-body">
+          <div class="modal-body"> 	
             <div class="col-sm-12">
             <br>
             
@@ -219,13 +229,62 @@ if(getuser == null) {
             </div>
           </div>
           <div class="modal-footer">
-            <button onclick = "submitForm()" class = "btn btn-warning">Create</button>
+          <center>
+            <button onclick = "submitForm()" class = "btn btn-warning btn-md">Create</button>
+            <button type="submit" class = "btn btn-danger btn-md" data-dismiss="modal">Cancel</button>
+            </center>
           </div>
           </form>
        </div>
     </div>
   </div>
 
+<!-- Edit account -->
+
+<div class="modal fade edit_users" role="dialog">
+ <div class="modal-dialog" style="width:600px">
+   <div class="modal-content">
+   <form action = "AdminEditUsers" method="post">
+     <div class="modal-header">
+       <button class="close" type="button" data-dismiss="modal">&times;</button>
+       <h3 class="modal-title">
+          Edit User Accounts
+       </h3>
+     </div>
+     <div class="modal-body">
+     <br>
+       <table class="table">
+       <tr>
+          <td>Last Name:</td> 
+          <td><input type="hidden" name = "useridget" class="userid"><input type="text" class="lastname form-control" size="50" name = "edit_lname"></td>
+      </tr>
+      <tr>
+      <td>First Name: </td>
+      <td><input type="text" class="firstname form-control" size="50" name = "edit_fname"></td>
+     </tr>
+      <tr>
+      <td>Middle Initial: </td> 
+     <td><input type="text" class="form-control middlename" size="50"name = "edit_mname"></td>
+        </tr>
+        <tr>
+            <td>Position: </td> 
+            <td><input type="text" class="form-control type" size="50" name="edit_type" readonly></td>
+     </tr>
+     <tr>
+     <td>College/Faculty(If Dean): </td> 
+     <td><input type="text" class="form-control" size="50" value="<%%>" name="edit_college"></td>
+        </tr> 
+       </table>
+     </div>
+     <div class="modal-footer">
+        <button type="submit" class = "btn btn-warning btn-md">Modify</button>
+            <button type="submit" class = "btn btn-danger btn-md" data-dismiss="modal">Cancel</button>
+     </div>
+     </form>
+   </div>
+ </div>
+</div>
+ 
 <script src="scripts/slidebars.js"></script>
 <script src="scripts/scripts.js"></script>
 
@@ -258,14 +317,24 @@ function submitForm() {
 }
 
 </script>
- <!--       
- 	<script type="text/javascript">
-	      $("#createusers").draggable({
-	          handle: ".modal-header"
-	      });
-	</script>
-      
--->
+  <script>
+     $(document).on( "click", '.useraccounts',function(e) 
+    		 {
+    	    var userid = $(this).data('userid');
+    	    var lastname = $(this).data('lastname');
+    	    var firstname = $(this).data('firstname');
+    	    var middlename = $(this).data('middlename');
+    	    var type = $(this).data('type');
+    	    
+
+    	    $(".userid").val(userid);
+    	    $(".lastname").val(lastname);
+    	    $(".firstname").val(firstname);
+    	    $(".middlename").val(middlename);
+    	    $(".type").val(type);
+    	//    tinyMCE.get('business_skill_content').setContent(content);   
+    	});
+     </script>
          <div class="footer"></div>
 </body>
 </html>
