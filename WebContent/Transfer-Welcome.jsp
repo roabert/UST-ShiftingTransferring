@@ -7,11 +7,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+		<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,7 +20,7 @@
 		 
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Student | Profile</title>
 </head>
 <body>
 <%
@@ -40,12 +40,13 @@ if(getuser == null) {
     ResultSet rs = psts.executeQuery();
      
     while(rs.next()) {
-    %>
+    %><navhead>
 			<center><img src="DisplayProfilePic?pkey=<%=rs.getString("userid")%>" width ="120" height = "120">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Transfer-Welcome.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -60,26 +61,31 @@ if(getuser == null) {
 
 		</div>
 <div canvas="contain">
-<div id="main">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   PERSONAL INFORMATION  
+   </a> 
+   </center>
+  
 </div>
-       <br>     <p><i>PROFILE INFORMATION</i></p>
-</div>
- 
  <%
     
     String returnsql = "SELECT * FROM student_transfer WHERE userid = ?";
@@ -90,63 +96,49 @@ if(getuser == null) {
      
     
     %>
-    <br>
-     <div class="container">
-          <fieldset>
-   
-            <center>
-            <div class="table-responsive">
-            <% while(usercontent.next()) { %>
-            <table class="table">
-               <tr>
-                 <td>Name </td>
-                 <td><input type="text" size="60" value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>" class="form-control" readonly></td>
-                 <td rowspan = "5"><center><img src="DisplayProfileTransfer?pkey=<%=usercontent.getString("userid")%>" width = "250" height = "250" class="responsive"></center></td>
-               </tr>	
-               <tr>
-                 <td>ID </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("userid")%>" class="form-control" readonly></td>
-               </tr>
-               <tr>
-                 <td>Current School </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("oldschool") %>" class="form-control" readonly></td>
-               </tr>
-               <tr>
-                 <td>Type </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("typeofstudent") %>" class="form-control" readonly></td>
-               </tr>
-               <tr>
-                 <td>Gender </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("gender") %>" class="form-control" readonly></td>
-               </tr>
-               <tr>
-                 <td>Outgoing: </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("newprogram") %>" class="form-control" readonly></td>
-                 <td><center><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit Profile</button></center></td>
-               </tr>
-            </table>
-            <%
+      <div id="content">
+    <div class="container">
+    <% while(usercontent.next()) { %>
+<div class="profile">
+
+	<div class="wrap">
+	
+		<div class="profile-main">
+		<fieldset>
+		<legend>
+		<p>USER ID: <%=usercontent.getString("userid") %></p>
+		</legend>
+			<div class="profile-pic wthree">
+					
+				<img src="DisplayProfilePic?pkey=<%=usercontent.getString("userid")%>" width = "250" height = "250" class="responsive">
+           
+				<h2><%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%></h2>
+			</div>
+			
+			<div class="w3-message">
+			<a>Type</a> <br>
+				<h5><%=usercontent.getString("typeofstudent") %></h5><br><a>Program</a> 
+				<h5><%=usercontent.getString("oldschool") %></h5>
+			<div class="w3ls-touch">
+			</div>
+			</div>
+			            <%
                }
             }   catch(Exception e) {
             	e.printStackTrace();
             }         
             %>
-            </div>
-             </center>
-          </fieldset>
-     </div>
+		</div>
   </div>
-  <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
 
 </div>
+</div>
+</div>
+  
+</div>
 
+</div>     
+ <div class="footer"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>

@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -69,6 +69,7 @@ if(getuser == null) {
         
       </ul>
     </li>
+    <li><a href="AdminCourses.jsp"><span class="glyphicon glyphicon-duplicate"></span>Courses</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -134,7 +135,7 @@ if(getuser == null) {
 			<td><%=rs.getString("typeofstudent") %></td>
 			<td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
 			<td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</a></td>
+        <td><button class="btn" href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</button></td>
         </tr>
         <%}
            

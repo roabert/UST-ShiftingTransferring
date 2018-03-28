@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		 
@@ -82,10 +84,10 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   
-   PERSONAL INFORMATION
-   </a>
+   PERSONAL INFORMATION  
+   </a> 
    </center>
+  
 </div>
  <%
     

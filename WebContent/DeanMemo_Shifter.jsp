@@ -9,9 +9,9 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -51,8 +51,11 @@ if(getuser == null) {
 		<div>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
+			<navhead>
 			<h1>Dean<br></h1>
 			<p><span><%=getuser %></span><br>
+			</p>
+			</navhead>
 			</center>
 			 <nav class="navigation">
     <ul class="mainmenu">
@@ -107,7 +110,9 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-MEMO: SHIFTING
+	<span style="font-size:30px;cursor:pointer;color: white; float:left;padding-top:10px;" class="glyphicon glyphicon-bell"></span>
+   
+	MEMO: SHIFTING
    </a>
    </center>
 </div>
@@ -213,5 +218,6 @@ function closeNav() {
     	});
      </script>
      
+          <div class="footer"></div>
 </body>
 </html>

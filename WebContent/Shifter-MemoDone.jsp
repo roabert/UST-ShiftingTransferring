@@ -9,9 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+		
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -104,16 +104,8 @@ if(getuser == null) {
        </center>
           </div>
   </div>
-  <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
 </div>
+<div class="footer"></div> 
 <script language="javascript">
 populateCountries("country", "state");
 </script>

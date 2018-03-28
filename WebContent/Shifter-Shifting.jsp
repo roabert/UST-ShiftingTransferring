@@ -9,8 +9,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -158,7 +158,21 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
     %>
                 <div class="col-lg-6 col-md-6 col-sm-12 pull-right">
   
-         
+            <center>
+    <h2>Shifting To College/Faculty/Institute</h2>
+    <select id="country" name="outgoing_college">
+
+</select>
+    <h2>Shifting To Program:</h2>
+    <select id="state" name="outgoing_program">
+
+</select>
+
+    </center>
+  <!--   <img id="imageToSwap" src="images/d.gif" /> -->
+  </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 pull-right">
+
     <input type="hidden" name="studentid" value="<%=rs.getString("studentid")%>">
     <input type="hidden" name="typeofstudent" value="<%=rs.getString("typeofstudent")%>">
     <h2>Current College</h2>
@@ -170,20 +184,6 @@ if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) 
     } catch(Exception e) {
     	out.print(e);
     } %>
-    </center>
-  <!--   <img id="imageToSwap" src="images/d.gif" /> -->
-  </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 pull-right">
-   <center>
-    <h2>Outgoing College</h2>
-    <select id="country" name="outgoing_college">
-
-</select>
-    <h2>Outgoing Program</h2>
-    <select id="state" name="outgoing_program">
-
-</select>
-
     </center>
    <!--  <img id="imageToSwap" src="images/d.gif" /> -->
      	</div>

@@ -10,9 +10,8 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -111,7 +110,7 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-	TRANSACTIONS: SHIFTERS
+   TRANSACTIONS: SHIFTERS
    </a>
    </center>
 </div>
@@ -151,7 +150,10 @@ if(getuser == null) {
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>   
+        <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
+        <button type="button" class="btn">Download</button>
+        </center>
+        </td>   
         <td>
 			<form action = "Dean_verifyprocess" method = "post">
 			<select class="form-control" name="remarks">

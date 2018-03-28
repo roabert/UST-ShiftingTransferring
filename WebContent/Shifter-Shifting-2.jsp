@@ -9,8 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,7 +18,7 @@
 		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Step 2</title>
+<title>Student | Shifting</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
@@ -52,11 +51,15 @@ if(getuser == null) {
      
     while(rs.next()) {
     %>
+   
 			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="120" height = "120">
 			<%} }catch(SQLException e) {out.print(e);} %>
+			 <navhead>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
+			</navhead>
 			</center>
+			
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Shifter-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -75,18 +78,32 @@ if(getuser == null) {
 <div id="wrapper">
 
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   
+  TAKE EXAM
+   </a>
+   </center>
+</div>
+
+
+<br>
 </div>
          <%
          PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is NOT NULL");
@@ -98,22 +115,12 @@ if(getuser == null) {
   
          %>
 </div>
-<br>    <p id="text_steps"><i>STEP 2: TAKE EXAM</i></p>
-
+<br>  
      <div class="container">
 
           </div>
   </div>
-  <footer class="footer-distributed">
 
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
-</div>
 <script language="javascript">
 populateCountries("country", "state");
 </script>
@@ -156,6 +163,8 @@ function step1Submit() {
 	id("step1shifter").action = "Requirements_Upload";
 	id("step1shifter").submit();
 }
-;</script>
+;
+
+</script>
 </body>
 </html>

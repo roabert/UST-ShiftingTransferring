@@ -82,8 +82,7 @@
 	</form>
 </div>
           </div>
-         <div id="footer">
-        </div>
+
 </div>
 			 
 	
@@ -119,6 +118,6 @@ function swapImage(){
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="../scripts/slidebars.js"></script>
 		<script src="../scripts/scripts.js"></script>
-		 
+		 <div class="footer"></div> 
 </body>
 </html>

@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -123,7 +123,6 @@ if(getuser == null) {
           <th>Student Name</th>
           <th>Current School</th>
           <th>Current Course/Program</th>
-          <th>Incoming</th>
           <th>Verify Docs</th>
           <th>Remarks</th>
         </thead>

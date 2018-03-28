@@ -9,14 +9,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="CSS/tracker.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
-	
-		 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Student | Tracker</title>
 </head>
 <body>
 <%
@@ -29,10 +30,12 @@ if(getuser == null) {
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>
+		<navhead>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+		</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Transfer-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
@@ -51,22 +54,33 @@ if(getuser == null) {
 <div id="wrapper">
 
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+ TRACKER
+   </a>
+   </center>
 </div>
-       <br>     <p><i>STEP 1: UPLOAD PRE-REQUIREMENTS</i></p>
+
+
+<br>
 </div>
-  <div class="container">
+ <div class="container">
 <div class="row">
 <center>
 <ol class="progress-meter">
@@ -179,20 +193,10 @@ if(getuser == null) {
   </center>
 </div>
 </div>
- 
-  
-  <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
 </div>
 
 
+<div class="footer"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>

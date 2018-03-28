@@ -9,8 +9,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -39,7 +39,7 @@ if(getuser == null) {
 %>
 
 <div off-canvas="slidebar-1 left reveal">
-		<div>
+
 		<navhead>
 		<br>
 			 <%
@@ -94,6 +94,7 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   <span style="font-size:30px;cursor:pointer;color: white; float:left;padding-top:10px;" class="glyphicon glyphicon-bell"></span>
    
    FILL UP MEMO
    </a>
@@ -105,7 +106,7 @@ if(getuser == null) {
 </div>
       <div id="content">
     <div class="container">
-<div class="memo">
+<div class="announcement">
 <br>
 <form action = "SubmitMemoProcess" method="post">
 <input type="hidden" name="getstudent" value="<%=getuser%>">
@@ -170,7 +171,6 @@ Term # <input type="number" id="fname" name="semester" placeholder="Term #" styl
   </div>
 </div>
 </div>
-
   <div class="footer"></div>    
 <script language="javascript">
 populateCountries("country", "state");
@@ -215,5 +215,6 @@ function step1Submit() {
 	id("step1shifter").submit();
 }
 ;</script>
+
 </body>
 </html>

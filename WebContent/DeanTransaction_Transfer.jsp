@@ -10,8 +10,8 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -107,8 +107,7 @@ if(getuser == null) {
 <div class="topnav">
    <center>
    <a>
-   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span> 
    TRANSACTIONS: TRANSFEREES
    </a>
    </center>
@@ -126,10 +125,8 @@ if(getuser == null) {
           <th>ID</th>
           <th>Student Name</th>
           <th>Current School</th>
-          <th>Current Course</th>
-          <th>Incoming</th>
+          <th>Transferring To:</th>
           <th>Verify Docs</th>
-          <th>Remarks</th>
           <th>Done</th>
         </tr>
 		</thead>
@@ -152,8 +149,8 @@ if(getuser == null) {
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a href="javascript:;" id="<%=rs.getString("transferee_id")%>">View Documents</a></td>
+         <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button>
+         <button type="button" class="btn">Download</button></td>
         <td>
 		<form action = "Dean_verifyTransfer" method = "post">
 		<input type="hidden" value = "<%=rs.getString("transferee_id")%>" name = "getstudent">

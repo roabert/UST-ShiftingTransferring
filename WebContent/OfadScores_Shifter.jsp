@@ -148,13 +148,13 @@ if(getuser == null) {
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td>
-		<form action="EncodeScoreShifter" method="post">
+		<form action="EncodeScoreShifter" class="form-inline" method="post">
 		<input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
 		<input type="hidden" name="getuser" value="<%=getuser%>">
-		<input type = "number" size="30" min="0" max="100" class="form-control" name="mathscore" required>
-		<input type = "number" size="30" min="0" max="100" class="form-control" name="sciencescore" required>
-		<input type = "number" size="30" min="0" max="100" class="form-control" name="englishscore" required>
-		<input type = "number" size="30" min="0" max="100" class="form-control" name="iqscore" required>
+		<input type = "number" size="30" min="0" max="100" placeholder="Math" class="form-control" name="mathscore" required>
+		<input type = "number" size="30" min="0" max="100" placeholder="Sci" class="form-control" name="sciencescore" required>
+		<input type = "number" size="30" min="0" max="100" placeholder="Eng" class="form-control" name="englishscore" required>
+		<input type = "number" size="30" min="0" max="100" placeholder="IQ" class="form-control" name="iqscore" required>
 		<button type="submit" class="btn btn-warning" 
 		onclick="return confirm('Are you sure? Changes cannot be done after submitting.')">Submit</button>
 		</form>

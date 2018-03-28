@@ -10,8 +10,8 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -61,7 +61,7 @@ if(getuser == null) {
 			 <nav class="navigation">
    <ul class="mainmenu">
     <li><a href="Adminspage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="AdminsAccount.jsp" class="active"><span class="glyphicon glyphicon-duplicate"></span> Accounts</a></li>
+    <li><a href="AdminsAccount.jsp"><span class="glyphicon glyphicon-duplicate"></span> Accounts</a></li>
     <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Students</a>
     <ul class="submenu">
         <li><a href="AdminsStudent_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
@@ -69,8 +69,7 @@ if(getuser == null) {
         
       </ul>
     </li>
-    <li><a href="AdminCourses.jsp"><span class="glyphicon glyphicon-duplicate"></span>Courses</a></li>
-   
+	<li><a href="#"  class="active"><span class="glyphicon glyphicon-duplicate"></span>Courses</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -102,8 +101,7 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   
-   ACCOUNT DETAILS
+   MANAGE COURSES
    </a>
    </center>
 </div>
@@ -122,43 +120,7 @@ if(getuser == null) {
           	<th>Edit Users</th>
         </thead>    
         <tbody>
-       <%
-         try{
-             String displayusers = "SELECT userid, last_name, first_name, middle_name, type FROM admins UNION SELECT userid, last_name, first_name, middle_name, type FROM dean UNION SELECT userid, last_name, first_name, middle_name, type FROM ofad UNION SELECT userid, last_name, first_name, middle_name, type FROM osa UNION SELECT userid, last_name, first_name, middle_name, type FROM registrar UNION SELECT userid, last_name, first_name, middle_name, type FROM secgen";
-        PreparedStatement ps = conn.prepareStatement(displayusers); 
-        ResultSet rs = ps.executeQuery();
-           while(rs.next()) {
-        %>
-     
-   
-        
-        
-       
-        <tr>
-        <td><%=rs.getString("userid") %></td>
-        <td><%=rs.getString("first_name") %> <%=rs.getString("middle_name") %>. <%=rs.getString("last_name") %></td>
-        <td><%=rs.getString("type") %></td>
-        
-        <td>
-         <button type="button"
-          data-target=".edit_users"
-          data-userid = "<%=rs.getString("userid") %>"
-          data-firstname="<%=rs.getString("first_name") %>"
-          data-middlename="<%=rs.getString("middle_name") %>"
-          data-lastname="<%=rs.getString("last_name") %>"
-          data-type="<%=rs.getString("type") %>"
-          data-toggle="modal"
-           class="btn btn-warning useraccounts">Edit</button>
-        </td>
-        
-        </tr>
-        
-        <%}
-           
-         }catch(Exception e) {
-        	e.printStackTrace();
-        } %>
-        </tbody>
+ 
       </table>
     
         
@@ -167,7 +129,7 @@ if(getuser == null) {
       </div>
       <br>
       <br>
-      <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Users Here</button></form>
+      <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Faculty Here</button></form>
       </div>
     
       <br><br>
@@ -180,52 +142,23 @@ if(getuser == null) {
        <form id = "form1" onsubmit="false">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h3><i>Create Users</i></h3>
+         
           </div>
           <div class="modal-body"> 	
             <div class="col-sm-12">
             <br>
             
-            <h4>User Credentials</h4>
+            <h4>Faculty</h4>
             <center>
             <table class="table">
               <tr>
-               <td>User ID: </td>
+               <td>Faculty/College/Institute: </td>
                <td><input type ="text" name="new_userid" class="form-control" required></td>
               </tr>
-              <tr>
-              <td>Password: </td>
-              <td><input type ="password" name="new_password" id="pw1" class="form-control" required></td>
-              </tr>
-              <tr>
-              <td>Confirm Password: </td>
-              <td><input type ="password" name="new_password2" id="pw2" class="form-control" required></td>
-              </tr>
+             
             </table>
             </center>
-            <h4>User Information</h4>
-              <center>
-                <table class="table">
-                  <tr>
-                    <td>Last Name: </td>
-                    <td><input type ="text" name="new_lname" class="form-control" required></td>
-                  </tr>
-                   <tr>
-                    <td>First Name: </td>
-                    <td><input type ="text" name="new_fname" class="form-control" required></td>
-                  </tr>
-                  <tr>
-                    <td>Middle Name: </td>
-                    <td><input type ="text" name="new_mname" class="form-control" required></td>
-                  </tr>
-                   <tr>
-                    <td>Gender: </td>
-                    <td><input type ="text" size="30" name="new_gender" class="form-control" required></td>
-                  </tr>
-                  <tr>
-                    <td>Office: </td>
-                    <td><input type ="text" name="new_type" class="form-control" required></td>
-                  </tr>
+            
                 </table>
               </center>
             </div>
@@ -319,24 +252,7 @@ function submitForm() {
 }
 
 </script>
-  <script>
-     $(document).on( "click", '.useraccounts',function(e) 
-    		 {
-    	    var userid = $(this).data('userid');
-    	    var lastname = $(this).data('lastname');
-    	    var firstname = $(this).data('firstname');
-    	    var middlename = $(this).data('middlename');
-    	    var type = $(this).data('type');
-    	    
-
-    	    $(".userid").val(userid);
-    	    $(".lastname").val(lastname);
-    	    $(".firstname").val(firstname);
-    	    $(".middlename").val(middlename);
-    	    $(".type").val(type);
-    	//    tinyMCE.get('business_skill_content').setContent(content);   
-    	});
-     </script>
+ 
          <div class="footer"></div>
 </body>
 </html>

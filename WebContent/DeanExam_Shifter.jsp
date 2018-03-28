@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
+<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -156,10 +156,10 @@ if(getuser == null) {
         <input type="hidden" name="getuser" value="<%=getuser%>">
         <input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
         <select class="form-control" name="studentstatus">
-    		<option value="Approved">Passed</option>
-        	<option value="Disapproved">Failed</option>
+    		<option value="Approved">Approved</option>
+        	<option value="Disapproved">Disapproved</option>
         </select>
-        <button type="submit" onclick="return confirm('Are you sure? Changes will not be done once submitted.');" 
+        <button type="submit" onclick="return confirm('Are you sure? Student will be considered approved by the dean once submitted.');" 
         class="btn btn-warning">Submit</button>
         </form>
         </td>

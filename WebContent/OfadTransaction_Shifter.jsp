@@ -149,7 +149,10 @@ if(getuser == null) {
    
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</a></td>
+        <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
+        <button type="button" class="btn">Download</button>
+        </center>
+        </td> 
         <td>
         <form action = "Ofad_verifyprocess" method = "post">
 		<input type="hidden" value="<%=getuser%>" name="getuser">

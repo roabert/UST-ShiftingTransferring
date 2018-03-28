@@ -57,8 +57,11 @@
 
 					</ul>				  	 
 					<div class="resp-tabs-container">
+					
 						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+						
 							<div class="login-top">
+							<p style="color: red;">Invalid Credentials. Please Try Again</p>
 								<form method="post" action="loginprocess">
 								
 									<input type="text" name="userbox"class="name active" placeholder="User ID"/>
@@ -369,7 +372,7 @@ function transferSubmit() {
           <option value="CS">Computer Science</option>
           
          </select> --> <br><br>
-       <center><button class="btn btn btn-danger btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="shifterFinalStep()" class="btn btn-warning btn-lg">Next</button></center>
+       <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="shifterFinalStep()" class="btn btn-warning btn-lg">Next</button></center>
       
        </div>
           <div id="loadingstep2"></div>
@@ -381,7 +384,7 @@ function transferSubmit() {
          <center>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture </i></p><br>
          <input type="file" type="file" name="shifter_idpicture" size="50"><br><br><br><br>
-         <button class="btn btn-danger btn-lg" style="width:100px;" onclick="goBack2Shift()">Back</button>
+         <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Shift()">Back</button>
           <button onclick="shifterSubmit()" class="btn btn-warning btn-lg">Submit & Login</button>
           </center>
          </div>
@@ -430,7 +433,7 @@ function transferSubmit() {
          </select> -->
          <select class="form-control" name="transfer_oldprogram" id="transfer_oldprogram"></select>
           <br><br>
-       <center><button class="btn btn btn-danger btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="transferFinalStep()" class="btn btn-warning btn-lg">Next</button></center>
+       <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack()">Back</button> <button onclick="transferFinalStep()" class="btn btn-warning btn-lg">Next</button></center>
       
        </div>
           <div id="loadingstep2"></div>
@@ -442,7 +445,7 @@ function transferSubmit() {
          <center>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture </i></p><br>
          <input type="file" type="file" name="transfer_idpicture" size="50"><br><br><br><br>
-         <button class="btn btn btn-danger btn-lg" style="width:100px;" onclick="goBack2Transfer()">Back</button>
+         <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Transfer()">Back</button>
           <button onclick="transferSubmit()" class="btn btn-warning btn-lg">Submit & Login</button>
           </center>
          </div>
