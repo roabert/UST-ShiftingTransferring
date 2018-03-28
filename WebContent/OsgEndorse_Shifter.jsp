@@ -228,6 +228,7 @@ if(getuser == null) {
 </div>
 </div>
 </div>
+  <div class="footer"></div>
 <div class="osgIndorse modal fade" role="dialog">
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
@@ -260,7 +261,7 @@ if(getuser == null) {
      </div>
   </div>
 </div>
-  <div class="footer"></div>
+
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 

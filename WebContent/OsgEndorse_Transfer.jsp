@@ -230,8 +230,6 @@ if(getuser == null) {
 					
 
 </div>
-
-
 <div class="osgIndorse modal fade" role="dialog">
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
