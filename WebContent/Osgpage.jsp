@@ -47,13 +47,7 @@ if(getuser == null) {
         
       </ul>
     </li>
- <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
- <ul class="submenu">
-        <li><a href="OsgExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OsgExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
-        
-      </ul>
-      </li>
+
  <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Endorsement</a>
   <ul class="submenu">
         <li><a href="OsgEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>

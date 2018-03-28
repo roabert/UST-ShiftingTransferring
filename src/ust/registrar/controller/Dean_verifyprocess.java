@@ -51,20 +51,29 @@ public class Dean_verifyprocess extends HttpServlet {
 		String getstudentid = request.getParameter("studentid");
 		String getdeanname = request.getParameter("getuser");
 		String remarks = request.getParameter("remarks");
-		
+		String verified;
+	    String getButton = request.getParameter("optionverify");	
 		
 		DeanVerifyDAO d = new DeanVerifyDAO();
 		d.setDeanname(getdeanname);
-		d.setApproved(remarks);
+		
 		d.setStudentid(getstudentid);
 		
-	    if(remarks.equals("Approved"))
+	    if(getButton.equals("Approved")){
+	    	verified = "Approved";
+	    	d.setApproved(verified);
 		d.verifyStudent(conn);
-	    else if(remarks.equals("Disapproved"))
+	    }
+	    else if(getButton.equals("Disapprove")){
+	    	verified = "Disapproved";
+	    	d.setApproved(verified);
+	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
+	    }
 	    
 		request.getRequestDispatcher("DeanTransaction_Shifter.jsp").include(request, response);
-		out.print("<script>alert('Submitted!');</script>");
+		out.print("<script>alert('Submitted!');</script>"); 
+	
 		
 		
 	}

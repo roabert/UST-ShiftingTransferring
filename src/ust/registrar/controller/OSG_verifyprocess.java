@@ -50,16 +50,25 @@ public class OSG_verifyprocess extends HttpServlet {
 		String getstudentid = request.getParameter("studentid");
 		String getosgname = request.getParameter("getuser");
 		String remarks = request.getParameter("remarks");
+		String getButton = request.getParameter("optionverify");
+		String verified;
 		
 		OSGVerifyDAO osg = new OSGVerifyDAO();
 		osg.setOsgname(getosgname);
-		osg.setRemarks(remarks);
+	
 		osg.setStudentid(getstudentid);
 		
-		if(remarks.equals("Approved"))
+		if(getButton.equals("Approved")){
+			verified = "Approved";
+	    osg.setApproved(verified);
 		osg.verifyStudent(conn);
-		else if(remarks.equals("Disapproved"))
+		}
+		else if(getButton.equals("Disapproved")){
+			verified = "Dispproved";
+			osg.setRemarks(remarks);
+		    osg.setApproved(verified);
 	    osg.dontverifyStudent(conn);
+		}
 		
 		//out.println(getstudentid + getosgname + remarks);
 		request.getRequestDispatcher("OsgTransaction_Shifter.jsp").include(request, response);

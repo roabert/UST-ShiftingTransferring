@@ -4,9 +4,21 @@ import java.sql.*;
 import DatabaseHandler.*;
 public class DeanVerifyDAO implements DatabaseSQLs {
 
-	public String studentid, deanname, approved;
+	public String studentid, deanname, approved, remarks;
 	
 	
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+
 
 	public String getStudentid() {
 		return studentid;
@@ -59,10 +71,11 @@ public class DeanVerifyDAO implements DatabaseSQLs {
 	}
 	public void dontverifyStudent(Connection conn) {
 		try {
-			PreparedStatement pst = conn.prepareStatement("UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?");
+			PreparedStatement pst = conn.prepareStatement("UPDATE shifters_status SET dean_id = ?, dean_verified = ?, dean_remarks = ? WHERE shifter_id = ?");
 			pst.setString(1, deanname);
 			pst.setString(2, approved);
-			pst.setString(3, studentid);
+			pst.setString(3, remarks);
+			pst.setString(4, studentid);
 			pst.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -58,13 +58,7 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Osgpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-random"></span> Transactions</a>
-    <ul class="submenu">
-        <li><a href="OsgTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OsgTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
-        
-      </ul>
-    </li>
+
  <li><a href="#" ><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
  <ul class="submenu">
         <li><a href="OsgExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
@@ -256,10 +250,11 @@ if(getuser == null) {
             </center>
          </div>
          <div class="modal-footer">
-         <center>
-          <button type="submit" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
-          &nbsp&nbsp<button type="button" class="btn btn-warning btn-lg" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
-          </center>
+   
+          <button type="button" class="btn btn-default btn-md" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
+             &nbsp&nbsp
+          <button type="submit" class="btn btn-md btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
+
          </div>
          </form>
      </div>

@@ -41,7 +41,7 @@ if(getuser == null) {
      
     while(rs.next()) {
     %><navhead>
-			<center><img src="DisplayProfilePic?pkey=<%=rs.getString("userid")%>" width ="120" height = "120">
+			<center><img src="DisplayProfileTransfer?pkey=<%=rs.getString("userid")%>" width ="120" height = "120">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
@@ -110,7 +110,7 @@ if(getuser == null) {
 		</legend>
 			<div class="profile-pic wthree">
 					
-				<img src="DisplayProfilePic?pkey=<%=usercontent.getString("userid")%>" width = "250" height = "250" class="responsive">
+				<img src="DisplayProfileTransfer?pkey=<%=usercontent.getString("userid")%>" width = "250" height = "250" class="responsive">
            
 				<h2><%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%></h2>
 			</div>

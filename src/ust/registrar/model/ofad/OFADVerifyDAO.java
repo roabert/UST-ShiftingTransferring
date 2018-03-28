@@ -3,7 +3,15 @@ import java.sql.*;
 
 import DatabaseHandler.DatabaseSQLs;
 public class OFADVerifyDAO implements DatabaseSQLs {
-   public String studentid, examdate, starttime, endttime, ofadid, remarks;
+   public String studentid, ofadid, remarks, approved;
+
+public String getApproved() {
+	return approved;
+}
+
+public void setApproved(String approved) {
+	this.approved = approved;
+}
 
 public String getRemarks() {
 	return remarks;
@@ -32,7 +40,8 @@ public void setOfadid(String ofadid) {
 	   try {
 		PreparedStatement ps = conn.prepareStatement(Ofad_approveStudent);
 		ps.setString(1, ofadid);
-		ps.setString(2, remarks);
+		ps.setString(2, approved);
+
 		ps.setString(3, studentid);
 		ps.executeUpdate();
 	} catch (SQLException e) {
@@ -42,10 +51,11 @@ public void setOfadid(String ofadid) {
    }
    public void dontverifyOfad(Connection conn) {
 	   try {
-		PreparedStatement ps = conn.prepareStatement(Ofad_approveStudent);
+		PreparedStatement ps = conn.prepareStatement(Ofad_disapproveStudent);
 		ps.setString(1, ofadid);
-		ps.setString(2, remarks);
-		ps.setString(3, studentid);
+		ps.setString(2, approved);
+		ps.setString(3, remarks);
+		ps.setString(4, studentid);
 		ps.executeUpdate();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

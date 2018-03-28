@@ -178,9 +178,9 @@ if(getuser == null) {
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
        <form id = "form1" onsubmit="false">
-          <div class="modal-header">
+          <div class="modal-header" style="background-color:gold">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h3><i>Create Users</i></h3>
+           <h3 class="modal-title"><span class="glyphicon glyphicon-plus-sign" style="color:white; height:30px;"></span> <i>Create Users</i></h3>
           </div>
           <div class="modal-body"> 	
             <div class="col-sm-12">
@@ -231,10 +231,10 @@ if(getuser == null) {
             </div>
           </div>
           <div class="modal-footer">
-          <center>
-            <button onclick = "submitForm()" class = "btn btn-warning btn-md">Create</button>
-            <button type="submit" class = "btn btn-danger btn-md" data-dismiss="modal">Cancel</button>
-            </center>
+           <button type="button" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+            <button onclick = "submitForm()" class = "btn btn-warning btn-md"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Create</button>
+           
+        
           </div>
           </form>
        </div>
@@ -247,11 +247,9 @@ if(getuser == null) {
  <div class="modal-dialog" style="width:600px">
    <div class="modal-content">
    <form action = "AdminEditUsers" method="post">
-     <div class="modal-header">
+     <div class="modal-header" style="background-color:gold">
        <button class="close" type="button" data-dismiss="modal">&times;</button>
-       <h3 class="modal-title">
-          Edit User Accounts
-       </h3>
+       <h3 class="modal-title"><span class="glyphicon glyphicon-pencil" style="color:white"></span> <i>Edit User Accounts</i></h3>
      </div>
      <div class="modal-body">
      <br>
@@ -279,8 +277,9 @@ if(getuser == null) {
        </table>
      </div>
      <div class="modal-footer">
-        <button type="submit" class = "btn btn-warning btn-md">Modify</button>
-            <button type="submit" class = "btn btn-danger btn-md" data-dismiss="modal">Cancel</button>
+      <button type="submit" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+        <button type="submit" class = "btn btn-warning btn-md"><span class="glyphicon glyphicon-ok" style="color:green"></span> Modify</button>
+           
      </div>
      </form>
    </div>

@@ -197,7 +197,34 @@ if(getuser == null) {
 		<script src="scripts/scripts.js"></script>
 
 
+<div class="regIndorse modal fade" role="dialog">
+  <div class="modal-dialog" style="width:700px; height:800px;">
+     <div class="modal-content">
+     <form action="RegistrarIndorseTransferProcess" method="post">
+         <div class="modal-header">
+             <button class="close" type="button" data-dismiss="modal">&times;</button>
+             <h4 class="modal-title"><b>Letter of Endorsement</b></h4>
+         </div>
+         <div class="modal-body"><br>
+          <input class="transfer_id" type="hidden" name="transferid">
+          <input class="getuser" type="hidden" name="getuser">
+          <p>To the Secretary General,</p>
+          <p>recommending approval of the application</p>
+           <center>
+          <textarea name="endorsement" rows="30" cols="60" placeholder="Endorsement Letter" style="margin: 0px; width: 660px; height: 334px;"></textarea><br><br>
+            <p><input type="checkbox" name="approval" value="Approved"> Approve Endorsement</p>
+            </center>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-default btn-md" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
+             &nbsp&nbsp
+          <button type="submit" class="btn btn-md btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
 
+         </div>
+         </form>
+     </div>
+  </div>
+</div>
 
 
 
@@ -216,6 +243,16 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-     
+      <script>
+     $(document).on( "click", '.registrar_indorsement',function(e) 
+    		 {
+    	    var transfer_id = $(this).data('transfer_id');
+    	    var getuser = $(this).data('getuser');
+
+    	    $(".transfer_id").val(transfer_id);
+    	    $(".getuser").val(getuser);
+    	//    tinyMCE.get('business_skill_content').setContent(content);   
+    	});
+     </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ import java.sql.*;
 import DatabaseHandler.DatabaseSQLs;
 public class OSGVerifyDAO implements DatabaseSQLs {
 
-	public String studentid, osgname, remarks;
+	public String studentid, osgname, approved, remarks;
 
 	public String getStudentid() {
 		return studentid;
@@ -35,7 +35,7 @@ public class OSGVerifyDAO implements DatabaseSQLs {
 		try {
 			PreparedStatement pst = conn.prepareStatement(OSG_approveStudent);
 			pst.setString(1, osgname);
-			pst.setString(2, remarks);
+			pst.setString(2, approved);
 			pst.setString(3, studentid);
 			pst.executeUpdate();
 		} catch (SQLException e) {
@@ -49,8 +49,9 @@ public void dontverifyStudent(Connection conn) {
 		try {
 			PreparedStatement pst = conn.prepareStatement(OSG_disapproveStudent);
 			pst.setString(1, osgname);
-			pst.setString(2, remarks);
-			pst.setString(3, studentid);
+			pst.setString(2, approved);
+			pst.setString(3, remarks);
+			pst.setString(4, studentid);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,4 +59,12 @@ public void dontverifyStudent(Connection conn) {
 		}
 		
 	}
+
+public String getApproved() {
+	return approved;
+}
+
+public void setApproved(String approved) {
+	this.approved = approved;
+}
 }

@@ -217,10 +217,10 @@ if(getuser == null) {
             </center>
          </div>
          <div class="modal-footer">
-         <center>
-         <button type="submit" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
-          &nbsp&nbsp <button type="button" data-dismiss="modal" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
-          </center>
+         <button type="button" class="btn btn-default btn-md" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
+             &nbsp&nbsp
+          <button type="submit" class="btn btn-md btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
+
          </div>
          </form>
      </div>

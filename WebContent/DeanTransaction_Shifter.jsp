@@ -116,7 +116,7 @@ if(getuser == null) {
 </div>
 <br>
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
@@ -129,7 +129,8 @@ if(getuser == null) {
 	          <th>Current Course/Program</th>
 	          <th>Incoming Course/Program</th>
 	          <th>Verify Docs</th>
-	          <th>Remarks</th>
+	          <th></th>
+	          <th></th>
 	        </tr>
         </thead>
         
@@ -151,21 +152,23 @@ if(getuser == null) {
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
-        <button type="button" class="btn">Download</button>
+   
         </center>
         </td>   
         <td>
 			<form action = "Dean_verifyprocess" method = "post">
-			<select class="form-control" name="remarks">
-		        <option value="Approved">Approve</option>
-		        <option value="Disapproved">Disapprove</option>
-	        </select>
 	        <input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
 	        <input type="hidden" value = "<%=getuser %>" name = "getuser">
-	        <button type="submit" class="btn btn-warning" 
-	        onclick= "return confirm('Are you sure?');">Submit</button>
+	        <button value="Approved" type="submit" class="btn btn-warning" name="optionverify"
+	        onclick= "return confirm('Are you sure?');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
+	        
 	        </form>
         </td>
+        <td><button type="button" class="btn btn-warning student_shift" data-toggle="modal"
+	         data-target=".disapprovestudent"
+	         data-shifter_id="<%=rs.getString("shifter_id")%>"
+	         data-getuser="<%=getuser%>">
+	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button></td>
         </tr>	
         
         <%}while(rs.next());
@@ -184,6 +187,34 @@ if(getuser == null) {
    
 </div>
 </div>
+</div>
+
+<div class="modal fade disapprovestudent" role=dialog>
+  <div class="modal-dialog" style="height:400px">
+     <div class="modal-content">
+     <form action = "Dean_verifyprocess" method = "post">
+       <div class="modal-header bg-warning">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Student</h3>
+       </div>
+       <div class="modal-body">
+         <br>
+         <input type="hidden" class="shifter_id" name="studentid">
+         <input type="hidden" class="getuser" name="getuser">
+         <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
+         <br>
+          <center>
+          <textarea name="remarks" rows="30" cols="60" placeholder="Endorsement Letter" style="margin: 0px; width: 540px; height: 270px;"></textarea><br><br>
+            </center>
+       </div>
+       <div class="modal-footer">
+       <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-warning btn-md" type="submit" name ="optionverify" value="Disapprove">Submit</button>
+        </div>
+        </form>
+     </div>
+  </div>
+
 </div>
 
 <script src="scripts/slidebars.js"></script>
@@ -206,7 +237,18 @@ function closeNav() {
 </script>    
         <!-- 
         Requirements
-         -->
+         --> <script>
+     $(document).on( "click", '.student_shift',function(e) 
+    		 {
+    	    var shifter_id = $(this).data('shifter_id');
+    	    var getuser = $(this).data('getuser');
+
+    	    $(".shifter_id").val(shifter_id);
+    	    $(".getuser").val(getuser);
+    	    $("#studentid").html(shifter_id);
+  
+    	});
+     </script>
          <script type="text/javascript">
 		 $(document).ready(function() {
 		        <%

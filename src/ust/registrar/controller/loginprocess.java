@@ -92,12 +92,12 @@ public class loginprocess extends HttpServlet {
 			    }
 			    else if(login.getType().equals("Shifter")) {
 			    	session.setAttribute("setuser", uname_get);
-			    	request.getRequestDispatcher("Shifter-Welcome.jsp")
+			    	request.getRequestDispatcher("Shifter-Shifting.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("Transferee")) {
 			    	session.setAttribute("setuser", uname_get);
-			    	request.getRequestDispatcher("Transfer-Welcome.jsp")
+			    	request.getRequestDispatcher("Transfer-Transferring.jsp")
 			    	.forward(request, response);
 			    }
 			    else{

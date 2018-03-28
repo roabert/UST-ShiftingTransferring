@@ -54,16 +54,25 @@ public class Ofad_verifyprocess extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String getstudentid = request.getParameter("studentid");
 		String getofadid = request.getParameter("getuser");
+		String getButton = request.getParameter("optionverify");
 		String getremarks = request.getParameter("remarks");
-		
+	    String verified;
+	    
 		OFADVerifyDAO ofad = new OFADVerifyDAO();
 		ofad.setOfadid(getofadid);
-		ofad.setRemarks(getremarks);
+	
 		ofad.setStudentid(getstudentid);
-		if(getremarks.equals("Approved")) 
+		if(getButton.equals("Approved")){
+		verified = "Approved";
+		ofad.setApproved(verified);
 		ofad.doVerifyStudent(conn);
-		else if(getremarks.equals("Disapproved"))
+		}
+		else if(getButton.equals("Disapproved")) {
+			verified = "Approved";
+			ofad.setApproved(verified);
+			ofad.setRemarks(getremarks);
 		ofad.dontverifyOfad(conn);
+		}
          
 		request.getRequestDispatcher("OfadTransaction_Shifter.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");

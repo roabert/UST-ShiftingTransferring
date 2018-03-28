@@ -42,8 +42,16 @@ if(getuser == null) {
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>
-		<navhead>
-			<center><img src="Images/dp.png" style="width:40%; height:15%;">
+		<%     String returnsql1 = "SELECT * FROM student_transfer WHERE userid= ?";
+    try{
+    PreparedStatement psts = conn.prepareStatement(returnsql1);
+    psts.setString(1, getuser);
+    ResultSet rs = psts.executeQuery();
+     
+    while(rs.next()) {
+    %><navhead>
+			<center><img src="DisplayProfileTransfer?pkey=<%=rs.getString("userid")%>" width ="120" height = "120">
+			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
@@ -82,10 +90,9 @@ if(getuser == null) {
 </header>
 <div class="topnav">
    <center>
-   <a>
+   <a id="text_steps">
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   
-   SELECT PROGRAM
+   STEP 1: SELECT OUTGOING PROGRAM
    </a>
    </center>
 </div>
@@ -122,7 +129,7 @@ if(rs2.next()) {
 } 
 %>
 </div>
- <p id="text_steps"><i>TRANSFERRING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>
+
      <div class="container">
      <form id="step1transfer" onsubmit = "false" enctype="multipart/form-data">
      <div id = "choosecollege">
@@ -226,12 +233,12 @@ function swapImage(){
 	image.src = dropd.value;	
 };
 function nextstep() {
-	id("text_steps").innerHTML = "<p><i>TRANSFERRING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
+	id("text_steps").innerHTML = "<a><span style=\"font-size:30px;cursor:pointer;color: white; float:left\" class=\"js-toggle-left-slidebar\">&#9776;</span>STEP 1: UPLOAD REQUIREMENTS</span></a>";
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
 }
 function goback() {
-	id("text_steps").innerHTML = "<p><i>TRANSFERRING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
+	id("text_steps").innerHTML = "<a><span style=\"font-size:30px;cursor:pointer;color: white; float:left\" class=\"js-toggle-left-slidebar\">&#9776;</span>STEP 1: SELECT OUTGOING PROGRAM</a>";
 	id("choosecollege").style.display = "block";
 	id("fileuploading").style.display = "none";
 }

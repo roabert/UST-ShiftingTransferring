@@ -31,7 +31,7 @@ public interface DatabaseSQLs {
 	 
 	 // SecGen approve student OSG_verifyprocess
 	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE shifter_id = ?";
-	 String OSG_disapproveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ? WHERE shifter_id = ?";
+	 String OSG_disapproveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, secgen_remarks = ? WHERE shifter_id = ?";
 	 
 	 //SecGen approve transfer OSG_verifyTransfer
 	 String OSG_approveTransfer = "UPDATE transferees_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE transferee_id = ?";
@@ -39,6 +39,7 @@ public interface DatabaseSQLs {
 	
 	 //OFAD approve shifter Ofad_verifyprocess
 	 String Ofad_approveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ? WHERE shifter_id = ?";
+	 String Ofad_disapproveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ?, ofad_remarks = ? WHERE shifter_id = ?";
 	 String Ofad_studentForExam = "INSERT INTO shifters_exams (shifter_id) VALUES (?)";
 	 
 	 //OFAD exam schedss

@@ -92,26 +92,7 @@ public class registerprocess extends HttpServlet {
 	//	 String imagepath = savepath + File.separator + filename;
 		 HttpSession session = request.getSession();
 
-		if(gettype.toUpperCase().equals("SHIFTER")) {
-			RegisterShifterDAO register = new RegisterShifterDAO();
-			register.setLname(getlname);
-			register.setFname(getfname);
-			register.setMname(getmname);
-			register.setGender(getgender);
-			register.setBdate(getbdate);
-			register.setType(gettype);
-			register.setStudentid(getstudentid);
-			register.setShiftoldcollege(get_shiftoldcollege);
-			register.setShiftoldprogram(get_shiftoldprogram);
-			register.setPicture(get_shiftpic);
-			register.registerProcess(conn);
-			
-			   session.setAttribute("setuser", getstudentid);
-			   request.getRequestDispatcher("Shifter-Welcome.jsp")
-			   .forward(request, response);
-			
-		}
-		else if(gettype.toUpperCase().equals("TRANSFEREE")) {
+	
 			
 			RegisterTransferDAO register = new RegisterTransferDAO();
 			register.setLname(getlname);
@@ -128,9 +109,9 @@ public class registerprocess extends HttpServlet {
 			register.registerProcess(conn);
 			
 			   session.setAttribute("setuser", generateUsername);
-			   request.getRequestDispatcher("Transfer-Welcome.jsp")
+			   request.getRequestDispatcher("Transfer-Transferring.jsp")
 			   .forward(request, response);
-		}
+		
 		 
 	}
 

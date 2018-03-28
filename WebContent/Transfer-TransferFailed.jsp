@@ -43,7 +43,16 @@ if(getuser == null) {
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>
-			<center><img src="Images/dp.png" style="width:40%; height:15%;">
+		<%     String returnsql1 = "SELECT * FROM student_transfer WHERE userid= ?";
+    try{
+    PreparedStatement psts = conn.prepareStatement(returnsql1);
+    psts.setString(1, getuser);
+    ResultSet rs = psts.executeQuery();
+     
+    while(rs.next()) {
+    %><navhead>
+			<center><img src="DisplayProfileTransfer?pkey=<%=rs.getString("userid")%>" width ="120" height = "120">
+			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
