@@ -42,7 +42,7 @@
 <%
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
-	 response.sendRedirect("index.html");
+	 response.sendRedirect("login.jsp");
 }
 %>
 
@@ -116,7 +116,7 @@ if(getuser == null) {
 </div>
 <br>
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
@@ -129,6 +129,7 @@ if(getuser == null) {
           <th>Incoming Course/Program</th>
           <th>Score</th>
           <th>Remarks</th>
+          <th></th>
         </tr>
        	</thead>
        	<tbody>
@@ -151,18 +152,21 @@ if(getuser == null) {
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><%=rs.getString("final_score") %></td>
-        <td>
         <form action = "DeanVerifyScore" method = "post">
+        <td>
+        
         <input type="hidden" name="getuser" value="<%=getuser%>">
         <input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
         <select class="form-control" name="studentstatus">
     		<option value="Approved">Approved</option>
         	<option value="Disapproved">Disapproved</option>
         </select>
-        <button type="submit" onclick="return confirm('Are you sure? Student will be considered approved by the dean once submitted.');" 
-        class="btn btn-warning">Submit</button>
-        </form>
+      
+       
         </td>
+        <td>  <button type="submit" onclick="return confirm('Are you sure? Student will be considered approved by the dean once submitted.');" 
+        class="btn btn-warning">Submit</button></td>
+         </form>
         </tr>
         
         <%} while(rs.next());

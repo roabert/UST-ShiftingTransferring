@@ -48,7 +48,7 @@ $(document).ready(function() {
 <%
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
-	 response.sendRedirect("index.html");
+	 response.sendRedirect("login.jsp");
 }
 %>
 
@@ -118,7 +118,7 @@ if(getuser == null) {
 </div>
 <br>
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
 <br>
             
             <form action="javascript:;">
@@ -134,11 +134,11 @@ if(getuser == null) {
           <li class="active"><a href="OfadExamScheduler.jsp">Shifters</a></li>
           <li><a href="OfadExamScheduler2.jsp">Transferees</a></li>
           </ul>
-          <div class="tab-content">
+          <div class="tab-content"><br><br>
           <fieldset>
-          <div class="table-responsive" style="overflow-x:auto; height:500px;">
+          <div class="table-responsive" style="overflow:auto; height:500px;">
 
-              <table class="table table-stripped table-sortable">
+              <table class="table table-striped table-sortable">
 			  <thead>
               <tr>
                   <th>Date</th>
@@ -146,13 +146,13 @@ if(getuser == null) {
                  <th>Venue</th>
                  <th>Remarks</th>
                  <th>View Students</th>
-                 <th></th>
+            
               </tr>
 			  </thead>
 			  <tbody>
               <%
                try{
-            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, remarks FROM exam_schedules_shifters");
+            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, venue, remarks FROM exam_schedules_shifters");
             	   ResultSet r = p.executeQuery();
             	     if(!r.next()){
             	        	out.println("<tr><p style=color:red>No exam schedule set for students</p></tr>");
@@ -163,12 +163,13 @@ if(getuser == null) {
               <tr>
                    <td><%=r.getString("date") %></td>
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
-      <td></td>
+                <td><%=r.getString("venue") %></td>
                 <td><%=r.getString("remarks") %></td>
                 <td><a class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
-                <td><button type="submit" class="btn btn-warning">Edit</button></td>
+             
               </tr>
-			    <div id="<%=r.getString("date") %>" style="width:400px;display: none;">
+			    <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto;">
+			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
 					<%
 						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_schedule_date = ?");
 						p2.setString(1, r.getString("date"));
@@ -179,6 +180,7 @@ if(getuser == null) {
 	            	   	ResultSet r3 = p3.executeQuery();
 	            	   	while(r3.next()){
 	            	   		%>
+
 	            	   		<p><%=r3.getString("studentid") %> - <%=r3.getString("lastname") %>, <%=r3.getString("firstname") %>, <%=r3.getString("middlei") %></p>
 	            	<% 
 	            	   		}
@@ -205,9 +207,9 @@ if(getuser == null) {
 <div class="modal fade createsched" role="dialog">
    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
-         <div class="modal-header" style="background-color:black">
+         <div class="modal-header" style="background-color:gold">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <p class=""><i>Create Schedule</i></p>
+            <h3 class="modal-title"><span class="glyphicon glyphicon-calendar" style="color:white;"></span> Create Schedule</h3>
          </div>
          <form action="CreateScheduleProcess" method="post">
          <div class="modal-body" style="overflow-x:auto; height:500px; width:100%;">
@@ -216,19 +218,19 @@ if(getuser == null) {
            <table>
            <tr>
               <th>  <h4>Date of Exam</h4></th>
-              <th> <input type = "date" class="form-control" name = "examdate"></th>
+              <th> <input type = "date" class="form-control" name = "examdate" required></th>
        </tr>
           <tr>
                <th> <h4>Start Time</h4></th>
-               <th><input type = "time" class="form-control" name = "starttime"></th>
+               <th><input type = "time" class="form-control" name = "starttime" required></th>
           </tr>
            <tr>
                <th> <h4>End Time</h4></th>
-               <th><input type = "time" class="form-control" name = "endttime"><br></th>
+               <th><input type = "time" class="form-control" name = "endttime" required><br></th>
                </tr>
                   <tr>
                <th> <h4>Venue</h4></th>
-               <th><input type = "text" class="form-control" name = "venueexam"><br></th>
+               <th><input type = "text" class="form-control" name = "venueexam" required><br></th>
                </tr>
             </table><br><br>
          
@@ -301,7 +303,8 @@ if(getuser == null) {
            </center>
          </div>
          <div class="modal-footer">
-           <button type="submit" class="btn btn-warning">Submit</button>
+         <button type="button" data-dismiss="modal" class="btn btn-default btn-md">Cancel</button>
+           <button type="submit" class="btn btn-warning btn-md">Submit</button>
          </div>
          </form>
       </div>

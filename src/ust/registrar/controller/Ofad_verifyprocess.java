@@ -68,7 +68,7 @@ public class Ofad_verifyprocess extends HttpServlet {
 		ofad.doVerifyStudent(conn);
 		}
 		else if(getButton.equals("Disapproved")) {
-			verified = "Approved";
+			verified = "Disapproved";
 			ofad.setApproved(verified);
 			ofad.setRemarks(getremarks);
 		ofad.dontverifyOfad(conn);

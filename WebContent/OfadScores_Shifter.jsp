@@ -42,7 +42,7 @@
 <%
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
-	 response.sendRedirect("index.html");
+	 response.sendRedirect("login.jsp");
 }
 %>
 
@@ -113,18 +113,22 @@ if(getuser == null) {
 </div>
 <br>
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      <table class="table table-striped">
+      <table class="table table-striped table-sortable">
         <thead>
         <tr>
           <th>ID</th>
           <th>Student Name</th>
           <th>Current Course/Program</th>
           <th>Incoming Course/Program</th>
-          <th>Scores</th>
+          <th>Math</th>
+          <th>Science</th>
+          <th>English</th>
+          <th>IQ</th>
+          <th></th>
         </tr>
         </thead>
         
@@ -147,18 +151,20 @@ if(getuser == null) {
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <form action="EncodeScoreShifter" class="form-inline" method="post">
         <td>
-		<form action="EncodeScoreShifter" class="form-inline" method="post">
 		<input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
 		<input type="hidden" name="getuser" value="<%=getuser%>">
-		<input type = "number" size="30" min="0" max="100" placeholder="Math" class="form-control" name="mathscore" required>
-		<input type = "number" size="30" min="0" max="100" placeholder="Sci" class="form-control" name="sciencescore" required>
-		<input type = "number" size="30" min="0" max="100" placeholder="Eng" class="form-control" name="englishscore" required>
-		<input type = "number" size="30" min="0" max="100" placeholder="IQ" class="form-control" name="iqscore" required>
-		<button type="submit" class="btn btn-warning" 
+		<input type = "number" id="math" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Math" class="form-control" name="mathscore" required></td>
+	    <td><input type = "number" id="sci" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Sci" class="form-control" name="sciencescore" required></td>
+	    <td><input type = "number" id="eng" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Eng" class="form-control" name="englishscore" required></td>
+	    <td><input type = "number" id="iq" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="IQ" class="form-control" name="iqscore" required></td>
+	    <td>
+	    	<button type="submit" onclick="encodeScore()" class="btn btn-warning" 
 		onclick="return confirm('Are you sure? Changes cannot be done after submitting.')">Submit</button>
-		</form>
-		</td>
+	    </td>
+	    
+			</form>
 		</tr>
         <%}while(rs.next());
         }
@@ -196,6 +202,16 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
+/**function encodeScore(){
+	var math = document.getElementById("math").value;
+	var science = document.getElementById("sci").value;
+	var english = document.getElementById("eng").value;
+	var iq = document.getElementById("iq").value;
+	if(math.) {
+		
+	}*/
+}
+
 </script>
      
 </body>

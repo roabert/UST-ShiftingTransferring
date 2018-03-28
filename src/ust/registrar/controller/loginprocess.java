@@ -58,17 +58,13 @@ public class loginprocess extends HttpServlet {
 			    	session.setAttribute("setuser", uname_get);
 			    	request.getRequestDispatcher("OfadTransaction_Shifter.jsp")
 			    	.forward(request, response);
-			    	
+			 
 			    }
-			     else if(login.getType().equals("Admin")) {
-			    	
+			     else if(login.getType().equals("Admin")) {	
 		    	session.setAttribute("setuser", uname_get);
 		    	request.getRequestDispatcher("AdminsStudent_Shifter.jsp")
 		    	.forward(request, response);
 			    }
-			
-	
-			    
 			    else if(login.getType().equals("Dean")) {
 			    	session.setAttribute("setuser", uname_get);
 			    	request.getRequestDispatcher("DeanTransaction_Shifter.jsp")
@@ -101,7 +97,7 @@ public class loginprocess extends HttpServlet {
 			    	.forward(request, response);
 			    }
 			    else{
-				request.getRequestDispatcher("index.html").include(request, response);
+				request.getRequestDispatcher("login.jsp").include(request, response);
 				out.print("<script>alert('Invalid Credentials!');</script>");
 			    } 
 	       

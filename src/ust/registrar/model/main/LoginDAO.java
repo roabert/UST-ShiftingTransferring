@@ -44,10 +44,11 @@ public class LoginDAO implements DatabaseSQLs {
 		ps.setString(5, userid);
 		ps.setString(6, password); */
 		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
-		type = rs.getString("type");
-		}
+		while(rs.next()){
 		
+		type = rs.getString("type");
+		
+		}
 		}
 		catch(SQLException sql){
 	      System.err.println(sql);

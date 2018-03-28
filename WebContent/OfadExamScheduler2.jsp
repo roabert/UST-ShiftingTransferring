@@ -43,7 +43,7 @@
 <%
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
-	 response.sendRedirect("index.html");
+	 response.sendRedirect("login.jsp");
 }
 %>
 
@@ -114,7 +114,7 @@ if(getuser == null) {
 </div>
 <br>
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
 <br>
             
             <form action="javascript:;">
@@ -138,15 +138,15 @@ if(getuser == null) {
                  <th>Venue</th>
                  <th>Remarks</th>
                  <th>View Students</th>
-                 <th></th>
+    
               </thead>
 			  <tbody>
               <%
                try{
-            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, remarks FROM exam_schedules_transferees");
+            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, venue, remarks FROM exam_schedules_transferees");
             	   ResultSet r = p.executeQuery();
             	     if(!r.next()){
-            	        	out.println("<center><p style=color:red>No exam schedule set for students</p></center>");
+            	        	out.println("<tr><p style=color:red>No exam schedule set for students</p></tr>");
             	        }
             	        else {
             	           do {
@@ -154,10 +154,10 @@ if(getuser == null) {
               <tr>
                    <td><%=r.getString("date") %></td>
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
-      <td></td>
+                <td><%=r.getString("venue") %></td>
                 <td><%=r.getString("remarks") %></td>
                 <td><a href="">View Students</a></td>
-                <td><button type="submit" class="btn btn-warning">Edit</button></td>
+           
               </tr>
               <%}while(r.next());
                     }
@@ -174,9 +174,9 @@ if(getuser == null) {
 <div class="modal fade createsched" role="dialog">
    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
-         <div class="modal-header" style="background-color:black">
+         <div class="modal-header" style="background-color:gold">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <p class=""><i>Create Schedule</i></p>
+            <h3 class="modal-title"><span class="glyphicon glyphicon-calendar"></span> Create Schedule</h3>
          </div>
          <form action="CreateScheduleProcess2" method="post">
          <div class="modal-body" style="overflow-x:auto; height:500px; width:100%;">
@@ -243,7 +243,8 @@ if(getuser == null) {
            </center>
          </div>
          <div class="modal-footer">
-           <button type="submit" class="btn btn-warning">Submit</button>
+             <button type="button" data-dismiss="modal" class="btn btn-default btn-md">Cancel</button>
+           <button type="submit" class="btn btn-warning btn-md">Submit</button>
          </div>
          </form>
       </div>
