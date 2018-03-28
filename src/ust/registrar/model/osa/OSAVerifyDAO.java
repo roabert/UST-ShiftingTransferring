@@ -8,7 +8,15 @@ import DatabaseHandler.DatabaseSQLs;
 
 public class OSAVerifyDAO implements DatabaseSQLs{
 
-	public String transferid, userid, remarks;
+	public String transferid, userid, remarks, approved;
+
+	public String getApproved() {
+		return approved;
+	}
+
+	public void setApproved(String approved) {
+		this.approved = approved;
+	}
 
 	public String getTransferid() {
 		return transferid;
@@ -37,7 +45,7 @@ public class OSAVerifyDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement pst = conn.prepareStatement(OSA_approveStudent);
 			pst.setString(1, userid);
-			pst.setString(2, remarks);
+			pst.setString(2, approved);
 			pst.setString(3, transferid);
 			pst.executeUpdate();
 			
@@ -50,8 +58,9 @@ public class OSAVerifyDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement pst = conn.prepareStatement(OSA_disapproveStudent);
 			pst.setString(1, userid);
-			pst.setString(2, remarks);
-			pst.setString(3, transferid);
+			pst.setString(2, approved);
+			pst.setString(3, remarks);
+			pst.setString(4, transferid);
 			pst.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -59,7 +59,7 @@ public interface DatabaseSQLs {
 	 String Ofad_setTransferEncode = "INSERT INTO transferees_scores (transferee_id) VALUES (?)";
 	 // OSA approve transferee
 	 String OSA_approveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, dean_verified = 'In-progress' WHERE transferee_id = ?";
-	 String OSA_disapproveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ? WHERE transferee_id = ?";
+	 String OSA_disapproveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, osa_remarks = ? WHERE transferee_id = ?";
 	 
 	 //OFAD encode scores shifter EncodeScoreShifter servlet
 	 

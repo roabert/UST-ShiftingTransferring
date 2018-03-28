@@ -45,19 +45,28 @@ public class OSA_verifyprocess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String gettransferid = request.getParameter("getstudent");
+		String gettransferid = request.getParameter("transferid");
 		String getosaid = request.getParameter("getuser");
 		String getremarks = request.getParameter("remarks");
+		String getButton = request.getParameter("optionverify");
+		String verified;
 		
 		OSAVerifyDAO osa = new OSAVerifyDAO();
 		osa.setUserid(getosaid);
-		osa.setRemarks(getremarks);
+		
 		osa.setTransferid(gettransferid);
 		
-		if(getremarks.equals("Approved"))
+		if(getButton.equals("Approved")){
+			verified="Approved";
+			osa.setApproved(verified);
 			osa.verifyStudent(conn);
-		else if(getremarks.equals("Disapproved"))
+		}
+		else if(getButton.equals("Disapproved")){
+			verified = "Disapproved";
+			osa.setApproved(verified);
+			osa.setRemarks(getremarks);
 			osa.dontverifyStudent(conn);
+		}
 		
 		request.getRequestDispatcher("OsaTransactions.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");

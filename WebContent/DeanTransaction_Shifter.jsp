@@ -209,7 +209,7 @@ if(getuser == null) {
        </div>
        <div class="modal-footer">
        <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-warning btn-md" type="submit" name ="optionverify" value="Disapprove">Submit</button>
+        <button class="btn btn-warning btn-md" type="submit" name ="optionverify" value="Disapproved">Submit</button>
         </div>
         </form>
      </div>

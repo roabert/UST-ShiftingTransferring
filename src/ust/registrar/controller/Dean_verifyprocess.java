@@ -64,7 +64,7 @@ public class Dean_verifyprocess extends HttpServlet {
 	    	d.setApproved(verified);
 		d.verifyStudent(conn);
 	    }
-	    else if(getButton.equals("Disapprove")){
+	    else if(getButton.equals("Disapproved")){
 	    	verified = "Disapproved";
 	    	d.setApproved(verified);
 	    	d.setRemarks(remarks);
