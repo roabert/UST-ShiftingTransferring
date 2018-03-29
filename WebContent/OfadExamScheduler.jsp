@@ -129,7 +129,7 @@ if(getuser == null) {
      
     <br>
        
-              
+              <br>
            <ul class = "nav nav-tabs">
           <li class="active"><a href="OfadExamScheduler.jsp">Shifters</a></li>
           <li><a href="OfadExamScheduler2.jsp">Transferees</a></li>
@@ -168,7 +168,7 @@ if(getuser == null) {
                 <td><a class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
              
               </tr>
-			    <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto;">
+			    <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto; height: 600px;">
 			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
 					<%
 						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_schedule_date = ?");

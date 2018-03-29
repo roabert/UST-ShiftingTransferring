@@ -51,19 +51,28 @@ public class Dean_verifyTransfer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		String gettransferid = request.getParameter("getstudent");
+		String gettransferid = request.getParameter("transferid");
 		String getdeanid = request.getParameter("getuser");
+		String getButton = request.getParameter("optionverify");
+		String verified;
 		String remarks = request.getParameter("remarks");
 		 
 		DeanVerifyTransferDAO d = new DeanVerifyTransferDAO();
 		d.setDeanid(getdeanid);
-		d.setRemarks(remarks);
+		
 		d.setTransferid(gettransferid);
 		
-	    if(remarks.equals("Approved"))
+	    if(getButton.equals("Approved")) {
+	    verified="Approved";
+	    d.setApproved(verified);
 		d.verifyStudent(conn);
-	    else if(remarks.equals("Disapproved"))
+	    }
+	    else if(getButton.equals("Disapproved")) {
+	    	verified = "Disapproved";
+	    	d.setApproved(verified);
+	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
+	    }
 	    
 		request.getRequestDispatcher("DeanTransaction_Transfer.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");

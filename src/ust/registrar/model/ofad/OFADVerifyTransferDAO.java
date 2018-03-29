@@ -7,7 +7,15 @@ import java.sql.SQLException;
 import DatabaseHandler.DatabaseSQLs;
 
 public class OFADVerifyTransferDAO implements DatabaseSQLs{
-  public String transferid, ofadid, remarks;
+  public String transferid, ofadid, remarks, approved;
+
+public String getApproved() {
+	return approved;
+}
+
+public void setApproved(String approved) {
+	this.approved = approved;
+}
 
 public String getTransferid() {
 	return transferid;
@@ -36,7 +44,7 @@ public void verifyOfad(Connection conn) {
 	   try {
 		PreparedStatement ps = conn.prepareStatement(Ofad_approveTransfer);
 		ps.setString(1, ofadid);
-		ps.setString(2, remarks);
+		ps.setString(2, approved);
 		ps.setString(3, transferid);
 		ps.executeUpdate();
 	} catch (SQLException e) {
@@ -46,10 +54,11 @@ public void verifyOfad(Connection conn) {
 }
 public void dontverifyOfad(Connection conn) {
 	   try {
-		PreparedStatement ps = conn.prepareStatement(Ofad_approveTransfer);
+		PreparedStatement ps = conn.prepareStatement(Ofad_disapproveTransfer);
 		ps.setString(1, ofadid);
-		ps.setString(2, remarks);
-		ps.setString(3, transferid);
+		ps.setString(2, approved);
+		ps.setString(3, remarks);
+		ps.setString(4, transferid);
 		ps.executeUpdate();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

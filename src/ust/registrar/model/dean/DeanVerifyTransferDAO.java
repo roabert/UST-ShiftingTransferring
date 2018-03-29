@@ -8,7 +8,15 @@ import DatabaseHandler.DatabaseSQLs;
 
 public class DeanVerifyTransferDAO implements DatabaseSQLs{
 
-	public String transferid, deanid, remarks;
+	public String transferid, deanid, remarks, approved;
+
+	public String getApproved() {
+		return approved;
+	}
+
+	public void setApproved(String approved) {
+		this.approved = approved;
+	}
 
 	public String getTransferid() {
 		return transferid;
@@ -37,7 +45,7 @@ public class DeanVerifyTransferDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement pst = conn.prepareStatement(Dean_approveTransfer);
 			pst.setString(1, deanid);
-			pst.setString(2, remarks);
+			pst.setString(2, approved);
 			pst.setString(3, transferid);
 			pst.executeUpdate();
 			
@@ -50,8 +58,9 @@ public class DeanVerifyTransferDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement pst = conn.prepareStatement(Dean_disapproveTransfer);
 			pst.setString(1, deanid);
-			pst.setString(2, remarks);
-			pst.setString(3, transferid);
+			pst.setString(2, approved);
+			pst.setString(3, remarks);
+			pst.setString(4, transferid);
 			pst.executeUpdate();
 			
 		} catch (SQLException e) {

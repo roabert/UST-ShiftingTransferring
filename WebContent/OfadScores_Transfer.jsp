@@ -114,21 +114,26 @@ if(getuser == null) {
 </div>
 <br>
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      <table class="table table-sortable">
+      <table class="table table-striped table-sortable">
+      <thead>
         <tr>
           <th>ID</th>
           <th>Student Name</th>
           <th>Current School</th>
           <th>Current Course/Program</th>
           <th>Incoming Course/Program</th>
-          <th>Scores</th>
+          <th>Math</th>
+          <th>Science</th>
+          <th>English</th>
+          <th>IQ</th>
+          <th></th>
         </tr>
-        
-        
+        </thead>
+        <tbody>
         <%
          try{
         String displayscores = "SELECT * FROM transferees_scores INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE transferee_id is not NULL AND ofad_id is NULL";
@@ -142,28 +147,33 @@ if(getuser == null) {
            do {
         %>
         <tr>
-        <td><input type="hidden" name="getstudent" value = "<%=rs.getString("transferee_id")%>"><%=rs.getString("transferee_id") %></td>
-        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><%=rs.getString("transferee_id") %></td>
+        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <form action="EncodeScoresTransfer" class="form-inline" method="post">
         <td>
-        <form action = "EncodeScoresTransfer" method = "post">
-        <input type = "number" size="30" min="0" max="100" class="form-control" name="mathscore" required>
-        <input type = "number" size="30" min="0" max="100" class="form-control" name="sciencescore" required>
-        <input type = "number" size="30" min="0" max="100" class="form-control" name="englishscore" required>
-        <input type = "number" size="30" min="0" max="100" class="form-control" name="iqscore" required>
-        <button type="submit" class="btn btn-warning" 
-        onclick="return confirm('Are you sure? Changes cannot be done after submitting.')">Submit</button>
-        </form>
-        </td>
+		<input type="hidden" name="getstudent" value="<%=rs.getString("transferee_id") %>">
+		<input type="hidden" name="getuser" value="<%=getuser%>">
+		<input type = "number" id="math" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Math" class="form-control" name="mathscore" required></td>
+	    <td><input type = "number" id="sci" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Sci" class="form-control" name="sciencescore" required></td>
+	    <td><input type = "number" id="eng" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Eng" class="form-control" name="englishscore" required></td>
+	    <td><input type = "number" id="iq" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="IQ" class="form-control" name="iqscore" required></td>
+	    <td>
+	    	<button type="submit"  class="btn btn-warning" 
+		onclick="return confirm('Are you sure? Changes cannot be done after submitting.')">Submit</button>
+	    </td>
+	    
+			</form>
         </tr>
+      
         <%}while(rs.next());
         }
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
-        
+        </tbody>
       </table>
       </center>
       </div>
@@ -175,7 +185,6 @@ if(getuser == null) {
 
 <div class="footer"></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 

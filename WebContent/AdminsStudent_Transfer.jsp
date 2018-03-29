@@ -109,7 +109,7 @@ if(getuser == null) {
       <div class="container">
        <div class="table-responsive" style="overflow-x:auto; height:450px;">
       <center>
-      <table class="table table-sortable">
+      <table class="table table-striped table-sortable">
          <thead>
           <th><input type="checkbox" onclick = "checkAll(this)"></th>
           <th>ID</th>

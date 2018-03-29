@@ -110,7 +110,7 @@ if(getuser == null) {
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
    
-  EXAM RESULTS
+  EXAM RESULTS: SHIFTERS
    </a>
    </center>
 </div>
@@ -158,8 +158,8 @@ if(getuser == null) {
         <input type="hidden" name="getuser" value="<%=getuser%>">
         <input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
         <select class="form-control" name="studentstatus">
-    		<option value="Approved">Approved</option>
-        	<option value="Disapproved">Disapproved</option>
+    		<option value="Approved">Approve</option>
+        	<option value="Disapproved">Disapprove</option>
         </select>
       
        

@@ -113,7 +113,7 @@ if(getuser == null) {
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      <table class="table table-sortable">
+      <table class="table table-striped table-sortable">
 		<thead>
         <tr>
           <th>Student Name</th>

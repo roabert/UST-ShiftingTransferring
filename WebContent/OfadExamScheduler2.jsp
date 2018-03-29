@@ -123,12 +123,13 @@ if(getuser == null) {
             </button>
             </form>
      
-    <br>
+    <br><br>
            <ul class = "nav nav-tabs">
           <li><a href="OfadExamScheduler.jsp">Shifters</a></li>
           <li class="active"><a href="OfadExamScheduler2.jsp">Transferees</a></li>
           </ul>
           <div class="tab-content">
+          <br>
           <fieldset>
           <div class="table-responsive" style="overflow-x:auto; ">
               <table class="table table-stripped table-sortable">
@@ -156,9 +157,29 @@ if(getuser == null) {
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
                 <td><%=r.getString("venue") %></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><a href="">View Students</a></td>
+                <td><a class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
            
               </tr>
+               <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto; height: 600px;">
+			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
+					<%
+						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM transferees_exams where exam_schedule_date = ?");
+						p2.setString(1, r.getString("date"));
+	            	   	ResultSet r2 = p2.executeQuery();
+	            	   	while(r2.next()){
+						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM student_transfer where userid = ?");
+						p3.setString(1, r2.getString("transferee_id"));
+	            	   	ResultSet r3 = p3.executeQuery();
+	            	   	while(r3.next()){
+	            	   		%>
+
+	            	   		<p><%=r3.getString("userid") %> - <%=r3.getString("lastname") %>, <%=r3.getString("firstname") %>, <%=r3.getString("middlei") %></p>
+	            	<% 
+	            	   		}
+					 
+            	        }
+					%>
+				</div>
               <%}while(r.next());
                     }
                } catch(SQLException e) {out.print(e);}
@@ -186,19 +207,19 @@ if(getuser == null) {
            <table>
            <tr>
               <th>  <h4>Date of Exam</h4></th>
-              <th> <input type = "date" class="form-control" name = "examdate"></th>
+              <th> <input type = "date" class="form-control" name = "examdate" required></th>
        </tr>
           <tr>
                <th> <h4>Start Time</h4></th>
-               <th><input type = "time" class="form-control" name = "starttime"></th>
+               <th><input type = "time" class="form-control" name = "starttime" required></th>
           </tr>
            <tr>
                <th> <h4>End Time</h4></th>
-               <th><input type = "time" class="form-control" name = "endttime"><br></th>
+               <th><input type = "time" class="form-control" name = "endttime" required><br></th>
                </tr>
                 <tr>
                <th> <h4>Venue</h4></th>
-               <th><input type = "text" class="form-control" name = "venueexam"><br></th>
+               <th><input type = "text" class="form-control" name = "venueexam" required><br></th>
                </tr>
             </table><br><br>
          
@@ -260,6 +281,11 @@ if(getuser == null) {
 
 
 <script>
+$(document).ready(function() {
+
+	$('.fancybox').fancybox(); 
+	
+	})
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
 } );
