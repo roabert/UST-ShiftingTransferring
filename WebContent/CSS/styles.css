@@ -23,6 +23,11 @@ body {
 	
 }
 
+.scroll-table {
+	overflow:auto;
+	height:500px;
+}
+
 .extra-row {
 	background-color:#ededede;
 	padding: 20px 40px;

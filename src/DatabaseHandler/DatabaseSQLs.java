@@ -86,17 +86,17 @@ public interface DatabaseSQLs {
 		 //Admin create users
 		 String InsertUsersSQL = "INSERT INTO useraccounts (userid, password, type) VALUES (?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_InsertUsersSQL = "INSERT INTO admins (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 String Admin_InsertUsersSQL = "INSERT INTO admins (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_Registrar_InsertUsersSQL = "INSERT INTO registrar (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 String Admin_Registrar_InsertUsersSQL = "INSERT INTO registrar (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_OSG_InsertUsersSQL = "INSERT INTO secgen (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 String Admin_OSG_InsertUsersSQL = "INSERT INTO secgen (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_Dean_InsertUsersSQL = "INSERT INTO dean (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 String Admin_Dean_InsertUsersSQL = "INSERT INTO dean (userid, last_name, first_name, middle_name, college, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_OSA_InsertUsersSQL = "INSERT INTO osa (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 String Admin_OSA_InsertUsersSQL = "INSERT INTO osa (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, gender, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
 		 
 		 // LETTER OF INDORSEMENT SHIFTER
 		 String MemoForm_Shifter = "INSERT INTO shifters_indorsement (shifter_id) VALUES (?)";

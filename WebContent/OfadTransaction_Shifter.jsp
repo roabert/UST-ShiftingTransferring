@@ -133,7 +133,7 @@ if(getuser == null) {
         <tbody>
         <%
          try{
-        String displaystudent_ofad = SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved' WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
+        String displaystudent_ofad = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
          PreparedStatement ps = conn.prepareStatement(displaystudent_ofad); 
         ResultSet rs = ps.executeQuery();
         
@@ -249,7 +249,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudent_ofadagain = SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved' WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
+		        String displaystudent_ofadagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudent_ofadagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

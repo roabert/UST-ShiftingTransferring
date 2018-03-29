@@ -90,8 +90,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			ps.setString(5, gender);
-			ps.setString(6, type);
+			 
+			ps.setString(5, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -105,8 +105,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			ps.setString(5, gender);
-			ps.setString(6, type);
+			 
+			ps.setString(5, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -120,8 +120,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			ps.setString(5, gender);
-			ps.setString(6, type);
+			 
+			ps.setString(5, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -135,7 +135,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			ps.setString(5, gender);
+			ps.setString(5, college);
 			ps.setString(6, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -150,8 +150,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			ps.setString(5, gender);
-			ps.setString(6, type);
+			 
+			ps.setString(5, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -165,8 +165,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			ps.setString(5, gender);
-			ps.setString(6, type);
+			 
+			ps.setString(5, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

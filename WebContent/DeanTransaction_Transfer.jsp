@@ -61,7 +61,14 @@ if(getuser == null) {
     <li><a href="#" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a>
     <ul class="submenu">
         <li><a href="DeanTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
-        <li><a href="DeanTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
+        <li><a href="DeanTransaction_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
+        
+      </ul>
+    </li>
+     <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+    <ul class="submenu">
+        <li><a href="DeanApprovedTransactions_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
+        <li><a href="DeanApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
         
       </ul>
     </li>
@@ -135,8 +142,9 @@ if(getuser == null) {
         <tbody>
         <%
          try{
-        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE dean_verified = 'In-progress' AND osa_verified = 'Approved'";
-        PreparedStatement ps = conn.prepareStatement(displaystudent); 
+        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid INNER JOIN dean on student_transfer.newcourse = dean.college WHERE dean_verified = 'In-progress' AND osa_verified = 'Approved' AND dean.userid = ?";
+        PreparedStatement ps = conn.prepareStatement(displaystudent);
+        ps.setString(1, getuser);
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
         	out.println("<tr><p style=color:red>No transactions returned</p></tr>");

@@ -109,10 +109,10 @@ if(getuser == null) {
 </div>
 
 
-<br>
+<br><br>
 </div>
-      <div class="container">
-       <div class="table-responsive" style="overflow-x:auto; height:100%;">
+      <div class="container-fluid">
+       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
          <table class="table table-striped table-sortable">
         <thead>
@@ -128,12 +128,7 @@ if(getuser == null) {
         PreparedStatement ps = conn.prepareStatement(displayusers); 
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
-        %>
-     
-   
-        
-        
-       
+        %>       
         <tr>
         <td><%=rs.getString("userid") %></td>
         <td><%=rs.getString("first_name") %> <%=rs.getString("middle_name") %>. <%=rs.getString("last_name") %></td>
@@ -165,13 +160,15 @@ if(getuser == null) {
       </center>
       
       </div>
-      <br>
-      <br>
-      <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Users Here</button></form>
-      </div>
-    
       <br><br>
+      </div>
+
+      
 </div>
+  <br><br>
+  <div class="container">
+  <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Users Here</button></form>
+  </div>
 
 					</div>
   <div id="createusers" class="modal fade createusers" role="dialog">
@@ -186,7 +183,7 @@ if(getuser == null) {
             <div class="col-sm-12">
             <br>
             
-            <h4>User Credentials</h4>
+            <h4><b>User Credentials</b></h4>
             <center>
             <table class="table">
               <tr>
@@ -203,7 +200,7 @@ if(getuser == null) {
               </tr>
             </table>
             </center>
-            <h4>User Information</h4>
+            <h4><br>User Information</h4>
               <center>
                 <table class="table">
                   <tr>
@@ -218,15 +215,37 @@ if(getuser == null) {
                     <td>Middle Name: </td>
                     <td><input type ="text" name="new_mname" class="form-control" required></td>
                   </tr>
-                   <tr>
-                    <td>Gender: </td>
-                    <td><input type ="text" size="30" name="new_gender" class="form-control" required></td>
-                  </tr>
                   <tr>
                     <td>Office: </td>
-                    <td><input type ="text" name="new_type" class="form-control" required></td>
+                    <td><select name="new_type" id ="officetype" onchange = "selectType()" class="form-control" required>
+                       <option disabled selected style="display:none;">Select Person</option>
+                      <option value = "Admin">Administrator</option>
+                      <option value = "OFAD">Office for Admission</option>
+                      <option value = "Dean">Dean</option>
+                      <option value = "OSG">Secretary General</option>
+                      <option value = "OSA">Office of Student Affairs</option>
+                      <option value = "Registrar">Office of the Registrar</option>
+                    </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>College: </td>
+                    <%
+                    	
+                    	PreparedStatement pt = conn.prepareStatement("SELECT * FROM faculty");
+                        ResultSet rs = pt.executeQuery();
+                       
+                    	%>
+                    <td><select name = "new_college" class="form-control" id = "showcollege" style="display:none;">
+                     <option disabled selected style = "display:none;">Select Faculty</option>
+                     <% while(rs.next()) { %>
+                     <option value = "<%=rs.getString("faculty_name")%>"><%=rs.getString("faculty_name") %></option>
+                     <%} %>
+                    </select></td>
+                 
                   </tr>
                 </table>
+                <br>
               </center>
             </div>
           </div>
@@ -316,7 +335,17 @@ function submitForm() {
 		alert("Passwords are not the same!");
 	}
 }
-
+function selectType() {
+	var office = document.getElementById("officetype").value;
+	if(office == "Dean") {
+		
+		document.getElementById("showcollege").style.display ="block";
+	}
+	else {
+		document.getElementById("showcollege").style.display ="none";
+	}
+	
+}
 </script>
   <script>
      $(document).on( "click", '.useraccounts',function(e) 

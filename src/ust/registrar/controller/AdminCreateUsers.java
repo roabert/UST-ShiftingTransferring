@@ -51,8 +51,8 @@ public class AdminCreateUsers extends HttpServlet {
 		String getlname = request.getParameter("new_lname");
 		String getfname = request.getParameter("new_fname");
 		String getmname = request.getParameter("new_mname");
-		String getgender = request.getParameter("new_gender");
 		String gettype = request.getParameter("new_type");
+		String getcollege = request.getParameter("new_college");
 		
 		CreateUsersDAO user = new CreateUsersDAO();
 		user.setUserid(getuserid);
@@ -64,7 +64,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		     user.setGender(getgender);
+		      
 		     user.setType(gettype);
 		     user.Admin_insertDetails(conn);
 		}
@@ -73,7 +73,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		     user.setGender(getgender);
+		      
 		     user.setType(gettype);
 		     user.Ofad_insertDetails(conn);
 		}
@@ -82,7 +82,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		     user.setGender(getgender);
+		      
 		     user.setType(gettype);
 		     user.OSG_insertDetails(conn);
 		}
@@ -91,7 +91,8 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		     user.setGender(getgender);
+		      
+		     user.setCollege(getcollege);
 		     user.setType(gettype);
 		     user.Dean_insertDetails(conn);
 		}
@@ -100,7 +101,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		     user.setGender(getgender);
+		      
 		     user.setType(gettype);
 		     user.OSA_insertDetails(conn);
 		}
@@ -109,7 +110,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		     user.setGender(getgender);
+		      
 		     user.setType(gettype);
 		     user.Registrar_insertDetails(conn);
 		}
