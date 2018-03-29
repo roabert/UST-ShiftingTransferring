@@ -55,8 +55,8 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Osapage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="OsaTransactions.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
-    <li><a href="OsaApprovedTransactions.jsp"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a></li>
+    <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+   <li><a href="OsaApprovedTransactions.jsp" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -106,16 +106,15 @@ if(getuser == null) {
           <th>Student Name</th>
           <th>Current School</th>
           <th>Transferring To:</th>
-          <th>Verify Docs</th>
-          <th></th>
-          <th></th>
+          <th>Requirements</th>
+          <th>Status</th>
         </tr>
 		</thead>
         
         <tbody>
         <%
          try{
-        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'In-progress'";
+        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'Approved'";
         PreparedStatement ps = conn.prepareStatement(displaystudent); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
@@ -132,21 +131,7 @@ if(getuser == null) {
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
          <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button>
       </td>
-        <td>
-		<form action = "OSA_verifyprocess" method = "post">
-		<input type="hidden" value = "<%=rs.getString("transferee_id")%>" name = "transferid">
-        <input type="hidden" value = "<%=getuser%>" name = "getuser">
-		  <button value="Approved" type="submit" class="btn btn-warning" name="optionverify"
-	        onclick= "return confirm('Are you sure?');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
-		</form>
-		</td>
-		<td>
-		<button type="button" data-target=".disapprovestudent"
-		 data-transferee_id = "<%=rs.getString("transferee_id") %>"
-		 data-getuser = "<%=getuser %>"
-		 data-toggle="modal" class="btn btn-warning student_transfer">
-	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button>
-		</td>
+        <td><b><%=rs.getString("osa_verified") %></b></td>
         </tr>
         
         <%}while(rs.next());
@@ -165,32 +150,6 @@ if(getuser == null) {
 </div>
 </div>
 
-<div class="modal fade disapprovestudent" role=dialog>
-  <div class="modal-dialog" style="height:400px">
-     <div class="modal-content">
-     <form action = "OSA_verifyprocess" method = "post">
-       <div class="modal-header" style="background-color:gold">
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Student</h3>
-       </div>
-       <div class="modal-body">
-         <br>
-         <input type="hidden" class="transfer_id" name="transferid">
-         <input type="hidden" class="getuser" name="getuser">
-         <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
-         <br>
-          <center>
-          <textarea name="remarks" rows="30" cols="60" placeholder="Endorsement Letter" style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
-            </center>
-       </div>
-       <div class="modal-footer">
-       <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-warning btn-md" type="submit" name ="optionverify" value="Disapproved">Submit</button>
-        </div>
-        </form>
-     </div>
-  </div>
-</div>
 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
@@ -229,7 +188,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'In-progress'";
+		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'Approved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){
