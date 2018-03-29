@@ -133,10 +133,8 @@ if(getuser == null) {
         <tbody>
         <%
          try{
-        String displaystudent_ofad = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
-        String displaystudents_ofad = "SELECT transferee_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM transferees_status INNER JOIN student_transfer on transferees_status.transferee_id = student_transfer.id UNION SELECT shifter_id, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newcourse, newprogram FROM shifters_status INNER JOIN student_shifter on shifters_status.shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved' AND dean_verified = 'Approved' ";
-        String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
-        PreparedStatement ps = conn.prepareStatement(displaystudent_ofad); 
+        String displaystudent_ofad = SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved' WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
+         PreparedStatement ps = conn.prepareStatement(displaystudent_ofad); 
         ResultSet rs = ps.executeQuery();
         
            if(!rs.next()) {
@@ -251,7 +249,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudent_ofadagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
+		        String displaystudent_ofadagain = SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved' WHERE ofad_verified = 'In-progress' AND secgen_verified = 'Approved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudent_ofadagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

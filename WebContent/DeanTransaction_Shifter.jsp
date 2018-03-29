@@ -137,8 +137,9 @@ if(getuser == null) {
         <tbody>
         <%
         try{
-            String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified = 'In-progress'";
+            String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'In-progress' AND dean.userid = ?";                               
             PreparedStatement ps = conn.prepareStatement(displaystudent); 
+            ps.setString(1, getuser);
             ResultSet rs = ps.executeQuery();
             if(!rs.next()){
             	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
@@ -253,7 +254,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE dean_verified = 'In-progress'";
+		        String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'In-progress'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){
