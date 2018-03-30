@@ -242,7 +242,7 @@ if(getuser == null) {
            <center>
              <table class="table">
                  <tr>
-                 <th><input type="checkbox" value="<%%>"></th>
+                 <th><input type="checkbox" onClick="toggle(this)"></th>
                  <th>ID</th>
                  <th>Student Name</th>
                  <th>Outgoing</th>
@@ -329,6 +329,14 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function toggle(source) {
+	var checkbox = document.querySelectorAll('input[type="checkbox"]');
+	for(var i = 0; i < checkbox.length; i++) {
+		if(checkbox[i] != source) {
+		checkbox[i].checked = source.checked;
+		}
+	}
 }
 </script>
      

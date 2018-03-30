@@ -107,11 +107,11 @@ if(getuser == null) {
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
    
-   TRANSACTIONS: TRANSFEREES
+   TRANSACTIONS: SHIFTER
    </a>
    </center>
 </div>
-<br>
+<br><br>
  <div id="content">
     <div class="container-fluid">
   <fieldset>
@@ -159,7 +159,7 @@ if(getuser == null) {
 			<input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
 	        <input type="hidden" value = "<%=getuser%>" name = "getuser">
 			 <button value="Approved" type="submit" class="btn btn-warning" name="optionverify"
-	        onclick= "return confirm('Are you sure?');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
+	        onclick= "return confirm('Upon approving the application of student, you are also endorsing the student for admittance');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
 	        
 		</form>
 		</td>

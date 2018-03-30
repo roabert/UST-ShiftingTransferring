@@ -98,7 +98,7 @@ if(getuser == null) {
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
    
-  TAKE EXAM
+  STEP 2: TAKE EXAM
    </a>
    </center>
 </div>
@@ -115,9 +115,31 @@ if(getuser == null) {
        }
   
          %>
-</div>
-<br>  
+</div>  <br>
      <div class="container">
+       
+        <div class="jumbotron">
+        
+        <% try{
+        	PreparedStatement p = conn.prepareStatement("SELECT * FROM exam_schedules_shifters WHERE shifter_id = ?");
+        	p.setString(1, getuser);
+        	ResultSet r = p.executeQuery();
+        	while(r.next()) {
+        	%>
+        <h4><i>Date of Exam:</i> <%=r.getString("date") %></h4>
+        <h4><i>Time of Exam:</i> <%=r.getString("start_time") %> - <%=r.getString("end_time") %></h4>
+        <h4><i>Venue:</i> <%=r.getString("venue") %></h4>
+        <br>
+        <h4><i>Bring:</i> </h4>
+        <br>
+        <h4>- Test Permit</h4>
+        <h4>- OFFICIAL OR</h4>
+        <h4>- Pencil</h4>
+        <br>
+        <h4><i>Remarks: </i> <%=r.getString("remarks") %></h4>
+        <%}}catch(SQLException e) {out.print(e);} %>
+        </div>
+     
 
           </div>
   </div>

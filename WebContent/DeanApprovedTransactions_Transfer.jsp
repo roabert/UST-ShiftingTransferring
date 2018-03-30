@@ -62,10 +62,9 @@ if(getuser == null) {
     <ul class="submenu">
         <li><a href="DeanTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanTransaction_Transfer.jsp" ><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
-        
       </ul>
     </li>
-     <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+     <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
     <ul class="submenu">
         <li><a href="DeanApprovedTransactions_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanApprovedTransactions_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
@@ -156,7 +155,7 @@ if(getuser == null) {
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
-        <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
          <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button></td>
          <td><b><%=rs.getString("dean_verified") %></b></td>
         </tr>
@@ -177,32 +176,7 @@ if(getuser == null) {
 </div>
 </div>
 </div>
-<div class="modal fade disapprovestudent" role=dialog>
-  <div class="modal-dialog" style="height:400px">
-     <div class="modal-content">
-     <form action = "Dean_verifyTransfer" method = "post">
-       <div class="modal-header" style="background-color:gold">
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Student</h3>
-       </div>
-       <div class="modal-body">
-         <br>
-         <input type="hidden" class="transfer_id" name="transferid">
-         <input type="hidden" class="getuser" name="getuser">
-         <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
-         <br>
-          <center>
-          <textarea name="remarks" rows="30" cols="60" placeholder="Endorsement Letter" style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
-            </center>
-       </div>
-       <div class="modal-footer">
-       <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-warning btn-md" type="submit" name ="optionverify" value="Disapproved">Submit</button>
-        </div>
-        </form>
-     </div>
-  </div>
-</div>
+
 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>

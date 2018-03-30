@@ -73,6 +73,13 @@ if(getuser == null) {
         
       </ul>
  </li>
+ <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+    <ul class="submenu">
+        <li><a href="OsgApproved_Transactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        
+      </ul>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>

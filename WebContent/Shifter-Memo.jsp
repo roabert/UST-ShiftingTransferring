@@ -4,6 +4,8 @@
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
     <%@ page import = "ust.registrar.model.shifting.*" %>
+    <%@ page import = "java.util.Date" %>
+    <%@ page import = "java.text.*" %>
      <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -94,7 +96,6 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   <span style="font-size:30px;cursor:pointer;color: white; float:left;padding-top:10px;" class="glyphicon glyphicon-bell"></span>
    
    FILL UP MEMO
    </a>
@@ -109,12 +110,22 @@ if(getuser == null) {
 <div class="announcement">
 <br>
 <form action = "SubmitMemoProcess" method="post">
+<%
+  DateFormat format = new SimpleDateFormat("yyyy/mm/dd");
+  Date date = new Date();
+try {
+	
+ PreparedStatement p = conn.prepareStatement("SELECT * FROM student_shifter WHERE studentid = ?");
+ p.setString(1, getuser);
+ ResultSet r = p.executeQuery();
+ while(r.next()) {
+%>
 <input type="hidden" name="getstudent" value="<%=getuser%>">
-Student Number: <input type="text" id="fname" name="studentid" placeholder="Student Number string here" > Date: <input type="date" align="right" name="date" placeholder="Date today" ><br><br>
-<p>I, <input type="text" id="fname" name="fullname" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
-Faculty/College/Institute <br><br><input type="text" id="fname" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
-Term # <input type="number" id="fname" name="semester" placeholder="Term #" style="width:50px">AY 20- <input type="number" id="fname" name="firstyear" placeholder="" style="width:50px">
-- 20<input type="number" id="fname" name="secondyear" placeholder="" style="width:50px"> <br><br> My complete college attendance to date:  <input type="text" id="fname" name="currentcourse" placeholder="Current Faculty" style="width:500px"  >
+Student Number: <input type="text" id="fname" value = "<%=r.getString("studentid") %>" name="studentid" placeholder="Student Number" > Date: <input type="text" align="right" value = "<%=format.format(date) %>" name="date" placeholder="Date today" ><br><br>
+<p>I, <input type="text" id="fname" name="fullname" value = "<%=r.getString("firstname") %> <%=r.getString("middlei") %> <%=r.getString("lastname") %>" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
+Faculty/College/Institute <br><br><input type="text" id="fname" value = "<%=r.getString("newcourse") %>" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
+Term # <input type="text" id="fname" name="semester" placeholder="Term #" style="width:50px">AY 20- <input type="text" id="fname" name="firstyear" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="secondyear" placeholder="" style="width:50px"> <br><br> My complete college attendance to date:  <input type="text" id="fname" value="<%=r.getString("oldcourse") %>" name="currentcourse" placeholder="Current Faculty" style="width:500px"  >
 </p>
 <center>
 <p>
@@ -124,8 +135,8 @@ Term # <input type="number" id="fname" name="semester" placeholder="Term #" styl
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" id="fname" name="firstterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="firstterm_1year" placeholder="" style="width:50px">
-- 20<input type="number" id="fname" name="firstterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" id="fname" name="firstterm" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="firstterm_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="firstterm_2year" placeholder="" style="width:50px"></td>
     <td>:</td>
     <td>Special Term <input type="text" id="fname" name="specialterm_1" placeholder="" style="width:50px"></td>
   </tr> 
@@ -134,8 +145,8 @@ Term # <input type="number" id="fname" name="semester" placeholder="Term #" styl
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" id="fname" name="secondterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="secondterm_1year" placeholder="" style="width:50px">
-- 20<input type="number" id="fname" name="secondterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" id="fname" name="secondterm" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="secondterm_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="secondterm_2year" placeholder="" style="width:50px"></td>
     <td>:</td>
     <td>Special Term <input type="text" id="fname" name="specialterm_2" placeholder="" style="width:50px"></td>
   </tr> 
@@ -144,8 +155,8 @@ Term # <input type="number" id="fname" name="semester" placeholder="Term #" styl
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" id="fname" name="thirdterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="thirdterm_1year" placeholder="" style="width:50px">
-- 20<input type="number" id="fname" name="thirdterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" id="fname" name="thirdterm" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="thirdterm_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="thirdterm_2year" placeholder="" style="width:50px"></td>
     <td>:</td>
     <td>Special Term <input type="text" id="fname" name="specialterm_3" placeholder="" style="width:50px"></td>
   </tr> 
@@ -154,8 +165,8 @@ Term # <input type="number" id="fname" name="semester" placeholder="Term #" styl
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" id="fname" name="fourthterm" placeholder="" style="width:50px"> AY 20- <input type="number" id="fname" name="fourthterm_1year" placeholder="" style="width:50px">
-- 20<input type="number" id="fname" name="fourthterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" id="fname" name="fourthterm" placeholder="" style="width:50px"> AY 20- <input type="text" id="fname" name="fourthterm_1year" placeholder="" style="width:50px">
+- 20<input type="text" id="fname" name="fourthterm_2year" placeholder="" style="width:50px"></td>
     <td>:</td>
     <td>Special Term <input type="text" id="fname" name="specialterm_4" placeholder="" style="width:50px"></td>
   </tr> 
@@ -165,6 +176,7 @@ Term # <input type="number" id="fname" name="semester" placeholder="Term #" styl
 </p><br><br>
 <button type="submit" class="btn btn-warning btn-lg">Submit</button>
 </center>
+<%}}catch(SQLException e) {out.print(e);} %>
  </form>
 </div>
    </div>
@@ -210,9 +222,15 @@ function goback() {
 	id("fileuploading").style.display = "none";
 }
 function step1Submit() {
+	var terms = id("termcheckbox");
+	if(id.checked == true) {
 	id("step1shifter").method = "post";
 	id("step1shifter").action = "Requirements_Upload";
 	id("step1shifter").submit();
+	}
+	else {
+		alert('You must agree first the condition!');
+	}
 }
 ;</script>
 

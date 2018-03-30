@@ -73,6 +73,13 @@ if(getuser == null) {
         
       </ul>
  </li>
+ <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+    <ul class="submenu">
+        <li><a href="OsgApproved_Transactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        
+      </ul>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -142,16 +149,14 @@ if(getuser == null) {
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
-        
-        </center>
+        <td><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button>
         </td> 
         <td>
 		<form action = "OSG_verifyprocess" method = "post">
 			<input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
 	        <input type="hidden" value = "<%=getuser%>" name = "getuser">
 			 <button value="Approved" type="submit" class="btn btn-warning" name="optionverify"
-	        onclick= "return confirm('Are you sure?');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
+	        onclick= "return confirm('Upon approving the application of student, you are also endorsing the student for admittance');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
 	        
 		</form>
 		</td>

@@ -231,7 +231,7 @@ if(getuser == null) {
            <center>
              <table class="table">
                  <tr>
-                 <th><input type="checkbox" value="<%%>"></th>
+                 <th><input type="checkbox" onClick="toggle(this)"></th>
                  <th>ID</th>
                  <th>Student Name</th>
                  <th>Outgoing</th>
@@ -241,7 +241,7 @@ if(getuser == null) {
                	  ResultSet rs2 = ps2.executeQuery();
                  while(rs2.next()) { %>
                  <tr>
-                  <td><input type="checkbox" name="selectstransferees" value ="<%=rs2.getString("transferee_id") %>"></td>
+                  <td><input type="checkbox" name="selectstransferees" id="selectstudents" value ="<%=rs2.getString("transferee_id") %>"></td>
                   <td><%=rs2.getString("transferee_id") %></td>
                   <td><%=rs2.getString("lastname") %>, <%=rs2.getString("firstname") %> <%=rs2.getString("middlei") %></td>
                   <td><%=rs2.getString("newcourse") %>, <%=rs2.getString("newprogram") %></td>
@@ -297,6 +297,14 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function toggle(source) {
+	var checkbox = document.querySelectorAll('input[type="checkbox"]');
+	for(var i = 0; i < checkbox.length; i++) {
+		if(checkbox[i] != source) {
+		checkbox[i].checked = source.checked;
+		}
+	}
 }
 </script>
      

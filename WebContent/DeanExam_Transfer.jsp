@@ -66,7 +66,7 @@ if(getuser == null) {
         
       </ul>
     </li>
-     <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+     <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
     <ul class="submenu">
         <li><a href="DeanApprovedTransactions_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
@@ -145,9 +145,9 @@ if(getuser == null) {
         <tbody>
           <%
          try{
-        String displaywithscore = "SELECT * FROM transferees_scores INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE dean_reviewed is NULL AND final_score is not NULL";
-        String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
-        PreparedStatement ps = conn.prepareStatement(displaywithscore); 
+        String displaywithscore = "SELECT * FROM transferees_scores INNER JOIN student_transfer on transferee_id = student_transfer.userid INNER JOIN dean on student_transfer.newcourse = dean.college WHERE dean_reviewed is NULL AND final_score is not NULL AND dean.userid = ?";
+        PreparedStatement ps = conn.prepareStatement(displaywithscore);
+        ps.setString(1, getuser);
         ResultSet rs = ps.executeQuery();
         if(!rs.next()) {
       	  out.print("<tr><p style=color:red>No scores of students encoded yet!</p></tr>");

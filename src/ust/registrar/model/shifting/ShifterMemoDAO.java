@@ -96,67 +96,67 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 	public void setSpecialterm_4(String specialterm_4) {
 		this.specialterm_4 = specialterm_4;
 	}
-	public int getFirstyear() {
+	public String getFirstyear() {
 		return firstyear;
 	}
-	public void setFirstyear(int firstyear) {
+	public void setFirstyear(String firstyear) {
 		this.firstyear = firstyear;
 	}
-	public int getSecondyear() {
+	public String getSecondyear() {
 		return secondyear;
 	}
-	public void setSecondyear(int secondyear) {
+	public void setSecondyear(String secondyear) {
 		this.secondyear = secondyear;
 	}
-	public int getFirstterm_1year() {
+	public String getFirstterm_1year() {
 		return firstterm_1year;
 	}
-	public void setFirstterm_1year(int firstterm_1year) {
+	public void setFirstterm_1year(String firstterm_1year) {
 		this.firstterm_1year = firstterm_1year;
 	}
-	public int getFirstterm_2year() {
+	public String getFirstterm_2year() {
 		return firstterm_2year;
 	}
-	public void setFirstterm_2year(int firstterm_2year) {
+	public void setFirstterm_2year(String firstterm_2year) {
 		this.firstterm_2year = firstterm_2year;
 	}
-	public int getSecondterm_1year() {
+	public String getSecondterm_1year() {
 		return secondterm_1year;
 	}
-	public void setSecondterm_1year(int secondterm_1year) {
+	public void setSecondterm_1year(String secondterm_1year) {
 		this.secondterm_1year = secondterm_1year;
 	}
-	public int getSecondterm_2year() {
+	public String getSecondterm_2year() {
 		return secondterm_2year;
 	}
-	public void setSecondterm_2year(int secondterm_2year) {
+	public void setSecondterm_2year(String secondterm_2year) {
 		this.secondterm_2year = secondterm_2year;
 	}
-	public int getThirdterm_1year() {
+	public String getThirdterm_1year() {
 		return thirdterm_1year;
 	}
-	public void setThirdterm_1year(int thirdterm_1year) {
+	public void setThirdterm_1year(String thirdterm_1year) {
 		this.thirdterm_1year = thirdterm_1year;
 	}
-	public int getThirdterm_2year() {
+	public String getThirdterm_2year() {
 		return thirdterm_2year;
 	}
-	public void setThirdterm_2year(int thirdterm_2year) {
+	public void setThirdterm_2year(String thirdterm_2year) {
 		this.thirdterm_2year = thirdterm_2year;
 	}
-	public int getFourthterm_1year() {
+	public String getFourthterm_1year() {
 		return fourthterm_1year;
 	}
-	public void setFourthterm_1year(int fourthterm_1year) {
+	public void setFourthterm_1year(String fourthterm_1year) {
 		this.fourthterm_1year = fourthterm_1year;
 	}
-	public int getFourthterm_2year() {
+	public String getFourthterm_2year() {
 		return fourthterm_2year;
 	}
-	public void setFourthterm_2year(int fourthterm_2year) {
+	public void setFourthterm_2year(String fourthterm_2year) {
 		this.fourthterm_2year = fourthterm_2year;
 	}
-	public int firstyear, secondyear, firstterm_1year, firstterm_2year, secondterm_1year,
+	public String firstyear, secondyear, firstterm_1year, firstterm_2year, secondterm_1year,
 	secondterm_2year, thirdterm_1year, thirdterm_2year, fourthterm_1year, fourthterm_2year;
 	
 	
@@ -169,24 +169,24 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 			ps.setString(4, fullname);
 			ps.setString(5, newcourse);
 			ps.setString(6, semester);
-			ps.setInt(7, firstyear);
-			ps.setInt(8, secondyear);
+			ps.setString(7, firstyear);
+			ps.setString(8, secondyear);
 			ps.setString(9, currentcourse);
 			ps.setString(10, firstterm);
-			ps.setInt(11, firstterm_1year);
-			ps.setInt(12, firstterm_2year);
+			ps.setString(11, firstterm_1year);
+			ps.setString(12, firstterm_2year);
 			ps.setString(13, specialterm_1);
 			ps.setString(14, secondterm);
-			ps.setInt(15, secondterm_1year);
-			ps.setInt(16, secondterm_2year);
+			ps.setString(15, secondterm_1year);
+			ps.setString(16, secondterm_2year);
 			ps.setString(17, specialterm_2);
 			ps.setString(18, thirdterm);
-			ps.setInt(19, thirdterm_1year);
-			ps.setInt(20, thirdterm_2year);
+			ps.setString(19, thirdterm_1year);
+			ps.setString(20, thirdterm_2year);
 			ps.setString(21, specialterm_3);
 			ps.setString(22, fourthterm);
-			ps.setInt(23, fourthterm_1year);
-			ps.setInt(24, fourthterm_2year);
+			ps.setString(23, fourthterm_1year);
+			ps.setString(24, fourthterm_2year);
 			ps.setString(25, specialterm_4);
 			ps.executeUpdate();
 		} catch (SQLException e) {

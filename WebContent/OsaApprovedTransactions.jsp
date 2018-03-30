@@ -56,7 +56,7 @@ if(getuser == null) {
     <ul class="mainmenu">
     <li><a href="Osapage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
-   <li><a href="OsaApprovedTransactions.jsp" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a></li>
+   <li><a href="OsaApprovedTransactions.jsp" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>

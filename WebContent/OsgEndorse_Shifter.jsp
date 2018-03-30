@@ -59,13 +59,13 @@ if(getuser == null) {
     <ul class="mainmenu">
     <li><a href="Osgpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 
- <li><a href="#" ><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
- <ul class="submenu">
-        <li><a href="OsgExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OsgExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+ <li><a href="#"><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <ul class="submenu">
+        <li><a href="OsgTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
-      </li>
+    </li>
  <li><a href="#" class="active"><span class="glyphicon glyphicon-pencil"></span> Endorsement</a>
   <ul class="submenu">
         <li><a href="OsgEndorse_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
@@ -73,6 +73,13 @@ if(getuser == null) {
         
       </ul>
  </li>
+ <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+    <ul class="submenu">
+        <li><a href="OsgApproved_Transactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        
+      </ul>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>

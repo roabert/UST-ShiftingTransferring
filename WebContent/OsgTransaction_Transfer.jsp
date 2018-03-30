@@ -73,6 +73,13 @@ if(getuser == null) {
         
       </ul>
  </li>
+ <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+    <ul class="submenu">
+        <li><a href="OsgApproved_Transactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        
+      </ul>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -130,7 +137,6 @@ if(getuser == null) {
         <%
          try{
         String displaystudent_osg = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE secgen_verified = 'In-progress' AND dean_verified = 'Approved'";
-        String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
@@ -150,7 +156,7 @@ if(getuser == null) {
 		<input type="hidden" value = "<%=rs.getString("transferee_id")%>" name = "transferid">
         <input type="hidden" value = "<%=getuser%>" name = "getuser">
 		  <button value="Approved" type="submit" class="btn btn-warning" name="optionverify"
-	        onclick= "return confirm('Are you sure?');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
+	        onclick= "return confirm('Upon approving the application of student, you are also endorsing the student for admittance');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
 		</form>
 		</td>
 		<td>

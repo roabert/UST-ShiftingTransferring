@@ -67,7 +67,7 @@ if(getuser == null) {
         
       </ul>
     </li>
-     <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+     <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
     <ul class="submenu">
         <li><a href="DeanApprovedTransactions_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
         <li><a href="DeanApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
@@ -168,7 +168,7 @@ if(getuser == null) {
 	        <input type="hidden" value = "<%=rs.getString("shifter_id")%>" name = "studentid">
 	        <input type="hidden" value = "<%=getuser %>" name = "getuser">
 	        <button value="Approved" type="submit" class="btn btn-warning" name="optionverify"
-	        onclick= "return confirm('Are you sure?');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
+	        onclick= "return confirm('Upon approving the application of student, you are also endorsing the student for admittance');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
 	        
 	        </form>
         </td>

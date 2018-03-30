@@ -3,13 +3,12 @@
     
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
-    <%@ page import = "DatabaseHandler.SingletonDB" %>
-  
+        <%@ page import = "DatabaseHandler.SingletonDB" %>
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -33,10 +32,9 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <!-- Add Media helper (this is optional) -->
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-
 <head>
 <meta charset="ISO-8859-1">
-<title>Dean | Transactions</title>
+<title>OSG | Approved Transactions</title>
 </head>
 
 <body>
@@ -47,47 +45,41 @@ if(getuser == null) {
 }
 %>
 
+
  <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<navhead>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
-			<h1>Dean<br></h1>
+			<h1>Secretary General<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
-			
-		</navhead>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
-    <li><a href="Deanpage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="Osgpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions</a>
     <ul class="submenu">
-        <li><a href="DeanTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
-        <li><a href="DeanTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
+        <li><a href="OsgTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
-     <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
-    <ul class="submenu">
-        <li><a href="DeanApprovedTransactions_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
-        <li><a href="DeanApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
-        
-      </ul>
-    </li>
-    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
-      <ul class="submenu">
-        <li><a href="DeanExam_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
-        <li><a href="DeanExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
-        
-      </ul>
-    </li>
- <li><a href="#"><span class="glyphicon glyphicon-folder-open"></span> Memo</a>
+
+ <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Endorsement</a>
   <ul class="submenu">
-        <li><a href="DeanMemo_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span>Shifters</a></li>
-        <li><a href="DeanMemo_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span>Transferees</a></li>
+        <li><a href="OsgEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
  </li>
+ <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+    <ul class="submenu">
+        <li><a href="OsgApproved_Transactions.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        
+      </ul>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -115,106 +107,81 @@ if(getuser == null) {
 </header>
 <div class="topnav">
    <center>
-   <a>
+   <a style= "color: white">
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   TRANSACTIONS: SHIFTERS
+   APPROVED TRANSACTIONS: SHIFTERS
    </a>
    </center>
 </div>
 <br>
  <div id="content">
     <div class="container-fluid">
+    <br>
+    <br>
+      <ul class = "nav nav-tabs">
+          <li class="active"><a href="OsgApproved_Transactions.jsp">Shifters</a></li>
+          <li><a href="OsgApproved_Transactions2.jsp">Transferees</a></li>
+          </ul>
+     <div class="tab-content">
+     <br><br>
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-     
+      
       <table class="table table-striped table-sortable">
-      	<thead>
-	        <tr>
-	          <th>ID</th>
-	          <th>Student Name</th>
-	          <th>Current Course/Program</th>
-	          <th>Incoming Course/Program</th>
-	          <th>Documents</th>
-	          <th>Status</th>
-	        </tr>
-        </thead>
-        
-        <tbody>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Student Name</th>
+          <th>Current Course/Program</th>
+          <th>Incoming Course/Program</th>
+          <th>Requirements</th>
+          <th>Status</th>
+        </tr>
+       </thead>
+       <tbody>
         <%
-        try{
-            String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'Approved' AND dean.userid = ?";                               
-            PreparedStatement ps = conn.prepareStatement(displaystudent); 
-            ps.setString(1, getuser);
-            ResultSet rs = ps.executeQuery();
-            if(!rs.next()){
-            	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-            }
-            else {
-            	do{%>
-         
+         try{
+        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved'";
+         PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
+        ResultSet rs = ps.executeQuery();
+        if(!rs.next()){
+        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
+        }
+        else {
+           do {
+        %>
         <tr>
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
-   
-        </center>
-        </td>   
-        <td>
-		 <b><%=rs.getString("dean_verified") %></b>
-        </td>
-        </tr>	
-        
+        <td><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button>
+        </td> 
+        <td><b><%=rs.getString("secgen_verified") %></b></td>
+
+        </tr>
         <%}while(rs.next());
-         } 
-        }
-         catch(Exception e) {
-        	out.print(e);
+        }  
+         }catch(Exception e) {
+        	e.printStackTrace();
         } %>
-        </tbody>
+        </tbody> 
       </table>
-     
+      
       </center>
       </div>
   </fieldset>
+   </div>
   </div>
-   
 </div>
 </div>
 </div>
+<div class="footer"></div>
 
-<div class="modal fade disapprovestudent" role=dialog>
-  <div class="modal-dialog" style="height:400px">
-     <div class="modal-content">
-     <form action = "Dean_verifyprocess" method = "post">
-       <div class="modal-header bg-warning">
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Student</h3>
-       </div>
-       <div class="modal-body">
-         <br>
-         <input type="hidden" class="shifter_id" name="studentid">
-         <input type="hidden" class="getuser" name="getuser">
-         <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
-         <br>
-          <center>
-          <textarea name="remarks" rows="30" cols="60" placeholder="Endorsement Letter" style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
-            </center>
-       </div>
-       <div class="modal-footer">
-       <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-warning btn-md" type="submit" name ="optionverify" value="Disapproved">Submit</button>
-        </div>
-        </form>
-     </div>
-  </div>
+		<script src="scripts/slidebars.js"></script>
+		<script src="scripts/scripts.js"></script>
 
-</div>
-
-<script src="scripts/slidebars.js"></script>
-<script src="scripts/scripts.js"></script>
 
 
 <script>
@@ -231,26 +198,13 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>    
-        <!-- 
-        Requirements
-         --> <script>
-     $(document).on( "click", '.student_shift',function(e) 
-    		 {
-    	    var shifter_id = $(this).data('shifter_id');
-    	    var getuser = $(this).data('getuser');
-
-    	    $(".shifter_id").val(shifter_id);
-    	    $(".getuser").val(getuser);
-    	    $("#studentid").html(shifter_id);
-  
-    	});
-     </script>
+        
          <script type="text/javascript">
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'Approved'";
-		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
+		        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved''";
+		        PreparedStatement ps2 = conn.prepareStatement(displaystudent_osg); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){
 		        }
@@ -287,7 +241,8 @@ function closeNav() {
 		        	e.printStackTrace();
 		        } %> 
          })
-         </script>     
-          <div class="footer"></div>
+         </script>
+     
+     <div class="footer"></div>
 </body>
 </html>

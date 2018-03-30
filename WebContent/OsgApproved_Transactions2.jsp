@@ -7,6 +7,7 @@
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
@@ -33,30 +34,52 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>OSA | Transactions</title>
+<title>OSG | Approved Transactions</title>
 </head>
+
 <body>
 <%
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
 	 response.sendRedirect("login.jsp");
-}	
+}
 %>
 
-<div off-canvas="slidebar-1 left reveal">
+
+ <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<navhead>
 		<br>
 			<center><img src="Images/dp.png" style="width:40%; height:15%;">
-			<h1>OSA<br></h1>
+			<h1>Secretary General<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
 			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
-    <li><a href="Osapage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="OsaTransactions.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
-    <li><a href="OsaApprovedTransactions.jsp"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a></li>
+    <li><a href="Osgpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <ul class="submenu">
+        <li><a href="OsgTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgTransaction_Transfer.jsp" ><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
+      </ul>
+    </li>
+
+ <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Endorsement</a>
+  <ul class="submenu">
+        <li><a href="OsgEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OsgEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
+      </ul>
+ </li>
+ <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+    <ul class="submenu">
+        <li><a href="OsgApproved_Transactions.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        
+      </ul>
+    </li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -65,7 +88,6 @@ if(getuser == null) {
 
 
 		</div>
-
 <div canvas="contain">
 <div id="wrapper">
 
@@ -87,120 +109,90 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-    TRANSACTIONS: TRANSFEREE
+   
+   TRANSACTIONS: TRANSFEREES
    </a>
    </center>
 </div>
-   <br> 
-   <div id="content">
+<br>
+ <div id="content">
     <div class="container-fluid">
-
-		<fieldset>
-		 <div class="table-responsive" style="overflow-x:auto; height:500px;">
+     <br>
+    <br>
+      <ul class = "nav nav-tabs">
+          <li><a href="OsgApproved_Transactions.jsp">Shifters</a></li>
+          <li class="active"><a href="OsgApproved_Transactions2.jsp">Transferees</a></li>
+          </ul>
+     <div class="tab-content">
+     <br><br>
+  <fieldset>
+      <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-     
+      
       <table class="table table-striped table-sortable">
-	  <thead>
+      <thead>
         <tr>
-          <th>ID</th>
+        <th>ID</th>
           <th>Student Name</th>
           <th>Current School</th>
           <th>Transferring To:</th>
-          <th>Verify Docs</th>
-          <th></th>
-          <th></th>
+          <th>Requirements</th>
+          <th>Status</th>
         </tr>
-		</thead>
-        
+        </thead>
         <tbody>
         <%
          try{
-        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'In-progress'";
-        PreparedStatement ps = conn.prepareStatement(displaystudent); 
+        String displaystudent_osg = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE secgen_verified = 'Approved'";
+        PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
         	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
         }
         else {
-          do {
+           do {
         %>
-         
         <tr>
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-         <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button>
-      </td>
-        <td>
-		<form action = "OSA_verifyprocess" method = "post">
-		<input type="hidden" value = "<%=rs.getString("transferee_id")%>" name = "transferid">
-        <input type="hidden" value = "<%=getuser%>" name = "getuser">
-		  <button value="Approved" type="submit" class="btn btn-warning" name="optionverify"
-	        onclick= "return confirm('Upon approving the application of student, you are also endorsing the student for admittance');"><span class="glyphicon glyphicon-thumbs-up" style="color:white;"></span> Approve</button>
-		</form>
-		</td>
+        <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button></td>
 		<td>
-		<button type="button" data-target=".disapprovestudent"
-		 data-transferee_id = "<%=rs.getString("transferee_id") %>"
-		 data-getuser = "<%=getuser %>"
-		 data-toggle="modal" class="btn btn-warning student_transfer">
-	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button>
+		 <b><%=rs.getString("secgen_verified") %></b>
 		</td>
         </tr>
-        
         <%}while(rs.next());
-         }  
+        }  
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
         </tbody>
       </table>
-     
+      
       </center>
       </div>
-    </fieldset>
-</div>
+  </fieldset>
+  </div>
+  </div>
 </div>
 </div>
 </div>
 
-<div class="modal fade disapprovestudent" role=dialog>
-  <div class="modal-dialog" style="height:400px">
-     <div class="modal-content">
-     <form action = "OSA_verifyprocess" method = "post">
-       <div class="modal-header" style="background-color:gold">
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Student</h3>
-       </div>
-       <div class="modal-body">
-         <br>
-         <input type="hidden" class="transfer_id" name="transferid">
-         <input type="hidden" class="getuser" name="getuser">
-         <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
-         <br>
-          <center>
-          <textarea name="remarks" rows="30" cols="60" placeholder="Endorsement Letter" style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
-            </center>
-       </div>
-       <div class="modal-footer">
-       <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-warning btn-md" type="submit" name ="optionverify" value="Disapproved">Submit</button>
-        </div>
-        </form>
-     </div>
-  </div>
-</div>
+
+<div class="footer"></div>
+
 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
-		
+
+
 
 
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
-});
+} );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
@@ -210,26 +202,13 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
-
-
 </script>
-<script>
-     $(document).on( "click", '.student_transfer',function(e) 
-    		 {
-    	    var transfer_id = $(this).data('transferee_id');
-    	    var getuser = $(this).data('getuser');
 
-    	    $(".transfer_id").val(transfer_id);
-    	    $(".getuser").val(getuser);
-    	    $("#studentid").html(transfer_id);
-  
-    	});
-     </script>
-<script type="text/javascript">
+     <script type="text/javascript">
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'In-progress'";
+		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE secgen_verified = 'Approved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){
@@ -268,6 +247,6 @@ function closeNav() {
 		        } %> 
          })
          </script> 
-          <div class="footer"></div>
+     
 </body>
 </html>
