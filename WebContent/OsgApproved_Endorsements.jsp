@@ -75,8 +75,8 @@ if(getuser == null) {
  </li>
  <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
     <ul class="submenu">
-        <li><a href="OsgApproved_Transactions.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
-        <li><a href="OsgApproved_Endorsements.jsp"><span class="glyphicon glyphicon-check"></span> Endorsements</a></li>
+        <li><a href="OsgApproved_Transactions.jsp" ><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+        <li><a href="OsgApproved_Endorsements.jsp" class="active"><span class="glyphicon glyphicon-check"></span> Endorsements</a></li>
         
       </ul>
     </li>
@@ -119,56 +119,85 @@ if(getuser == null) {
     <br>
     <br>
       <ul class = "nav nav-tabs">
-          <li class="active"><a href="OsgApproved_Transactions.jsp">Shifters</a></li>
-          <li><a href="OsgApproved_Transactions2.jsp">Transferees</a></li>
+          <li class="active"><a href="OsgApproved_Endorsements.jsp">Shifters</a></li>
+          <li><a href="OsgApproved_Endorsements2.jsp">Transferees</a></li>
           </ul>
      <div class="tab-content">
      <br><br>
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
-      
       <table class="table table-striped table-sortable">
-      <thead>
+		<thead>
         <tr>
-          <th>ID</th>
           <th>Student Name</th>
-          <th>Current Course/Program</th>
-          <th>Incoming Course/Program</th>
-          <th>Requirements</th>
+          <th>Incoming</th>
+          <th>Student Memo</th>
           <th>Status</th>
         </tr>
-       </thead>
-       <tbody>
+		</thead>
+        
+        <tbody>
         <%
          try{
-        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved'";
-         PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
+        String displayindorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE secgen_indorsed = 'Approved'";
+        PreparedStatement ps = conn.prepareStatement(displayindorsement_osg); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
-        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-        }
-        else {
-           do {
+  		  out.println("<tr><p style=color:red>No approved endorsements!</p></tr>");
+  	  }
+  	  else{
+  	   do{
         %>
         <tr>
-        <td><%=rs.getString("shifter_id") %></td>
-        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button>
-        </td> 
-        <td><b><%=rs.getString("secgen_verified") %></b></td>
-
+        <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
+        <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button></td>
+        <td><b><%=rs.getString("secgen_indorsed") %></b></td>
         </tr>
+        <div id="<%=rs.getString("shifter_id") %>" style="width:600px;display: none;">
+					<%
+						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM shifters_memo where shifter_id = ?");
+						p3.setString(1, rs.getString("shifter_id"));
+	            	   	ResultSet r3 = p3.executeQuery();
+	            	   	while(r3.next()){
+	            	   		%>
+	            	   		<center>
+	            	   		<h2>UNIVERSITY OF SANTO TOMAS</h2>
+	            	   		<h4>OFFICE OF THE SECRETARY GENERAL</h4>
+	            	   		</center>
+	            	   		<br>
+	            	   		<p>Date: <u><%=r3.getString("date") %></u></p><br>
+	            	   		<p>Student ID: <%=r3.getString("studentid") %></p><br>
+	            	   		<p>I, <u><%=r3.getString("full_name") %></u> from college of <u><%=r3.getString("oldcourse") %></u></p>
+	            	   		<p>wish to apply for admission to the College of <u><%=r3.getString("newcourse") %></u>, <u><%=r3.getString("semester_start") %></u>
+	            	   		 Sem, 20<u><%=r3.getString("firstyear_start") %></u> - 20<u><%=r3.getString("secondyear_start") %></u></p>
+	            	   		 <br>
+	            	   		 <p>MY COMPLETE COLLEGE ATTENDANCE TO DATE:</p>
+	            	   		 <p>College(s) previously attended: <u><%=r3.getString("oldcourse") %></u></p>
+	            	   		 <br>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("first_term") %></u> AY 20<u><%=r3.getString("firstterm_1year") %></u> - 20<u><%=r3.getString("firstterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_1") %></u></p>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("second_term") %></u> AY 20<u><%=r3.getString("secondterm_1year") %></u> - 20<u><%=r3.getString("secondterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_2") %></u></p>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("third_term") %></u> AY 20<u><%=r3.getString("thirdterm_1year") %></u> - 20<u><%=r3.getString("thirdterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_3") %></u></p>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_4") %></u></p>
+	            	   		 <br>
+	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
+	            	   		<br><br><br><br>	                   
+	            	<% 
+	            	   		}
+					 
+            	       
+					%>
+				</div>
+
+				
         <%}while(rs.next());
-        }  
+  	  }
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
-        </tbody> 
+		</tbody>
       </table>
-      
       </center>
       </div>
   </fieldset>
@@ -199,49 +228,7 @@ function closeNav() {
 }
 </script>    
         
-         <script type="text/javascript">
-		 $(document).ready(function() {
-		        <%
-		         try{
-		        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved''";
-		        PreparedStatement ps2 = conn.prepareStatement(displaystudent_osg); 
-		        ResultSet rs2 = ps2.executeQuery();
-		        if(!rs2.next()){
-		        }
-		        else {
-		          do {
-		        %>   
-				$("#<%=rs2.getString("shifter_id")%>").click(function() {
-					$.fancybox.open([
-				        <%
-				        String displayrequirement = "SELECT * FROM shifters_requirements WHERE shifter_id = ?";
-				        PreparedStatement ps3 = conn.prepareStatement(displayrequirement); 
-				        ps3.setString(1, rs2.getString("shifter_id"));
-				        ResultSet rs3 = ps3.executeQuery();
-				        while(rs3.next()){
-				        %>
-						{
-							href : "DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg"
-						},
-						<%
-				        }
-						%>
-					], {
-						helpers : {
-							thumbs : {
-								width: 75,
-								height: 50
-							}
-						}
-					});
-	         	});
-	        <%} while(rs2.next());
-		         }  
-		         }catch(Exception e) {
-		        	e.printStackTrace();
-		        } %> 
-         })
-         </script>
+      
      
      <div class="footer"></div>
 </body>

@@ -66,7 +66,13 @@ if(getuser == null) {
         
       </ul>
     </li>
-
+     <li><a href="#"><span class="glyphicon glyphicon-check"></span> Endorsed Students</a>
+    <ul class="submenu">
+        <li><a href="RegistrarApprovedEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="RegistrarApprovedEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
+      </ul>
+    </li>
  <li><a href="#" class="active"><span class="glyphicon glyphicon-list-alt"></span> Completed Memos</a>
   <ul class="submenu">
         <li><a href="RegistrarMemo_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>

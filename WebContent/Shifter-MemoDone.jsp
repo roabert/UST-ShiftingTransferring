@@ -39,6 +39,10 @@ if(getuser == null) {
 }	
 %>
 
+<%
+
+
+%>
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>
@@ -91,11 +95,11 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
- SUMBMISSION COMPLETE
+ MEMO SUBMITTED! SEE TRACKER FOR UPDATES
    </a>
    </center>
 </div>
-<br>    <p id="text_steps"><i>MEMO SUBMITTED! SEE TRACKER FOR UPDATES</i></p>
+<br>    
 
      <div class="container">
 <br>

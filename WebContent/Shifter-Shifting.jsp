@@ -168,18 +168,24 @@ if(rs1.next()) {
 	webpage = "Shifter-Shifting-2.jsp";
 	 response.sendRedirect("Shifter-Shifting-2.jsp");
 } 
-PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND dean_reviewed = 'Approved'");
+PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND registrar_indorsed is NULL");
 ps2.setString(1, getuser);
 ResultSet rs2 = ps2.executeQuery();
 if(rs2.next()) {
 	response.sendRedirect("Shifter-Memo.jsp");
 }
 
-MemoDoneDAO md = new MemoDoneDAO();
-md.setStudentid(getuser);
-md.memoDoneStatus(conn);
-if(md.getDean() != null || md.getSecgen() != null || md.getRegistrar() != null) {
-	 response.sendRedirect("Shifter-MemoDone.jsp");
+PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND (secgen_indorsed = 'In-progress' OR registrar_indorsed = 'In-progress')");
+ps3.setString(1, getuser);
+ResultSet rs3 = ps3.executeQuery();
+if(rs3.next()) {
+	response.sendRedirect("Shifter-MemoDone.jsp");
+}
+PreparedStatement ps4 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND (shifter_shifting_approved = 'Approved' OR secgen_indorsed = 'Approved')");
+ps4.setString(1, getuser);
+ResultSet rs4 = ps4.executeQuery();
+if(rs4.next()) {
+	response.sendRedirect("Shifter-Shifting-Done.jsp");
 }
 %>
 

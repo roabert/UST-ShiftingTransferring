@@ -107,9 +107,10 @@ if(getuser == null) {
 </div>
       <div id="content">
     <div class="container">
-<div class="announcement">
+    <br><br>
+<div class="announcement jumbotron">
 <br>
-<form action = "SubmitMemoProcess" method="post">
+<form onsubmit = "return false" id = "shiftermemo_form">
 <%
   DateFormat format = new SimpleDateFormat("yyyy/mm/dd");
   Date date = new Date();
@@ -174,7 +175,7 @@ Term # <input type="text" id="fname" name="semester" placeholder="Term #" style=
 </table><br><br>
 <input type="checkbox" name="termsandcondition" value="Agree" id="termcheckbox">I agree that my enrollment will be AUTOMATICALLY CANCELLED if it turns out that I have been debarred from the prevoius college.
 </p><br><br>
-<button type="submit" class="btn btn-warning btn-lg">Submit</button>
+<button onClick="submitMemo()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right"></span> Submit</button>
 </center>
 <%}}catch(SQLException e) {out.print(e);} %>
  </form>
@@ -187,8 +188,6 @@ Term # <input type="text" id="fname" name="semester" placeholder="Term #" style=
 <script language="javascript">
 populateCountries("country", "state");
 </script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
        
@@ -211,22 +210,13 @@ function swapImage(){
 	var dropd = document.getElementById("dlist");
 	image.src = dropd.value;	
 };
-function nextstep() {
-	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
-	id("choosecollege").style.display = "none";
-	id("fileuploading").style.display = "block";
-}
-function goback() {
-	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
-	id("choosecollege").style.display = "block";
-	id("fileuploading").style.display = "none";
-}
-function step1Submit() {
+
+function submitMemo() {
 	var terms = id("termcheckbox");
-	if(id.checked == true) {
-	id("step1shifter").method = "post";
-	id("step1shifter").action = "Requirements_Upload";
-	id("step1shifter").submit();
+	if(terms.checked == true) {
+	id("shiftermemo_form").method = "post";
+	id("shiftermemo_form").action = "SubmitMemoProcess";
+	id("shiftermemo_form").submit();
 	}
 	else {
 		alert('You must agree first the condition!');

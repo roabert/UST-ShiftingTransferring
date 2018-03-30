@@ -50,7 +50,7 @@ public class OSGIndorseStudentDAO implements DatabaseSQLs {
 		try {
 			PreparedStatement ps = conn.prepareStatement(OSGdisapproveShifter);
 			ps.setString(1, secgen);
-			ps.setString(1, remarks);
+			ps.setString(2, remarks);
 			ps.setString(3, studentid);
 			ps.executeUpdate();
 			
@@ -58,5 +58,20 @@ public class OSGIndorseStudentDAO implements DatabaseSQLs {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void approveShifter(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(approveShiftingFinal);
+			ps.setString(1, studentid);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void finalStep(Connection conn) {
+		IndorseStudent(conn);
+		approveShifter(conn);
 	}
 }

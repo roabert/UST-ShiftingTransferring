@@ -115,6 +115,7 @@ public interface DatabaseSQLs {
 		 String RegistrarStatusShifter = "UPDATE shifters_indorsement SET registrar_indorsed = 'In-progress' WHERE shifter_id = ?";
 		 // Secgen memo approval
 		 String OSGapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, shifter_shifting_approved = 'Approved' WHERE shifter_id = ?";
+		 String approveShiftingFinal = "UPDATE student_shifter SET shifting_approved = 'Approved' WHERE studentid = ?";
 		 // Secgen memo disapproval
 		 String OSGdisapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?  WHERE shifter_id = ?";
 		 

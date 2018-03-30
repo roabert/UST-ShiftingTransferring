@@ -76,7 +76,7 @@ if(getuser == null) {
  <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
     <ul class="submenu">
         <li><a href="OsgApproved_Transactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
-        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        <li><a href="OsgApproved_Endorsements.jsp"><span class="glyphicon glyphicon-check"></span> Endorsements</a></li>
         
       </ul>
     </li>
@@ -110,7 +110,7 @@ if(getuser == null) {
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
    
-   ENDORSEMENT: TRANSFEREES
+   SECOND ENDORSEMENT: TRANSFEREES
    </a>
    </center>
 </div>

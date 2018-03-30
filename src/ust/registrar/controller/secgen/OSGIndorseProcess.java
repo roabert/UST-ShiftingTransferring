@@ -63,7 +63,7 @@ public class OSGIndorseProcess extends HttpServlet {
         o.setStudentid(getstudentid);
         o.setRemarks(getremarks);
         if(getapproval != null) {
-        o.IndorseStudent(conn);
+        o.finalStep(conn);
         request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
         out.print("<script>alert('Memo of "+getstudentid+" approved! Student has been shifted!')</script>");
         }

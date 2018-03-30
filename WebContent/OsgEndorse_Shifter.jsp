@@ -76,7 +76,7 @@ if(getuser == null) {
  <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
     <ul class="submenu">
         <li><a href="OsgApproved_Transactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
-        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        <li><a href="OsgApproved_Endorsements.jsp"><span class="glyphicon glyphicon-check"></span> Endorsements</a></li>
         
       </ul>
     </li>
@@ -110,13 +110,14 @@ if(getuser == null) {
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
    
-   ENDORSEMENT: SHIFTERS
+   SECOND ENDORSEMENT: SHIFTERS
    </a>
    </center>
 </div>
-<br>
+
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
+    <br><br>
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
@@ -146,15 +147,15 @@ if(getuser == null) {
         <tr>
         <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><a href="#<%=rs.getString("shifter_id") %>" class="fancybox">View Memo</a></td>
-        <td><a href="#<%=rs.getString("registrar_id")%>" class="fancybox">View Registrar's Memo</a></td>
+        <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button></td>
+        <td><button href="#<%=rs.getString("registrar_id")%>" class="fancybox btn">View Registrar's Memo</button></td>
         <td><button type="button" class = "btn btn-warning osg_indorsement"
            data-target=".osgIndorse"
            data-toggle="modal"
            data-shifter_id = "<%=rs.getString("shifter_id") %>"
            data-getuser = "<%=getuser %>"
            data-newcourse = "<%=rs.getString("newcourse") %>"
-           >Endorse</button></td>
+           ><span class="glyphicon glyphicon-level-up"></span> Endorse</button></td>
         </tr>
         <div id="<%=rs.getString("shifter_id") %>" style="width:600px;display: none;">
 					<%
@@ -240,9 +241,9 @@ if(getuser == null) {
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
      <form action="OSGIndorseProcess" method="post">
-         <div class="modal-header">
+         <div class="modal-header" style="background-color:gold">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b>Secretary General Approval</b></h4>
+             <h4 class="modal-title"><b><span class="glyphicon glyphicon-level-up" style="color:white;"></span> Secretary General Approval</b></h4>
          </div>
          <div class="modal-body"><br>
           <input class="shifter_id" type="hidden" name="studentid">
@@ -259,9 +260,9 @@ if(getuser == null) {
          </div>
          <div class="modal-footer">
    
-          <button type="button" class="btn btn-default btn-md" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
+          <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
              &nbsp&nbsp
-          <button type="submit" class="btn btn-md btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
+          <button type="submit" class="btn btn-md btn-warning">Endorse Student</button>
 
          </div>
          </form>

@@ -66,7 +66,13 @@ if(getuser == null) {
         
       </ul>
     </li>
-
+    <li><a href="#"><span class="glyphicon glyphicon-check"></span> Endorsed Students</a>
+    <ul class="submenu">
+        <li><a href="RegistrarApprovedEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="RegistrarApprovedEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
+      </ul>
+    </li>
  <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Completed Memos</a>
   <ul class="submenu">
         <li><a href="RegistrarMemo_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
@@ -106,7 +112,8 @@ if(getuser == null) {
    </center>
 </div>
   <div id="content">
-    <div class="container">
+    <div class="container-fluid">
+    <br><br>
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
@@ -115,8 +122,8 @@ if(getuser == null) {
 		<thead>
         <tr>
           <th>Student Name</th>
-          <th>Type</th>
           <th>Incoming</th>
+          <th>Memo Request</th>
           <th>Endorse Student</th>
         </tr>
         </thead>
@@ -137,13 +144,13 @@ if(getuser == null) {
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
 
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a class = "fancybox" href="#<%=rs.getString("shifter_id")%>">View Memo</a></td>
+        <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button></td>
         <td><button type="button" class = "btn btn-warning registrar_indorsement"
            data-target=".regIndorse"
            data-toggle="modal"
            data-shifter_id = "<%=rs.getString("shifter_id") %>"
            data-getuser = "<%=getuser %>"
-           >Endorse</button></td>
+           ><span class="glyphicon glyphicon-level-up"></span> Endorse</button></td>
         </tr>
          <div id="<%=rs.getString("shifter_id") %>" style="width:600px;display: none;">
 					<%
@@ -199,9 +206,9 @@ if(getuser == null) {
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
      <form action="RegistrarIndorseProcess" method="post">
-         <div class="modal-header">
+         <div class="modal-header" style="background-color:gold">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b>Letter of Endorsement</b></h4>
+             <h3 class="modal-title"><span class="glyphicon glyphicon-level-up" style="color:white"></span> <b>Letter of Endorsement</b></h3>
          </div>
          <div class="modal-body"><br>
           <input class="shifter_id" type="hidden" name="studentid">
@@ -214,9 +221,9 @@ if(getuser == null) {
             </center>
          </div>
          <div class="modal-footer">
-         <button type="button" class="btn btn-default btn-md" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
+         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
              &nbsp&nbsp
-          <button type="submit" class="btn btn-md btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
+          <button type="submit" class="btn btn-md btn-warning">Endorse Student</button>
 
          </div>
          </form>

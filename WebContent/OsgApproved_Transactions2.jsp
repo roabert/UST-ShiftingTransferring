@@ -76,7 +76,7 @@ if(getuser == null) {
  <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
     <ul class="submenu">
         <li><a href="OsgApproved_Transactions.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
-        <li><a href="OsgApproved_Memos.jsp"><span class="glyphicon glyphicon-folder-open"></span> Memos</a></li>
+        <li><a href="OsgApproved_Endorsements.jsp"><span class="glyphicon glyphicon-check"></span> Endorsements</a></li>
         
       </ul>
     </li>
