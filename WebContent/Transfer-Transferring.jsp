@@ -16,7 +16,115 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		  <script src="scripts/list.js"></script>
+<script>
+var country_arr = new Array
+(
+<% 
+String getColleges = "SELECT * FROM faculty ORDER BY faculty_name";
+String getCourses = "SELECT * FROM courses ORDER BY faculty";
+try{
+PreparedStatement pst = conn.prepareStatement(getColleges);
+ResultSet colleges = pst.executeQuery();
+while(colleges.next()) { 
+	
+	
+%>
+//Notice the quotation marks
+"<%= colleges.getString("faculty_name") %>",
+
+<%	
+}
+}catch(Exception e) {
+	e.printStackTrace();
+}
+%>
+);
+<%
+try{
+	PreparedStatement pst = conn.prepareStatement(getColleges);
+	PreparedStatement pst2 = conn.prepareStatement(getCourses);
+	ResultSet colleges = pst.executeQuery();
+	int index = 1;
+	%>
+	var s_a = new Array();
+	s_a[0] = "";
+	<%
+	while(colleges.next()){
+		ResultSet courses = pst2.executeQuery();
+		String[] courseArray = new String[15];
+		int arrayIndex = 0;
+		%>
+		<%
+		while(courses.next()){
+			if(courses.getString("faculty").equals(colleges.getString("faculty_name")))
+			{
+				courseArray[arrayIndex] = courses.getString("courses_name");
+				arrayIndex++;
+			}
+			
+		}
+	    int count = 0;
+	    for(String S : courseArray){
+	        if (S != null)
+	            ++count;
+		}
+	    String[] courseArrayFinal = new String[count];
+	    int indexCount = 0;
+	    for(String S : courseArray){
+	        if (S != null)
+	        	courseArrayFinal[indexCount] = S;
+	            ++indexCount;
+		}
+		String coursesString = String.join("|", courseArrayFinal);
+		%>
+		s_a[<%= index %>] = "<%= coursesString %>";
+		<%
+		index++;
+	}
+}catch(Exception e) {
+	e.printStackTrace();
+}
+
+%>
+//Courses
+
+
+function populateStates(countryElementId, stateElementId) {
+
+ var selectedCountryIndex = document.getElementById(countryElementId).selectedIndex;
+
+ var stateElement = document.getElementById(stateElementId);
+
+ stateElement.length = 0; // Fixed by Julian Woods
+ stateElement.options[0] = new Option('------Select Program------', '');
+ stateElement.selectedIndex = 0;
+
+ var state_arr = s_a[selectedCountryIndex].split("|");
+
+ for (var i = 0; i < state_arr.length; i++) {
+     stateElement.options[stateElement.length] = new Option(state_arr[i], state_arr[i]);
+ }
+}
+
+function populateCountries(countryElementId, stateElementId) {
+ // given the id of the <select> tag as function argument, it inserts <option> tags
+ var countryElement = document.getElementById(countryElementId);
+ countryElement.length = 0;
+ countryElement.options[0] = new Option('------Select Faculty------', '-1');
+ countryElement.selectedIndex = 0;
+ for (var i = 0; i < country_arr.length; i++) {
+     countryElement.options[countryElement.length] = new Option(country_arr[i], country_arr[i]);
+ }
+
+ // Assigned all countries. Now assign event listener for the states.
+
+ if (stateElementId) {
+     countryElement.onchange = function () {
+         populateStates(countryElementId, stateElementId);
+     };
+ }
+}
+</script>
 <head>
 <style>
  form#step1transfer > #fileuploading {display:none;}
