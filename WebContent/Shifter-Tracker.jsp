@@ -85,7 +85,7 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   <span style="font-size:30px;cursor:pointer;color: white; float:left;padding-top:10px;" class="glyphicon glyphicon-bell"></span>
+   
    
    UPLOAD REQUIREMENTS
    </a>

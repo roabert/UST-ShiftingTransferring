@@ -4,6 +4,7 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "ust.registrar.model.studentprocess.notification" %>
   
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,6 +45,12 @@ String getuser = (String)session.getAttribute("setuser");
 if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
+notification notifs = new notification();
+notifs.setDeanCollege(conn, getuser);
+int totalShifts = notifs.getDeanShiftTransactions(conn);
+int totalTransfers = notifs.getDeanTransferTransactions(conn);
+int totalShiftsExam = notifs.getDeanShiftScores(conn);
+int totalTransfersExam = notifs.getDeanTransferScores(conn);
 %>
 <div off-canvas="slidebar-1 left reveal">
 		<div>
@@ -58,10 +65,38 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Deanpage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions
+	<% if(totalShifts+totalTransfers>0){ %>
+        <span class="notification alert-notif">!</span>
+	<%	} %>    
+	</a>
     <ul class="submenu">
-        <li><a href="DeanTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="DeanTransaction_Transfer.jsp" ><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="DeanTransaction_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters
+		<% if(totalShifts>0){ %>
+	        <span class="notification"><%
+	        if(totalShifts<=99){
+			%>
+			<%= totalShifts %>
+			<%
+			}else{
+	        %>
+	        99+
+	        <%} %></span>
+		<%	} %>    
+		</a></li>
+        <li><a href="DeanTransaction_Transfer.jsp" ><span class="glyphicon glyphicon-cloud-download"></span> Transferees
+		<% if(totalTransfers>0){ %>
+	        <span class="notification"><%
+	        if(totalTransfers<=99){
+			%>
+			<%= totalTransfers %>
+			<%
+			}else{
+	        %>
+	        99+
+	        <%} %></span>
+		<%	} %>        
+		</a></li>
       </ul>
     </li>
      <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
@@ -71,10 +106,38 @@ if(getuser == null) {
         
       </ul>
     </li>
-    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Exam Results</a>
+    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Exam Results
+	<% if(totalShiftsExam+totalTransfersExam>0){ %>
+        <span class="notification alert-notif">!</span>
+	<%	} %>      
+	</a>
       <ul class="submenu">
-        <li><a href="DeanExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="DeanExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="DeanExam_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters
+		<% if(totalShiftsExam>0){ %>
+	        <span class="notification"><%
+	        if(totalShiftsExam<=99){
+			%>
+			<%= totalShiftsExam %>
+			<%
+			}else{
+	        %>
+	        99+
+	        <%} %></span>
+		<%	} %>      
+		</a></li>
+        <li><a href="DeanExam_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees
+		<% if(totalTransfersExam>0){ %>
+	        <span class="notification"><%
+	        if(totalTransfersExam<=99){
+			%>
+			<%= totalTransfersExam %>
+			<%
+			}else{
+	        %>
+	        99+
+	        <%} %></span>
+		<%	} %> 
+		</a></li>
         
       </ul>
     </li>
