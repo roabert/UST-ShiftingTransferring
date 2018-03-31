@@ -18,8 +18,8 @@ public interface DatabaseSQLs {
 
 	 // Dean approve student
 	 String Dean_approveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ?, secgen_verified = 'In-progress' WHERE shifter_id = ?";
-	 String Dean_approveTransfer = "UPDATE transferees_status SET dean_id = ?, dean_verified = ?, secgen_verified = 'In-progress' WHERE transferee_id = ?";
-	 String Dean_disapproveTransfer = "UPDATE transferees_status SET dean_id = ?, dean_verified = ?, dean_remarks = ? WHERE transferee_id = ?";
+	 String Dean_approveTransfer = "UPDATE transferees_status SET dean_id = ?, dean_verified = ?, dean_date_verified = NOW(), secgen_verified = 'In-progress' WHERE transferee_id = ?";
+	 String Dean_disapproveTransfer = "UPDATE transferees_status SET dean_id = ?, dean_verified = ?, dean_remarks = ?, dean_date_verified = NOW() WHERE transferee_id = ?";
 	 // Dean disapprove student
 	 String Dean_disapproveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
 	//Dean pass or fail the student DeanVerifyScore
@@ -30,16 +30,16 @@ public interface DatabaseSQLs {
 	 String Dean_passfailScoreTransfer = "UPDATE transferees_scores SET dean_reviewed = ? WHERE transferee_id = ?";
 	 
 	 // SecGen approve student OSG_verifyprocess
-	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE shifter_id = ?";
-	 String OSG_disapproveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, secgen_remarks = ? WHERE shifter_id = ?";
+	 String OSG_approveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, secgen_date_verified = NOW(), ofad_verified = 'In-progress' WHERE shifter_id = ?";
+	 String OSG_disapproveStudent = "UPDATE shifters_status SET secgen_id = ?, secgen_verified = ?, secgen_remarks = ?, secgen_date_verified = NOW() WHERE shifter_id = ?";
 	 
 	 //SecGen approve transfer OSG_verifyTransfer
-	 String OSG_approveTransfer = "UPDATE transferees_status SET secgen_id = ?, secgen_verified = ?, ofad_verified = 'In-progress' WHERE transferee_id = ?";
-	 String OSG_disapproveTransfer = "UPDATE transferees_status SET secgen_id = ?, secgen_verified = ?, secgen_remarks = ? WHERE transferee_id = ?";
+	 String OSG_approveTransfer = "UPDATE transferees_status SET secgen_id = ?, secgen_verified = ?, secgen_date_verified = NOW(), ofad_verified = 'In-progress' WHERE transferee_id = ?";
+	 String OSG_disapproveTransfer = "UPDATE transferees_status SET secgen_id = ?, secgen_verified = ?, secgen_remarks = ?, secgen_date_verified = NOW() WHERE transferee_id = ?";
 	
 	 //OFAD approve shifter Ofad_verifyprocess
-	 String Ofad_approveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ? WHERE shifter_id = ?";
-	 String Ofad_disapproveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ?, ofad_remarks = ? WHERE shifter_id = ?";
+	 String Ofad_approveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ?, ofad_date_verified = NOW() WHERE shifter_id = ?";
+	 String Ofad_disapproveStudent = "UPDATE shifters_status SET ofad_id = ?, ofad_verified = ?, ofad_remarks = ?, ofad_date_verified = NOW() WHERE shifter_id = ?";
 	 String Ofad_studentForExam = "INSERT INTO shifters_exams (shifter_id) VALUES (?)";
 	 
 	 //OFAD exam schedss
@@ -51,16 +51,17 @@ public interface DatabaseSQLs {
 	
 	 
 	 //OFAD OFAD_verifyTransfer
-	 String Ofad_approveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ? WHERE transferee_id = ?";
-	 String Ofad_disapproveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ?, ofad_remarks = ? WHERE transferee_id = ?";
+	 String Ofad_approveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ?, ofad_date_verified = NOW() WHERE transferee_id = ?";
+	 String Ofad_disapproveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ?, ofad_remarks = ?, ofad_date_verified = NOW() WHERE transferee_id = ?";
 	 String Ofad_transferForExam = "INSERT INTO transferees_exams (transferee_id) VALUES (?)";
+	 
 	 //OFAD approve scheduling for SetExamScheduleDAO
 	 String Ofad_examschedTransfer = "INSERT INTO exam_schedules_transferees (transferee_id, date, start_time, end_time, venue, remarks) VALUES (?, ?, ?, ?, ?, ?)";
 	 String Ofad_setexamTransfer = "UPDATE transferees_exams SET exam_schedule_date = ? WHERE transferee_id = ?";
 	 String Ofad_setTransferEncode = "INSERT INTO transferees_scores (transferee_id) VALUES (?)";
 	 // OSA approve transferee
-	 String OSA_approveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, dean_verified = 'In-progress' WHERE transferee_id = ?";
-	 String OSA_disapproveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, osa_remarks = ? WHERE transferee_id = ?";
+	 String OSA_approveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, osa_date_verified = NOW(), dean_verified = 'In-progress' WHERE transferee_id = ?";
+	 String OSA_disapproveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, osa_remarks = ?, osa_date_verified = NOW() WHERE transferee_id = ?";
 	 
 	 //OFAD encode scores shifter EncodeScoreShifter servlet
 	 

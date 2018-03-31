@@ -252,9 +252,6 @@ if(getuser == null) {
     <div>Time Stamp: May 4, 2018 | 7:00 AM</div>
     </div>
     </div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
   
