@@ -50,7 +50,7 @@ if(getuser == null) {
      
     while(rs.next()) {
     %><navhead>
-			<center><img src="DisplayProfileTransfer?pkey=<%=rs.getString("userid")%>" width ="120" height = "120">
+			<center><img src="DisplayProfileTransfer?pkey=<%=rs.getString("userid")%>" width ="150" height = "150">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>

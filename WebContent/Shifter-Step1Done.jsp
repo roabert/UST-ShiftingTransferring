@@ -21,16 +21,6 @@
 <meta charset="ISO-8859-1">
 <title>Files Uploaded!</title>
 </head>
-<style>
- form#step1shifter > #fileuploading {display:none;}
-  select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-</style>
 <body>
 <%
 String getuser = (String)session.getAttribute("setuser"); 
@@ -53,7 +43,7 @@ if(getuser == null) {
     while(rs.next()) {
     %>
     <navhead>
-			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="120" height = "120">
+			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="150" height = "150">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
@@ -131,11 +121,7 @@ if(getuser == null) {
   </div>
 </div>
 </div>
-<script language="javascript">
-populateCountries("country", "state");
-</script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
        
@@ -176,6 +162,7 @@ function step1Submit() {
 ;
 
 </script>
+
  <div class="footer"></div>   
 </body>
 </html>

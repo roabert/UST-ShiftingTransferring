@@ -133,7 +133,7 @@ if(getuser == null) {
           <th>Student Name</th>
           <th>Current School</th>
           <th>Transferring To:</th>
-          <th>Verify Docs</th>
+          <th>View Requirements</th>
           <th></th>
           <th></th>
         </tr>
@@ -157,7 +157,7 @@ if(getuser == null) {
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
-        <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
          <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button></td>
          <td>
        <form action = "Dean_verifyTransfer" method = "post">

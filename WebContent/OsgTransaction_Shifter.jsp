@@ -127,7 +127,7 @@ if(getuser == null) {
           <th>Student Name</th>
           <th>Current Course/Program</th>
           <th>Incoming Course/Program</th>
-          <th>Verify Docs</th>
+          <th>View Requirements</th>
           <th></th>
           <th></th>
         </tr>

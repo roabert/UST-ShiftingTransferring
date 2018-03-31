@@ -68,6 +68,13 @@ if(getuser == null) {
         
       </ul>
     </li>
+      <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+    <ul class="submenu">
+        <li><a href="OfadApprovedTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadApprovedTransaction_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
+      </ul>
+    </li>
     <li><a href="OfadExamScheduler.jsp" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Scheduling</a>
      
     </li>
@@ -157,7 +164,7 @@ if(getuser == null) {
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
                 <td><%=r.getString("venue") %></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><a class="fancybox" href="#<%=r.getString("date") %>">View Students</a></td>
+                <td><button class="fancybox btn" href="#<%=r.getString("date") %>">View Students</button></td>
            
               </tr>
                <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto; height: 600px;">

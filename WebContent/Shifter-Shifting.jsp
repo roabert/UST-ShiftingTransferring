@@ -127,7 +127,7 @@ function populateCountries(countryElementId, stateElementId) {
 </script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Student-Shifter | Memo</title>
+<title>Step 1: | Shifting</title>
 </head>
 <style>
  form#step1shifter > #fileuploading {display:none;}
@@ -202,7 +202,7 @@ if(rs4.next()) {
      
     while(rs.next()) {
     %><navhead>
-			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="120" height = "120">
+			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="150" height = "150" class="responsive">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
@@ -289,10 +289,11 @@ if(rs4.next()) {
 
     <input type="hidden" name="studentid" value="<%=rs.getString("studentid")%>">
     <input type="hidden" name="typeofstudent" value="<%=rs.getString("typeofstudent")%>">
+     <input type="hidden" value = "<%=rs.getString("oldprogram")%>" id = "checkprogram">
     <h2>Current College</h2>
-     <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldcourse") %></u></b></p>
+     <h3 style ="color:gold;"><b><%=rs.getString("oldcourse") %></b></h3>
     <h2>Current Program</h2>
-     <p style="font-size:23px; color:gold;"><b><u><%=rs.getString("oldprogram") %></u></b></p>
+     <h3 style="color:gold;"><b><%=rs.getString("oldprogram") %></b></h3>
      	</div>
     <%} 
     } catch(Exception e) {
@@ -306,7 +307,7 @@ if(rs4.next()) {
   <br><br>
   <br><br><br><br><br>
   <center>
-  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
+  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right"></span> Next</button>
   </center>
  </div>
  <div id = "fileuploading">
@@ -339,8 +340,8 @@ if(rs4.next()) {
 </div>
 <br><br>
    <center>
-   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg">Back</button>
-   <button onclick="step1Submit()" class="btn btn-warning btn-lg">Shift Now</button>
+   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</button>
+   <button onclick="step1Submit()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-check" style="color:white"></span> Finish</button>
    </center>
  </div>
 </form>
@@ -376,8 +377,21 @@ function swapImage(){
 };
 function nextstep() {
 	//id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
+	var selectedprogram = id("checkprogram").value;
+	var oldprogram = id("state").value;
+	var oldcourse = id("country").value;
+   if(oldcourse != "------Select Faculty------" && oldprogram != null) {
+	if(selectedprogram != oldprogram) {
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
+	}
+	else {
+		alert("The selected program is your current program, you cannot shift to the same program.");
+	}
+   }
+   else {
+	   alert("Choose your destined course and program.");
+   }
 }
 function goback() {
 	//id("text_steps").innerHTML = "<p><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";

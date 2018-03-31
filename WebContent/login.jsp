@@ -532,7 +532,9 @@ function transferSubmit() {
          
          <center>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture </i></p><br>
-         <input type="file" type="file" name="transfer_idpicture" size="50"><br><br><br><br><br><br><br><br><br>
+         <input type="file" type="file" onChange="readURL(this)" name="transfer_idpicture" size="50">
+         <img id="imageview" src="#"/>
+         <br><br><br><br>
          <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Transfer()"><span class="glyphicon glyphicon-chevron-left" style="color:white"></span> Back</button>
           <button onclick="transferSubmit()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-check" style="color:white"></span> Submit & Login</button>
           </center>
@@ -556,6 +558,23 @@ function transferSubmit() {
         </script>
             		<script language="javascript">
             populateCountries("transfer_oldcollege", "transfer_oldprogram");
+        </script>
+        
+        <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imageview')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
         </script>
         
 </body>

@@ -41,7 +41,7 @@ if(getuser == null) {
      
     while(rs.next()) {
     %>
-			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="120" height = "120">
+			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="150" height = "150">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<navhead>
 			<h1>Student<br></h1>

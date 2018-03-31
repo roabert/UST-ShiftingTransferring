@@ -67,6 +67,13 @@ if(getuser == null) {
         
       </ul>
     </li>
+      <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+    <ul class="submenu">
+        <li><a href="OfadApprovedTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadApprovedTransaction_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        
+      </ul>
+    </li>
     <li><a href="OfadExamScheduler.jsp"><span class="glyphicon glyphicon-list-alt"></span> Exam Scheduling</a>
       
     </li>
@@ -124,7 +131,7 @@ if(getuser == null) {
           <th>Student Name</th>
           <th>Current Course/Program</th>
           <th>Incoming Course/Program</th>
-          <th>Verify Docs</th>
+          <th>View Requirements</th>
           <th></th>
           <th></th>
           </tr>

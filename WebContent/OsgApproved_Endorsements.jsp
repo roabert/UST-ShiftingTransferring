@@ -117,13 +117,13 @@ if(getuser == null) {
  <div id="content">
     <div class="container-fluid">
     <br>
-    <br>
+    
       <ul class = "nav nav-tabs">
           <li class="active"><a href="OsgApproved_Endorsements.jsp">Shifters</a></li>
           <li><a href="OsgApproved_Endorsements2.jsp">Transferees</a></li>
           </ul>
      <div class="tab-content">
-     <br><br>
+     <br>
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
