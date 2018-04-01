@@ -4,6 +4,7 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "ust.registrar.model.studentprocess.notification" %>
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,6 +44,11 @@ String getuser = (String)session.getAttribute("setuser");
 if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
+notification notifs = new notification();
+int totalShifters = notifs.getSecGenShiftTransactions(conn);
+int totalTransfers = notifs.getSecGenTransferTransactions(conn);
+int totalIndorseShifters = notifs.getSecGenShiftIndorsement(conn);
+int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);	
 %>
 
 
@@ -58,18 +64,17 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Osgpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions</a>
+    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Transactions<% if(totalShifters+totalTransfers>0){ %> <span class="notification alert-notif">!</span> <% } %> </a>
     <ul class="submenu">
-        <li><a href="OsgTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OsgTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
-        
+        <li><a href="OsgTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters <% if(totalShifters>0){ %> <span class="notification"><% if(totalShifters<=99){ %> <%= totalShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
+        <li><a href="OsgTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalTransfers>0){ %> <span class="notification"><% if(totalTransfers<=99){ %> <%= totalTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>	
       </ul>
     </li>
 
- <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Endorsement</a>
+ <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Endorsement<% if(totalIndorseShifters+totalIndorseTransfers>0){ %> <span class="notification alert-notif">!</span> <% } %> </a>
   <ul class="submenu">
-        <li><a href="OsgEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OsgEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="OsgEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters <% if(totalIndorseShifters>0){ %> <span class="notification"><% if(totalIndorseShifters<=99){ %> <%= totalIndorseShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
+        <li><a href="OsgEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalIndorseTransfers>0){ %> <span class="notification"><% if(totalIndorseTransfers<=99){ %> <%= totalIndorseTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
         
       </ul>
  </li>

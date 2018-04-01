@@ -4,6 +4,7 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "ust.registrar.model.studentprocess.notification" %>
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,6 +45,9 @@ String getuser = (String)session.getAttribute("setuser");
 if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
+notification notifs = new notification();
+int totalIndorseShifters = notifs.getRegistrarShiftIndorsement(conn);
+int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);	
 %>
 
 
@@ -59,11 +63,10 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Registrarpage.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="#" ><span class="glyphicon glyphicon-random"></span> Endorsement</a>
+    <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Endorsement<% if(totalIndorseShifters+totalIndorseTransfers>0){ %> <span class="notification alert-notif">!</span> <% } %> </a>
     <ul class="submenu">
-        <li><a href="RegistrarEndorse_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="RegistrarEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
-        
+        <li><a href="RegistrarEndorse_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters <% if(totalIndorseShifters>0){ %> <span class="notification"><% if(totalIndorseShifters<=99){ %> <%= totalIndorseShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
+        <li><a href="RegistrarEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalIndorseShifters>0){ %> <span class="notification"><% if(totalIndorseShifters<=99){ %> <%= totalIndorseShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
       </ul>
     </li>
     <li><a href="#" class="active"><span class="glyphicon glyphicon-check"></span> Endorsed Students</a>
