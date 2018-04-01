@@ -229,6 +229,38 @@ public class notification {
 		return count;
 	}	
 	
+	public int getOFADShiftExams (Connection conn){
+		int count = 0;
+		String getNotifs = "SELECT * FROM shifters_scores WHERE dean_reviewed = '' OR dean_reviewed = null";
+		try{
+	    	PreparedStatement pst = conn.prepareStatement(getNotifs);
+	    	ResultSet getDStudents = pst.executeQuery();
+	    	while(getDStudents.next()){
+	    		count++;
+	    	}
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+		
+		return count;
+	}
+	
+	public int getOFADTransferExams (Connection conn){
+		int count = 0;
+		String getNotifs = "SELECT * FROM transferees_scores WHERE dean_reviewed = '' OR dean_reviewed = null";
+		try{
+	    	PreparedStatement pst = conn.prepareStatement(getNotifs);
+	    	ResultSet getDStudents = pst.executeQuery();
+	    	while(getDStudents.next()){
+	    		count++;
+	    	}
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+		
+		return count;
+	}	
+	
 	public int getRegistrarShiftIndorsement (Connection conn){
 		int count = 0;
 		String getNotifs = "SELECT * FROM shifters_indorsement WHERE registrar_indorsed ='In-progress'";
