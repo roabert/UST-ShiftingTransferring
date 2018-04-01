@@ -82,7 +82,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         
       </ul>
     </li>
-    <li><a href="OfadExamScheduler.jsp" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Scheduling</a>
+    <li><a href="OfadExamScheduler.jsp" class="active"><span class="glyphicon glyphicon-list-alt"></span> Exam Scheduling <% if(totalShiftersExam+totalTransfersExam>0){ %> <span class="notification alert-notif">!</span> <% } %> </a>
      
     </li>
  <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Encode Scores <% if(totalShiftersScores+totalTransfersScores>0){ %> <span class="notification alert-notif">!</span> <% } %> </a>
@@ -134,6 +134,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             <form action="javascript:;">
             <button class="btn btn-lg btn-warning pull-right" type="button" data-target=".createsched" data-toggle="modal">
             Create Exam Schedule
+            <% if(totalTransfersExam>0){ %> <span class="notification"><% if(totalTransfersExam<=99){ %> <%= totalTransfersExam %> <% }else{ %> 99+ <%} %></span> <% } %>
             </button>
             </form>
      
