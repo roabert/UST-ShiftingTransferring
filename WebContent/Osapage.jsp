@@ -3,7 +3,8 @@
     
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
-        <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "ust.registrar.model.studentprocess.notification" %>
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,7 +23,10 @@
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
 	 response.sendRedirect("login.jsp");
-}	
+}
+notification notifs = new notification();
+notifs.setDeanCollege(conn, getuser);
+int totalTransfers = notifs.getOSATransactions(conn);
 %>
 
 <div off-canvas="slidebar-1 left reveal">
@@ -37,7 +41,19 @@ if(getuser == null) {
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Osapage.jsp" class="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
+    <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions
+		<% if(totalTransfers>0){ %>
+	        <span class="notification"><%
+	        if(totalTransfers<=99){
+			%>
+			<%= totalTransfers %>
+			<%
+			}else{
+	        %>
+	        99+
+	        <%} %></span>
+		<%	} %>       
+		</a></li>
     <li><a href="OsaApprovedTransactions.jsp"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
