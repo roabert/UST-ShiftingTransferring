@@ -25,7 +25,6 @@ if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
 notification notifs = new notification();
-notifs.setDeanCollege(conn, getuser);
 int totalTransfers = notifs.getOSATransactions(conn);
 %>
 
