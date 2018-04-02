@@ -12,11 +12,13 @@
 		<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+		
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>OSA | Profile</title>
 </head>
 <body>
 <%
@@ -117,6 +119,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
 				<h2><%=usercontent.getString("last_name")%>, <%=usercontent.getString("first_name")%></h2>
 			</div>
 			<div class="w3-message">
+			<a>Type</a>
 				<h5><%=usercontent.getString("type") %></h5>
 			<div class="w3ls-touch">
 			</div>

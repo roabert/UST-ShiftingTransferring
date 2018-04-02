@@ -148,7 +148,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
 				<h2><%=usercontent.getString("last_name")%>, <%=usercontent.getString("first_name")%></h2>
 			</div>
 			<div class="w3-message">
-				<h5><%=usercontent.getString("type") %>, <%=usercontent.getString("college") %></h5>
+			<a>Type</a>
+				<h5><%=usercontent.getString("type") %></h5>
 			<div class="w3ls-touch">
 			</div>
 			</div>
