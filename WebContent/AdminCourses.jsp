@@ -141,7 +141,7 @@ if(getuser == null) {
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
        <form id = "form1" onsubmit="false">
-          <div class="modal-header" style="background-color:gold">
+         <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
            <h3 class="modal-title">Add Courses</h3>
           </div>

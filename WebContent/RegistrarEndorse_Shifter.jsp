@@ -66,7 +66,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
     <li><a href="#" class="active"><span class="glyphicon glyphicon-random"></span> Endorsement<% if(totalIndorseShifters+totalIndorseTransfers>0){ %> <span class="notification alert-notif">!</span> <% } %> </a>
     <ul class="submenu">
        <li><a href="RegistrarEndorse_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters <% if(totalIndorseShifters>0){ %> <span class="notification"><% if(totalIndorseShifters<=99){ %> <%= totalIndorseShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
-        <li><a href="RegistrarEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalIndorseShifters>0){ %> <span class="notification"><% if(totalIndorseShifters<=99){ %> <%= totalIndorseShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
+        <li><a href="RegistrarEndorse_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalIndorseTransfers>0){ %> <span class="notification"><% if(totalIndorseTransfers<=99){ %> <%= totalIndorseTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
         
       </ul>
     </li>
@@ -149,7 +149,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button></td>
-        <td><button type="button" class = "btn btn-warning registrar_Endorsement"
+        <td><button type="button" class = "btn btn-warning registrar_indorsement"
            data-target=".regIndorse"
            data-toggle="modal"
            data-shifter_id = "<%=rs.getString("shifter_id") %>"
@@ -210,7 +210,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
      <form action="RegistrarIndorseProcess" method="post">
-         <div class="modal-header" style="background-color:gold">
+        <div class="modal-header" style="background-color:#EFB652">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
              <h3 class="modal-title"><span class="glyphicon glyphicon-level-up" style="color:white"></span> <b>Letter of Endorsement</b></h3>
          </div>
@@ -257,7 +257,7 @@ function closeNav() {
 </script>
 
       <script>
-     $(document).on( "click", '.registrar_Endorsement',function(e) 
+     $(document).on( "click", '.registrar_indorsement',function(e) 
     		 {
     	    var shifter_id = $(this).data('shifter_id');
     	    var getuser = $(this).data('getuser');

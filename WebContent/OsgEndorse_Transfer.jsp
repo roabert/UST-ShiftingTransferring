@@ -121,7 +121,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 </div>
 <br>
  <div id="content">
-    <div class="container">
+    <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
@@ -151,15 +151,15 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
        <tr>
         <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("transferee_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><a href="#<%=rs.getString("transferee_id") %>" class="fancybox">View Memo</a></td>
-        <td><a href="#<%=rs.getString("id")%>" class="fancybox">View Registrar's Memo</a></td>
+        <td><button href="#<%=rs.getString("transferee_id") %>" class="fancybox btn">View Memo</button></td>
+        <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Registrar's Memo</b></td>
         <td><button type="button" class = "btn btn-warning osg_Endorsement"
            data-target=".osgIndorse"
            data-toggle="modal"
            data-transferee_id = "<%=rs.getString("transferee_id") %>"
            data-getuser = "<%=getuser %>"
            data-newcourse = "<%=rs.getString("newcourse") %>"
-           >Endorse</button></td>
+           ><span class="glyphicon glyphicon-level-up"></span> Endorse</button></td>
         </tr>
         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
 					<%
@@ -212,7 +212,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	            
 	            	<p>Remarks: </p>
 	            		<center>
-	            	<p><%=r4.getString("registrar_Endorsement") %></p>
+	            	<p><%=r4.getString("registrar_indorsement") %></p>
 	            	</center>
 	            	<br><br><br>
 	            	<div class="pull-right">
@@ -244,9 +244,9 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
      <form action="OSGIndorseTransferProcess" method="post">
-         <div class="modal-header">
+         <div class="modal-header" style="background-color:#EFB652">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b>Second Endorsement</b></h4>
+             <h4 class="modal-title"><span class="glyphicon glyphicon-level-up" style="color:white;"></span>  <b>Second Endorsement</b></h4>
          </div>
          <div class="modal-body"><br>
           <input class="transferee_id" type="hidden" name="transferid">
@@ -262,9 +262,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
             </center>
          </div>
          <div class="modal-footer">
-          <button type="button" class="btn btn-default btn-md" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
-             &nbsp&nbsp
-          <button type="submit" class="btn btn-md btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
+          <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-md btn-warning">Endorse Student</button>
 
          </div>
          </form>

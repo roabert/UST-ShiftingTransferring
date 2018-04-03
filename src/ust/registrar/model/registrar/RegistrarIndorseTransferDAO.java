@@ -34,7 +34,7 @@ public class RegistrarIndorseTransferDAO {
 	
 	public void registrarIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Approved', registrar_Endorsement = ? ,secgen_indorsed = 'In-progress' WHERE transferee_id = ?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Approved', registrar_indorsement = ? ,secgen_indorsed = 'In-progress', registrar_date_indorsed = NOW() WHERE transferee_id = ?");
 			ps.setString(1, registrar);
 			ps.setString(2, Endorsement);
 			ps.setString(3, transferid);
@@ -47,7 +47,7 @@ public class RegistrarIndorseTransferDAO {
 	}
 	public void registrarNotIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Disapproved', reigstrar_Endorsement = ? WHERE transferee_id = ?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Disapproved', registrar_indorsement = ?, registrar_date_indorsed = NOW() WHERE transferee_id = ?");
 			ps.setString(1, registrar);
 			ps.setString(2, Endorsement);
 			ps.setString(3, transferid);

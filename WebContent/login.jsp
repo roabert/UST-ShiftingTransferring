@@ -395,7 +395,7 @@ function transferSubmit() {
 <div class="modal fade register" role="dialog">
    <div class="modal-dialog modal-lg" style="height:500px;">
   <div class="modal-content">
-     <div class="modal-header" style="background-color:gold">
+    <div class="modal-header" style="background-color:#EFB652">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
        <h3 class="modal-title" id="titleregister"><span class="glyphicon glyphicon-user"></span> Register</h3>
        
