@@ -175,7 +175,7 @@ if(getuser == null) {
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
        <form id = "form1" onsubmit="false">
-          <div class="modal-header" style="background-color:gold">
+         <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
            <h3 class="modal-title"><span class="glyphicon glyphicon-plus-sign" style="color:white; height:30px;"></span> <i>Create Users</i></h3>
           </div>
@@ -266,7 +266,7 @@ if(getuser == null) {
  <div class="modal-dialog" style="width:600px">
    <div class="modal-content">
    <form action = "AdminEditUsers" method="post">
-     <div class="modal-header" style="background-color:gold">
+    <div class="modal-header" style="background-color:#EFB652">
        <button class="close" type="button" data-dismiss="modal">&times;</button>
        <h3 class="modal-title"><span class="glyphicon glyphicon-pencil" style="color:white"></span> <i>Edit User Accounts</i></h3>
      </div>

@@ -214,7 +214,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	            
 	            	<p>Remarks: </p>
 	            		<center>
-	            	<p><%=r4.getString("registrar_Endorsement") %></p>
+	            	<p><%=r4.getString("registrar_indorsement") %></p>
 	            	</center>
 	            	<br><br><br>
 	            	<div class="pull-right">
@@ -246,7 +246,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
      <form action="OSGIndorseProcess" method="post">
-         <div class="modal-header" style="background-color:gold">
+        <div class="modal-header" style="background-color:#EFB652">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
              <h4 class="modal-title"><b><span class="glyphicon glyphicon-level-up" style="color:white;"></span> Second Endorsement</b></h4>
          </div>

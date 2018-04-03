@@ -12,6 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -65,7 +66,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
     <li><a href="#" class="active"><span class="glyphicon glyphicon-pencil"></span> Endorsement<% if(totalIndorseShifters+totalIndorseTransfers>0){ %> <span class="notification alert-notif">!</span> <% } %> </a>
     <ul class="submenu">
         <li><a href="RegistrarEndorse_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters <% if(totalIndorseShifters>0){ %> <span class="notification"><% if(totalIndorseShifters<=99){ %> <%= totalIndorseShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
-        <li><a href="RegistrarEndorse_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalIndorseShifters>0){ %> <span class="notification"><% if(totalIndorseShifters<=99){ %> <%= totalIndorseShifters %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
+        <li><a href="RegistrarEndorse_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalIndorseTransfers>0){ %> <span class="notification"><% if(totalIndorseTransfers<=99){ %> <%= totalIndorseTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
       </ul>
     </li>
  <li><a href="#"><span class="glyphicon glyphicon-check"></span> Endorsed Students</a>
@@ -144,12 +145,12 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><button href="#<%=rs.getString("transferee_id")%>" class="fancybox btn">View Memo</button></td>
-        <td><button type="button" class = "btn btn-warning registrar_Endorsement"
+        <td><button type="button" class = "btn btn-warning registrar_indorsement"
            data-target=".regIndorse"
            data-toggle="modal"
            data-transferee_id = "<%=rs.getString("transferee_id") %>"
            data-getuser = "<%=getuser %>"
-           >Endorse</button></td>
+           ><span class="glyphicon glyphicon-level-up"></span>  Endorse</button></td>
         </tr>
         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
 					<%
@@ -208,9 +209,9 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
   <div class="modal-dialog" style="width:700px; height:800px;">
      <div class="modal-content">
      <form action="RegistrarIndorseTransferProcess" method="post">
-         <div class="modal-header">
+        <div class="modal-header" style="background-color:#EFB652">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b>Letter of Endorsement</b></h4>
+             <h4 class="modal-title"><span class="glyphicon glyphicon-level-up" style="color:white"></span> <b>Letter of Endorsement</b></h4>
          </div>
          <div class="modal-body"><br>
           <input class="transfer_id" type="hidden" name="transferid">
@@ -223,9 +224,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
             </center>
          </div>
          <div class="modal-footer">
-         <button type="button" class="btn btn-default btn-md" data-dismiss="modal"><span class="glyphicon glyphicon-remove" style="color:red;"></span> Cancel</button>
-             &nbsp&nbsp
-          <button type="submit" class="btn btn-md btn-warning"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Endorse Student</button>
+         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-md btn-warning">Endorse Student</button>
 
          </div>
          </form>
@@ -238,7 +238,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
-	
+	$('.fancybox').fancybox();
 	});
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
@@ -251,9 +251,9 @@ function closeNav() {
 }
 </script>
       <script>
-     $(document).on( "click", '.registrar_Endorsement',function(e) 
+     $(document).on( "click", '.registrar_indorsement',function(e) 
     		 {
-    	    var transfer_id = $(this).data('transfer_id');
+    	    var transfer_id = $(this).data('transferee_id');
     	    var getuser = $(this).data('getuser');
 
     	    $(".transfer_id").val(transfer_id);

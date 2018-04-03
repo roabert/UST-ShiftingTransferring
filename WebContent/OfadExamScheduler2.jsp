@@ -212,7 +212,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 <div class="modal fade createsched" role="dialog">
    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
-         <div class="modal-header" style="background-color:gold">
+        <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h3 class="modal-title"><span class="glyphicon glyphicon-calendar"></span> Create Schedule</h3>
          </div>

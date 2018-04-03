@@ -38,7 +38,7 @@ if(getuser == null) {
 		<br>
 			 <%
     
-    String returnsql1 = "SELECT * FROM student_shifter WHERE studentid = ?";
+    String returnsql1 = "SELECT * FROM student_transfer WHERE userid = ?";
     try{
     PreparedStatement psts = conn.prepareStatement(returnsql1);
     psts.setString(1, getuser);
