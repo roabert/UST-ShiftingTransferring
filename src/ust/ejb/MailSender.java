@@ -10,7 +10,7 @@ import javax.activation.*;
 
 public class MailSender {
 
-    public void sendEmail(String message){
+    public void sendEmail(String message, String email){
     
     	
     	try{
@@ -30,7 +30,7 @@ public class MailSender {
            Message mailMessage = new MimeMessage(mailSession);
            
            mailMessage.setFrom(new InternetAddress("ustshiftdummy@gmail.com"));
-           mailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("trebavena@gmail.com"));
+           mailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
            mailMessage.setText(message);
            mailMessage.setSubject("HEY!");
            
@@ -42,6 +42,6 @@ public class MailSender {
             Logger.getLogger(MailSender.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }	
+    }
 	
 }

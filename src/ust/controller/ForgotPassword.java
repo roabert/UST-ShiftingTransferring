@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 /**
  * Servlet implementation class ForgotPassword
  */
+@WebServlet("/ForgotPassword")
 public class ForgotPassword extends HttpServlet {
     
 	private static final long serialVersionUID = 1L;
@@ -39,9 +41,11 @@ public class ForgotPassword extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		String getEmail = request.getParameter("email_recovery");
 		String key = RandomStringUtils.randomAlphabetic(5);
-        MailSender mailSender = new MailSender(); 
-        mailSender.sendEmail(key); 
+		MailSender mail = new MailSender();
+		mail.sendEmail(key, getEmail);
         /*
         To Do:
         Use the request parameter to access the input values from the JSP
