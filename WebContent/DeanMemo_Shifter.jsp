@@ -278,7 +278,7 @@ function closeNav() {
 }
 </script>
      <script>
-     $(document).on( "click", '.dean_indorsement',function(e) 
+     $(document).on( "click", '.dean_Endorsement',function(e) 
     		 {
     	    var shifter_id = $(this).data('shifter_id');
     	    var getuser = $(this).data('getuser');

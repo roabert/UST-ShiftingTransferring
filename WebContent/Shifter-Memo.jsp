@@ -22,16 +22,7 @@
 <meta charset="ISO-8859-1">
 <title>Student-Shifter | Memo</title>
 </head>
-<style>
- form#step1shifter > #fileuploading {display:none;}
-  select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-</style>
+
 <body>
 <%
 String getuser = (String)session.getAttribute("setuser"); 

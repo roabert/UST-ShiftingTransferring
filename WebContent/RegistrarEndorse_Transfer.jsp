@@ -45,8 +45,8 @@ if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
 notification notifs = new notification();
-int totalIndorseShifters = notifs.getRegistrarShiftIndorsement(conn);
-int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);	
+int totalIndorseShifters = notifs.getRegistrarShiftEndorsement(conn);
+int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);	
 %>
 
 
@@ -130,8 +130,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);
         <tbody>
         <%
          try{
-        String display_indorsement = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE registrar_indorsed = 'In-progress'";
-        PreparedStatement ps = conn.prepareStatement(display_indorsement); 
+        String display_Endorsement = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE registrar_indorsed = 'In-progress'";
+        PreparedStatement ps = conn.prepareStatement(display_Endorsement); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()) {
       	  out.print("<tr><p style=color:red>No Student Memo pending!</p></tr>");
@@ -143,7 +143,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><a href="#<%=rs.getString("transferee_id")%>" class="fancybox">View Memo</a></td>
-        <td><button type="button" class = "btn btn-warning registrar_indorsement"
+        <td><button type="button" class = "btn btn-warning registrar_Endorsement"
            data-target=".regIndorse"
            data-toggle="modal"
            data-transferee_id = "<%=rs.getString("transferee_id") %>"
@@ -250,7 +250,7 @@ function closeNav() {
 }
 </script>
       <script>
-     $(document).on( "click", '.registrar_indorsement',function(e) 
+     $(document).on( "click", '.registrar_Endorsement',function(e) 
     		 {
     	    var transfer_id = $(this).data('transfer_id');
     	    var getuser = $(this).data('getuser');

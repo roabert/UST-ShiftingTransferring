@@ -7,17 +7,124 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
-		<link rel="stylesheet" href="CSS/sidebar-style.css"type="text/css">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		  <script src="scripts/list.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+var country_arr = new Array
+(
+<% 
+String getColleges = "SELECT * FROM faculty ORDER BY faculty_name";
+String getCourses = "SELECT * FROM courses ORDER BY faculty";
+try{
+PreparedStatement pst = conn.prepareStatement(getColleges);
+ResultSet colleges = pst.executeQuery();
+while(colleges.next()) { 
+	
+	
+%>
+//Notice the quotation marks
+"<%= colleges.getString("faculty_name") %>",
+
+<%	
+}
+}catch(Exception e) {
+	e.printStackTrace();
+}
+%>
+);
+<%
+try{
+	PreparedStatement pst = conn.prepareStatement(getColleges);
+	PreparedStatement pst2 = conn.prepareStatement(getCourses);
+	ResultSet colleges = pst.executeQuery();
+	int index = 1;
+	%>
+	var s_a = new Array();
+	s_a[0] = "";
+	<%
+	while(colleges.next()){
+		ResultSet courses = pst2.executeQuery();
+		String[] courseArray = new String[15];
+		int arrayIndex = 0;
+		%>
+		<%
+		while(courses.next()){
+			if(courses.getString("faculty").equals(colleges.getString("faculty_name")))
+			{
+				courseArray[arrayIndex] = courses.getString("courses_name");
+				arrayIndex++;
+			}
+			
+		}
+	    int count = 0;
+	    for(String S : courseArray){
+	        if (S != null)
+	            ++count;
+		}
+	    String[] courseArrayFinal = new String[count];
+	    int indexCount = 0;
+	    for(String S : courseArray){
+	        if (S != null)
+	        	courseArrayFinal[indexCount] = S;
+	            ++indexCount;
+		}
+		String coursesString = String.join("|", courseArrayFinal);
+		%>
+		s_a[<%= index %>] = "<%= coursesString %>";
+		<%
+		index++;
+	}
+}catch(Exception e) {
+	e.printStackTrace();
+}
+
+%>
+//Courses
+
+
+function populateStates(countryElementId, stateElementId) {
+
+ var selectedCountryIndex = document.getElementById(countryElementId).selectedIndex;
+
+ var stateElement = document.getElementById(stateElementId);
+
+ stateElement.length = 0; // Fixed by Julian Woods
+ stateElement.options[0] = new Option('------Select Program------', '');
+ stateElement.selectedIndex = 0;
+
+ var state_arr = s_a[selectedCountryIndex].split("|");
+
+ for (var i = 0; i < state_arr.length; i++) {
+     stateElement.options[stateElement.length] = new Option(state_arr[i], state_arr[i]);
+ }
+}
+
+function populateCountries(countryElementId, stateElementId) {
+ // given the id of the <select> tag as function argument, it inserts <option> tags
+ var countryElement = document.getElementById(countryElementId);
+ countryElement.length = 0;
+ countryElement.options[0] = new Option('------Select Faculty------', '-1');
+ countryElement.selectedIndex = 0;
+ for (var i = 0; i < country_arr.length; i++) {
+     countryElement.options[countryElement.length] = new Option(country_arr[i], country_arr[i]);
+ }
+
+ // Assigned all countries. Now assign event listener for the states.
+
+ if (stateElementId) {
+     countryElement.onchange = function () {
+         populateStates(countryElementId, stateElementId);
+     };
+ }
+}
+</script>
 <head>
 <style>
  form#step1transfer > #fileuploading {display:none;}
@@ -56,10 +163,11 @@ if(getuser == null) {
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Transfer-Welcome.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="Transfer-Transferring.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transferring</a></li>
+    <li><a href="Transfer-Transferring.jsp"class="active"><span class="glyphicon glyphicon-random"></span> Transferring</a></li>
     <li><a href="Transfer-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
@@ -70,60 +178,77 @@ if(getuser == null) {
 
 		</div>
 <div canvas="contain">
+
 <div id="main">
 <div id="wrapper">
 
+<header class="header-fixed">
 
-<div class="header">
- <a class="logo" >
- <span style="fo	nt-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
+	<div class="header-limiter">
+
+		<h1>UNIVERSITY OF SANTO TOMAS</h1>
+
+		<nav>
+		
+			<a>Shifting and Transferring System</a>
+		</nav>
+
+	</div>
+
+</header>
 <div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
+   <center>
+   <a id="text_steps">
+   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
+   STEP 2: TAKE EXAM
+   </a>
+   </center>
 </div>
-       <%
-    
-       PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND exam_schedule_date is NOT NULL");
-       ps.setString(1, getuser);
-       ResultSet rs = ps.executeQuery();
-       if(!rs.next()) {
-    	 response.sendRedirect("Transfer-Step1Done.jsp");
-     }
+       <br>     
+<%
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND exam_schedule_date is NOT NULL");
+         ps.setString(1, getuser);
+         ResultSet rs = ps.executeQuery();
+         if(!rs.next()) {
+      	 response.sendRedirect("Transfer-Step1Done.jsp");
+       }
+  
          %>
 </div>
-<br>    <p id="text_steps"><i>STEP 2: TAKE EXAM</i></p>
 
-     <div class="container">
-<br>
-<br>
-       <center>
-       <p><span class="glyphicon glyphicon-search" style="font-size:100px;"></span></p>
-       <br><br><br>
-       <form action="Transfer-Tracker.jsp"><button type="submit" class="btn btn-lg btn-warning">See Tracker</button></form>
-       </center>
-          </div>
-  </div>
+<div class="container">
+       
+        <div class="jumbotron">
+        
+        <% try{
+        	PreparedStatement p = conn.prepareStatement("SELECT * FROM exam_schedules_transferees WHERE transferee_id = ?");
+        	p.setString(1, getuser);
+        	ResultSet r = p.executeQuery();
+        	while(r.next()) {
+        	%>
+        <h4><i>Date of Exam:</i> <%=r.getString("date") %></h4>
+        <h4><i>Time of Exam:</i> <%=r.getString("start_time") %> - <%=r.getString("end_time") %></h4>
+        <h4><i>Venue:</i> <%=r.getString("venue") %></h4>
+        <br>
+        <h4><i>Bring:</i> </h4>
+        <br>
+        <h4>- Test Permit</h4>
+        <h4>- OFFICIAL OR</h4>
+        <h4>- Pencil</h4>
+        <br>
+        <h4><i>Remarks: </i> <%=r.getString("remarks") %></h4>
+        <%}}catch(SQLException e) {out.print(e);} %>
+        </div>
      
-<footer class="footer-distributed">
 
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
+          </div>
+   </div>    
+   
 </div>
 
+<div class="footer"></div>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
   
@@ -149,21 +274,7 @@ function swapImage(){
 	var dropd = document.getElementById("dlist");
 	image.src = dropd.value;	
 };
-function nextstep() {
-	id("text_steps").innerHTML = "<p><i>TRANSFERRING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
-	id("choosecollege").style.display = "none";
-	id("fileuploading").style.display = "block";
-}
-function goback() {
-	id("text_steps").innerHTML = "<p><i>TRANSFERRING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
-	id("choosecollege").style.display = "block";
-	id("fileuploading").style.display = "none";
-}
-function step1Submit() {
-	id("step1transfer").method = "post";
-	id("step1transfer").action = "Requirements_Upload";
-	id("step1transfer").submit();
-}
+
 </script>
 </body>
 </html>

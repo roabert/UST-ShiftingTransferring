@@ -210,10 +210,10 @@ if(getuser == null) {
 	</div>
 	<br><br><br><br>
 	<div class="breadcrumb flat">
-	<a href="#" class="">Memo Form Now Active</a>
-	<a href="#" class="">Memo Endorsement: Registrar</a>
-	<a href="#" class="">Memo Endorsement: Sec Gen</a>
-	<a href="#">Memo Confirmation: Registrar & Dean</a>
+	<a class="modal-btn" href="#open-modal">Memo Form Now Active</a>
+	<a class="modal-btn" href="#open-modal">Memo: Registrar</a>
+	<a class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
+	<a class="modal-btn" href="#open-modal">Memo: Registrar & Dean</a>
 	</div>
 </ol>
 

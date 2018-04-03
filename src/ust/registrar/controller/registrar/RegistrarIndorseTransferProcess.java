@@ -60,7 +60,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 		RegistrarIndorseTransferDAO d = new RegistrarIndorseTransferDAO();
 		d.setRegistrar(getdeanid);
 		d.setTransferid(gettransferid);
-		d.setIndorsement(getremarks);
+		d.setEndorsement(getremarks);
 		
 		if(ifchecked != null){
 		d.registrarIndorsed(conn);

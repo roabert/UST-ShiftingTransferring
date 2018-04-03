@@ -5,14 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RegistrarIndorseTransferDAO {
-	public String transferid, registrar, indorsement;
+	public String transferid, registrar, Endorsement;
 
-	public String getIndorsement() {
-		return indorsement;
+	public String getEndorsement() {
+		return Endorsement;
 	}
 
-	public void setIndorsement(String indorsement) {
-		this.indorsement = indorsement;
+	public void setEndorsement(String Endorsement) {
+		this.Endorsement = Endorsement;
 	}
 
 	public String getTransferid() {
@@ -34,9 +34,9 @@ public class RegistrarIndorseTransferDAO {
 	
 	public void registrarIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Approved', registrar_indorsement = ? ,secgen_indorsed = 'In-progress' WHERE transferee_id = ?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Approved', registrar_Endorsement = ? ,secgen_indorsed = 'In-progress' WHERE transferee_id = ?");
 			ps.setString(1, registrar);
-			ps.setString(2, indorsement);
+			ps.setString(2, Endorsement);
 			ps.setString(3, transferid);
 			
 			ps.executeUpdate();
@@ -47,9 +47,9 @@ public class RegistrarIndorseTransferDAO {
 	}
 	public void registrarNotIndorsed(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Disapproved', reigstrar_indorsement = ? WHERE transferee_id = ?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE transferees_indorsement SET registrar_id = ?, registrar_indorsed = 'Disapproved', reigstrar_Endorsement = ? WHERE transferee_id = ?");
 			ps.setString(1, registrar);
-			ps.setString(2, indorsement);
+			ps.setString(2, Endorsement);
 			ps.setString(3, transferid);
 			ps.executeUpdate();
 		} catch (SQLException e) {

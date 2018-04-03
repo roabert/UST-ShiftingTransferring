@@ -209,7 +209,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <tbody>
           <%
          try{
-        String displaywithscore = "SELECT * FROM transferees_scores INNER JOIN student_transfer on transferee_id = student_transfer.userid INNER JOIN dean on student_transfer.newcourse = dean.college WHERE dean_reviewed is NULL AND final_score is not NULL AND dean.userid = ?";
+        String displaywithscore = "SELECT * FROM transferees_scores INNER JOIN student_transfer on transferee_id = student_transfer.userid INNER JOIN dean on student_transfer.newcourse = dean.college WHERE dean_reviewed = 'In-progress' AND final_score is not NULL AND dean.userid = ?";
         PreparedStatement ps = conn.prepareStatement(displaywithscore);
         ps.setString(1, getuser);
         ResultSet rs = ps.executeQuery();

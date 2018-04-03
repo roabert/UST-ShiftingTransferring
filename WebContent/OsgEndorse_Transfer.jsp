@@ -47,8 +47,8 @@ if(getuser == null) {
 notification notifs = new notification();
 int totalShifters = notifs.getSecGenShiftTransactions(conn);
 int totalTransfers = notifs.getSecGenTransferTransactions(conn);
-int totalIndorseShifters = notifs.getSecGenShiftIndorsement(conn);
-int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);	
+int totalIndorseShifters = notifs.getSecGenShiftEndorsement(conn);
+int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);	
 %>
 
 
@@ -131,7 +131,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
           <th>Student Name</th>
           <th>Incoming</th>
           <th>Memo</th>
-          <th>First Indorsement</th>
+          <th>First Endorsement</th>
           <th>Finish</th>
         </tr>
 		</thead>
@@ -139,8 +139,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
         <tbody>
         <%
          try{
-        String displayindorsement_osg = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE registrar_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
-        PreparedStatement ps = conn.prepareStatement(displayindorsement_osg); 
+        String displayEndorsement_osg = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE registrar_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
+        PreparedStatement ps = conn.prepareStatement(displayEndorsement_osg); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
     		  out.println("<tr><p style=color:red>No Memo form received!</p></tr>");
@@ -153,7 +153,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><a href="#<%=rs.getString("transferee_id") %>" class="fancybox">View Memo</a></td>
         <td><a href="#<%=rs.getString("id")%>" class="fancybox">View Registrar's Memo</a></td>
-        <td><button type="button" class = "btn btn-warning osg_indorsement"
+        <td><button type="button" class = "btn btn-warning osg_Endorsement"
            data-target=".osgIndorse"
            data-toggle="modal"
            data-transferee_id = "<%=rs.getString("transferee_id") %>"
@@ -203,7 +203,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
 	            	%>
 	            	<center>
 	            	<br>
-	            	<h3>First Indorsement</h3>
+	            	<h3>First Endorsement</h3>
 	            	<br>
 	            	</center>
 	            	<h4>To the Secretary General,</h4>
@@ -212,7 +212,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
 	            
 	            	<p>Remarks: </p>
 	            		<center>
-	            	<p><%=r4.getString("registrar_indorsement") %></p>
+	            	<p><%=r4.getString("registrar_Endorsement") %></p>
 	            	</center>
 	            	<br><br><br>
 	            	<div class="pull-right">
@@ -246,7 +246,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
      <form action="OSGIndorseTransferProcess" method="post">
          <div class="modal-header">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b>Secretary General Approval</b></h4>
+             <h4 class="modal-title"><b>Second Endorsement</b></h4>
          </div>
          <div class="modal-body"><br>
           <input class="transferee_id" type="hidden" name="transferid">
@@ -299,7 +299,7 @@ function closeNav() {
 </script>
  
       <script>
-     $(document).on( "click", '.osg_indorsement',function(e) 
+     $(document).on( "click", '.osg_Endorsement',function(e) 
     		 {
     	    var transferee_id = $(this).data('transferee_id');
     	    var getuser = $(this).data('getuser');

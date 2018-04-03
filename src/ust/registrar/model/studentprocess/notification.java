@@ -57,7 +57,7 @@ public class notification {
 	    		PreparedStatement pst2 = conn.prepareStatement(getNotifs);
 	    		ResultSet getDNotifs = pst2.executeQuery();
 	    		while(getDNotifs.next()){
-	    			if(getDStudents.getString("studentid").equals(getDNotifs.getString("shifter_id"))){
+	    			if(getDStudents.getString("userid").equals(getDNotifs.getString("transferee_id"))){
 	    				count++;
 	    			}
 	    		}
@@ -72,7 +72,8 @@ public class notification {
 	public int getDeanShiftScores(Connection conn){
 		int count = 0;
 		String getStudents = "SELECT * FROM student_shifter WHERE newcourse = ?";
-		String getNotifs = "SELECT * FROM shifters_status WHERE dean_reviewed ='In-progress'";
+		String sample = "SELECT * FROM shifters_scores INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_reviewed = 'In-progress' AND final_score is not NULL AND dean.userid = ?";
+		String getNotifs = "SELECT * FROM shifters_status WHERE dean_reviewed = 'In-progress'";
 		try{
 	    	PreparedStatement pst = conn.prepareStatement(getStudents);
 	    	pst.setString(1, deanCollege);
@@ -96,7 +97,7 @@ public class notification {
 	public int getDeanTransferScores(Connection conn){
 		int count = 0;
 		String getStudents = "SELECT * FROM student_transfer WHERE newcourse = ?";
-		String getNotifs = "SELECT * FROM transferees_status WHERE dean_reviewed ='In-progress'";
+		String getNotifs = "SELECT * FROM transferees_status WHERE dean_reviewed = 'In-progress'";
 		try{
 	    	PreparedStatement pst = conn.prepareStatement(getStudents);
 	    	pst.setString(1, deanCollege);
@@ -105,7 +106,7 @@ public class notification {
 	    		PreparedStatement pst2 = conn.prepareStatement(getNotifs);
 	    		ResultSet getDNotifs = pst2.executeQuery();
 	    		while(getDNotifs.next()){
-	    			if(getDStudents.getString("studentid").equals(getDNotifs.getString("shifter_id"))){
+	    			if(getDStudents.getString("userid").equals(getDNotifs.getString("transferee_id"))){
 	    				count++;
 	    			}
 	    		}
@@ -199,7 +200,7 @@ public class notification {
 	
 	public int getOFADShiftForSched (Connection conn){
 		int count = 0;
-		String getNotifs = "SELECT * FROM shifters_exams WHERE date IS null OR date = ''";
+		String getNotifs = "SELECT * FROM shifters_exams INNER JOIN student_shifter on shifters_exams.shifter_id = student_shifter.studentid WHERE exam_schedule_date is NULL";
 		try{
 	    	PreparedStatement pst = conn.prepareStatement(getNotifs);
 	    	ResultSet getDStudents = pst.executeQuery();
@@ -215,7 +216,7 @@ public class notification {
 
 	public int getOFADTransferForSched (Connection conn){
 		int count = 0;
-		String getNotifs = "SELECT * FROM transferees_exams WHERE date IS null OR date = ''";
+		String getNotifs = "SELECT * FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL";
 		try{
 	    	PreparedStatement pst = conn.prepareStatement(getNotifs);
 	    	ResultSet getDStudents = pst.executeQuery();
@@ -231,7 +232,7 @@ public class notification {
 	
 	public int getOFADShiftExams (Connection conn){
 		int count = 0;
-		String getNotifs = "SELECT * FROM shifters_scores WHERE dean_reviewed = '' OR dean_reviewed = null";
+		String getNotifs = "SELECT * FROM shifters_scores INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE shifter_id is not NULL AND userid is NULL";
 		try{
 	    	PreparedStatement pst = conn.prepareStatement(getNotifs);
 	    	ResultSet getDStudents = pst.executeQuery();
@@ -247,7 +248,7 @@ public class notification {
 	
 	public int getOFADTransferExams (Connection conn){
 		int count = 0;
-		String getNotifs = "SELECT * FROM transferees_scores WHERE dean_reviewed = '' OR dean_reviewed = null";
+		String getNotifs = "SELECT * FROM transferees_scores INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE transferee_id is not NULL AND ofad_id is NULL";
 		try{
 	    	PreparedStatement pst = conn.prepareStatement(getNotifs);
 	    	ResultSet getDStudents = pst.executeQuery();
@@ -261,7 +262,7 @@ public class notification {
 		return count;
 	}	
 	
-	public int getRegistrarShiftIndorsement (Connection conn){
+	public int getRegistrarShiftEndorsement (Connection conn){
 		int count = 0;
 		String getNotifs = "SELECT * FROM shifters_indorsement WHERE registrar_indorsed ='In-progress'";
 		try{
@@ -277,7 +278,7 @@ public class notification {
 		return count;
 	}
 	
-	public int getRegistrarTransferIndorsement (Connection conn){
+	public int getRegistrarTransferEndorsement (Connection conn){
 		int count = 0;
 		String getNotifs = "SELECT * FROM transferees_indorsement WHERE registrar_indorsed ='In-progress'";
 		try{
@@ -293,7 +294,7 @@ public class notification {
 		return count;
 	}	
 	
-	public int getSecGenShiftIndorsement (Connection conn){
+	public int getSecGenShiftEndorsement (Connection conn){
 		int count = 0;
 		String getNotifs = "SELECT * FROM shifters_indorsement WHERE secgen_indorsed ='In-progress'";
 		try{
@@ -309,7 +310,7 @@ public class notification {
 		return count;
 	}
 	
-	public int getSecGenTransferIndorsement (Connection conn){
+	public int getSecGenTransferEndorsement (Connection conn){
 		int count = 0;
 		String getNotifs = "SELECT * FROM transferees_indorsement WHERE secgen_indorsed ='In-progress'";
 		try{

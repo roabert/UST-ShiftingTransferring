@@ -15,6 +15,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Student | Tracker</title>
@@ -177,10 +179,10 @@ if(getuser == null) {
 	</div>
 	<br><br><br><br>
 	<div class="breadcrumb flat">
-	<a href="#" class="">Memo Form Now Active</a>
-	<a href="#" class="">Memo Endorsement: Registrar</a>
-	<a href="#" class="">Memo Endorsement: Sec Gen</a>
-	<a href="#">Memo Confirmation: Registrar & Dean</a>
+	<a class="modal-btn" href="#open-modal">Memo Form: Active</a>
+	<a  class="modal-btn" href="#open-modal">Memo: Registrar</a>
+	<a  class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
+	<a  class="modal-btn" href="#open-modal">Memo: Registrar & Dean</a>
 	</div>
 </ol>
 
@@ -205,7 +207,7 @@ if(getuser == null) {
 
 
 <div class="footer"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
   

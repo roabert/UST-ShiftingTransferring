@@ -45,8 +45,8 @@ if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
 notification notifs = new notification();
-int totalIndorseShifters = notifs.getRegistrarShiftIndorsement(conn);
-int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);	
+int totalIndorseShifters = notifs.getRegistrarShiftEndorsement(conn);
+int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);	
 %>
 
 
@@ -131,8 +131,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);
         <tbody>
         <%
          try{
-        String display_indorsement = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE registrar_indorsed = 'Approved'";
-        PreparedStatement ps = conn.prepareStatement(display_indorsement); 
+        String display_Endorsement = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE registrar_indorsed = 'Approved'";
+        PreparedStatement ps = conn.prepareStatement(display_Endorsement); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()) {
       	  out.print("<tr><p style=color:red>No Student Memo pending!</p></tr>");
@@ -216,7 +216,7 @@ function closeNav() {
 }
 </script>
       <script>
-     $(document).on( "click", '.registrar_indorsement',function(e) 
+     $(document).on( "click", '.registrar_Endorsement',function(e) 
     		 {
     	    var transfer_id = $(this).data('transfer_id');
     	    var getuser = $(this).data('getuser');

@@ -31,8 +31,8 @@ if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
 notification notifs = new notification();
-int totalIndorseShifters = notifs.getRegistrarShiftIndorsement(conn);
-int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);	
+int totalIndorseShifters = notifs.getRegistrarShiftEndorsement(conn);
+int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);	
 %>
 
 
@@ -156,7 +156,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);
 
    <div class="footer"></div>    
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 

@@ -18,16 +18,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		  <script src="scripts/list.js"></script>
 <head>
-<style>
- form#step1transfer > #fileuploading {display:none;}
- select {
-    width: 50%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-</style>
+
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
 </head>
@@ -127,7 +118,7 @@ if(getuser == null) {
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ 
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
   

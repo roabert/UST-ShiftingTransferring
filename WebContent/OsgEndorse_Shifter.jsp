@@ -47,8 +47,8 @@ if(getuser == null) {
 notification notifs = new notification();
 int totalShifters = notifs.getSecGenShiftTransactions(conn);
 int totalTransfers = notifs.getSecGenTransferTransactions(conn);
-int totalIndorseShifters = notifs.getSecGenShiftIndorsement(conn);
-int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);	
+int totalIndorseShifters = notifs.getSecGenShiftEndorsement(conn);
+int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);	
 %>
 
 
@@ -132,7 +132,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
           <th>Student Name</th>
           <th>Incoming</th>
           <th>Memo</th>
-          <th>First Indorsement</th>
+          <th>First Endorsement</th>
           <th>Finish</th>
         </tr>
 		</thead>
@@ -140,8 +140,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
         <tbody>
         <%
          try{
-        String displayindorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
-        PreparedStatement ps = conn.prepareStatement(displayindorsement_osg); 
+        String displayEndorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
+        PreparedStatement ps = conn.prepareStatement(displayEndorsement_osg); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
   		  out.println("<tr><p style=color:red>No Memo form received!</p></tr>");
@@ -154,7 +154,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button></td>
         <td><button href="#<%=rs.getString("registrar_id")%>" class="fancybox btn">View Registrar's Memo</button></td>
-        <td><button type="button" class = "btn btn-warning osg_indorsement"
+        <td><button type="button" class = "btn btn-warning osg_Endorsement"
            data-target=".osgIndorse"
            data-toggle="modal"
            data-shifter_id = "<%=rs.getString("shifter_id") %>"
@@ -205,7 +205,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
 	            	%>
 	            	<center>
 	            	<br>
-	            	<h3>First Indorsement</h3>
+	            	<h3>First Endorsement</h3>
 	            	<br>
 	            	</center>
 	            	<h4>To the Secretary General,</h4>
@@ -214,7 +214,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
 	            
 	            	<p>Remarks: </p>
 	            		<center>
-	            	<p><%=r4.getString("registrar_indorsement") %></p>
+	            	<p><%=r4.getString("registrar_Endorsement") %></p>
 	            	</center>
 	            	<br><br><br>
 	            	<div class="pull-right">
@@ -248,7 +248,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);
      <form action="OSGIndorseProcess" method="post">
          <div class="modal-header" style="background-color:gold">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title"><b><span class="glyphicon glyphicon-level-up" style="color:white;"></span> Secretary General Approval</b></h4>
+             <h4 class="modal-title"><b><span class="glyphicon glyphicon-level-up" style="color:white;"></span> Second Endorsement</b></h4>
          </div>
          <div class="modal-body"><br>
           <input class="shifter_id" type="hidden" name="studentid">
@@ -300,7 +300,7 @@ function closeNav() {
 }
 </script>
        <script>
-     $(document).on( "click", '.osg_indorsement',function(e) 
+     $(document).on( "click", '.osg_Endorsement',function(e) 
     		 {
     	    var shifter_id = $(this).data('shifter_id');
     	    var getuser = $(this).data('getuser');

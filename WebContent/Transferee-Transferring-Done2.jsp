@@ -56,7 +56,7 @@ if(getuser == null) {
     while(rs.next()) {
     %>
     <navhead>
-			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="150" height = "150">
+					<center><img src="DisplayProfileTransfer?pkey=<%=rs.getString("userid")%>" width ="150" height = "150">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
@@ -64,9 +64,9 @@ if(getuser == null) {
 			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
-    <li><a href="Shifter-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <li><a href="Shifter-Shifting.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Shifting</a></li>
-    <li><a href="Shifter-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a></li>
+    <li><a href="Transfer-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+    <li><a href="Transfer-Transferring.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transferring</a></li>
+    <li><a href="Transfer-Tracker.jsp"><span class="glyphicon glyphicon-search"></span> Tracker</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -110,7 +110,7 @@ if(getuser == null) {
        <p><span class="glyphicon glyphicon-ok-sign" style="font-size:100px; color:green;"></span></p>
        <br>
        <%try { 
-        PreparedStatement pss = conn.prepareStatement("SELECT * FROM student_shifter WHERE studentid = ?");
+        PreparedStatement pss = conn.prepareStatement("SELECT * FROM student_transfer WHERE userid = ?");
         pss.setString(1, getuser);
         ResultSet rss = pss.executeQuery();
         while(rss.next()) {

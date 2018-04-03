@@ -68,7 +68,7 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 			e.printStackTrace();
 		}
 	}
-	public void readyForIndorsement(Connection conn) {
+	public void readyForEndorsement(Connection conn) {
 		try {
 			PreparedStatement ps = conn.prepareStatement(MemoForm_Tranfer);
 			ps.setString(1, transferid);
@@ -83,7 +83,7 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 		PassorFail(conn);
 		PassorFailScore(conn);
 		removeStudentSchedule(conn);
-		readyForIndorsement(conn);
+		readyForEndorsement(conn);
 	}
 	public void doFailStudent(Connection conn) {
 		PassorFail(conn);

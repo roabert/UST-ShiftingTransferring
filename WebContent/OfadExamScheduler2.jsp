@@ -207,6 +207,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
      </div>
 </div>
 </div>
+</div>
 <div class="footer"></div>
 <div class="modal fade createsched" role="dialog">
    <div class="modal-dialog modal-lg" style="width:1250px;">

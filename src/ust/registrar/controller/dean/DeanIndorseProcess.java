@@ -59,7 +59,7 @@ public class DeanIndorseProcess extends HttpServlet {
 		DeanIndorseStudentDAO d = new DeanIndorseStudentDAO();
 		d.setDeanid(getdeanid);
 		d.setStudentid(getstudentid);
-		d.setIndorsement(getremarks);
+		d.setEndorsement(getremarks);
 		
 		if(ifchecked != null){
 		d.deanIndorsed(conn);

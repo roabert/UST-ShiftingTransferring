@@ -115,7 +115,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
    <center>
    <a style= "color: white">
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   APPROVED TRANSACTIONS: SHIFTERS
+   APPROVED TRANSACTIONS: TRANSFEREES
    </a>
    </center>
 </div>
@@ -125,8 +125,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
     <br>
     
       <ul class = "nav nav-tabs">
-          <li class="active"><a href="OsgApproved_Endorsements.jsp">Shifters</a></li>
-          <li><a href="OsgApproved_Endorsements2.jsp">Transferees</a></li>
+          <li><a href="OsgApproved_Endorsements.jsp">Shifters</a></li>
+          <li class="active"><a href="OsgApproved_Endorsements2.jsp">Transferees</a></li>
           </ul>
      <div class="tab-content">
      <br>
@@ -146,7 +146,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         <tbody>
         <%
          try{
-        String displayEndorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE secgen_indorsed = 'Approved'";
+        String displayEndorsement_osg = "SELECT * FROM transferees_indorsement INNER JOIN student_shifter on transferees_indorsement.transferee_id = student_shifter.studentid WHERE secgen_indorsed = 'Approved'";
         PreparedStatement ps = conn.prepareStatement(displayEndorsement_osg); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
@@ -156,15 +156,15 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
   	   do{
         %>
         <tr>
-        <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
-        <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button></td>
+        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
+        <td><button href="#<%=rs.getString("transferee_id") %>" class="fancybox btn">View Memo</button></td>
         <td><b><%=rs.getString("secgen_indorsed") %></b></td>
         </tr>
-        <div id="<%=rs.getString("shifter_id") %>" style="width:600px;display: none;">
+        <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
 					<%
-						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM shifters_memo where shifter_id = ?");
-						p3.setString(1, rs.getString("shifter_id"));
+						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM tansferees_memo where transferee_id = ?");
+						p3.setString(1, rs.getString("transferee_id"));
 	            	   	ResultSet r3 = p3.executeQuery();
 	            	   	while(r3.next()){
 	            	   		%>
@@ -174,7 +174,6 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	            	   		</center>
 	            	   		<br>
 	            	   		<p>Date: <u><%=r3.getString("date") %></u></p><br>
-	            	   		<p>Student ID: <%=r3.getString("studentid") %></p><br>
 	            	   		<p>I, <u><%=r3.getString("full_name") %></u> from college of <u><%=r3.getString("oldcourse") %></u></p>
 	            	   		<p>wish to apply for admission to the College of <u><%=r3.getString("newcourse") %></u>, <u><%=r3.getString("semester_start") %></u>
 	            	   		 Sem, 20<u><%=r3.getString("firstyear_start") %></u> - 20<u><%=r3.getString("secondyear_start") %></u></p>

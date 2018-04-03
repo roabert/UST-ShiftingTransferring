@@ -59,7 +59,7 @@ public class RegistrarIndorseProcess extends HttpServlet {
 		RegistrarIndorseDAO d = new RegistrarIndorseDAO();
 		d.setRegistrar(getdeanid);
 		d.setStudentid(getstudentid);
-		d.setIndorsement(getremarks);
+		d.setEndorsement(getremarks);
 		
 		if(ifchecked != null){
 		d.registrarIndorsed(conn);

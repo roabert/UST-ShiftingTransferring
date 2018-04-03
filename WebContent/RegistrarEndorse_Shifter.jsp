@@ -46,8 +46,8 @@ if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }
 notification notifs = new notification();
-int totalIndorseShifters = notifs.getRegistrarShiftIndorsement(conn);
-int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);	
+int totalIndorseShifters = notifs.getRegistrarShiftEndorsement(conn);
+int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);	
 %>
 
 
@@ -134,8 +134,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);
         <tbody>
         <%
          try{
-        String display_indorsement = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'In-progress'";
-        PreparedStatement ps = conn.prepareStatement(display_indorsement); 
+        String display_Endorsement = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'In-progress'";
+        PreparedStatement ps = conn.prepareStatement(display_Endorsement); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()) {
         	  out.print("<tr><p style=color:red>No Student Memo pending!</p></tr>");
@@ -149,7 +149,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferIndorsement(conn);
 
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
         <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button></td>
-        <td><button type="button" class = "btn btn-warning registrar_indorsement"
+        <td><button type="button" class = "btn btn-warning registrar_Endorsement"
            data-target=".regIndorse"
            data-toggle="modal"
            data-shifter_id = "<%=rs.getString("shifter_id") %>"
@@ -257,7 +257,7 @@ function closeNav() {
 </script>
 
       <script>
-     $(document).on( "click", '.registrar_indorsement',function(e) 
+     $(document).on( "click", '.registrar_Endorsement',function(e) 
     		 {
     	    var shifter_id = $(this).data('shifter_id');
     	    var getuser = $(this).data('getuser');

@@ -65,11 +65,11 @@ public interface DatabaseSQLs {
 	 
 	 //OFAD encode scores shifter EncodeScoreShifter servlet
 	 
-	 String EncodeScores_Shifter = "UPDATE shifters_scores SET userid = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ? WHERE shifter_id = ?";
-	 String ExamTaken_Shifter = "UPDATE shifters_status SET exam_taken = 'Approved' WHERE shifter_id = ?";
+	 String EncodeScores_Shifter = "UPDATE shifters_scores SET userid = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ?, dean_reviewed = 'In-progress' WHERE shifter_id = ?";
+	 String ExamTaken_Shifter = "UPDATE shifters_status SET exam_taken = 'Approved', dean_reviewed = 'In-progress' WHERE shifter_id = ?";
 	 // OFAD encode scores transfer EncodeScoreTransfer servlet
-	 String EncodeScores_Transfer = "UPDATE transferees_scores SET ofad_id = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ? WHERE transferee_id = ?";
-	 String ExamTaken_Transfer = "UPDATE transferees_status SET exam_taken = 'Approved' WHERE transferee_id = ?";
+	 String EncodeScores_Transfer = "UPDATE transferees_scores SET ofad_id = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ?, dean_reviewed = 'In-progress' WHERE transferee_id = ?";
+	 String ExamTaken_Transfer = "UPDATE transferees_status SET exam_taken = 'Approved', dean_reviewed = 'In-progress' WHERE transferee_id = ?";
 	 
 	 //Admin Modify Users (for admin)
 	 String Admin_editUsersSQL = "UPDATE admins SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
@@ -99,10 +99,10 @@ public interface DatabaseSQLs {
 		 // Admin Create user details (for admin)
 		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
 		 
-		 // LETTER OF INDORSEMENT SHIFTER
+		 // LETTER OF Endorsement SHIFTER
 		 String MemoForm_Shifter = "INSERT INTO shifters_indorsement (shifter_id) VALUES (?)";
 		 String removeExamSchedShifter = "DELETE FROM shifters_exams WHERE shifter_id = ?";
-		 //LETTER OF INDORSEMENT TRANSFER
+		 //LETTER OF Endorsement TRANSFER
 		 String MemoForm_Tranfer = "INSERT INTO transferees_indorsement (transferee_id) VALUES (?)";
 		 String removeExamSchedTransfer = "DELETE FROM transferees_exams WHERE transferee_id = ?";
 		 

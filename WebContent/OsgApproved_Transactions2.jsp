@@ -47,8 +47,8 @@ if(getuser == null) {
 notification notifs = new notification();
 int totalShifters = notifs.getSecGenShiftTransactions(conn);
 int totalTransfers = notifs.getSecGenTransferTransactions(conn);
-int totalIndorseShifters = notifs.getSecGenShiftIndorsement(conn);
-int totalIndorseTransfers = notifs.getSecGenTransferIndorsement(conn);	
+int totalIndorseShifters = notifs.getSecGenShiftEndorsement(conn);
+int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);	
 %>
 
 

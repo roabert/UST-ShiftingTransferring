@@ -71,7 +71,9 @@
 	background: #333;
 	background: linear-gradient(135deg, #333, #000);
 }
-
+a.modal-btn {
+    min-width: 244px;
+}
 /*adding the arrows for the breadcrumbs using rotated pseudo elements*/
 .breadcrumb a:after {
 	content: '';
