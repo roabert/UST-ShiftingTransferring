@@ -295,7 +295,6 @@ if(rs4.next()) {
  <h3>Instructions</h3>
   <p>1.) File Must Be In JPEG format.</p>
   <p>2.) Maximum file size is 2MB.</p>
-  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
   <h3>Documents Needed:</h3>
   <p>1.) Official OTR</p>
   <p>2.) Certificate of Good Moral.</p>
@@ -303,7 +302,7 @@ if(rs4.next()) {
   <p>4.) Letter of Intent to the Guidance</p>
 </div><br>
 		<center>
-		  <input type="file" size="50" name="requirements_images" type="file" multiple="multiple"> 
+		  <input type="file" size="50" id="requirements_images" name="requirements_images" type="file" multiple="multiple"> 
 		</center>
  
 </table>
@@ -316,7 +315,7 @@ if(rs4.next()) {
 <br><br>
    <center>
    <button type = "button" onclick="goback()" class="btn btn-warning btn-lg">Back</button>
-   <button onclick="step1Submit()" class="btn btn-warning btn-lg">Transfer Now</button>
+   <button onclick="step1Submit()" id="submit-button" class="btn btn-warning btn-lg">Submit</button>
    </center>
  </div>
  </form>
@@ -368,6 +367,20 @@ function step1Submit() {
 	id("step1transfer").action = "Requirements_Upload";
 	id("step1transfer").submit();
 }
+
+$(document).ready(function() {
+	  $('#requirements_images').change(function() {
+	    if (this.files.length > 5){
+	     alert('Too many files! Keep it exactly 5 files with each requirement as its own file')
+	     document.getElementById("submit-button").disabled = true;}
+	    else if (this.files.length < 5){
+		 alert('Too few files! Keep it exactly 5 files with each requirement as its own file')
+		 document.getElementById("submit-button").disabled = true;}
+	    else if (this.files.length == 5){
+		 alert('Tip: Make sure to recheck your requirements before submitting them')
+		 document.getElementById("submit-button").disabled = false;}
+	  });
+	});
 </script>
 </body>
 </html>
