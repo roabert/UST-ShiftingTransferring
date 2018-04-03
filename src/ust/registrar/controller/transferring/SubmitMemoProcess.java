@@ -57,21 +57,21 @@ public class SubmitMemoProcess extends HttpServlet {
 		String getfullname = request.getParameter("fullname");
 		String getnewcourse = request.getParameter("newcourse");
 		String getsemester = request.getParameter("semester");
-		int get1year = Integer.parseInt(request.getParameter("firstyear"));
-		int get2year = Integer.parseInt(request.getParameter("secondyear"));
+		String get1year = request.getParameter("firstyear");
+		String get2year = request.getParameter("secondyear");
 		String getcurrentcourse = request.getParameter("currentcourse");
 		String getfirstterm = request.getParameter("firstterm");
-		int getfirst1year = Integer.parseInt(request.getParameter("firstterm_1year"));
-		int getfirst2year = Integer.parseInt(request.getParameter("firstterm_2year"));
+		String getfirst1year = request.getParameter("firstterm_1year");
+		String getfirst2year = request.getParameter("firstterm_2year");
 		String getsecondterm = request.getParameter("secondterm");
-		int getsecond1year = Integer.parseInt(request.getParameter("secondterm_1year"));
-		int getsecond2year = Integer.parseInt(request.getParameter("secondterm_2year"));
+		String getsecond1year = request.getParameter("secondterm_1year");
+		String getsecond2year = request.getParameter("secondterm_2year");
 		String getthirdterm = request.getParameter("thirdterm");
-		int getthird1year = Integer.parseInt(request.getParameter("thirdterm_1year"));
-		int getthird2year = Integer.parseInt(request.getParameter("thirdterm_2year"));
+		String getthird1year = request.getParameter("thirdterm_1year");
+		String getthird2year = request.getParameter("thirdterm_2year");
 		String getfourthterm = request.getParameter("fourthterm");
-		int getfourth1year = Integer.parseInt(request.getParameter("fourthterm_1year"));
-		int getfourth2year = Integer.parseInt(request.getParameter("fourthterm_2year"));
+		String getfourth1year = request.getParameter("fourthterm_1year");
+		String getfourth2year = request.getParameter("fourthterm_2year");
 		String getspecial1 = request.getParameter("specialterm_1");
 		String getspecial2 = request.getParameter("specialterm_2");
 		String getspecial3 = request.getParameter("specialterm_3");
@@ -105,7 +105,7 @@ public class SubmitMemoProcess extends HttpServlet {
 		s.setSpecialterm_4(getspecial4);
 		s.doStep3Indorsed(conn);
 		
-		response.sendRedirect("Transferee-MemoDone.jsp");
+		response.sendRedirect("Transfer-MemoDone.jsp");
 
 	}
 

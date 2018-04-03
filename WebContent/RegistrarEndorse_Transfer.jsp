@@ -114,7 +114,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
    </center>
 </div>
   <div id="content">
-    <div class="container">
+    <div class="container-fluid">
+    <br><br>
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
@@ -142,7 +143,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a href="#<%=rs.getString("transferee_id")%>" class="fancybox">View Memo</a></td>
+        <td><button href="#<%=rs.getString("transferee_id")%>" class="fancybox btn">View Memo</button></td>
         <td><button type="button" class = "btn btn-warning registrar_Endorsement"
            data-target=".regIndorse"
            data-toggle="modal"

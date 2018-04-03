@@ -213,7 +213,7 @@ function submitMemo() {
 		alert('You must agree first the condition!');
 	}
 }
-;</script>
+</script>
 
 </body>
 </html>

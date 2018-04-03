@@ -228,13 +228,26 @@ if(rs1.next()) {
 	
 	 response.sendRedirect("Transfer-Transferring-2.jsp");
 } 
-PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ?");
+PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ? AND registrar_indorsed is NULL");
 ps2.setString(1, getuser);
 ResultSet rs2 = ps2.executeQuery();
 if(rs2.next()) {
 	
 	 response.sendRedirect("Transfer-Memo.jsp");
 } 
+PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ?  AND (secgen_indorsed = 'In-progress' OR registrar_indorsed = 'In-progress')");
+ps3.setString(1, getuser);
+ResultSet rs3 = ps3.executeQuery();
+if(rs3.next()) {
+	
+	 response.sendRedirect("Transfer-MemoDone.jsp");
+} 
+PreparedStatement ps4 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ? AND (transfer_transferring_approved = 'Approved' OR secgen_indorsed = 'Approved')");
+ps4.setString(1, getuser);
+ResultSet rs4 = ps4.executeQuery();
+if(rs4.next()) {
+	response.sendRedirect("Transfer-Transferring-Done.jsp");
+}
 %>
 </div>
 

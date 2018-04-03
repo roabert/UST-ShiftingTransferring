@@ -21,16 +21,7 @@
 <meta charset="ISO-8859-1">
 <title>Memo Submitted!</title>
 </head>
-<style>
- form#step1shifter > #fileuploading {display:none;}
-  select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-</style>
+
 <body>
 <%
 String getuser = (String)session.getAttribute("setuser"); 
@@ -154,21 +145,7 @@ function swapImage(){
 	var dropd = document.getElementById("dlist");
 	image.src = dropd.value;	
 };
-function nextstep() {
-	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
-	id("choosecollege").style.display = "none";
-	id("fileuploading").style.display = "block";
-}
-function goback() {
-	id("text_steps").innerHTML = "<p><i>SHIFTING(Step 1-a): SELECT OUTGOING PROGRAM</i></p>";
-	id("choosecollege").style.display = "block";
-	id("fileuploading").style.display = "none";
-}
-function step1Submit() {
-	id("step1shifter").method = "post";
-	id("step1shifter").action = "Requirements_Upload";
-	id("step1shifter").submit();
-}
-;</script>
+
+</script>
 </body>
 </html>
