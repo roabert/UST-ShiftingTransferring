@@ -45,6 +45,17 @@ public class OSGIndorseTransfereeDAO implements DatabaseSQLs{
 			e.printStackTrace();
 		}
 	}
+	public void transferApproved(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(approveTransferFinal);
+			ps.setString(1, transferid);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void dontIndorseStudent(Connection conn) {
 		try {
 			PreparedStatement ps = conn.prepareStatement(OSGdisapproveTransfer);
@@ -57,5 +68,10 @@ public class OSGIndorseTransfereeDAO implements DatabaseSQLs{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void approveTransfer(Connection conn) {
+		IndorseStudent(conn);
+		transferApproved(conn);
 	}
 }

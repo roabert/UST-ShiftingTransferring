@@ -63,7 +63,7 @@ public class OSGIndorseTransferProcess extends HttpServlet {
         o.setTransferid(gettransferid);
         o.setRemarks(getremarks);
         if(getapproval != null) {
-        o.IndorseStudent(conn);
+        o.approveTransfer(conn);
         request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
         out.print("<script>alert('Memo of "+gettransferid+" approved! Student has been transferred!')</script>");
         }

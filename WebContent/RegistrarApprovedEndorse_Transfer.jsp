@@ -143,7 +143,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
-        <td><a href="#<%=rs.getString("transferee_id")%>" class="fancybox">View Memo</a></td>
+        <td><button href="#<%=rs.getString("transferee_id")%>" class="fancybox btn">View Memo</button></td>
         <td><b><%=rs.getString("registrar_indorsed") %></b></td>
         </tr>
         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
@@ -203,7 +203,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
-	
+	$('.fancybox').fancybox();
 	});
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";

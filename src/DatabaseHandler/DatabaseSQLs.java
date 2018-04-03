@@ -125,7 +125,8 @@ public interface DatabaseSQLs {
 		 // Registrar memo approval
 		 String RegistrarStatusTransfer = "UPDATE transferees_indorsement SET registrar_indorsed = 'In-progress' WHERE transferee_id = ?";
 		 //Secgen memo approval
-		 String OSGapproveTransfer = "UPDATE transferees_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, transfer_transferring_approved = 'Approved' WHERE transferee_id = ?";
+		 String OSGapproveTransfer = "UPDATE transferees_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, transfer_transferring_approved = 'Approved', secgen_date_indorsed = NOW() WHERE transferee_id = ?";
+		 String approveTransferFinal = "UPDATE student_transfer SET transferring_approved = 'Approved' WHERE userid = ?";
 		 //SEcgen memo disapproval
-		 String OSGdisapproveTransfer = "UPDATE transferees_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?  WHERE transferee_id = ?";
+		 String OSGdisapproveTransfer = "UPDATE transferees_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?, secgen_date_indorsed = NOW()  WHERE transferee_id = ?";
 }

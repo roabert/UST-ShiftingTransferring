@@ -146,7 +146,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         <tbody>
         <%
          try{
-        String displayEndorsement_osg = "SELECT * FROM transferees_indorsement INNER JOIN student_shifter on transferees_indorsement.transferee_id = student_shifter.studentid WHERE secgen_indorsed = 'Approved'";
+        String displayEndorsement_osg = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE secgen_indorsed = 'Approved'";
         PreparedStatement ps = conn.prepareStatement(displayEndorsement_osg); 
         ResultSet rs = ps.executeQuery();
         if(!rs.next()){
@@ -163,7 +163,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         </tr>
         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
 					<%
-						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM tansferees_memo where transferee_id = ?");
+						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM transferees_memo where transferee_id = ?");
 						p3.setString(1, rs.getString("transferee_id"));
 	            	   	ResultSet r3 = p3.executeQuery();
 	            	   	while(r3.next()){
@@ -221,6 +221,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
+    $('.fancybox').fancybox();
 } );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
