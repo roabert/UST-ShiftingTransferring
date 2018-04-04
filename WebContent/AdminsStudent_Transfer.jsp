@@ -134,7 +134,7 @@ if(getuser == null) {
 			<td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
 			<td><%=rs.getString("typeofstudent") %></td>
 			<td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-			<td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+			<td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button class="btn" href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</button></td>
         </tr>
         <%}

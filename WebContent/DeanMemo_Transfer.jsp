@@ -188,19 +188,136 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 </div>
 <br>
    <div id="content">
-    <div class="container">
+    <div class="container-fluid">
   <fieldset>
       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
       <table class="table table-striped table-sortable">
-        <thead>        
-          <th>Student Name</th> 
+		<thead>
+        <tr>
+          <th>Student Name</th>
           <th>Incoming</th>
-          <th>Memo</th>
+          <th>Student Memo</th>
+          <th>Registrar Indorsement</th>
+          <th>OSG Indorsement</th>
+        </tr>
         </thead>
-        <% %>
         <tbody>
-        <!-- Obar dito mo lagay sa loob nito yung loop na nagooutput nung students -->
+        <%
+         try{
+        String display_finalmemo = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid INNER JOIN dean on student_transfer.newcourse = dean.college WHERE transfer_transferring_approved = 'Approved' AND dean.userid = ?";
+        
+       PreparedStatement ps = conn.prepareStatement(display_finalmemo);
+       ps.setString(1, getuser);
+        ResultSet rs = ps.executeQuery();
+           while(rs.next()) {
+        %>
+        <tr>
+        <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
+       <td><button class = "fancybox btn" href="#<%=rs.getString("transferee_id")%>">View Memo</button></td>
+       <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Indorsements</button></td>
+       <td><button href="#<%=rs.getString("id")+"OSG"%>" class="fancybox btn">View Indorsements</button></td>
+        </tr>
+         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
+					<%
+						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM transferees_memo where transferee_id = ?");
+						p3.setString(1, rs.getString("transferee_id"));
+	            	   	ResultSet r3 = p3.executeQuery();
+	            	   	while(r3.next()){
+	            	   		%>
+	            	   		<center>
+	            	   		<h2>UNIVERSITY OF SANTO TOMAS</h2>
+	            	   		<h4>OFFICE OF THE SECRETARY GENERAL</h4>
+	            	   		</center>
+	            	   		<br>
+	            	   		<p>Date: <u><%=r3.getString("date") %></u></p><br>
+	            	   	
+	            	   		<p>I, <u><%=r3.getString("full_name") %></u> from college of <u><%=r3.getString("oldcourse") %></u></p>
+	            	   		<p>wish to apply for admission to the College of <u><%=r3.getString("newcourse") %></u>, <u><%=r3.getString("semester_start") %></u>
+	            	   		 Sem, 20<u><%=r3.getString("firstyear_start") %></u> - 20<u><%=r3.getString("secondyear_start") %></u></p>
+	            	   		 <br>
+	            	   		 <p>MY COMPLETE COLLEGE ATTENDANCE TO DATE:</p>
+	            	   		 <p>College(s) previously attended: <u><%=r3.getString("oldcourse") %></u></p>
+	            	   		 <br>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("first_term") %></u> AY 20<u><%=r3.getString("firstterm_1year") %></u> - 20<u><%=r3.getString("firstterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_1") %></u></p>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("second_term") %></u> AY 20<u><%=r3.getString("secondterm_1year") %></u> - 20<u><%=r3.getString("secondterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_2") %></u></p>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("third_term") %></u> AY 20<u><%=r3.getString("thirdterm_1year") %></u> - 20<u><%=r3.getString("thirdterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_3") %></u></p>
+	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_4") %></u></p>
+	            	   		 <br>
+	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
+	            	   		<br><br><br><br>	                   
+	            	<% 
+	            	   		}
+					 
+            	       
+					%>
+				</div>
+				<div id="<%=rs.getString("id") %>" style="width:600px;display: none;">
+	        <%
+	            PreparedStatement p4 = conn.prepareStatement("SELECT * FROM transferees_indorsement INNER JOIN registrar on registrar_id = registrar.userid INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE transferee_id = ?");
+	            p4.setString(1, rs.getString("transferee_id"));
+	            ResultSet r4 = p4.executeQuery();
+	            while(r4.next()) {
+	            	%>
+	            	<center>
+	            	<br>
+	            	<h3>First Indorsement</h3>
+	            	<br>
+	            	</center>
+	            	<h4>To the Secretary General,</h4>
+	            	<p>Recommending approval of the application for shift.</p>
+	            	<br>
+	            
+	            	<p>Remarks: </p>
+	            		<center>
+	            	<p><%=r4.getString("registrar_indorsement") %></p>
+	            	</center>
+	            	<br><br><br>
+	            	<div class="pull-right">
+	            	  <i><%=r4.getString("first_name") %> <%=r4.getString("middle_name") %> <%=r4.getString("last_name") %></i>
+	            	  <p>Registrar Office</p> 
+	            	</div>
+	            	<br>
+	            	<%
+	            }
+	        %>
+	      </div>
+	      <div id="<%=rs.getString("id")+"OSG" %>" style="width:600px;display: none;">
+	        <%
+	            PreparedStatement p5 = conn.prepareStatement("SELECT * FROM transferees_indorsement INNER JOIN secgen on secgen_id = secgen.userid INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE transferee_id = ?");
+	            p5.setString(1, rs.getString("transferee_id"));
+	            ResultSet r5 = p5.executeQuery();
+	            while(r5.next()) {
+	            	%>
+	            	<center>
+	            	<br>
+	            	<h3>Second Indorsement</h3>
+	            	<br>
+	            	</center>
+	            	<h4>To the Dean of the <i><%=r5.getString("newcourse") %></i></h4><br>
+	            	<h4>This student may enroll in your college.</h4>
+	            	<br>
+	            
+	            	<p>Remarks: </p>
+	            		<center>
+	            	<p><%=r5.getString("secgen_remarks") %></p>
+	            	</center>
+	            	<br><br><br>
+	            	<div class="pull-right">
+	            	  <i><%=r5.getString("first_name") %> <%=r5.getString("middle_name") %> <%=r5.getString("last_name") %></i>
+	            	  <p>Office of the Secretary General</p> 
+	            	</div>
+	            	<br>
+	            	<%
+	            }
+	        %>
+	      </div>
+        <%}
+           
+         }catch(Exception e) {
+        	e.printStackTrace();
+        } %>
         </tbody>
       </table>
       </center>
@@ -219,6 +336,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
+    $('.fancybox').fancybox();
 });
 
 function openNav() {

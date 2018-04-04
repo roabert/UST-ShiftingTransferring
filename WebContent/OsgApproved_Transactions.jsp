@@ -150,24 +150,21 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved'";
          PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()){
-        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-        }
-        else {
-           do {
+       while(rs.next()) {
+
         %>
         <tr>
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button>
         </td> 
         <td><b><%=rs.getString("secgen_verified") %></b></td>
 
         </tr>
-        <%}while(rs.next());
-        }  
+        <%}
+        
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

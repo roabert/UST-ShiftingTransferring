@@ -370,13 +370,13 @@ function step1Submit() {
 
 $(document).ready(function() {
 	  $('#requirements_images').change(function() {
-	    if (this.files.length > 5){
+	    if (this.files.length > 4){
 	     alert('Too many files! Keep it exactly 5 files with each requirement as its own file')
 	     document.getElementById("submit-button").disabled = true;}
-	    else if (this.files.length < 5){
+	    else if (this.files.length < 4){
 		 alert('Too few files! Keep it exactly 5 files with each requirement as its own file')
 		 document.getElementById("submit-button").disabled = true;}
-	    else if (this.files.length == 5){
+	    else if (this.files.length == 4){
 		 alert('Tip: Make sure to recheck your requirements before submitting them')
 		 document.getElementById("submit-button").disabled = false;}
 	  });

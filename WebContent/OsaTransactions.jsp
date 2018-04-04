@@ -121,11 +121,8 @@ int totalTransfers = notifs.getOSATransactions(conn);
         String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'In-progress'";
         PreparedStatement ps = conn.prepareStatement(displaystudent); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()){
-        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-        }
-        else {
-          do {
+       while(rs.next()) {
+
         %>
          
         <tr>
@@ -152,8 +149,8 @@ int totalTransfers = notifs.getOSATransactions(conn);
 		</td>
         </tr>
         
-        <%}while(rs.next());
-         }  
+        <%}
+         
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

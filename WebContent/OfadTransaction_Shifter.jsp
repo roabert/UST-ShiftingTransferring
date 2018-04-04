@@ -151,11 +151,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
          PreparedStatement ps = conn.prepareStatement(displaystudent_ofad); 
         ResultSet rs = ps.executeQuery();
         
-           if(!rs.next()) {
-        	   out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-           }
-           else {
-        	 do {
+           while (rs.next()) {
+
         %>
         
         <tr>
@@ -163,7 +160,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
    
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
        
         </center>
@@ -183,8 +180,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 	         data-getuser="<%=getuser%>">
 	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button></td>
         </tr>
-        <%}  while(rs.next());
-           }
+        <%} 
+           
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

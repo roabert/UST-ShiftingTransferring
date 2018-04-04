@@ -221,7 +221,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><%=rs.getString("final_score") %></td>
         <form action = "DeanVerifyScore" method = "post">
         <td>

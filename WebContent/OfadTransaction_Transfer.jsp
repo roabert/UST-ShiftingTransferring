@@ -151,18 +151,15 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displaystudents_ofad); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()){
-        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-        }
-        else {
-           do {
+       while(rs.next()) {
+
         %>
         
         <tr>
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button></td>
        <td>
        <form action = "Ofad_verifyTransfer" method = "post">
@@ -180,8 +177,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button>
 		</td>
         </tr>
-        <%}while(rs.next());
-        }
+        <%}
+       
            
          }catch(Exception e) {
         	e.printStackTrace();

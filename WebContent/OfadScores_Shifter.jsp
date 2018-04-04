@@ -165,7 +165,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <form action="EncodeScoreShifter" class="form-inline" method="post">
         <td>
 		<input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">

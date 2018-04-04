@@ -209,11 +209,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         PreparedStatement ps = conn.prepareStatement(displaystudent);
         ps.setString(1, getuser);
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()){
-        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-        }
-        else {
-          do {
+       while(rs.next()) {
         %>
          
         <tr>
@@ -239,8 +235,8 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 		</td>
         </tr>
         
-        <%} while(rs.next());
-         }  
+        <%}
+        
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

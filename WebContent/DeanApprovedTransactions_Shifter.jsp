@@ -210,17 +210,15 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
             PreparedStatement ps = conn.prepareStatement(displaystudent); 
             ps.setString(1, getuser);
             ResultSet rs = ps.executeQuery();
-            if(!rs.next()){
+           while(rs.next()) {
             	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-            }
-            else {
-            	do{%>
+ %>
          
         <tr>
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
    
         </center>
@@ -230,8 +228,8 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         </td>
         </tr>	
         
-        <%}while(rs.next());
-         } 
+        <%}
+         
         }
          catch(Exception e) {
         	out.print(e);

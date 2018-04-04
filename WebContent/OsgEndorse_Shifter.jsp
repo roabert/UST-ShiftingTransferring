@@ -143,11 +143,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         String displayEndorsement_osg = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'Approved' AND secgen_indorsed = 'In-progress';";
         PreparedStatement ps = conn.prepareStatement(displayEndorsement_osg); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()){
-  		  out.println("<tr><p style=color:red>No Memo form received!</p></tr>");
-  	  }
-  	  else{
-  	   do{
+       while(rs.next()) {
+
         %>
         <tr>
         <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
@@ -227,8 +224,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	        %>
 	      </div>
 				
-        <%}while(rs.next());
-  	  }
+        <%}
+  	  
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

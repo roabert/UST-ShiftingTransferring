@@ -144,11 +144,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         String displaystudent_osg = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE secgen_verified = 'In-progress' AND dean_verified = 'Approved'";
         PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()){
-        	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
-        }
-        else {
-           do {
+       while(rs.next()) {
+
         %>
         <tr>
         <td><%=rs.getString("transferee_id") %></td>
@@ -172,8 +169,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button>
 		</td>
         </tr>
-        <%}while(rs.next());
-        }  
+        <%}
+        
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

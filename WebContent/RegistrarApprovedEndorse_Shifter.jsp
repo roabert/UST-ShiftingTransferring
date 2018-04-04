@@ -146,7 +146,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
 
-        <td><%=rs.getString("newprogram") %> - <%=rs.getString("newcourse") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button></td>
         <td><b><%=rs.getString("registrar_indorsed") %></b></td>
         </tr>
