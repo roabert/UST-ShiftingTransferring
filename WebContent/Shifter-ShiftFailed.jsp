@@ -3,12 +3,13 @@
         <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+      <%@ page import = "ust.registrar.model.studentprocess.processfailed" %>
      <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel="stylesheet" href="CSS/style.css"type="text/css">
+		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
@@ -18,18 +19,8 @@
 		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Files Uploaded!</title>
+<title>Process | Failed</title>
 </head>
-<style>
- form#step1shifter > #fileuploading {display:none;}
-  select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-</style>
 <body>
 <%
 String getuser = (String)session.getAttribute("setuser"); 
@@ -98,19 +89,33 @@ if(getuser == null) {
         
          %>
 </div>
-<br>    <p id="text_steps"><i>PROCESS CANCELLED</i></p>
 
-     <div class="container">
+      <div class="container">
 <br>
 <br>
+<%
+   processfailed pf = new processfailed();
+   pf.setGetstudentid(getuser);
+   pf.displayRemarksShifter(conn);
+ %>
        <center>
        <p><span class="glyphicon glyphicon-remove-sign" style="font-size:100px; color:red;"></span></p>
        <br><br><br>
-         <p style="font-size:30px;">We regret to inform you that your application for shifting has failed. Please try another course for shifting.</p>
+         <p style="font-size:20px;">We regret to inform you that your application for transferring has failed.</p>
+         <i style ="font-size:20px">
+         <%if(pf.getDeanremarks() != null && pf.getOsgremarks() == null && pf.getOfadremarks() == null) {%>
+         <%=pf.getDeanremarks() %>
+         <%} else if(pf.getDeanremarks() == null && pf.getOsgremarks() != null && pf.getOfadremarks() == null) {%>
+         <%=pf.getOsgremarks() %>
+         <%} else if(pf.getDeanremarks() == null && pf.getOsgremarks() == null && pf.getOfadremarks() != null) {%>
+         <%=pf.getOfadremarks()%>
+         <%} else {}%>
+         </i>
        </center>
           </div>
   </div>
 </div>
+
 <div class="footer"></div>
 <script language="javascript">
 populateCountries("country", "state");

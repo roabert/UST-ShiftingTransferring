@@ -302,39 +302,18 @@ function determineStudent() {
 	var mi = id("register_mi").value;
 	var gender = id("register_gender").value;
 	var bdate = id("register_bday").value;
-	var type = id("register_typeofstudent");
-	var getType = type.options[type.selectedIndex].text;
 	
-	if(lname.length > 0 && fname.length > 0 && mi.length > 0 && gender.length > 0 && type.length > 0 && bdate.length > 0){
-    // id("loadingstep2").innerHTML = "<div id=\"loader\"></div>";
-    if(getType == "Shifter") {
-    id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register(Shifter)";
-	id("step1").style.display ="none";
-	id("step2transferee").style.display ="none";
-	id("step2shifter").style.display ="block";
-     }
-    else if(getType == "Transferee") {
+	if(lname.length > 0 && fname.length > 0 && mi.length > 0 && gender.length > 0 && bdate.length > 0){
+   
+ 
     	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register(Transferee)";
     	id("step1").style.display ="none";
     	id("step2shifter").style.display ="none";
     	id("step2transferee").style.display ="block";
-    }
+    
    }
 	else{
 		alert("Please fill in the fields.");
-	}
-}
-function shifterFinalStep(){
-	var getstudentid = id("register_studentid").value;
-	if(getstudentid.length > 10) {
-		alert("Invalid Student ID (ID too long)");
-	}
-	else if(getstudentid.length < 10){
-		alert("Invalid Student ID (ID too short)");
-	}
-	else {
-	id("step2shifter").style.display ="none";
-	id("step3shifter").style.display ="block";
 	}
 }
 function transferFinalStep(){
@@ -397,7 +376,7 @@ function transferSubmit() {
   <div class="modal-content">
     <div class="modal-header" style="background-color:#EFB652">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-       <h3 class="modal-title" id="titleregister"><span class="glyphicon glyphicon-user"></span> Register</h3>
+       <h3 class="modal-title" id="titleregister"><span class="glyphicon glyphicon-user"></span> Register(Transferee)</h3>
        
      </div>
      <div class="modal-body row">
@@ -418,24 +397,21 @@ function transferSubmit() {
           <input type="date" name="register_bday" id="register_bday" class="form-control"/> <br>
           </div>
           
-          <div class="col-sm-4">
+          <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>MI</i></p>
            <input type="text" name="register_mi" id="register_mi" class="form-control"  />
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>Gender</i></p>
           <select name="register_gender" id="register_gender" class="form-control"  >
            <option selected="true" value="" disabled="disabled">&lt;Select Gender&gt;</option>
            <option value="Male">Male</option>
            <option value="Female">Female</option>
           </select>
+          <input type = "hidden" name = "register_typeofstudent" value = "Transferee">
+          <br><br>
           </div>
-          <div class="col-sm-4">
-          <p style="font-size:2vw; font-size: 2vh;"><i>Type</i></p>
-          <select name="register_typeofstudent" id="register_typeofstudent" class="form-control"  >
-           <option value="Transferee" selectd="true">Transferee</option>
-          </select><br><br>	
-          </div>
+       
           <br>
           <br><p><br></p>
       <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="determineStudent()"><span class="glyphicon glyphicon-chevron-right" style="color:white"></span> Next</button></center>

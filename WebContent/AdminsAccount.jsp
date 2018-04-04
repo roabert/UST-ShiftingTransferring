@@ -174,7 +174,7 @@ if(getuser == null) {
   <div id="createusers" class="modal fade createusers" role="dialog">
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
-       <form id = "form1" onsubmit="false">
+       <form id = "form1" onsubmit="return false">
          <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
            <h3 class="modal-title"><span class="glyphicon glyphicon-plus-sign" style="color:white; height:30px;"></span> <i>Create Users</i></h3>
