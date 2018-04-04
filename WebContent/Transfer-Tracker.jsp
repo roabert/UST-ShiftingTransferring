@@ -100,6 +100,9 @@ if(getuser == null) {
      TrackerLogic tracker = new TrackerLogic();
    tracker.setStudentid(getuser);
    tracker.TransferTrackerVerification(conn);
+   tracker.TransferTrackerExams(conn);
+   tracker.TransferTrackerEncodeScore(conn);
+   tracker.TransferTrackerMemo(conn);
    %>
      <%if(tracker.getOsaverified() != null) {%>
    <% if(tracker.getOsaverified().equals("In-progress")) {%>
@@ -148,17 +151,58 @@ if(getuser == null) {
 	    <a class="modal-btn" href="#open-modal">OFAD Verification</a>
 	    <%} %>
 	    
-	    
+	 <%if(tracker.getGetsched() != null) {%>
+	    <%if(tracker.getExamtaken().equals("Approved")) {%>     
+	  <a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
+	  <%} else if(tracker.getExamtaken().equals("")) {%>
+	   <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
+	  <%} 
+	 }else {%>
 	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
-	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
-	<a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
+	  <%} %>
+	  
+	  <%if(tracker.getFinalscore() != null) {%>
+	<a class="modal-btn active" href="#open-modal">OFAD Encode Scores</a>
+	<%} else {%>
+	<a class="modal-btn inp" href="#open-modal">OFAD Encode Scores</a>
+	<%} %>
+	
+   <% if(tracker.getDeanreview() != null) {%>
+	<%if(tracker.getDeanreview().equals("In-progress")) {%>
+	<a class="modal-btn inp" href="#open-modal">Dean Verifies Results</a>
+	<%} else if(tracker.getDeanreview().equals("Approved")) {%>
+	<a class="modal-btn active" href="#open-modal">Dean Verifies Results</a>
+	<%} else if(tracker.getDeanreview().equals("Disapproved")) {%>
+	<a class="modal-btn reject" href="#open-modal">Dean Verifies Results</a>
+	<%} %>
+   <%} else {%>
+   <a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
+   <%} %>
+	
 	</div>
 	<br><br><br><br>
 	<div class="breadcrumb flat">
+	<%if(tracker.getMemostudentid() != null) { %>
+	<a class="modal-btn active" href="#open-modal">Memo Form: Active</a>
+	<%} else {%>
 	<a class="modal-btn" href="#open-modal">Memo Form: Active</a>
-	<a  class="modal-btn" href="#open-modal">Memo: Registrar</a>
+	<%} %>
+	
+   <%if (tracker.getRegistrarindorsed() != null) {%>
+    <% if(tracker.getRegistrarindorsed().equals("In-progress")) {%>
+	<a class="modal-btn inp" href="#open-modal">Memo: Registrar</a>
+	<%} else if(tracker.getRegistrarindorsed().equals("Approved")) {%>
+	<a class="modal-btn active" href="#open-modal">Memo: Registrar</a>
+	<%} else if(tracker.getRegistrarindorsed().equals("Disapproved")) {%>
+	<a class="modal-btn reject" href="#open-modal">Memo: Registrar</a>
+	  <%} else { %>
+	   <%} %>
+   <%} else {%>
+   <a class="modal-btn" href="#open-modal">Memo: Registrar</a>
+   <%} %>
+	
 	<a  class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
-	<a  class="modal-btn" href="#open-modal">Memo: Registrar & Dean</a>
+	<a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
 	</div>
 </ol>
 

@@ -221,7 +221,7 @@ if(rss.next()) {
 
 	 response.sendRedirect("Transfer-TransferFailed.jsp");
 }
-PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND exam_schedule_date is not NULL");
+PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND (exam_schedule_date is not NULL AND exam_taken is NULL)");
 ps1.setString(1, getuser);
 ResultSet rs1 = ps1.executeQuery();
 if(rs1.next()) {

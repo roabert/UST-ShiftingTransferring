@@ -101,10 +101,10 @@ public interface DatabaseSQLs {
 		 
 		 // LETTER OF Endorsement SHIFTER
 		 String MemoForm_Shifter = "INSERT INTO shifters_indorsement (shifter_id) VALUES (?)";
-		 String removeExamSchedShifter = "DELETE FROM shifters_exams WHERE shifter_id = ?";
+		 String removeExamSchedShifter = "UPDATE shifters_exams SET exam_taken = 'Approved' WHERE shifter_id = ?";
 		 //LETTER OF Endorsement TRANSFER
 		 String MemoForm_Tranfer = "INSERT INTO transferees_indorsement (transferee_id) VALUES (?)";
-		 String removeExamSchedTransfer = "DELETE FROM transferees_exams WHERE transferee_id = ?";
+		 String removeExamSchedTransfer = "UPDATE transferees_exams SET exam_taken = 'Approved' WHERE transferee_id = ?";
 		 
 		 
 		 // FOR TRACKER ShiftingTrackerDAO
