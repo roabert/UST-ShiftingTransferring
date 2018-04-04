@@ -219,9 +219,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><center><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
-   
-        </center>
+        <td><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button><br>
         </td>   
         <td>
 			<form action = "Dean_verifyprocess" method = "post">
@@ -261,7 +259,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
   <div class="modal-dialog" style="height:400px">
      <div class="modal-content">
      <form action = "Dean_verifyprocess" method = "post">
-       <div class="modal-header bg-warning">
+    <div class="modal-header" style="background-color:#EFB652">
          <button type="button" class="close" data-dismiss="modal">&times;</button>
          <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Student</h3>
        </div>

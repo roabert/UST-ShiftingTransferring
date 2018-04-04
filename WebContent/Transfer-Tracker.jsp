@@ -3,7 +3,7 @@
         <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
-    <%@ page import = "ust.registrar.model.studentprocess.TrackerLogic" %>
+    <%@ page import = "ust.registrar.model.studentprocess.*" %>
      <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -83,7 +83,7 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
- TRACKER
+ TRANSFEREE : PROCESS TRACKER
    </a>
    </center>
 </div>
@@ -97,7 +97,7 @@ if(getuser == null) {
 <ol class="progress-meter">
     <div class="breadcrumb flat">
    <%
-     TrackerLogic tracker = new TrackerLogic();
+     TransfereeTracker tracker = new TransfereeTracker();
    tracker.setStudentid(getuser);
    tracker.TransferTrackerVerification(conn);
    tracker.TransferTrackerExams(conn);
@@ -161,10 +161,12 @@ if(getuser == null) {
 	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
 	  <%} %>
 	  
-	  <%if(tracker.getFinalscore() != null) {%>
+		  <%if(tracker.getFinalscore() != null && tracker.getIdscore() != null) {%>
 	<a class="modal-btn active" href="#open-modal">OFAD Encode Scores</a>
-	<%} else {%>
+	<% }else if(tracker.getFinalscore() == null && tracker.getIdscore() != null) {%>
 	<a class="modal-btn inp" href="#open-modal">OFAD Encode Scores</a>
+	<%} else if(tracker.getFinalscore() == null && tracker.getIdscore() == null){%>
+	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
 	<%} %>
 	
    <% if(tracker.getDeanreview() != null) {%>
@@ -201,8 +203,23 @@ if(getuser == null) {
    <a class="modal-btn" href="#open-modal">Memo: Registrar</a>
    <%} %>
 	
-	<a  class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
-	<a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+   <%if(tracker.getSecgenindorsed() != null) {%>
+	 <% if(tracker.getSecgenindorsed().equals("In-progress")) {%>
+	  <a class="modal-btn inp" href="#open-modal">Memo: Sec Gen</a>
+	  <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	<%} else if(tracker.getSecgenindorsed().equals("Approved")) {%>
+	  <a class="modal-btn active" href="#open-modal">Memo: Sec Gen</a>
+	  <a  class="modal-btn active" href="#open-modal">Transferring: Finished</a>
+	<%} else if(tracker.getSecgenindorsed().equals("Disapproved")) {%>
+	   <a class="modal-btn rejected" href="#open-modal">Memo: Sec Gen</a>
+	   <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	<%}  else { %><% }
+   }else { %>
+   <a class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
+   <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	<%} %>
+	
+	
 	</div>
 </ol>
 

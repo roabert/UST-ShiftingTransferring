@@ -1,9 +1,17 @@
 package ust.registrar.model.studentprocess;
 import java.sql.*;
 
-public class TrackerLogic {
+public class TransfereeTracker {
 
-	public String studentid, deanverified, osaverified, osgverified, ofadverified;
+	public String studentid, idscore, deanverified, osaverified, osgverified, ofadverified;
+	public String getIdscore() {
+		return idscore;
+	}
+
+	public void setIdscore(String idscore) {
+		this.idscore = idscore;
+	}
+
 	public String getsched, examtaken, finalscore, deanreview, registrarindorsed, secgenindorsed, memostudentid;
 	
 	public String getExamtaken() {
@@ -100,6 +108,7 @@ public class TrackerLogic {
 			ps.setString(1, studentid);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
+				idscore = rs.getString("transferee_id");
 		      finalscore = rs.getString("final_score");
 		      deanreview = rs.getString("dean_reviewed");
 			}

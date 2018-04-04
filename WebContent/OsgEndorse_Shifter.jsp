@@ -240,9 +240,9 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 </div>
   <div class="footer"></div>
 <div class="osgIndorse modal fade" role="dialog">
-  <div class="modal-dialog" style="width:700px; height:800px;">
+ <div class="modal-dialog" style="max-width:700px; height:800px;">
      <div class="modal-content">
-     <form action="OSGIndorseProcess" method="post">
+     <form onsubmit="return false" id="endorsestudent">
         <div class="modal-header" style="background-color:#EFB652">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
              <h4 class="modal-title"><b><span class="glyphicon glyphicon-level-up" style="color:white;"></span> Second Endorsement</b></h4>
@@ -254,17 +254,16 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
          
           <br>
             <center>
-            <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 584px; height: 131px;"></textarea>
+            <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 505px; height: 131px;"></textarea>
              <br><br><p>This student may enroll in your college</p>
          
-          <p><input type="checkbox" name="approval" value="Approved"> Approve Endorsement</p>
+          <p><input type="checkbox" name="approval" id = "approval" value="Approved"> Approve Endorsement</p>
             </center>
          </div>
          <div class="modal-footer">
    
           <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-             &nbsp&nbsp
-          <button type="submit" class="btn btn-md btn-warning">Endorse Student</button>
+          <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Endorse Student</button>
 
          </div>
          </form>
@@ -294,6 +293,24 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function EndorseMemo() {
+	var approval = document.getElementById("approval");
+
+	if(approval.checked == false) {
+		if(confirm("By leaving the approval unchecked, you are disapproving the endorsement of the student. Are you sure?")) {
+			document.getElementById("endorsestudent").method = "post";
+			document.getElementById("endorsestudent").action = "OSGIndorseProcess";
+			document.getElementById("endorsestudent").submit();
+		} else {
+          return false;
+		}
+	} else if(approval.checked == true) {
+		document.getElementById("endorsestudent").method = "post";
+		document.getElementById("endorsestudent").action = "OSGIndorseProcess";
+		document.getElementById("endorsestudent").submit();
+	}
+
 }
 </script>
        <script>

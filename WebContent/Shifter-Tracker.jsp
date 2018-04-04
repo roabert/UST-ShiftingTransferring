@@ -3,6 +3,7 @@
         <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "ust.registrar.model.studentprocess.*" %>
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -89,9 +90,7 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   
-   
-   UPLOAD REQUIREMENTS
+   SHIFTER : PROCESS TRACKER
    </a>
    </center>
 </div>
@@ -104,116 +103,119 @@ if(getuser == null) {
 <center>
 <ol class="progress-meter">
     <div class="breadcrumb flat">
-    <%
-      try {
-    	  PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
-    	  ps.setString(1, getuser);
-    	  ResultSet rs = ps.executeQuery();
-    	  if(rs.next()) {
-    %>
-      <%if(rs.getString("dean_verified")!= null) { %>
-         <%if(rs.getString("dean_verified").equals("Approved")) { %>
-	   <a class="modal-btn active" href="#open-modal">Dean Verification</a>
-	   <%} else if(rs.getString("dean_verified").equals("In-progress")) {%>
-	       <a class="modal-btn inp" href="#open-modal">Dean Verification</a>
-	      <%} else if(rs.getString("dean_verified").equals("Disapproved")) {%>
-	     <a class="modal-btn rejected" href="#open-modal">Dean Verification</a>
-	     <%} %>   
-	  <%} else { %>
-	  <a class="modal-btn" href="#open-modal">Dean Verification</a>
-	  <%} %>
-	  
-	  <%if(rs.getString("secgen_verified")!= null) { %>
-         <%if(rs.getString("secgen_verified").equals("Approved")) { %>
-	   <a class="modal-btn active" href="#open-modal">Sec Gen Endorsement</a>
-	   <%} else if(rs.getString("secgen_verified").equals("In-progress")) {%>
-	      <a class="modal-btn inp" href="#open-modal">Sec Gen Endorsement</a>
-	      <%} else if(rs.getString("secgen_verified").equals("Disapproved")) {%>
-	    <a class="modal-btn rejected" href="#open-modal">Sec Gen Endorsement</a>
-	     <%} %>   
-	  <%} else { %>
-	 <a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
-	  <%} %>
-	  
-	  
-	  <%if(rs.getString("ofad_verified")!= null) { %>
-         <%if(rs.getString("ofad_verified").equals("Approved")) { %>
-	   <a class="modal-btn active" href="#open-modal">OFAD Verifiction</a>
-	   <%} else if(rs.getString("ofad_verified").equals("In-progress")) {%>
-	      <a class="modal-btn inp" href="#open-modal">OFAD Verifiction</a>
-	      <%} else if(rs.getString("ofad_verified").equals("Disapproved")) {%>
-	    <a class="modal-btn rejected" href="#open-modal">OFAD Verifiction</a>
-	     <%} %>   
-	  <%} else { %>
-	<a class="modal-btn" href="#open-modal">OFAD Verifiction</a>
-	  <%} %>
-	  
-	  
-	<%}else {
-		%>
-		  <a class="modal-btn" href="#open-modal">Dean Verification</a>
-		  <a class="modal-btn" href="#open-modal">Sec Gen Endorsement</a>
-		  <a class="modal-btn" href="#open-modal">OFAD Verifiction</a>
-		<%
-	}}catch(SQLException e) {out.print(e);} %>
-	
-	 <%try { 
-		 PreparedStatement p1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ?");
-   	  p1.setString(1, getuser);
-   	  ResultSet r1 = p1.executeQuery();
-   	  while(r1.next()) {
-   		  if(r1.next()){
-	 %>
-	<%if(r1.getString("exam_schedule_date") != null && r1.getString("shifter_id") != null){ %>
-	   
-       	<a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
-	<%} else if(r1.getString("shifter_id") != null && r1.getString("exam_schedule_date") == null ){%>
+   <%
+     ShifterTracker tracker = new ShifterTracker();
+   tracker.setStudentid(getuser);
+   tracker.ShifterTrackerVerification(conn);
+   tracker.ShifterTrackerExams(conn);
+   tracker.ShifterTrackerEncodeScore(conn);
+   tracker.ShifterTrackerMemo(conn);
+   %>
+
+	  <%if(tracker.getDeanverified() != null)  {%>
+	    <%if (tracker.getDeanverified().equals("In-progress")) {%>
+	  	<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
+	  	<%} else if (tracker.getDeanverified().equals("Approved")) {%>
+	  	<a class="modal-btn active" href="#open-modal">Dean Verification</a>
+	  	<%} else if (tracker.getDeanverified().equals("Disapproved")) {%>
+	  	<a class="modal-btn reject" href="#open-modal">Dean Verification</a>
+	  	<%} else {%> <%} %>
+	  	<%} else { %>
+	  	<a class="modal-btn" href="#open-modal">Dean Verification</a>
+	  	<%} %>
+	 
+	 <%if(tracker.getOsgverified() != null) {%>
+	  	   <%if (tracker.getOsgverified().equals("In-progress")) {%>
+	   <a class="modal-btn inp" href="#open-modal">OSG Verification</a>
+	   <%} else if (tracker.getOsgverified().equals("Approved")) {%>
+	   <a class="modal-btn active" href="#open-modal">OSG Verification</a>
+	   <%} else if (tracker.getOsgverified().equals("Disapproved")) {%>
+       <a class="modal-btn reject" href="#open-modal">OSG Verification</a>
+       <%} else {%>  <%} %>
+     <%} else { %>
+     <a class="modal-btn" href="#open-modal">OSG Verification</a>
+     <%} %>
+
+      <%if(tracker.getOfadverified()!=null) { %>
+       <% if(tracker.getOfadverified().equals("In-progress")) {%>
+	    <a class="modal-btn inp" href="#open-modal">OFAD Verification</a>
+	    <%} else if(tracker.getOfadverified().equals("Approved")) {%>
+	    <a class="modal-btn active" href="#open-modal">OFAD Verification</a>
+	    <%} else if(tracker.getOfadverified().equals("Disapproved")) {%>
+	    <a class="modal-btn reject" href="#open-modal">OFAD Verification</a>
+	    <%} else {%> <%} %>
+	    <%} else { %>
+	    <a class="modal-btn" href="#open-modal">OFAD Verification</a>
+	    <%} %>
+	    
+	 <%if(tracker.getGetsched() != null && tracker.getIdsched() != null) {%>
+	  <a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
+	  <%} else if(tracker.getGetsched() == null && tracker.getIdsched() != null) {%>
 	   <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
 	  <%} 
-   	  }else {%>
+	  else if(tracker.getGetsched() == null && tracker.getIdsched() == null) {%>
 	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
 	  <%} %>
-	<%}}catch(SQLException e) {out.print(e);} %>
-	
-	<% try{ 
-      PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ?");
-      p2.setString(1, getuser);
-      ResultSet r2 = p2.executeQuery();
-	%>
-	<%while(r2.next()){ %>
-	<% if(r2.getString("final_score") != null && r2.getString("shifter_id") != null) { %>
+	  
+	  <%if(tracker.getFinalscore() != null && tracker.getIdscore() != null) {%>
 	<a class="modal-btn active" href="#open-modal">OFAD Encode Scores</a>
-	<%} else if(r2.getString("final_score") == null && r2.getString("shifter_id") != null) {%>
+	<% }else if(tracker.getFinalscore() == null && tracker.getIdscore() != null) {%>
 	<a class="modal-btn inp" href="#open-modal">OFAD Encode Scores</a>
-	<%} else {%>
+	<%} else if(tracker.getFinalscore() == null && tracker.getIdscore() == null){%>
 	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
 	<%} %>
-	<%}}catch(SQLException e) {out.print(e);} %>
 	
-	<%try {
-    PreparedStatement p3 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ?");
-     p3.setString(1, getuser);
-     ResultSet r3 = p3.executeQuery();
-     while(r3.next()) {
-%>   
-	<%  if(r3.getString("dean_reviewed") == null && r3.getString("final_score") != null) {%>
+   <% if(tracker.getDeanreview() != null) {%>
+	<%if(tracker.getDeanreview().equals("In-progress")) {%>
 	<a class="modal-btn inp" href="#open-modal">Dean Verifies Results</a>
-   <%}else if(r3.getString("dean_reviewed").equals("Approved")) { %>
+	<%} else if(tracker.getDeanreview().equals("Approved")) {%>
 	<a class="modal-btn active" href="#open-modal">Dean Verifies Results</a>
-	<%} else if(r3.getString("dean_reviewed").equals("Disapproved")) {%>
-	<a class="modal-btn rejected" href="#open-modal">Dean Verifies Results</a>
-
-	 <%} else {%>
-	 <a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
-	 <%} %>
-	<%}}catch(SQLException e) {out.print(e);} %>
+	<%} else if(tracker.getDeanreview().equals("Disapproved")) {%>
+	<a class="modal-btn reject" href="#open-modal">Dean Verifies Results</a>
+	<%} %>
+   <%} else {%>
+   <a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
+   <%} %>
+	
 	</div>
 	<br><br><br><br>
 	<div class="breadcrumb flat">
-	<a class="modal-btn" href="#open-modal">Memo Form Now Active</a>
-	<a class="modal-btn" href="#open-modal">Memo: Registrar</a>
-	<a class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
-	<a class="modal-btn" href="#open-modal">Memo: Registrar & Dean</a>
+	<%if(tracker.getMemostudentid() != null) { %>
+	<a class="modal-btn active" href="#open-modal">Memo Form: Active</a>
+	<%} else {%>
+	<a class="modal-btn" href="#open-modal">Memo Form: Active</a>
+	<%} %>
+	
+   <%if (tracker.getRegistrarindorsed() != null) {%>
+    <% if(tracker.getRegistrarindorsed().equals("In-progress")) {%>
+	<a class="modal-btn inp" href="#open-modal">Memo: Registrar</a>
+	<%} else if(tracker.getRegistrarindorsed().equals("Approved")) {%>
+	<a class="modal-btn active" href="#open-modal">Memo: Registrar</a>
+	<%} else if(tracker.getRegistrarindorsed().equals("Disapproved")) {%>
+	<a class="modal-btn reject" href="#open-modal">Memo: Registrar</a>
+	  <%} else { %>
+	   <%} %>
+   <%} else {%>
+   <a class="modal-btn" href="#open-modal">Memo: Registrar</a>
+   <%} %>
+	
+   <%if(tracker.getSecgenindorsed() != null) {%>
+	 <% if(tracker.getSecgenindorsed().equals("In-progress")) {%>
+	  <a class="modal-btn inp" href="#open-modal">Memo: Sec Gen</a>
+	  <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	<%} else if(tracker.getSecgenindorsed().equals("Approved")) {%>
+	  <a class="modal-btn active" href="#open-modal">Memo: Sec Gen</a>
+	  <a  class="modal-btn active" href="#open-modal">Transferring: Finished</a>
+	<%} else if(tracker.getSecgenindorsed().equals("Disapproved")) {%>
+	   <a class="modal-btn rejected" href="#open-modal">Memo: Sec Gen</a>
+	   <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	<%}  else { %><% }
+   }else { %>
+   <a class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
+   <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	<%} %>
+	
+	
 	</div>
 </ol>
 

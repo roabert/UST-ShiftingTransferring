@@ -154,11 +154,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
         PreparedStatement ps = conn.prepareStatement(displayscores); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()) {
-        	out.print("<tr><p style=color:red>No students have taken the exam yet!</p></tr>");
-        }
-        else {
-           do {
+        while(rs.next()) {
+
         %>
         <tr>
         <td><%=rs.getString("transferee_id") %></td>
@@ -182,8 +179,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 			</form>
         </tr>
       
-        <%}while(rs.next());
-        }
+        <%}
+        
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

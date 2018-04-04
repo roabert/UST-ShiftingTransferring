@@ -137,7 +137,7 @@ function populateCountries(countryElementId, stateElementId) {
 }
 </style>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Step 1: Transferees</title>
 </head>
 <body>
 <%
@@ -227,6 +227,20 @@ ResultSet rs1 = ps1.executeQuery();
 if(rs1.next()) {
 	
 	 response.sendRedirect("Transfer-Transferring-2.jsp");
+} 
+PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM transferees_scores WHERE transferee_id = ? AND (final_score is NULL OR dean_reviewed = 'In-progress')");
+pss1.setString(1, getuser);
+ResultSet rss1 = pss1.executeQuery();
+if(rss1.next()) {
+	
+	 response.sendRedirect("Transfer-Transferring-2.jsp");
+} 
+PreparedStatement pss2 = conn.prepareStatement("SELECT * FROM transferees_scores WHERE transferee_id = ? AND dean_reviewed = 'Disapproved'");
+pss2.setString(1, getuser);
+ResultSet rss2 = pss2.executeQuery();
+if(rss2.next()) {
+	
+	 response.sendRedirect("Transfer-FailedExam.jsp");
 } 
 PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ? AND registrar_indorsed is NULL");
 ps2.setString(1, getuser);

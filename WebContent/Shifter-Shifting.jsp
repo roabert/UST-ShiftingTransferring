@@ -141,12 +141,12 @@ function populateCountries(countryElementId, stateElementId) {
 </style>
 <body>
 <%
+String webpage;
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }	
 
-String webpage = "";
 PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR ofad_verified = 'In-progress')");
 pst.setString(1, getuser);
 ResultSet rst = pst.executeQuery();
@@ -154,33 +154,49 @@ if(rst.next()) {
 	webpage = "Shifter-Step1Done.jsp";
 	 response.sendRedirect(webpage);
 }
-PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (secgen_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
+PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
 pss.setString(1, getuser);
 ResultSet rss = pss.executeQuery();
 if(rss.next()) {
 
 	 response.sendRedirect("Shifter-ShiftFailed.jsp");
 }
-PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is not NULL");
+PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND (exam_schedule_date is not NULL AND exam_taken is NULL)");
 ps1.setString(1, getuser);
 ResultSet rs1 = ps1.executeQuery();
 if(rs1.next()) {
-	webpage = "Shifter-Shifting-2.jsp";
+	
 	 response.sendRedirect("Shifter-Shifting-2.jsp");
+} 
+/**
+PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ? AND (final_score is NULL OR dean_reviewed = 'In-progress')");
+pss1.setString(1, getuser);
+ResultSet rss1 = pss1.executeQuery();
+if(rss1.next()) {
+	
+	 response.sendRedirect("Shifter-Shifting-2.jsp");
+} */
+PreparedStatement pss2 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ? AND dean_reviewed = 'Disapproved'");
+pss2.setString(1, getuser);
+ResultSet rss2 = pss2.executeQuery();
+if(rss2.next()) {
+	
+	 response.sendRedirect("Shifter-FailedExam.jsp");
 } 
 PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND registrar_indorsed is NULL");
 ps2.setString(1, getuser);
 ResultSet rs2 = ps2.executeQuery();
 if(rs2.next()) {
-	response.sendRedirect("Shifter-Memo.jsp");
-}
-
-PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND (secgen_indorsed = 'In-progress' OR registrar_indorsed = 'In-progress')");
+	
+	 response.sendRedirect("Shifter-Memo.jsp");
+} 
+PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ?  AND (secgen_indorsed = 'In-progress' OR registrar_indorsed = 'In-progress')");
 ps3.setString(1, getuser);
 ResultSet rs3 = ps3.executeQuery();
 if(rs3.next()) {
-	response.sendRedirect("Shifter-MemoDone.jsp");
-}
+	
+	 response.sendRedirect("Shifter-MemoDone.jsp");
+} 
 PreparedStatement ps4 = conn.prepareStatement("SELECT * FROM shifters_indorsement WHERE shifter_id = ? AND (shifter_shifting_approved = 'Approved' OR secgen_indorsed = 'Approved')");
 ps4.setString(1, getuser);
 ResultSet rs4 = ps4.executeQuery();
@@ -289,7 +305,7 @@ if(rs4.next()) {
 
     <input type="hidden" name="studentid" value="<%=rs.getString("studentid")%>">
     <input type="hidden" name="typeofstudent" value="<%=rs.getString("typeofstudent")%>">
-     <input type="hidden" value = "<%=rs.getString("oldprogram")%>" id = "checkprogram">
+     <input type="hidden" value = "<%=rs.getString("oldcourse")%>" id = "checkcourse">
     <h2>Current College</h2>
      <h3 style ="color:gold;"><b><%=rs.getString("oldcourse") %></b></h3>
     <h2>Current Program</h2>
@@ -376,16 +392,16 @@ function swapImage(){
 };
 function nextstep() {
 	//id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
-	var selectedprogram = id("checkprogram").value;
+	var selectedcourse = id("checkcourse").value;
 	var oldprogram = id("state").value;
 	var oldcourse = id("country").value;
    if(oldcourse != "------Select Faculty------" && oldprogram != null) {
-	if(selectedprogram != oldprogram) {
+	if(selectedcourse != oldcourse) {
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
 	}
 	else {
-		alert("The selected program is your current program, you cannot shift to the same program.");
+		alert("Choosing the same faculty is invalid.");
 	}
    }
    else {

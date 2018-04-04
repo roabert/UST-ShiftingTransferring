@@ -135,11 +135,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         String display_Endorsement = "SELECT * FROM transferees_indorsement INNER JOIN student_transfer on transferees_indorsement.transferee_id = student_transfer.userid WHERE registrar_indorsed = 'In-progress'";
         PreparedStatement ps = conn.prepareStatement(display_Endorsement); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()) {
-      	  out.print("<tr><p style=color:red>No Student Memo pending!</p></tr>");
-        }
-        else {
-           do {
+        while(rs.next()) {
         %>
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
@@ -185,8 +181,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
             	       
 					%>
 				</div>
-        <%}while(rs.next());
-         }
+        <%}
+         
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
@@ -206,9 +202,9 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 
 
 <div class="regIndorse modal fade" role="dialog">
-  <div class="modal-dialog" style="width:700px; height:800px;">
+  <div class="modal-dialog" style="width:700px; height:800px; max-width:100%;">
      <div class="modal-content">
-     <form action="RegistrarIndorseTransferProcess" method="post">
+     <form onsubmit="return false" id="endorsestudent">
         <div class="modal-header" style="background-color:#EFB652">
              <button class="close" type="button" data-dismiss="modal">&times;</button>
              <h4 class="modal-title"><span class="glyphicon glyphicon-level-up" style="color:white"></span> <b>Letter of Endorsement</b></h4>
@@ -219,13 +215,13 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
           <p>To the Secretary General,</p>
           <p>recommending approval of the application</p>
            <center>
-          <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 660px; height: 334px;"></textarea><br><br>
-            <p><input type="checkbox" name="approval" value="Approved"> Approve Endorsement</p>
+          <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 633px; height: 235px;"></textarea><br><br>
+            <p><input type="checkbox" name="approval" id = "approval" value="Approved"> Approve Endorsement</p>
             </center>
          </div>
          <div class="modal-footer">
          <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-md btn-warning">Endorse Student</button>
+          <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Endorse Student</button>
 
          </div>
          </form>
@@ -248,6 +244,24 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function EndorseMemo() {
+	var approval = document.getElementById("approval");
+
+	if(approval.checked == false) {
+		if(confirm("By leaving the approval unchecked, you are disapproving the endorsement of the student. Are you sure?")) {
+			document.getElementById("endorsestudent").method = "post";
+			document.getElementById("endorsestudent").action = "RegistrarIndorseTransferProcess";
+			document.getElementById("endorsestudent").submit();
+		} else {
+          return false;
+		}
+	} else if(approval.checked == true) {
+		document.getElementById("endorsestudent").method = "post";
+		document.getElementById("endorsestudent").action = "RegistrarIndorseTransferProcess";
+		document.getElementById("endorsestudent").submit();
+	}
+
 }
 </script>
       <script>
