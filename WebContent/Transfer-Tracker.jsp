@@ -151,13 +151,12 @@ if(getuser == null) {
 	    <a class="modal-btn" href="#open-modal">OFAD Verification</a>
 	    <%} %>
 	    
-	 <%if(tracker.getGetsched() != null) {%>
-	    <%if(tracker.getExamtaken().equals("Approved")) {%>     
+	 <%if(tracker.getGetsched() != null && tracker.getIdsched() != null) {%>
 	  <a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
-	  <%} else if(tracker.getExamtaken().equals("")) {%>
+	  <%} else if(tracker.getGetsched() == null && tracker.getIdsched() != null) {%>
 	   <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
 	  <%} 
-	 }else {%>
+	  else if(tracker.getGetsched() == null && tracker.getIdsched() == null) {%>
 	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
 	  <%} %>
 	  

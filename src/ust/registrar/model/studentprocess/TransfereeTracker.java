@@ -3,7 +3,15 @@ import java.sql.*;
 
 public class TransfereeTracker {
 
-	public String studentid, idscore, deanverified, osaverified, osgverified, ofadverified;
+	public String studentid, idscore, idsched, deanverified, osaverified, osgverified, ofadverified;
+	public String getIdsched() {
+		return idsched;
+	}
+
+	public void setIdsched(String idsched) {
+		this.idsched = idsched;
+	}
+
 	public String getIdscore() {
 		return idscore;
 	}
@@ -85,6 +93,7 @@ public class TransfereeTracker {
 			ps.setString(1, studentid);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
+				idsched = rs.getString("shifter_id");
 		      getsched = rs.getString("exam_schedule_date");
 		      examtaken = rs.getString("exam_taken");
 			}
