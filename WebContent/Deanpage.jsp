@@ -22,7 +22,7 @@
 <!-- Add jQuery library -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/jquery.dataTables.js"></script>
 <!-- Add mousewheel plugin (this is optional) -->
 <script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
 <!-- Add fancyBox main JS and CSS files -->

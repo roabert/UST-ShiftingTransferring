@@ -183,14 +183,7 @@ function populateCountries(countryElementId, stateElementId) {
 
 									<center>
 									<br>
-<<<<<<< HEAD
 										<a href="javascript:;" data-toggle="modal" data-target="#forgotpassword">Forgot your password?</a>									
-=======
-									
-										
-										<a href="javascript:;" data-toggle="modal" data-target=".forgotpassword">Forgot your password?</a>									
->>>>>>> 9404c7a7aa9cd8e6119d5bc1b921d32e8204ba41
-									<br>
 									<br>
 										<input type="submit" value="LOGIN" class="button"/>
 										</center>

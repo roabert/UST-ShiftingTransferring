@@ -5,6 +5,7 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
+        <%@ page import = "ust.registrar.model.admin.*" %>
    <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,7 +21,7 @@
 <!-- Add jQuery library -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/jquery.dataTables.js"></script>
 <!-- Add mousewheel plugin (this is optional) -->
 <script type="text/javascript" src="fancybox/lib/jquery.mousewheel.pack.js?v=3.1.3"></script>
 <!-- Add fancyBox main JS and CSS files -->
@@ -44,7 +45,8 @@
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
 	 response.sendRedirect("login.jsp");
-}	
+}
+ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();	
 %>
 
 
@@ -119,6 +121,7 @@ if(getuser == null) {
           <th>Outgoing</th>
           <th>Incoming</th>
           <th>View Documents</th>
+		  <th>Clear Documents</th>    
         </thead>
         
         <tbody>
@@ -128,6 +131,7 @@ if(getuser == null) {
         PreparedStatement ps = conn.prepareStatement(displaystudent); 
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
+        	   String status = clearDocs.checkStatusTransfer(conn, rs.getString("userid"));
         %>
         <tr>
 			<td><input type="checkbox" name="deletestudent[]" id="deletestudent[]" value="<%=rs.getString("userid") %>"></td>
@@ -137,6 +141,25 @@ if(getuser == null) {
 			<td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
 			<td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button class="btn" href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</button></td>
+		
+		<td>
+	        <form method="POST" action ="ClearDocumentsTransfer">
+	        <input name="id" type=hidden value="<%=rs.getString("userid") %>">
+	        <input name="status" type=hidden value="<%= status %>">
+	        <button class="btn btn-warning btn-lg pull-right" type="submit" 
+	        <%
+	        if(status.equals("NA")){
+	        %>	
+	        	disabled
+	        <%
+	        }
+	        %>
+	        >
+		    Clear Documents
+	        </button>
+	        </form>
+        </td>
+        
         </tr>
         <%}
            
