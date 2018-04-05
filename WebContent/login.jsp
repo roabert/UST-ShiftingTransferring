@@ -279,7 +279,7 @@ function populateCountries(countryElementId, stateElementId) {
               <table>
                 <tr> 
                    <td>Email: </td>
-                   <td><input type="email" name="email_recovery"  required></td>
+                   <td><input type="email" class="form-control" name="email_recovery"  required></td>
                 </tr>
               </table>
            
@@ -346,11 +346,11 @@ function populateCountries(countryElementId, stateElementId) {
               <table>
                 <tr> 
                    <td>Password: </td>
-                   <td><input type="password" name="change_password"  required></td>
+                   <td><input type="password" class="form-control" name="change_password"  required></td>
                 </tr>
                    <tr> 
                    <td>Change Password: </td>
-                   <td><input type="password" name="change_retypepassword"  required></td>
+                   <td><input type="password" class="form-control" name="change_retypepassword"  required></td>
                 </tr>
               </table>
            
