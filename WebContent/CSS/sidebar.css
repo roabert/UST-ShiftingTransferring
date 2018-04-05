@@ -39,7 +39,7 @@ html, body {
 	height: 130%;
 	overflow-y: auto;
 	position: relative;
- 	background-image: url("../Images/body-bg.jpg");
+ 	background-image: url("../Images/content-bg.jpg");
 
     /* Center and scale the image nicely */
     background-position: center;

@@ -111,6 +111,7 @@ if(getuser == null) {
 		<legend>
 		<p>USER ID: <%=usercontent.getString("studentid") %></p>
 		</legend>
+		</fieldset>
 			<div class="profile-pic wthree">
 					
 				<img src="DisplayProfilePic?pkey=<%=usercontent.getInt("studentid")%>" width = "250" height = "250" class="responsive">

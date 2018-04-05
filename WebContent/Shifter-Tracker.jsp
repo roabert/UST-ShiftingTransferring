@@ -238,8 +238,13 @@ if(getuser == null) {
 <div id="open-modal" class="modal-window">
 		 
   <div>
-   <i>Dean Verification</i>
-    <a href="#modal-close" title="Close" class="modal-close">Close</a>
+  <fieldset>
+  		<legend>
+		<p>TIME STAMP </p>
+		</legend>
+		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+		</fieldset>
    
     <div>Time Stamp: May 4, 2018 | 7:00 AM</div>
     </div>

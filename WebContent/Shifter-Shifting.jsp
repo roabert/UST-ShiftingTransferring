@@ -333,6 +333,7 @@ if(rs4.next()) {
   <h3>Instructions</h3>
   <p>1.) File Must Be In JPEG format.</p>
   <p>2.) Maximum file size is 2MB.</p>
+  <p>3.) All files must be in the same folder</p>
   <h3>Documents Needed:</h3>
   <p>1.) Official OTR</p>
   <p>2.) Certificate of Good Moral</p>
