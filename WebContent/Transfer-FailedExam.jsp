@@ -57,6 +57,7 @@ if(getuser == null) {
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
 			</center>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Transfer-Welcome.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>

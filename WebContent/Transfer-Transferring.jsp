@@ -95,7 +95,7 @@ function populateStates(countryElementId, stateElementId) {
 
  var stateElement = document.getElementById(stateElementId);
 
- stateElement.length = 0; // Fixed by Julian Woods
+ stateElement.length = 0;
  stateElement.options[0] = new Option('------Select Program------', '');
  stateElement.selectedIndex = 0;
 
@@ -107,7 +107,6 @@ function populateStates(countryElementId, stateElementId) {
 }
 
 function populateCountries(countryElementId, stateElementId) {
- // given the id of the <select class="form-control"> tag as function argument, it inserts <option> tags
  var countryElement = document.getElementById(countryElementId);
  countryElement.length = 0;
  countryElement.options[0] = new Option('------Select Faculty------', '-1');

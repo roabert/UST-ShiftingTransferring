@@ -20,7 +20,7 @@ public class SingletonDB {
 			// load the driver
 			Class.forName("com.mysql.jdbc.Driver");
 
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/capstone", "root", "");
 		} catch (ClassNotFoundException cfne) {
 			System.err.println(cfne.getMessage());
 

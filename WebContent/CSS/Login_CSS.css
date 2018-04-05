@@ -139,9 +139,15 @@ img {
 }
 .announcement {
   padding: 1px 15px 0px;
-  border: 1px solid #e1e1e1;
-  background-color: #f9f9f9;
+  background-color: white;
   border-radius: 4px;
+  font-family:"Segoe UI";
+}
+.announcement h3{
+  font-weight:bold;
+}
+.announcement p{
+  font-weight: 600;
 }
 .login input.name {
     background: url(../Images/l1.png) no-repeat 98% 67%;
