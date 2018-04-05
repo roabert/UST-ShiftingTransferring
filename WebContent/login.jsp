@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="CSS/bootstrap.min.css">
-<script src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="scripts/easyResponsiveTabs.js" type="text/javascript"></script>
 		    <script type="text/javascript">
@@ -183,7 +183,13 @@ function populateCountries(countryElementId, stateElementId) {
 
 									<center>
 									<br>
+<<<<<<< HEAD
 										<a href="javascript:;" data-toggle="modal" data-target="#forgotpassword">Forgot your password?</a>									
+=======
+									
+										
+										<a href="javascript:;" data-toggle="modal" data-target=".forgotpassword">Forgot your password?</a>									
+>>>>>>> 9404c7a7aa9cd8e6119d5bc1b921d32e8204ba41
 									<br>
 									<br>
 										<input type="submit" value="LOGIN" class="button"/>
@@ -196,19 +202,23 @@ function populateCountries(countryElementId, stateElementId) {
 							</div>
 						</div>
 						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-						<div class="login-top">
-	 <div class="announcement">
-  <h3>Instructions</h3>
-  <p>1.) File Must Be In JPEG format.</p>
-  <p>2.) Maximum file size is 2MB.</p>
-  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
-  <h3>Documents Needed:</h3>
-  <p>1.) Official OTR</p>
-  <p>2.) Certificate of Good Moral.</p>
-  <p>3.) Letter to the Dean</p>
-  <p>4.) Letter to the Guidance</p>
-  <p>5.) Photocopy of ID</p>
+						 <div class="announcement">
+  <h3>For Shifters:</h3>
+<p>Use your student number as your USER ID.</p>
+<p>(ex. 2014069622)</p>
+<p>Use your birthday as your password.</p>
+<p>(ex. yyyy-mm-dd)</p>
 </div>
+<br>
+<div class="announcement">
+  <h3>For Transferees:</h3>
+<p>Use your registered name as your USER ID.</p>
+<p>(ex. LastnameFirstnameMI)</p>
+<p>Use your birthday as your password.</p>
+<p>(ex. yyyy-mm-dd)</p>
+</div>
+						<div class="login-top">
+	
 							</div>
 							
 						</div>							

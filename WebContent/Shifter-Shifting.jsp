@@ -95,7 +95,7 @@ function populateStates(countryElementId, stateElementId) {
 
  var stateElement = document.getElementById(stateElementId);
 
- stateElement.length = 0; // Fixed by Julian Woods
+ stateElement.length = 0;
  stateElement.options[0] = new Option('------Select Program------', '');
  stateElement.selectedIndex = 0;
 
@@ -107,7 +107,6 @@ function populateStates(countryElementId, stateElementId) {
 }
 
 function populateCountries(countryElementId, stateElementId) {
- // given the id of the <select class="form-control"> tag as function argument, it inserts <option> tags
  var countryElement = document.getElementById(countryElementId);
  countryElement.length = 0;
  countryElement.options[0] = new Option('------Select Faculty------', '-1');
@@ -334,6 +333,7 @@ if(rs4.next()) {
   <h3>Instructions</h3>
   <p>1.) File Must Be In JPEG format.</p>
   <p>2.) Maximum file size is 2MB.</p>
+  <p>3.) All files must be in the same folder</p>
   <h3>Documents Needed:</h3>
   <p>1.) Official OTR</p>
   <p>2.) Certificate of Good Moral</p>

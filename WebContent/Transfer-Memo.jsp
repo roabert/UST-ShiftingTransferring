@@ -113,8 +113,8 @@ try {
  Date: <input type="text" class="" align="right" value = "<%=format.format(date) %>" name="date" placeholder="Date today" ><br><br>
 <p>I, <input type="text" class="" id="fname" name="fullname" value = "<%=r.getString("firstname") %> <%=r.getString("middlei") %> <%=r.getString("lastname") %>" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
 Faculty/College/Institute <br><br><input type="text" class="" id="fname" value = "<%=r.getString("newcourse") %>" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
-Term # <input type="text" class="" id="fname" name="semester" placeholder="Term #" style="width:50px">AY 20- <input type="text" class="" id="fname" name="firstyear" placeholder="" style="width:50px">
-- 20<input type="text" class="" id="fname" name="secondyear" placeholder="" style="width:50px"> <br><br> My complete college attendance to date:  <input type="text" class="" id="fname" value="<%=r.getString("oldcourse") %>" name="currentcourse" placeholder="Current Faculty" style="width:500px"  >
+Term # <input type="text" class="" id="fname" name="semester" placeholder="Term #" style="width:60px">AY 20- <input type="text" class="" id="fname" name="firstyear" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="secondyear" placeholder="" style="width:60px"> <br><br> My complete college attendance to date:  <input type="text" class="" id="fname" value="<%=r.getString("oldcourse") %>" name="currentcourse" placeholder="Current Faculty" style="width:500px"  >
 </p>
 <center>
 <p>
@@ -124,40 +124,40 @@ Term # <input type="text" class="" id="fname" name="semester" placeholder="Term 
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="firstterm" placeholder="" style="width:50px"> AY 20- <input type="text" class="" id="fname" name="firstterm_1year" placeholder="" style="width:50px">
-- 20<input type="text" class="" id="fname" name="firstterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" class="" id="fname" name="firstterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="firstterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="firstterm_2year" placeholder="" style="width:60px"></td>
     <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_1" placeholder="" style="width:50px"></td>
+    <td>Special Term <input type="text" class="" id="fname" name="specialterm_1" placeholder="" style="width:60px"></td>
   </tr> 
      <tr>
     <td>1st Term</td>
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="secondterm" placeholder="" style="width:50px"> AY 20- <input type="text" class="" id="fname" name="secondterm_1year" placeholder="" style="width:50px">
-- 20<input type="text" class="" id="fname" name="secondterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" class="" id="fname" name="secondterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="secondterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="secondterm_2year" placeholder="" style="width:60px"></td>
     <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_2" placeholder="" style="width:50px"></td>
+    <td>Special Term <input type="text" class="" id="fname" name="specialterm_2" placeholder="" style="width:60px"></td>
   </tr> 
      <tr>
     <td>1st Term</td>
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="thirdterm" placeholder="" style="width:50px"> AY 20- <input type="text" class="" id="fname" name="thirdterm_1year" placeholder="" style="width:50px">
-- 20<input type="text" class="" id="fname" name="thirdterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" class="" id="fname" name="thirdterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="thirdterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="thirdterm_2year" placeholder="" style="width:60px"></td>
     <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_3" placeholder="" style="width:50px"></td>
+    <td>Special Term <input type="text" class="" id="fname" name="specialterm_3" placeholder="" style="width:60px"></td>
   </tr> 
      <tr>
     <td>1st Term</td>
     <td>-</td>
     <td>2nd Term</td>
     <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="fourthterm" placeholder="" style="width:50px"> AY 20- <input type="text" class="" id="fname" name="fourthterm_1year" placeholder="" style="width:50px">
-- 20<input type="text" class="" id="fname" name="fourthterm_2year" placeholder="" style="width:50px"></td>
+    <td>Term <input type="text" class="" id="fname" name="fourthterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="fourthterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="fourthterm_2year" placeholder="" style="width:60px"></td>
     <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_4" placeholder="" style="width:50px"></td>
+    <td>Special Term <input type="text" class="" id="fname" name="specialterm_4" placeholder="" style="width:60px"></td>
   </tr> 
  
 </table><br><br>
