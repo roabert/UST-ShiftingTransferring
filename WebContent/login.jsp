@@ -301,7 +301,7 @@ function populateCountries(countryElementId, stateElementId) {
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Enter your pass code</h4>
           </div>
-          <form action = "ForgotPassword" method ="POST">
+          <form action = "CodeConfirm" method ="POST">
           <div class="modal-body">
           
           <h4>Enter the code you received from email:</h4>
@@ -310,8 +310,9 @@ function populateCountries(countryElementId, stateElementId) {
              
               <table>
                 <tr> 
-                   <td>Passcode: </td>
-                   <td><input type="text" name="passcode"  required></td>
+          <% String getemail = (String)request.getAttribute("setemail"); %>
+                   <td>Passcode: <input type="hidden" name="get_confirmedemail" value="<%=getemail%>"></td>
+                   <td><input type="text" class="form-control" name="passcode"  required></td>
                 </tr>
               </table>
            

@@ -72,6 +72,7 @@ public class ForgotPassword extends HttpServlet {
         To Do Extra if may time:
         Add an expiry time for the key
         */
+		request.setAttribute("setemail", getEmail);
 		request.getRequestDispatcher("login.jsp").include(request, response);
 		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#passwordrecovery').modal('show');  });</script>");
 		}
