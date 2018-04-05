@@ -5,7 +5,23 @@ import DatabaseHandler.DatabaseSQLs;
 
 public class CreateUsersDAO implements DatabaseSQLs{
 
-	public String userid, password, lname, fname, mname, gender, type, college;
+	public String userid, password, email, lname, fname, mname, gender, type, college;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
 
 	public String getUserid() {
 		return userid;
@@ -90,8 +106,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			 
-			ps.setString(5, type);
+			ps.setString(5, email);
+			ps.setString(6, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -105,8 +121,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			 
-			ps.setString(5, type);
+			ps.setString(5, email);
+			ps.setString(6, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -120,8 +136,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			 
-			ps.setString(5, type);
+			ps.setString(5, email);
+			ps.setString(6, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -135,8 +151,9 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			ps.setString(5, college);
-			ps.setString(6, type);
+			ps.setString(5, email);
+			ps.setString(6, college);
+			ps.setString(7, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -150,8 +167,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			 
-			ps.setString(5, type);
+			ps.setString(5, email);
+			ps.setString(6, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -165,8 +182,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, lname);
 			ps.setString(3, fname);
 			ps.setString(4, mname);
-			 
-			ps.setString(5, type);
+			ps.setString(5, email);
+			ps.setString(6, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

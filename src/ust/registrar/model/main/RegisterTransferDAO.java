@@ -11,10 +11,16 @@ import DatabaseHandler.DatabaseSQLs;
 
 public class RegisterTransferDAO implements DatabaseSQLs {
 
-	String lname, fname, mname, gender, bdate, type, userid;
+	String lname, fname, mname, email, gender, bdate, type, userid;
     Part idpic;
 	 public String getUserid() {
 		return userid;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public Part getIdpic() {
 		return idpic;
@@ -104,14 +110,15 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 						 ps.setString(2, lname);
 						 ps.setString(3, fname);
 						 ps.setString(4, mname);
-						 ps.setString(5, gender);
-						 ps.setString(6, type);
-						 ps.setString(7, bdate);
-						 ps.setString(8, oldschool);
-						 ps.setString(9, transferoldcollege);
-						 ps.setString(10, transferoldprogram);
-						 ps.setString(11, "");
+						 ps.setString(5, email);
+						 ps.setString(6, gender);
+						 ps.setString(7, type);
+						 ps.setString(8, bdate);
+						 ps.setString(9, oldschool);
+						 ps.setString(10, transferoldcollege);
+						 ps.setString(11, transferoldprogram);
 						 ps.setString(12, "");
+						 ps.setString(13, "");
 						 ps.setBinaryStream(13, idpic.getInputStream(), (int) idpic.getSize());	
 						
 					     ps.executeUpdate();

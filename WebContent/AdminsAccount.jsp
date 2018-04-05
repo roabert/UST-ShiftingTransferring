@@ -202,6 +202,10 @@ if(getuser == null) {
             <h4><br>User Information</h4>
               <center>
                 <table class="table">
+                <tr>
+                    <td>Email Adress: </td>
+                    <td><input type = "text" class="form-control" name="new_email"  required></td>
+                  </tr>
                   <tr>
                     <td>Last Name: </td>
                     <td><input type = "text" class="form-control" name="new_lname"  required></td>

@@ -48,6 +48,7 @@ public class AdminCreateUsers extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String getuserid = request.getParameter("new_userid");
 		String getpassword = request.getParameter("new_password");
+		String getemail = request.getParameter("new_email");
 		String getlname = request.getParameter("new_lname");
 		String getfname = request.getParameter("new_fname");
 		String getmname = request.getParameter("new_mname");

@@ -4,9 +4,9 @@ public interface DatabaseSQLs {
 	String shiftRegisterSQL = "INSERT INTO student_shifter (lastname, firstname, middlei, gender, typeofstudent, birthday, studentid"
 	 		+ ", oldcourse, oldprogram, idpicture) "
 	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-	 String transferRegisterSQL = "INSERT INTO student_transfer (userid, lastname, firstname, middlei, gender, typeofstudent, birthday, oldschool"
+	 String transferRegisterSQL = "INSERT INTO student_transfer (userid, lastname, firstname, middlei, email, gender, typeofstudent, birthday, oldschool"
 	 		+ ", oldcourse, oldprogram, newcourse, newprogram, idpicture) "
-	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)";
 	 String loginsql = "SELECT userid, password, roles FROM users WHERE userid = ? AND password = ? "
 				+ "UNION"
 				+ " SELECT studentid, birthday, typeofstudent FROM student_shifter WHERE studentid = ? AND birthday = ?"
@@ -87,17 +87,17 @@ public interface DatabaseSQLs {
 		 //Admin create users
 		 String InsertUsersSQL = "INSERT INTO useraccounts (userid, password, type) VALUES (?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_InsertUsersSQL = "INSERT INTO admins (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
+		 String Admin_InsertUsersSQL = "INSERT INTO admins (userid, last_name, first_name, middle_name, email, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_Registrar_InsertUsersSQL = "INSERT INTO registrar (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
+		 String Admin_Registrar_InsertUsersSQL = "INSERT INTO registrar (userid, last_name, first_name, middle_name, email, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_OSG_InsertUsersSQL = "INSERT INTO secgen (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
+		 String Admin_OSG_InsertUsersSQL = "INSERT INTO secgen (userid, last_name, first_name, middle_name, email, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_Dean_InsertUsersSQL = "INSERT INTO dean (userid, last_name, first_name, middle_name, college, type) VALUES (?, ?, ?, ?, ?, ?)";
+		 String Admin_Dean_InsertUsersSQL = "INSERT INTO dean (userid, last_name, first_name, middle_name, email, college, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_OSA_InsertUsersSQL = "INSERT INTO osa (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
+		 String Admin_OSA_InsertUsersSQL = "INSERT INTO osa (userid, last_name, first_name, middle_name, email, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)
-		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, type) VALUES (?, ?, ?, ?, ?)";
+		 String Admin_Ofad_InsertUsersSQL = "INSERT INTO ofad (userid, last_name, first_name, middle_name, email, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 
 		 // LETTER OF Endorsement SHIFTER
 		 String MemoForm_Shifter = "INSERT INTO shifters_indorsement (shifter_id) VALUES (?)";

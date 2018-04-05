@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="CSS/bootstrap.min.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="scripts/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="scripts/easyResponsiveTabs.js" type="text/javascript"></script>
 		    <script type="text/javascript">
@@ -183,16 +183,10 @@ function populateCountries(countryElementId, stateElementId) {
 
 									<center>
 									<br>
-<<<<<<< HEAD
 										<a href="javascript:;" data-toggle="modal" data-target="#forgotpassword">Forgot your password?</a>									
-=======
-									
-										
-										<a href="javascript:;" data-toggle="modal" data-target=".forgotpassword">Forgot your password?</a>									
->>>>>>> 9404c7a7aa9cd8e6119d5bc1b921d32e8204ba41
 									<br>
 									<br>
-										<input type="submit" value="LOGIN" class="button"/>
+										<input type="submit" value="LOGIN" class="button"required />
 										</center>
 									
 								</form>
@@ -202,23 +196,19 @@ function populateCountries(countryElementId, stateElementId) {
 							</div>
 						</div>
 						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-						 <div class="announcement">
-  <h3>For Shifters:</h3>
-<p>Use your student number as your USER ID.</p>
-<p>(ex. 2014069622)</p>
-<p>Use your birthday as your password.</p>
-<p>(ex. yyyy-mm-dd)</p>
-</div>
-<br>
-<div class="announcement">
-  <h3>For Transferees:</h3>
-<p>Use your registered name as your USER ID.</p>
-<p>(ex. LastnameFirstnameMI)</p>
-<p>Use your birthday as your password.</p>
-<p>(ex. yyyy-mm-dd)</p>
-</div>
 						<div class="login-top">
-	
+	 <div class="announcement">
+  <h3>Instructions</h3>
+  <p>1.) File Must Be In JPEG format.</p>
+  <p>2.) Maximum file size is 2MB.</p>
+  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
+  <h3>Documents Needed:</h3>
+  <p>1.) Official OTR</p>
+  <p>2.) Certificate of Good Moral.</p>
+  <p>3.) Letter to the Dean</p>
+  <p>4.) Letter to the Guidance</p>
+  <p>5.) Photocopy of ID</p>
+</div>
 							</div>
 							
 						</div>							
@@ -231,7 +221,7 @@ function populateCountries(countryElementId, stateElementId) {
 	
 	
       <!--  <div class="header" ><center>
- <img src="Images/usthead2.PNG" style="width:80%; height:auto;"/>
+ <img src="Images/usthead2.PNG" style="width:80%; height:auto;"required />
 </center>
 
   </div>
@@ -259,8 +249,8 @@ function populateCountries(countryElementId, stateElementId) {
 <p style="color:gold; font-size: 3vw; font-size: 3vh;">Login your account:</p>
 <br>
 <h1>Welcome</h1><br>
-<input type="text" class="form-control" name="userbox"  style="width:100%; height:auto;" placeholder="User ID"/> <br>
-<input type="password" name="pwdbox"  style="width:100%; height:auto;" placeholder="Password"/><br>
+<input type="text" class="form-control" name="userbox"  style="width:100%; height:auto;" placeholder="User ID"required /> <br>
+<input type="password" name="pwdbox"  style="width:100%; height:auto;" placeholder="Password"required /><br>
 <a href="javascript:;" data-toggle="modal" data-target=".forgotpassword">Forgot your password?</a>
 <br><br>
 <center><button type="submit" class="pull-center btn btn-lg btn-warning">Login</button></center>
@@ -468,22 +458,26 @@ function transferSubmit() {
      
        <div id="step1">
        <div class="col-sm-12">
-         <div class="col-sm-12">
+         <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Last Name:</i></p>
-         <input type="text" class="form-control" name="register_lname" id="register_lname" /> <br>
+         <input type="text" class="form-control" name="register_lname" id="register_lname" required /> <br>
+         </div>
+          <div class="col-sm-6">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Email Address:</i></p>
+         <input type="email" class="form-control" name="register_email" id="register_lname" required /> <br>
          </div>
          <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>First Name: </i></p>
-          <input type="text" class="form-control" name="register_fname" id="register_fname" /> 
+          <input type="text" class="form-control" name="register_fname" id="register_fname" required /> 
           </div>
           <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Birth Date: </i></p>
-          <input type="date" class="form-control" name="register_bday" id="register_bday" /> <br>
+          <input type="date" class="form-control" name="register_bday" id="register_bday" required /> <br>
           </div>
           
           <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>MI</i></p>
-           <input type="text" class="form-control" name="register_mi" id="register_mi"   />
+           <input type="text" class="form-control" name="register_mi" id="register_mi"   required />
           </div>
           <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>Gender</i></p>
@@ -506,7 +500,7 @@ function transferSubmit() {
     
         <div class = "col-sm-12">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Student ID:</i></p>
-         <input type="text" class="form-control" name="register_studentid" id="register_studentid"  /> <br>
+         <input type="text" class="form-control" name="register_studentid" id="register_studentid"  required /> <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current College</i></p>
 <!--          <select class="form-control" name="shift_oldcollege"  id ="currentcollege">
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
@@ -566,7 +560,7 @@ function transferSubmit() {
         <div class = "col-sm-12">
           <div class="col-sm-12">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current School</i></p>
-         <input type="text" class="form-control" name="transfer_school" id="oldschool" /><br>
+         <input type="text" class="form-control" name="transfer_school" id="oldschool" required /><br>
          </div>
           
   <div class="col-sm-12">
@@ -593,7 +587,7 @@ function transferSubmit() {
          <center>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture </i></p><br>
          <input type="file" type="file" onChange="readURL(this)" name="transfer_idpicture" size="50">
-         <img id="imageview" src="#"/>
+         <img id="imageview" src="#"required />
          <br><br><br><br>
          <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Transfer()"><span class="glyphicon glyphicon-chevron-left" style="color:white"></span> Back</button>
           <button onclick="transferSubmit()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-check" style="color:white"></span> Submit & Login</button>
