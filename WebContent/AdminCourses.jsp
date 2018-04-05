@@ -139,20 +139,20 @@ if(getuser == null) {
       </div>
       <br>
       <br>
-      <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Faculty Here</button></form>
+      <form action ="javascript:;"><button type="button" data-target=".addcourses" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Faculty Here</button></form>
       </div>
     
       <br><br>
 </div>
 
 					</div>
-  <div id="createusers" class="modal fade createusers" role="dialog">
+  <div id="addcourses" class="modal fade addcourses" role="dialog">
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
        <form action = "AddCourses" method="post">
          <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h3 class="modal-title">Add Courses</h3>
+           <h3 class="modal-title"><span class="glyphicon glyphicon-th-list"></span> Add Courses</h3>
           </div>
           <div class="modal-body"> 	
             <div class="col-sm-12">
@@ -220,19 +220,6 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 
-function submitForm() {
-	var pw1 = document.getElementById("pw1").value;
-	var pw2 = document.getElementById("pw2").value;
-	
-	if(pw1 == pw2) {
-		document.getElementById("form1").method = "post";
-		document.getElementById("form1").action = "AdminCreateUsers";
-		document.getElementById("form1").submit();
-	}
-	else {
-		alert("Passwords are not the same!");
-	}
-}
 
 </script>
  

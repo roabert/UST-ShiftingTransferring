@@ -1,15 +1,21 @@
 package ust.ejb;
 
 import java.util.*;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import DatabaseHandler.SingletonDB;
+import ust.registrar.model.studentprocess.forgotpassword;
+
 import javax.activation.*;
 
 public class MailSender {
 
+	 Connection conn = SingletonDB.getConnection();
     public void sendEmail(String message, String email){
     
     	
@@ -28,12 +34,15 @@ public class MailSender {
            mailSession.setDebug(true);
            
            Message mailMessage = new MimeMessage(mailSession);
+           forgotpassword f = new forgotpassword();
            
            mailMessage.setFrom(new InternetAddress("ustshiftdummy@gmail.com"));
            mailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
            mailMessage.setText(message);
            mailMessage.setSubject("HEY!");
-           
+           f.setGetemail(email);
+           f.setPasscode(message);
+           f.generateCode(conn);
            Transport transport = mailSession.getTransport("smtp");
            transport.connect("smtp.gmail.com","ustshiftdummy@gmail.com","UST1232018");
            

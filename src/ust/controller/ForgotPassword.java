@@ -2,6 +2,7 @@ package ust.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ust.ejb.MailSender;
+import ust.registrar.model.studentprocess.forgotpassword;
 
 import org.apache.commons.lang3.RandomStringUtils;
+
+import DatabaseHandler.SingletonDB;
 
 /**
  * Servlet implementation class ForgotPassword
@@ -24,10 +28,15 @@ public class ForgotPassword extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	Connection conn = null;
     public ForgotPassword() {
         super();
         // TODO Auto-generated constructor stub
     }
+    public void init() throws ServletException {
+ 	   conn = SingletonDB.getConnection();
+   }
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,6 +54,11 @@ public class ForgotPassword extends HttpServlet {
 		String getEmail = request.getParameter("email_recovery");
 		String key = RandomStringUtils.randomAlphabetic(5);
 		MailSender mail = new MailSender();
+		
+		forgotpassword f = new forgotpassword();
+		f.setEmail(getEmail);
+		f.confirmEmail(conn);
+		if(f.getGetemail() != null) {
 		mail.sendEmail(key, getEmail);
         /*
         To Do:
@@ -60,7 +74,12 @@ public class ForgotPassword extends HttpServlet {
         */
 		request.getRequestDispatcher("login.jsp").include(request, response);
 		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#passwordrecovery').modal('show');  });</script>");
-		
+		}
+		else {
+			request.getRequestDispatcher("login.jsp").include(request, response);
+			out.print("<script>alert('The email you entered has not matched any of our database accounts.');</script>");
+			
+		}
 	}
 
 }

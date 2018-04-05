@@ -311,7 +311,7 @@ function populateCountries(countryElementId, stateElementId) {
               <table>
                 <tr> 
                    <td>Passcode: </td>
-                   <td><input type="email" name="passcode"  required></td>
+                   <td><input type="text" name="passcode"  required></td>
                 </tr>
               </table>
            
@@ -325,6 +325,45 @@ function populateCountries(countryElementId, stateElementId) {
       </div>
     </div>
  </div>
+ 
+ <!-- change PAssword modal -->
+ 
+  <div class="modal fade" role="dialog" id="changepassword">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+          <div class="modal-header" style="background-color:#EFB652">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Change your password</h4>
+          </div>
+          <form action = "ChangeOldPassword" method ="POST">
+          <div class="modal-body">
+          
+          <h4>Change your password: </h4>
+          <br>
+             <center>
+             
+              <table>
+                <tr> 
+                   <td>Password: </td>
+                   <td><input type="password" name="change_password"  required></td>
+                </tr>
+                   <tr> 
+                   <td>Change Password: </td>
+                   <td><input type="password" name="change_retypepassword"  required></td>
+                </tr>
+              </table>
+           
+             </center>
+          </div>
+          <div class="modal-footer">
+          <button class="btn btn-md btn" type="button" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-warning btn-md" value="Submit">Change Password</button>          
+          </div>
+             </form>
+      </div>
+    </div>
+ </div>
+ 
 <script>
 function id(x) {
 	return document.getElementById(x);
