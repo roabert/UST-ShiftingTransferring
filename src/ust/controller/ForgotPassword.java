@@ -78,6 +78,7 @@ public class ForgotPassword extends HttpServlet {
 		}
 		else {
 			request.getRequestDispatcher("login.jsp").include(request, response);
+			out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#forgotpassword').modal('show');  });</script>");
 			out.print("<script>alert('The email you entered has not matched any of our database accounts.');</script>");
 			
 		}

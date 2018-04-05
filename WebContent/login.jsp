@@ -178,12 +178,12 @@ function populateCountries(countryElementId, stateElementId) {
 							<div class="login-top">
 								<form method="post" action="loginprocess">
 								
-									<input type="text" class="form-control" name="userbox"class="name active" required placeholder="User ID"/>
+									<input type="text" name="userbox"class="name active" required placeholder="User ID"/>
 									<input type="password" name="pwdbox" class="password" required placeholder="Password"/>
 
 									<center>
 									<br>
-										<a href="javascript:;" data-toggle="modal" data-target=".forgotpassword">Forgot your password?</a>									
+										<a href="javascript:;" data-toggle="modal" data-target="#forgotpassword">Forgot your password?</a>									
 									<br>
 									<br>
 										<input type="submit" value="LOGIN" class="button"/>
@@ -264,7 +264,7 @@ function populateCountries(countryElementId, stateElementId) {
 </div>
 </div> -->
 <!-- Forgot password dialog -->
- <div class="modal fade forgotpassword" role="dialog">
+ <div class="modal fade" role="dialog" id="forgotpassword">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
           <div class="modal-header" style="background-color:#EFB652">
@@ -276,7 +276,7 @@ function populateCountries(countryElementId, stateElementId) {
           <div class="modal-body">
              <center>
              
-              <table>
+              <table class="table">
                 <tr> 
                    <td>Email: </td>
                    <td><input type="email" class="form-control" name="email_recovery"  required></td>
@@ -304,11 +304,11 @@ function populateCountries(countryElementId, stateElementId) {
           <form action = "CodeConfirm" method ="POST">
           <div class="modal-body">
           
-          <h4>Enter the code you received from email:</h4>
+          <h4>Enter the code you received from email:</h4>      
           <br>
              <center>
              
-              <table>
+              <table class="table">
                 <tr> 
           <% String getemail = (String)request.getAttribute("setemail"); %>
                    <td>Passcode: <input type="hidden" name="get_confirmedemail" value="<%=getemail%>"></td>
@@ -336,21 +336,22 @@ function populateCountries(countryElementId, stateElementId) {
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Change your password</h4>
           </div>
-          <form action = "ChangeOldPassword" method ="POST">
+          <form onsubmit ="return false" id = "changepasswordform">
           <div class="modal-body">
-          
+           <%String getemail1 = (String)request.getAttribute("set_email"); %>
+           <input type="hidden" name="getemail1" value="<%=getemail1%>">
           <h4>Change your password: </h4>
           <br>
              <center>
              
-              <table>
+              <table class="table">
                 <tr> 
                    <td>Password: </td>
-                   <td><input type="password" class="form-control" name="change_password"  required></td>
+                   <td><input type="password" class="form-control" id="password1" name="change_password" required></td>
                 </tr>
                    <tr> 
                    <td>Change Password: </td>
-                   <td><input type="password" class="form-control" name="change_retypepassword"  required></td>
+                   <td><input type="password" class="form-control" id="passwordconfirm" name="change_retypepassword"  required></td>
                 </tr>
               </table>
            
@@ -358,7 +359,7 @@ function populateCountries(countryElementId, stateElementId) {
           </div>
           <div class="modal-footer">
           <button class="btn btn-md btn" type="button" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-warning btn-md" value="Submit">Change Password</button>          
+          <button type="button" onclick = "changePassword()" class="btn btn-warning btn-md" value="Submit">Change Password</button>          
           </div>
              </form>
       </div>
@@ -623,6 +624,18 @@ function transferSubmit() {
 
                 reader.readAsDataURL(input.files[0]);
             }
+        }
+        function changePassword() {
+        	var pw1 = id("password1").value;
+        	var pw2 = id("passwordconfirm").value;
+        	if(pw1 == pw2) {
+        		id("changepasswordform").action = "ChangeOldPassword";
+        		id("changepasswordform").method = "post";
+        		id("changepasswordform").submit();
+        	}
+        	else {
+        		alert('Passwords are not the same!');
+        	}
         }
         </script>
         

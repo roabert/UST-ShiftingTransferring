@@ -2,8 +2,26 @@ package ust.registrar.model.studentprocess;
 import java.sql.*;
 public class forgotpassword {
 
-	public String email, getemail, passcode, confirmcode, confirmemail;
+	public String email, getemail, passcode, confirmcode, confirmemail, password, changepassemail, changegetuser;
 
+	public String getChangegetuser() {
+		return changegetuser;
+	}
+	public void setChangegetuser(String changegetuser) {
+		this.changegetuser = changegetuser;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getChangepassemail() {
+		return changepassemail;
+	}
+	public void setChangepassemail(String changepassemail) {
+		this.changepassemail = changepassemail;
+	}
 	public String getPasscode() {
 		return passcode;
 	}
@@ -68,7 +86,38 @@ public class forgotpassword {
 	  	e.printStackTrace();
 	    }
 	}
+	public void changePassword(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE useraccounts SET password = ? WHERE email = ?");
+			ps.setString(1, password);
+			ps.setString(2, changepassemail);
+			ps.executeUpdate();
 	
+		}
+	 catch (SQLException e) {
+		// TODO Auto-generated catch block
+	  	e.printStackTrace();
+	    }
+	}
+	public void getUsernameLogin(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM useraccounts WHERE email = ?");
+			ps.setString(1, changepassemail);
+			ResultSet rs = ps.executeQuery();
+	        while(rs.next()) {
+	        	changegetuser = rs.getString("userid");
+	        }
+		}
+	 catch (SQLException e) {
+		// TODO Auto-generated catch block
+	  	e.printStackTrace();
+	    }
+	}
+	public void ChangePasswordSuccessful(Connection conn) {
+		getUsernameLogin(conn);
+		changePassword(conn);
+		
+	}
 	public String getEmail() {
 		return email;
 	}
