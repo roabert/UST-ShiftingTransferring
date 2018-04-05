@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -106,7 +107,7 @@ if(getuser == null) {
 </div>
     <br>
     
-      <div class="container">
+      <div class="container-fluid">
        <div class="table-responsive" style="overflow-x:auto; height:450px;">
       <center>
       <table class="table table-striped table-sortable">

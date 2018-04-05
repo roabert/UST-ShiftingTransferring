@@ -124,7 +124,7 @@ function populateStates(countryElementId, stateElementId) {
 }
 
 function populateCountries(countryElementId, stateElementId) {
- // given the id of the <select> tag as function argument, it inserts <option> tags
+ // given the id of the <select class="form-control"> tag as function argument, it inserts <option> tags
  var countryElement = document.getElementById(countryElementId);
  countryElement.length = 0;
  countryElement.options[0] = new Option('------Select Faculty------', '-1');
@@ -178,8 +178,8 @@ function populateCountries(countryElementId, stateElementId) {
 							<div class="login-top">
 								<form method="post" action="loginprocess">
 								
-									<input type="text" name="userbox"class="name active" placeholder="User ID"/>
-									<input type="password" name="pwdbox" class="password" placeholder="Password"/>
+									<input type="text" class="form-control" name="userbox"class="name active" required placeholder="User ID"/>
+									<input type="password" name="pwdbox" class="password" required placeholder="Password"/>
 
 									<center>
 									<br>
@@ -249,8 +249,8 @@ function populateCountries(countryElementId, stateElementId) {
 <p style="color:gold; font-size: 3vw; font-size: 3vh;">Login your account:</p>
 <br>
 <h1>Welcome</h1><br>
-<input type="text" name="userbox" class="form-control" style="width:100%; height:auto;" placeholder="User ID"/> <br>
-<input type="password" name="pwdbox" class="form-control" style="width:100%; height:auto;" placeholder="Password"/><br>
+<input type="text" class="form-control" name="userbox"  style="width:100%; height:auto;" placeholder="User ID"/> <br>
+<input type="password" name="pwdbox"  style="width:100%; height:auto;" placeholder="Password"/><br>
 <a href="javascript:;" data-toggle="modal" data-target=".forgotpassword">Forgot your password?</a>
 <br><br>
 <center><button type="submit" class="pull-center btn btn-lg btn-warning">Login</button></center>
@@ -267,9 +267,9 @@ function populateCountries(countryElementId, stateElementId) {
  <div class="modal fade forgotpassword" role="dialog">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header" style="background-color:#EFB652">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Password Recovery</h4>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Password Recovery</h4>
        
           </div>
           <form action = "ForgotPassword" method ="POST">
@@ -279,14 +279,47 @@ function populateCountries(countryElementId, stateElementId) {
               <table>
                 <tr> 
                    <td>Email: </td>
-                   <td><input type="email" name="email_recovery" class="form-control" required></td>
+                   <td><input type="email" name="email_recovery"  required></td>
                 </tr>
               </table>
            
              </center>
           </div>
           <div class="modal-footer">
-             <input type="submit" class="btn btn-warning btn-md" value="Submit">            
+              <button class="btn btn-md btn" type="button" data-dismiss="modal">Cancel</button>
+             <button type="submit" class="btn btn-warning btn-md" value="Submit">Submit</button>            
+          </div>
+             </form>
+      </div>
+    </div>
+ </div>
+ 
+  <div class="modal fade" role="dialog" id="passwordrecovery">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+          <div class="modal-header" style="background-color:#EFB652">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Enter your pass code</h4>
+          </div>
+          <form action = "ForgotPassword" method ="POST">
+          <div class="modal-body">
+          
+          <h4>Enter the code you received from email:</h4>
+          <br>
+             <center>
+             
+              <table>
+                <tr> 
+                   <td>Passcode: </td>
+                   <td><input type="email" name="passcode"  required></td>
+                </tr>
+              </table>
+           
+             </center>
+          </div>
+          <div class="modal-footer">
+          <button class="btn btn-md btn" type="button" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-warning btn-md" value="Submit">Submit</button>          
           </div>
              </form>
       </div>
@@ -386,24 +419,24 @@ function transferSubmit() {
        <div class="col-sm-12">
          <div class="col-sm-12">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Last Name:</i></p>
-         <input type="text" name="register_lname" id="register_lname" class="form-control"/> <br>
+         <input type="text" class="form-control" name="register_lname" id="register_lname" /> <br>
          </div>
          <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>First Name: </i></p>
-          <input type="text" name="register_fname" id="register_fname" class="form-control"/> 
+          <input type="text" class="form-control" name="register_fname" id="register_fname" /> 
           </div>
           <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Birth Date: </i></p>
-          <input type="date" name="register_bday" id="register_bday" class="form-control"/> <br>
+          <input type="date" class="form-control" name="register_bday" id="register_bday" /> <br>
           </div>
           
           <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>MI</i></p>
-           <input type="text" name="register_mi" id="register_mi" class="form-control"  />
+           <input type="text" class="form-control" name="register_mi" id="register_mi"   />
           </div>
           <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>Gender</i></p>
-          <select name="register_gender" id="register_gender" class="form-control"  >
+          <select class="form-control" name="register_gender" id="register_gender"   >
            <option selected="true" value="" disabled="disabled">&lt;Select Gender&gt;</option>
            <option value="Male">Male</option>
            <option value="Female">Female</option>
@@ -422,30 +455,30 @@ function transferSubmit() {
     
         <div class = "col-sm-12">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Student ID:</i></p>
-         <input type="text" name="register_studentid" id="register_studentid" class="form-control" /> <br>
+         <input type="text" class="form-control" name="register_studentid" id="register_studentid"  /> <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current College</i></p>
-<!--          <select name="shift_oldcollege" class="form-control" id ="currentcollege">
+<!--          <select class="form-control" name="shift_oldcollege"  id ="currentcollege">
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="AB">AB</option>
           <option value="Engineering">Engineering</option>
           <option value="IICS">IICS</option>
           <option value="Architecture">Architecture</option>
          </select> -->
-         <select class="form-control" id="shift_oldcollege" name="shift_oldcollege"></select>
+         <select class="form-control"  id="shift_oldcollege" name="shift_oldcollege"></select>
           <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
-<!--          <select name="shift_oldprogram" class="form-control" id="currentprogram">
+<!--          <select class="form-control" name="shift_oldprogram"  id="currentprogram">
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="IT">Information Technology</option>
           <option value="IS">Information Systems</option>
           <option value="CS">Computer Science</option>
           
          </select> --> 
-         <select class="form-control" name="shift_oldprogram" id="shift_oldprogram"></select>
+         <select class="form-control"  name="shift_oldprogram" id="shift_oldprogram"></select>
          <br>
          <!-- 
          <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing College</i></p>
-         <select name="shift_newcollege" class="form-control">
+         <select class="form-control" name="shift_newcollege" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="AB">AB</option>
           <option value="Engineering">Engineering</option>
@@ -453,7 +486,7 @@ function transferSubmit() {
           <option value="Architecture">Architecture</option>
          </select> <br>
           <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing Program</i></p>
-         <select name="shift_newprogram" class="form-control">
+         <select class="form-control" name="shift_newprogram" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="IT">Information Technology</option>
           <option value="IS">Information Systems</option>
@@ -482,17 +515,17 @@ function transferSubmit() {
         <div class = "col-sm-12">
           <div class="col-sm-12">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current School</i></p>
-         <input type="text" name="transfer_school" id="oldschool" class="form-control"/><br>
+         <input type="text" class="form-control" name="transfer_school" id="oldschool" /><br>
          </div>
           
   <div class="col-sm-12">
   <p style="font-size: 2vw; font-size: 2vh;"><i>Current Course</i></p>
-         <select class="form-control" id="transfer_oldcollege" name="transfer_oldcollege"></select><br>
+         <select class="form-control"  id="transfer_oldcollege" name="transfer_oldcollege"></select><br>
          </div>
          <br>
          <div class="col-sm-12">
           <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
-         <select class="form-control" name="transfer_oldprogram" id="transfer_oldprogram"></select><br><br>
+         <select class="form-control"  name="transfer_oldprogram" id="transfer_oldprogram"></select><br><br>
          </div>
          <br>
          <p><br></p>

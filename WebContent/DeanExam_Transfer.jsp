@@ -230,7 +230,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         
         <input type="hidden" name="getuser" value="<%=getuser%>">
         <input type="hidden" name="getstudent" value="<%=rs.getString("transferee_id")%>">
-        <select class="form-control" name="studentstatus">
+        <select class="form-control"  name="studentstatus">
     		<option value="Approved">Approve</option>
         	<option value="Disapproved">Disapprove</option>
         </select>

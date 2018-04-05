@@ -41,7 +41,7 @@ public class ForgotPassword extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+       PrintWriter out = response.getWriter();
 		String getEmail = request.getParameter("email_recovery");
 		String key = RandomStringUtils.randomAlphabetic(5);
 		MailSender mail = new MailSender();
@@ -58,6 +58,9 @@ public class ForgotPassword extends HttpServlet {
         To Do Extra if may time:
         Add an expiry time for the key
         */
+		request.getRequestDispatcher("login.jsp").include(request, response);
+		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#passwordrecovery').modal('show');  });</script>");
+		
 	}
 
 }

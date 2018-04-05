@@ -38,7 +38,7 @@ function populateStates(countryElementId, stateElementId) {
 }
 
 function populateCountries(countryElementId, stateElementId) {
-    // given the id of the <select> tag as function argument, it inserts <option> tags
+    // given the id of the <select class="form-control"> tag as function argument, it inserts <option> tags
     var countryElement = document.getElementById(countryElementId);
     countryElement.length = 0;
     countryElement.options[0] = new Option('------Select Faculty------', '-1');

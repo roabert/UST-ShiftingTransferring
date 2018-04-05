@@ -82,8 +82,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
     </li>
       <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
     <ul class="submenu">
-        <li><a href="OfadApprovedTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadApprovedTransaction_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="OfadApprovedTransactions_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadApprovedTransactions_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
@@ -234,19 +234,19 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
            <table>
            <tr>
               <th>  <h4>Date of Exam</h4></th>
-              <th> <input type = "date" class="form-control" name = "examdate" required></th>
+              <th> <input type = "date" class="form-control"  name = "examdate" required></th>
        </tr>
           <tr>
                <th> <h4>Start Time</h4></th>
-               <th><input type = "time" class="form-control" name = "starttime" required></th>
+               <th><input type = "time" class="form-control"  name = "starttime" required></th>
           </tr>
            <tr>
                <th> <h4>End Time</h4></th>
-               <th><input type = "time" class="form-control" name = "endttime" required><br></th>
+               <th><input type = "time" class="form-control"  name = "endttime" required><br></th>
                </tr>
                   <tr>
                <th> <h4>Venue</h4></th>
-               <th><input type = "text" class="form-control" name = "venueexam" required><br></th>
+               <th><input type = "text"  name = "venueexam" required><br></th>
                </tr>
             </table><br><br>
          

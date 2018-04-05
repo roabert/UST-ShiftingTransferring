@@ -110,18 +110,27 @@ if(getuser == null) {
 
 <br>
 </div>
-      <div class="container">
-       <div class="table-responsive" style="overflow-x:auto; height:100%;">
+      <div class="container-fluid">
+      <br>
+       <div class="table-responsive" style="overflow-x:auto; height:500px;">
       <center>
          <table class="table table-striped table-sortable">
         <thead>
-          	<th>User ID</th>
-         	<th>Name</th>
-          	<th>Type</th>
-          	<th>Edit Users</th>
+        <tr>
+          	<th>Courses</th>
+ 	</tr>
         </thead>    
         <tbody>
- 
+        <%try { 
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM courses");
+         ResultSet rs = ps.executeQuery();
+         while(rs.next()) {
+        %>
+        <tr>
+        <td><%=rs.getString("courses_name") %></td>
+        </tr>
+        <%}}catch(SQLException e){out.print(e);} %>
+           </tbody>
       </table>
     
         
@@ -140,7 +149,7 @@ if(getuser == null) {
   <div id="createusers" class="modal fade createusers" role="dialog">
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
-       <form id = "form1" onsubmit="false">
+       <form action = "AddCourses" method="post">
          <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
            <h3 class="modal-title">Add Courses</h3>
@@ -149,24 +158,39 @@ if(getuser == null) {
             <div class="col-sm-12">
             <br>
             
-            <h4>Faculty</h4>
-            <center>
+            <h4>Faculty</h4>         
             <table class="table">
+            <%try { 
+            	   PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM faculty");
+                   ResultSet rs2 = ps2.executeQuery();
+                
+            %>
               <tr>
                <td>Faculty/College/Institute: </td>
-               <td><input type ="text" name="new_userid" class="form-control" required></td>
+               <td>
+               <select class="form-control" name = "getfaculty" >
+               <%   while(rs2.next()) { %>
+               <option value="<%=rs2.getString("faculty_name")%>"><%=rs2.getString("faculty_name")%></option>
+               <%} %>
+               </select>
+               </td>
+              </tr>
+              <% }catch(SQLException x){out.print(x);}%>
+            </table>
+             <h4>Courses</h4>         
+            <table class="table">
+              <tr>
+               <td>Course: </td>
+               <td><input type = input type = "text" class="form-control" class="form-control" class="form-control" name="newcourses"  required></td>
               </tr>
              
             </table>
-            </center>
-            
-                </table>
-              </center>
+   
             </div>
           </div>
           <div class="modal-footer">
               <button type="button" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-            <button type="submit" class = "btn btn-warning btn-md"><span class="glyphicon glyphicon-ok" style="color:green"></span> Create</button>
+            <button type="submit" class = "btn btn-warning btn-md">Create</button>
            
          
           </div>
@@ -177,49 +201,7 @@ if(getuser == null) {
 
 <!-- Edit account -->
 
-<div class="modal fade edit_users" role="dialog">
- <div class="modal-dialog" style="width:600px">
-   <div class="modal-content">
-   <form action = "AdminEditUsers" method="post">
-     <div class="modal-header">
-       <button class="close" type="button" data-dismiss="modal">&times;</button>
-       <h3 class="modal-title">
-          Edit User Accounts
-       </h3>
-     </div>
-     <div class="modal-body">
-     <br>
-       <table class="table">
-       <tr>
-          <td>Last Name:</td> 
-          <td><input type="hidden" name = "useridget" class="userid"><input type="text" class="lastname form-control" size="50" name = "edit_lname"></td>
-      </tr>
-      <tr>
-      <td>First Name: </td>
-      <td><input type="text" class="firstname form-control" size="50" name = "edit_fname"></td>
-     </tr>
-      <tr>
-      <td>Middle Initial: </td> 
-     <td><input type="text" class="form-control middlename" size="50"name = "edit_mname"></td>
-        </tr>
-        <tr>
-            <td>Position: </td> 
-            <td><input type="text" class="form-control type" size="50" name="edit_type" readonly></td>
-     </tr>
-     <tr>
-     <td>College/Faculty(If Dean): </td> 
-     <td><input type="text" class="form-control" size="50" value="<%%>" name="edit_college"></td>
-        </tr> 
-       </table>
-     </div>
-     <div class="modal-footer">
-        <button type="submit" class = "btn btn-warning btn-md">Modify</button>
-            <button type="submit" class = "btn btn-danger btn-md" data-dismiss="modal">Cancel</button>
-     </div>
-     </form>
-   </div>
- </div>
-</div>
+
  
 <script src="scripts/slidebars.js"></script>
 <script src="scripts/scripts.js"></script>

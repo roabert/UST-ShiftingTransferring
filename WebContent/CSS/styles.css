@@ -22,7 +22,15 @@ body {
 	
 	
 }
-
+input[type=text] {
+    width: 100%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+input[type=text]:focus {
+    border: 3px solid #555;
+}
 .scroll-table {
 	overflow:auto;
 	height:500px;

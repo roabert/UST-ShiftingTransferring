@@ -76,8 +76,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
     </li>
       <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
     <ul class="submenu">
-        <li><a href="OfadApprovedTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadApprovedTransaction_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="OfadApprovedTransactions_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadApprovedTransactions_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>
@@ -167,10 +167,10 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <td>
 		<input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
 		<input type="hidden" name="getuser" value="<%=getuser%>">
-		<input type = "number" id="math" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Math" class="form-control" name="mathscore" required></td>
-	    <td><input type = "number" id="sci" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Sci" class="form-control" name="sciencescore" required></td>
-	    <td><input type = "number" id="eng" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Eng" class="form-control" name="englishscore" required></td>
-	    <td><input type = "number" id="iq" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="IQ" class="form-control" name="iqscore" required></td>
+		<input type = "number" id="math" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Math"  name="mathscore" required></td>
+	    <td><input type = "number" id="sci" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Sci"  name="sciencescore" required></td>
+	    <td><input type = "number" id="eng" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Eng"  name="englishscore" required></td>
+	    <td><input type = "number" id="iq" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="IQ"  name="iqscore" required></td>
 	    <td>
 	    	<button type="submit" onclick="encodeScore()" class="btn btn-warning" 
 		onclick="return confirm('Are you sure? Changes cannot be done after submitting.')">Submit</button>

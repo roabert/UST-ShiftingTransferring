@@ -143,7 +143,7 @@ if(getuser == null) {
           data-lastname="<%=rs.getString("last_name") %>"
           data-type="<%=rs.getString("type") %>"
           data-toggle="modal"
-           class="btn btn-warning useraccounts">Edit</button>
+           class="btn btn-warning useraccounts"><span class="glyphicon glyphicon-cog"></span> Edit</button>
         </td>
         
         </tr>
@@ -160,13 +160,12 @@ if(getuser == null) {
       </center>
       
       </div>
-      <br><br>
+      <br>
       </div>
 
       
 </div>
-  <br><br>
-  <div class="container">
+  <div class="container-fluid">
   <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Users Here</button></form>
   </div>
 
@@ -188,15 +187,15 @@ if(getuser == null) {
             <table class="table">
               <tr>
                <td>User ID: </td>
-               <td><input type ="text" name="new_userid" class="form-control" required></td>
+               <td><input type = "text" class="form-control" name="new_userid"  required></td>
               </tr>
               <tr>
               <td>Password: </td>
-              <td><input type ="password" name="new_password" id="pw1" class="form-control" required></td>
+              <td><input type ="password" class="form-control" name="new_password" id="pw1"  required></td>
               </tr>
               <tr>
               <td>Confirm Password: </td>
-              <td><input type ="password" name="new_password2" id="pw2" class="form-control" required></td>
+              <td><input type ="password" class="form-control" name="new_password2" id="pw2"  required></td>
               </tr>
             </table>
             </center>
@@ -205,19 +204,19 @@ if(getuser == null) {
                 <table class="table">
                   <tr>
                     <td>Last Name: </td>
-                    <td><input type ="text" name="new_lname" class="form-control" required></td>
+                    <td><input type = "text" class="form-control" name="new_lname"  required></td>
                   </tr>
                    <tr>
                     <td>First Name: </td>
-                    <td><input type ="text" name="new_fname" class="form-control" required></td>
+                    <td><input type = "text" class="form-control" name="new_fname"  required></td>
                   </tr>
                   <tr>
                     <td>Middle Name: </td>
-                    <td><input type ="text" name="new_mname" class="form-control" required></td>
+                    <td><input type = "text" class="form-control" name="new_mname"  required></td>
                   </tr>
                   <tr>
                     <td>Office: </td>
-                    <td><select name="new_type" id ="officetype" onchange = "selectType()" class="form-control" required>
+                    <td><select class="form-control" name="new_type" id ="officetype" onchange = "selectType()"  required>
                        <option disabled selected style="display:none;">Select Person</option>
                       <option value = "Admin">Administrator</option>
                       <option value = "OFAD">Office for Admission</option>
@@ -236,7 +235,7 @@ if(getuser == null) {
                         ResultSet rs = pt.executeQuery();
                        
                     	%>
-                    <td><select name = "new_college" class="form-control" id = "showcollege" style="display:none;">
+                    <td><select class="form-control" name = "new_college"  id = "showcollege" style="display:none;">
                      <option disabled selected style = "display:none;">Select Faculty</option>
                      <% while(rs.next()) { %>
                      <option value = "<%=rs.getString("faculty_name")%>"><%=rs.getString("faculty_name") %></option>
@@ -251,7 +250,7 @@ if(getuser == null) {
           </div>
           <div class="modal-footer">
            <button type="button" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-            <button onclick = "submitForm()" class = "btn btn-warning btn-md"><span class="glyphicon glyphicon-ok" style="color:green;"></span> Create</button>
+            <button onclick = "submitForm()" class = "btn btn-warning btn-md">Create</button>
            
         
           </div>
@@ -275,29 +274,29 @@ if(getuser == null) {
        <table class="table">
        <tr>
           <td>Last Name:</td> 
-          <td><input type="hidden" name = "useridget" class="userid"><input type="text" class="lastname form-control" size="50" name = "edit_lname"></td>
+          <td><input type="hidden" name = "useridget" class="userid"><input type="text" class="form-control" class="lastname form-control" size="50" name = "edit_lname"></td>
       </tr>
       <tr>
       <td>First Name: </td>
-      <td><input type="text" class="firstname form-control" size="50" name = "edit_fname"></td>
+      <td><input type="text" class="form-control" class="firstname form-control" size="50" name = "edit_fname"></td>
      </tr>
       <tr>
       <td>Middle Initial: </td> 
-     <td><input type="text" class="form-control middlename" size="50"name = "edit_mname"></td>
+     <td><input type="text" class="form-control" class="form-control middlename" size="50"name = "edit_mname"></td>
         </tr>
         <tr>
             <td>Position: </td> 
-            <td><input type="text" class="form-control type" size="50" name="edit_type" readonly></td>
+            <td><input type="text" class="form-control" class="form-control type" size="50" name="edit_type" readonly></td>
      </tr>
      <tr>
      <td>College/Faculty(If Dean): </td> 
-     <td><input type="text" class="form-control" size="50" value="<%%>" name="edit_college"></td>
+     <td><input type="text" class="form-control"  size="50" value="<%%>" name="edit_college"></td>
         </tr> 
        </table>
      </div>
      <div class="modal-footer">
       <button type="submit" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-        <button type="submit" class = "btn btn-warning btn-md"><span class="glyphicon glyphicon-ok" style="color:green"></span> Modify</button>
+        <button type="submit" class = "btn btn-warning btn-md">Modify</button>
            
      </div>
      </form>

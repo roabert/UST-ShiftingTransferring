@@ -49,7 +49,7 @@
      
        
        
-<!--     <select id="dlist" onChange="swapImage()">
+<!--     <select class="form-control" id="dlist" onChange="swapImage()">
 <option value="../images/ust-ics.jpg">Institute of Information and Computing Sciences</option>
 <option value="../images/ust-engg.jpg">Faculty of Engineering</option>
 <option value="../images/ust-cfad.jpg">College of Fine Arts and Design</option>
@@ -72,9 +72,9 @@
     <center>
     <h2>Incoming Faculty</h2>
     
-      <select id="country" ></select>
+      <select class="form-control" id="country" ></select>
     <h2>Incoming Program</h2>
-    <select id="state"></select>
+    <select class="form-control" id="state"></select>
 
 
 <br>

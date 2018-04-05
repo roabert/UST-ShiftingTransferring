@@ -50,9 +50,9 @@
     <center>
     <h2>Incoming Faculty</h2>
     
-      <select id="country" name="country"></select>
+      <select class="form-control" id="country" name="country"></select>
     <h2>Incoming Program</h2>
-    <select name="state" id="state"></select>
+    <select class="form-control" name="state" id="state"></select>
 
 </select>
 <br>

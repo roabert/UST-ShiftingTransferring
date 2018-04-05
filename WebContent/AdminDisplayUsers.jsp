@@ -107,21 +107,21 @@ if(getuser == null) {
       <div class="col-sm-12">
       <table>
       
-       <p>Last Name: <input type="hidden" name = "useridget" value = "<%=rs.getString("userid")%>"> <input type="text" class="form-control" size="50" value = "<%=rs.getString("last_name")%>" name = "edit_lname"></p>
+       <p>Last Name: <input type="hidden" name = "useridget" value = "<%=rs.getString("userid")%>"> <input type="text" class="form-control"  size="50" value = "<%=rs.getString("last_name")%>" name = "edit_lname"></p>
       
             
-      <p>First Name: <input type="text" class="form-control" size="50" value = "<%=rs.getString("first_name")%>" name = "edit_fname"></p>
+      <p>First Name: <input type="text" class="form-control"  size="50" value = "<%=rs.getString("first_name")%>" name = "edit_fname"></p>
      
     
-    <p>  Middle Initial: <input type="text" class="form-control" size="50" value = "<%=rs.getString("middle_name")%>" name = "edit_mname"></p>
+    <p>  Middle Initial: <input type="text" class="form-control"  size="50" value = "<%=rs.getString("middle_name")%>" name = "edit_mname"></p>
         
        
      
        
-            <p>Position: <input type="text" class="form-control" size="50" value="<%=rs.getString("type")%>" name="edit_type" readonly></p>
+            <p>Position: <input type="text" class="form-control"  size="50" value="<%=rs.getString("type")%>" name="edit_type" readonly></p>
      
 
-     <p>College/Faculty(If Dean): <input type="text" class="form-control" size="50" value="<%%>" name="edit_college"></p>
+     <p>College/Faculty(If Dean): <input type="text" class="form-control"  size="50" value="<%%>" name="edit_college"></p>
          
         
       

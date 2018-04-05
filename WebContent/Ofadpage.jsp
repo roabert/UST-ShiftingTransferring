@@ -74,8 +74,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
     </li>
       <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
     <ul class="submenu">
-        <li><a href="OfadApprovedTransaction_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
-        <li><a href="OfadApprovedTransaction_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
+        <li><a href="OfadApprovedTransactions_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
+        <li><a href="OfadApprovedTransactions_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
         
       </ul>
     </li>

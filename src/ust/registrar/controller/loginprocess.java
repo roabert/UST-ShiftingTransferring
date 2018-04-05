@@ -54,6 +54,7 @@ public class loginprocess extends HttpServlet {
 			login.setPassword(pwd_get);
 			login.Login(conn);
 			HttpSession session = request.getSession();
+			if(login.getType() != null) {
 			   if(login.getType().equals("OFAD")) {
 			    	session.setAttribute("setuser", uname_get);
 			    	request.getRequestDispatcher("OfadTransaction_Shifter.jsp")
@@ -100,6 +101,11 @@ public class loginprocess extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").include(request, response);
 				out.print("<script>alert('Invalid Credentials!');</script>");
 			    } 
+			}
+			else {
+				request.getRequestDispatcher("login.jsp").include(request, response);
+				out.print("<script>alert('Invalid Credentials!');</script>");
+			}
 	       
 	}
 

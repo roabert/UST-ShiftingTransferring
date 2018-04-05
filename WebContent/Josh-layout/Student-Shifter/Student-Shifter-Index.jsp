@@ -51,24 +51,24 @@
          
                <tr>
                  <td><strong>Name </strong></td>
-                 <td><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE"  size="15" size="50" readonly></td>
                  <td rowspan = "5"><center><img src="../images/dp.png" style="width:50%; height:50%;"></center></td>
                </tr>
                <tr>
                  <td><strong>ID </strong></td>
-                 <td><input type="text" value="SAMPLE" class="form-control" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE"  size="50" readonly></td>
                </tr>
                <tr>
                  <td><strong>Program </strong></td>
-                 <td><input type="text" value="SAMPLE" class="form-control" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE"  size="50" readonly></td>
                </tr>
                <tr>
                  <td><strong>Type</strong> </td>
-                 <td><input type="text" value="SAMPLE"class="form-control" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE" size="50" readonly></td>
                </tr>
                <tr>
                  <td><strong>Outgoing:</strong> </td>
-                 <td><input type="text" value="SAMPLE" class="form-control" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE"  size="50" readonly></td>
                  </tr>
                <tr>
                  <td></td>
@@ -94,10 +94,10 @@
                 	
             	</div>
             	<div>
-            		<strong>Name</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
-            		<strong>ID</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
-            		<strong>Program</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
-            		<strong>Outgoing</strong><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly>
+            		<strong>Name</strong><input type="text" class="form-control" value="SAMPLE"  size="15" size="50" readonly>
+            		<strong>ID</strong><input type="text" class="form-control" value="SAMPLE"  size="15" size="50" readonly>
+            		<strong>Program</strong><input type="text" class="form-control" value="SAMPLE"  size="15" size="50" readonly>
+            		<strong>Outgoing</strong><input type="text" class="form-control" value="SAMPLE"  size="15" size="50" readonly>
             		</div>
             </div>
             	

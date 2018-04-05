@@ -45,8 +45,8 @@
 <!-- <p style="color:gold; font-size: 3vw; font-size: 3vh;">Login your account:</p> -->
 <br>
 <h1>Welcome</h1><br>
-<input type="text" name="userbox" class="form-control" style="width:100%; height:auto;" placeholder="User ID"/> <br>
-<input type="password" name="pwdbox" class="form-control" style="width:100%; height:auto;" placeholder="Password"/><br>
+<input type="text" class="form-control" name="userbox"  style="width:100%; height:auto;" placeholder="User ID"/> <br>
+<input type="password" name="pwdbox"  style="width:100%; height:auto;" placeholder="Password"/><br>
 <a href="">Forgot your password?</a>
 <br>
 <center><button type="submit" class="pull-center btn btn-lg btn-warning">Login</button></center>
@@ -133,23 +133,23 @@ function transferSubmit() {
        <div id="step1">
        <div class="col-sm-12">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Last Name:</i></p>
-         <input type="text" name="register_lname" id="register_lname" class="form-control"/> <br>
+         <input type="text" class="form-control" name="register_lname" id="register_lname" /> <br>
          <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>First Name: </i></p>
-          <input type="text" name="register_fname" id="register_fname" class="form-control"/> 
+          <input type="text" class="form-control" name="register_fname" id="register_fname" /> 
           </div>
           <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Birth Date: </i></p>
-          <input type="date" name="register_bday" id="register_bday" class="form-control"/> <br>
+          <input type="date" class="form-control" name="register_bday" id="register_bday" /> <br>
           </div>
           
           <div class="col-sm-4">
           <p style="font-size:2vw; font-size: 2vh;"><i>MI</i></p>
-           <input type="text" name="register_mi" id="register_mi" class="form-control"  />
+           <input type="text" class="form-control" name="register_mi" id="register_mi"   />
           </div>
           <div class="col-sm-4">
           <p style="font-size:2vw; font-size: 2vh;"><i>Gender</i></p>
-          <select name="register_gender" id="register_gender" class="form-control"  >
+          <select class="form-control" name="register_gender" id="register_gender"   >
            <option selected="true" value="" disabled="disabled">&lt;Select Gender&gt;</option>
            <option value="Male">Male</option>
            <option value="Female">Female</option>
@@ -157,7 +157,7 @@ function transferSubmit() {
           </div>
           <div class="col-sm-4">
           <p style="font-size:2vw; font-size: 2vh;"><i>Type</i></p>
-          <select name="register_typeofstudent" id="register_typeofstudent" class="form-control"  >
+          <select class="form-control" name="register_typeofstudent" id="register_typeofstudent"   >
            <option selected="true" value="" disabled="disabled">&lt;Select Type&gt;</option>
            <option value="Shifter">Shifter</option>
            <option value="Transferee">Transferee</option>
@@ -173,9 +173,9 @@ function transferSubmit() {
     
         <div class = "col-sm-12">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Student ID:</i></p>
-         <input type="text" name="register_studentid" id="register_studentid" class="form-control" /> <br>
+         <input type="text" class="form-control" name="register_studentid" id="register_studentid"  /> <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current College</i></p>
-         <select name="shift_oldcollege" class="form-control">
+         <select class="form-control" name="shift_oldcollege" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="AB">AB</option>
           <option value="Engineering">Engineering</option>
@@ -183,7 +183,7 @@ function transferSubmit() {
           <option value="Architecture">Architecture</option>
          </select> <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
-         <select name="shift_oldprogram" class="form-control">
+         <select class="form-control" name="shift_oldprogram" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="IT">Information Technology</option>
           <option value="IS">Information Systems</option>
@@ -191,7 +191,7 @@ function transferSubmit() {
           
          </select> <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing College</i></p>
-         <select name="shift_newcollege" class="form-control">
+         <select class="form-control" name="shift_newcollege" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="AB">AB</option>
           <option value="Engineering">Engineering</option>
@@ -199,7 +199,7 @@ function transferSubmit() {
           <option value="Architecture">Architecture</option>
          </select> <br>
           <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing Program</i></p>
-         <select name="shift_newprogram" class="form-control">
+         <select class="form-control" name="shift_newprogram" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="IT">Information Technology</option>
           <option value="IS">Information Systems</option>
@@ -216,10 +216,10 @@ function transferSubmit() {
         <div class = "col-sm-12">
            
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current School</i></p>
-         <input type="text" name="transfer_school" class="form-control"/>
+         <input type="text" class="form-control" name="transfer_school" />
           <br>
            <p style="font-size: 2vw; font-size: 2vh;"><i>Current College</i></p>
-         <select name="transfer_oldcollege" class="form-control">
+         <select class="form-control" name="transfer_oldcollege" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="AB">AB</option>
           <option value="Engineering">Engineering</option>
@@ -227,7 +227,7 @@ function transferSubmit() {
           <option value="Architecture">Architecture</option>
          </select> <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
-         <select name="transfer_oldprogram" class="form-control">
+         <select class="form-control" name="transfer_oldprogram" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="IT">Information Technology</option>
           <option value="IS">Information Systems</option>
@@ -235,7 +235,7 @@ function transferSubmit() {
           
          </select> <br>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing College</i></p>
-         <select name="transfer_newcollege" class="form-control">
+         <select class="form-control" name="transfer_newcollege" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="AB">AB</option>
           <option value="Engineering">Engineering</option>
@@ -243,7 +243,7 @@ function transferSubmit() {
           <option value="Architecture">Architecture</option>
          </select> <br>
           <p style="font-size: 2vw; font-size: 2vh;"><i>Outgoing Program</i></p>
-         <select name="transfer_newprogram" class="form-control">
+         <select class="form-control" name="transfer_newprogram" >
           <option selected="true" value="" disabled="disabled">&lt;Course&gt;</option>
           <option value="IT">Information Technology</option>
           <option value="IS">Information Systems</option>

@@ -118,20 +118,20 @@ if(getuser == null) {
             <table class="table">
                <tr>
                  <td>Name</td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("last_name") %>, <%=usercontent.getString("first_name") %> <%=usercontent.getString("middle_name") %>" readonly class="form-control"></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("last_name") %>, <%=usercontent.getString("first_name") %> <%=usercontent.getString("middle_name") %>" readonly ></td>
                  <td rowspan = "3"><center><img src="Images/dp.png" style="width:50%; height:50%;" class="responsive"></center></td>
                </tr>
                <tr>
                  <td>ID </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("userid")%>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("userid")%>"  readonly></td>
                </tr>
                <tr>
                  <td>Type </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("type") %>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("type") %>"  readonly></td>
                </tr>
                <tr>
                  <td>Gender </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("gender") %>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("gender") %>"  readonly></td>
                  <td><center><button type="button" onclick = "editProfile()" id="editprofile" class="btn btn-warning btn-sm">
                  <span class="glyphicon glyphicon-pencil"></span> &nbsp Edit Profile
                  </button>

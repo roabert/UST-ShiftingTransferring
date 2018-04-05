@@ -147,7 +147,7 @@ if(getuser == null) {
             <table class="table">
                <tr>
                  <td>Name </td>
-                 <td><input type="text" size="60" value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value = "<%=usercontent.getString("lastname")%>, <%=usercontent.getString("firstname")%> <%=usercontent.getString("middlei") %>"  readonly></td>
                  <!--
                  <td rowspan = "5"><center><img src="Images/dp.png" style="width:50%; height:50%;" class="responsive"></center></td>
                  -->
@@ -155,23 +155,23 @@ if(getuser == null) {
                </tr>
                <tr>
                  <td>ID </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getInt("studentid")%>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getInt("studentid")%>"  readonly></td>
                </tr>
                <tr>
                  <td>Program </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("oldprogram") %>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("oldprogram") %>"  readonly></td>
                </tr>
                <tr>
                  <td>Type </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("typeofstudent") %>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("typeofstudent") %>"  readonly></td>
                </tr>
                <tr>
                  <td>Gender </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("gender") %>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("gender") %>"  readonly></td>
                </tr>
                <tr>
                  <td>Outgoing: </td>
-                 <td><input type="text" size="60" value="<%=usercontent.getString("newprogram") %>" class="form-control" readonly></td>
+                 <td><input type="text" class="form-control" size="60" value="<%=usercontent.getString("newprogram") %>"  readonly></td>
                  <td><center><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit Profile</button></center></td>
                </tr>
             </table>

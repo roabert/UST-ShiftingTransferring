@@ -51,20 +51,20 @@
          
                <tr>
                  <td><strong>Name </strong></td>
-                 <td><input type="text" value="SAMPLE" class="form-control" size="15" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE"  size="15" size="50" readonly></td>
                  <td rowspan = "4"><center><img src="../images/dp.png" style="width:50%; height:50%;"></center></td>
                </tr>
                <tr>
                  <td><strong>ID </strong></td>
-                 <td><input type="text" value="SAMPLE" class="form-control" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE"  size="50" readonly></td>
                </tr>
                <tr>
                  <td><strong>Program </strong></td>
-                 <td><input type="text" value="SAMPLE" class="form-control" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE"  size="50" readonly></td>
                </tr>
                <tr>
                  <td><strong>Type</strong> </td>
-                 <td><input type="text" value="SAMPLE"class="form-control" size="50" readonly></td>
+                 <td><input type="text" class="form-control" value="SAMPLE" size="50" readonly></td>
                </tr>
 
                <tr>
