@@ -129,6 +129,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
           <th>Incoming</th>
           <th>Memo Request</th>
           <th>Endorse Student</th>
+          <th>Endorse with Remarks</th>
         </tr>
         </thead>
         <tbody>
@@ -145,12 +146,22 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button></td>
+        <td>
+         <form action="RegistrarIndorseProcess" method = "post">
+         <input type="hidden" name="studentid" value="<%=rs.getString("shifter_id")%>">
+         <input type="hidden" name="getuser" value = "<%=getuser%>">
+         <input type="hidden" name="endorsement" value="">
+         <input type="hidden" name="endorse" value="endorsenow">
+          <button type="submit" class="btn btn-warning">
+          <span class="glyphicon glyphicon-level-up"></span> Endorse now</button>
+         </form>
+        </td>
         <td><button type="button" class = "btn btn-warning registrar_indorsement"
            data-target=".regIndorse"
            data-toggle="modal"
            data-shifter_id = "<%=rs.getString("shifter_id") %>"
            data-getuser = "<%=getuser %>"
-           ><span class="glyphicon glyphicon-level-up"></span> Endorse</button></td>
+           ><span class="glyphicon glyphicon-level-up"></span> Endorse with Remarks</button></td>
         </tr>
          <div id="<%=rs.getString("shifter_id") %>" style="width:600px;display: none;">
 					<%
@@ -213,17 +224,17 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
          <div class="modal-body"><br>
           <input class="shifter_id" type="hidden" name="studentid">
           <input class="getuser" type="hidden" name="getuser">
+          <input type="hidden" name="endorse" value="endorsewithremarks">
           <p>To the Secretary General,</p>
           <p>recommending approval of the application</p>
            <center>
-          <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 633px; height: 235px;"></textarea><br><br>
+          <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 633px; height: 235px;" required></textarea><br><br>
             <p><input type="checkbox" name="approval" id = "approval" value="Approved"> Approve Endorsement</p>
             </center>
          </div>
          <div class="modal-footer">
          <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-             &nbsp&nbsp
-           <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Endorse Student</button>
+           <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Submit</button>
 
          </div>
          </form>
@@ -252,7 +263,7 @@ function closeNav() {
 }
 function EndorseMemo() {
 	var approval = document.getElementById("approval");
-
+    
 	if(approval.checked == false) {
 		if(confirm("By leaving the approval unchecked, you are disapproving the endorsement of the student. Are you sure?")) {
 			document.getElementById("endorsestudent").method = "post";

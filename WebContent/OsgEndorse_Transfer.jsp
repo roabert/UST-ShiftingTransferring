@@ -132,7 +132,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
           <th>Incoming</th>
           <th>Memo</th>
           <th>First Endorsement</th>
-          <th>Finish</th>
+          <th>Endorse Student</th>
+          <th>Endorse with Remarks</th>
         </tr>
 		</thead>
         
@@ -150,13 +151,23 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button href="#<%=rs.getString("transferee_id") %>" class="fancybox btn">View Memo</button></td>
         <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Registrar's Memo</b></td>
+        <td>
+         <form action="OSGIndorseTransferProcess" method = "post">
+         <input type="hidden" name="transferid" value="<%=rs.getString("transferee_id")%>">
+         <input type="hidden" name="getuser" value = "<%=getuser%>">
+         <input type="hidden" name="endorsement" value="">
+         <input type="hidden" name="endorse" value="endorsenow">
+          <button type="submit" class="btn btn-warning">
+          <span class="glyphicon glyphicon-level-up"></span> Endorse now</button>
+         </form>
+        </td>
         <td><button type="button" class = "btn btn-warning osg_Endorsement"
            data-target=".osgIndorse"
            data-toggle="modal"
            data-transferee_id = "<%=rs.getString("transferee_id") %>"
            data-getuser = "<%=getuser %>"
            data-newcourse = "<%=rs.getString("newcourse") %>"
-           ><span class="glyphicon glyphicon-level-up"></span> Endorse</button></td>
+           ><span class="glyphicon glyphicon-level-up"></span> Endorse with Remarks</button></td>
         </tr>
         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
 					<%
@@ -248,6 +259,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
          <div class="modal-body"><br>
           <input class="transferee_id" type="hidden" name="transferid">
           <input class="getuser" type="hidden" name="getuser">
+           <input type="hidden" name="endorse" value="endorsewithremarks">
           <p>To the Dean of the <i id="newcourse"></i></p>
          
           <br>
@@ -260,7 +272,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
          </div>
          <div class="modal-footer">
           <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-          <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Endorse Student</button>
+          <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Submit</button>
 
          </div>
          </form>

@@ -57,11 +57,13 @@ public class OSGIndorseProcess extends HttpServlet {
         String getsecgen = request.getParameter("getuser");
         String getremarks = request.getParameter("endorsement");
         String getapproval = request.getParameter("approval");
+        String getbutton = request.getParameter("endorse");
         
         OSGIndorseStudentDAO o = new OSGIndorseStudentDAO();
         o.setSecgen(getsecgen);
         o.setStudentid(getstudentid);
         o.setRemarks(getremarks);
+       if(getbutton.equals("endorsewithremarks")) {
         if(getapproval != null) {
         o.finalStep(conn);
         request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
@@ -72,7 +74,12 @@ public class OSGIndorseProcess extends HttpServlet {
         request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
         out.print("<script>alert('Memo of "+getstudentid+" has been disapproved!')</script>");
         }
-        
+       }
+       else if(getbutton.equals("endorsenow")) {
+           o.finalStep(conn);
+           request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
+           out.print("<script>alert('Memo of "+getstudentid+" approved! Student has been shifted!')</script>");
+       }
         
 	}
 

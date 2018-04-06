@@ -56,12 +56,14 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 		String getdeanid = request.getParameter("getuser");
 		String getremarks = request.getParameter("endorsement");
 		String ifchecked = request.getParameter("approval");
+		String getbutton = request.getParameter("endorse");
 		
 		RegistrarIndorseTransferDAO d = new RegistrarIndorseTransferDAO();
 		d.setRegistrar(getdeanid);
 		d.setTransferid(gettransferid);
 		d.setEndorsement(getremarks);
 		
+     if(getbutton.equals("endorsewithremarks")) {
 		if(ifchecked != null){
 		d.registrarIndorsed(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
@@ -74,6 +76,13 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+gettransferid+" was rejected!');</script>");
 		}
+	  }
+     else if(getbutton.equals("endorsenow")){
+    		d.registrarIndorsed(conn);
+   		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
+   		    .include(request, response);
+   		    out.print("<script>alert('Memo of "+gettransferid+" forwarded!');</script>");
+     }
 	}
 
 }

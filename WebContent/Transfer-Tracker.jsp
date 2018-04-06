@@ -106,75 +106,76 @@ if(getuser == null) {
    %>
      <%if(tracker.getOsaverified() != null) {%>
    <% if(tracker.getOsaverified().equals("In-progress")) {%>
-	  <a class="modal-btn inp" href="#open-modal">OSA Verification</a>
+	  <a class="modal-btn inp">OSA Verification</a>
 	  <%} else if(tracker.getOsaverified().equals("Approved")) {%>
-	   <a class="modal-btn active" href="#open-modal">OSA Verification</a>
+	   <a class="modal-btn active" href="#osaverified">OSA Verification</a>
 	   <%} else if(tracker.getOsaverified().equals("Disapproved")) {%>
-	    <a class="modal-btn reject" href="#open-modal">OSA Verification</a>
+	    <a class="modal-btn reject" href="#osaverified">OSA Verification</a>
 	    <%} else { %>  <%} %>
 	      <%} else {
 	    	  %> <a class="modal-btn" href="#open-modal">OSA Verification</a> <% 
 	      } %>
-	  <%if(tracker.getDeanverified() != null)  {%>
+	      
+	<%if(tracker.getDeanverified() != null)  {%>
 	    <%if (tracker.getDeanverified().equals("In-progress")) {%>
-	  	<a class="modal-btn inp" href="#open-modal">Dean Verification</a>
+	  	<a class="modal-btn inp">Dean Verification</a>
 	  	<%} else if (tracker.getDeanverified().equals("Approved")) {%>
-	  	<a class="modal-btn active" href="#open-modal">Dean Verification</a>
+	  	<a class="modal-btn active" href="#deanverified">Dean Verification</a>
 	  	<%} else if (tracker.getDeanverified().equals("Disapproved")) {%>
-	  	<a class="modal-btn reject" href="#open-modal">Dean Verification</a>
+	  	<a class="modal-btn reject" href="#deanverified">Dean Verification</a>
 	  	<%} else {%> <%} %>
 	  	<%} else { %>
-	  	<a class="modal-btn" href="#open-modal">Dean Verification</a>
+	  	<a class="modal-btn">Dean Verification</a>
 	  	<%} %>
 	 
 	 <%if(tracker.getOsgverified() != null) {%>
 	  	   <%if (tracker.getOsgverified().equals("In-progress")) {%>
-	   <a class="modal-btn inp" href="#open-modal">OSG Verification</a>
+	   <a class="modal-btn inp">OSG Verification</a>
 	   <%} else if (tracker.getOsgverified().equals("Approved")) {%>
-	   <a class="modal-btn active" href="#open-modal">OSG Verification</a>
+	   <a class="modal-btn active" href="#secgenverified">OSG Verification</a>
 	   <%} else if (tracker.getOsgverified().equals("Disapproved")) {%>
-       <a class="modal-btn reject" href="#open-modal">OSG Verification</a>
+       <a class="modal-btn reject" href="#secgenverified">OSG Verification</a>
        <%} else {%>  <%} %>
      <%} else { %>
-     <a class="modal-btn" href="#open-modal">OSG Verification</a>
+     <a class="modal-btn">OSG Verification</a>
      <%} %>
 
       <%if(tracker.getOfadverified()!=null) { %>
        <% if(tracker.getOfadverified().equals("In-progress")) {%>
-	    <a class="modal-btn inp" href="#open-modal">OFAD Verification</a>
+	    <a class="modal-btn inp">OFAD Verification</a>
 	    <%} else if(tracker.getOfadverified().equals("Approved")) {%>
-	    <a class="modal-btn active" href="#open-modal">OFAD Verification</a>
+	    <a class="modal-btn active" href="#ofadverified">OFAD Verification</a>
 	    <%} else if(tracker.getOfadverified().equals("Disapproved")) {%>
-	    <a class="modal-btn reject" href="#open-modal">OFAD Verification</a>
+	    <a class="modal-btn reject" href="#ofadverified">OFAD Verification</a>
 	    <%} else {%> <%} %>
 	    <%} else { %>
-	    <a class="modal-btn" href="#open-modal">OFAD Verification</a>
+	    <a class="modal-btn">OFAD Verification</a>
 	    <%} %>
 	    
 	 <%if(tracker.getGetsched() != null && tracker.getIdsched() != null) {%>
-	  <a class="modal-btn active" href="#open-modal2">OFAD Exam Schedule</a>
+	  <a class="modal-btn active" href="#ofadsched">OFAD Exam Schedule</a>
 	  <%} else if(tracker.getGetsched() == null && tracker.getIdsched() != null) {%>
-	   <a class="modal-btn inp" href="#open-modal2">OFAD Exam Schedule</a>
+	   <a class="modal-btn inp">OFAD Exam Schedule</a>
 	  <%} 
 	  else if(tracker.getGetsched() == null && tracker.getIdsched() == null) {%>
-	  <a class="modal-btn" href="#open-modal2">OFAD Exam Schedule</a>
+	  <a class="modal-btn">OFAD Exam Schedule</a>
 	  <%} %>
 	  
-		  <%if(tracker.getFinalscore() != null && tracker.getIdscore() != null) {%>
-	<a class="modal-btn active" href="#open-modal">OFAD Encode Scores</a>
+	  <%if(tracker.getFinalscore() != null && tracker.getIdscore() != null) {%>
+	<a class="modal-btn active" href="#ofadencoded">OFAD Encode Scores</a>
 	<% }else if(tracker.getFinalscore() == null && tracker.getIdscore() != null) {%>
-	<a class="modal-btn inp" href="#open-modal">OFAD Encode Scores</a>
+	<a class="modal-btn inp">OFAD Encode Scores</a>
 	<%} else if(tracker.getFinalscore() == null && tracker.getIdscore() == null){%>
 	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
 	<%} %>
 	
    <% if(tracker.getDeanreview() != null) {%>
 	<%if(tracker.getDeanreview().equals("In-progress")) {%>
-	<a class="modal-btn inp" href="#open-modal">Dean Verifies Results</a>
+	<a class="modal-btn inp">Dean Verifies Results</a>
 	<%} else if(tracker.getDeanreview().equals("Approved")) {%>
-	<a class="modal-btn active" href="#open-modal">Dean Verifies Results</a>
+	<a class="modal-btn active" href="#deanreviewed">Dean Verifies Results</a>
 	<%} else if(tracker.getDeanreview().equals("Disapproved")) {%>
-	<a class="modal-btn reject" href="#open-modal">Dean Verifies Results</a>
+	<a class="modal-btn reject" href="#deanreviewed">Dean Verifies Results</a>
 	<%} %>
    <%} else {%>
    <a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
@@ -184,18 +185,18 @@ if(getuser == null) {
 	<br><br><br><br>
 	<div class="breadcrumb flat">
 	<%if(tracker.getMemostudentid() != null) { %>
-	<a class="modal-btn active" href="#open-modal">Memo Form: Active</a>
+	<a class="modal-btn active">Memo Form: Active</a>
 	<%} else {%>
-	<a class="modal-btn" href="#open-modal">Memo Form: Active</a>
+	<a class="modal-btn">Memo Form: Active</a>
 	<%} %>
 	
    <%if (tracker.getRegistrarindorsed() != null) {%>
     <% if(tracker.getRegistrarindorsed().equals("In-progress")) {%>
-	<a class="modal-btn inp" href="#open-modal">Memo: Registrar</a>
+	<a class="modal-btn inp">Memo: Registrar</a>
 	<%} else if(tracker.getRegistrarindorsed().equals("Approved")) {%>
-	<a class="modal-btn active" href="#open-modal">Memo: Registrar</a>
+	<a class="modal-btn active" href="#registrarindorsed">Memo: Registrar</a>
 	<%} else if(tracker.getRegistrarindorsed().equals("Disapproved")) {%>
-	<a class="modal-btn reject" href="#open-modal">Memo: Registrar</a>
+	<a class="modal-btn reject" href="#registrarindorsed">Memo: Registrar</a>
 	  <%} else { %>
 	   <%} %>
    <%} else {%>
@@ -204,18 +205,18 @@ if(getuser == null) {
 	
    <%if(tracker.getSecgenindorsed() != null) {%>
 	 <% if(tracker.getSecgenindorsed().equals("In-progress")) {%>
-	  <a class="modal-btn inp" href="#open-modal">Memo: Sec Gen</a>
-	  <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	  <a class="modal-btn inp">Memo: Sec Gen</a>
+	  <a  class="modal-btn">Transferring: Finished</a>
 	<%} else if(tracker.getSecgenindorsed().equals("Approved")) {%>
-	  <a class="modal-btn active" href="#open-modal">Memo: Sec Gen</a>
-	  <a  class="modal-btn active" href="#open-modal">Transferring: Finished</a>
+	  <a class="modal-btn active" href="#secgenindorsed">Memo: Sec Gen</a>
+	  <a  class="modal-btn active" href="Shifter-Shifting-Done.jsp">Transferring: Finished</a>
 	<%} else if(tracker.getSecgenindorsed().equals("Disapproved")) {%>
-	   <a class="modal-btn rejected" href="#open-modal">Memo: Sec Gen</a>
-	   <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+	   <a class="modal-btn reject" href="#secgenindorsed">Memo: Sec Gen</a>
+	   <a  class="modal-btn" href="Shifter-ShiftFailed.jsp">Transferring: Finished</a>
 	<%}  else { %><% }
    }else { %>
-   <a class="modal-btn" href="#open-modal">Memo: Sec Gen</a>
-   <a  class="modal-btn" href="#open-modal">Transferring: Finished</a>
+   <a class="modal-btn">Memo: Sec Gen</a>
+   <a  class="modal-btn">Transferring: Finished</a>
 	<%} %>
 	
 	
@@ -230,9 +231,9 @@ if(getuser == null) {
 
 
 <ul class="legend">
-    <li><span class="approved"></span> Approved</li>
+    <li><span class="active"></span> Approved</li>
     <li><span class="rejected"></span> Rejected</li>
-    <li><span class="inprogress"></span> In Progress</li>
+    <li><span class="inp"></span> In Progress</li>
 </ul>
 
 <br>
@@ -241,6 +242,146 @@ if(getuser == null) {
 </div>
 </div>
 
+<div id="osaverified" class="modal-window">
+  <div>
+  		<legend>
+		OSA Verification
+		</legend>		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+
+   
+    <div><h4>Time Stamp: <%=tracker.getOsa_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+  </div>
+</div>
+
+<div id="deanverified" class="modal-window">
+  <div>
+  		<legend>
+		Dean Verification
+		</legend>		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+
+   
+    <div><h4>Time Stamp: <%=tracker.getDean_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+  </div>
+</div>
+
+<div id="secgenverified" class="modal-window">
+	<div>	 
+
+  		<legend>
+		OSG Verification
+		</legend>	
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+
+   
+    <div><h4>Time Stamp: <%=tracker.getSecgen_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+   </div>
+</div>
+
+<div id="ofadverified" class="modal-window">
+ <div>		 
+
+  		<legend>
+		OFAD Verification
+		</legend>
+		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+	
+   
+    <div><h4>Time Stamp: <%=tracker.getOfad_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+   </div>
+</div>
+    
+    <div id="ofadsched" class="modal-window">
+     <div>
+      <legend>Exam Schedule</legend>
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+
+    <p>Kindly see the shifting page for details.</p>
+    <div>Time Stamp: <%=tracker.getGetsched() %></div>
+    </div>
+    </div>
+    
+  <div id="ofadencoded" class="modal-window">
+ <div>		 
+
+  		<legend>
+	 Exam Results
+		</legend>
+		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+	
+   
+    <div><h4>Time Stamp: <%=tracker.getEncoded_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+   </div>
+</div>
+
+<div id="deanreviewed" class="modal-window">
+ <div>		 
+
+  		<legend>
+		Exam Results Reviewed
+		</legend>
+		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+	
+   
+    <div><h4>Time Stamp: <%=tracker.getReviewed_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+   </div>
+</div>
+
+<div id="registrarindorsed" class="modal-window">
+ <div>		 
+
+  		<legend>
+		First Indorsement
+		</legend>
+		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+	
+   
+    <div><h4>Time Stamp: <%=tracker.getIndorsed1_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+   </div>
+</div>
+
+<div id="secgenindorsed" class="modal-window">
+ <div>		 
+
+  		<legend>
+		Second Indorsement
+		</legend>
+		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+	
+   
+    <div><h4>Time Stamp: <%=tracker.getIndorsed2_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+   </div>
+</div>
 
 <div class="footer"></div>
  

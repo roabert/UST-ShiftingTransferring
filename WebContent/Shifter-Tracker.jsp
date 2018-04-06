@@ -207,12 +207,12 @@ if(getuser == null) {
 	  <a class="modal-btn active" href="#secgenindorsed">Memo: Sec Gen</a>
 	  <a  class="modal-btn active" href="Shifter-Shifting-Done.jsp">Transferring: Finished</a>
 	<%} else if(tracker.getSecgenindorsed().equals("Disapproved")) {%>
-	   <a class="modal-btn rejected" href="#secgenindorsed">Memo: Sec Gen</a>
+	   <a class="modal-btn reject" href="#secgenindorsed">Memo: Sec Gen</a>
 	   <a  class="modal-btn" href="Shifter-ShiftFailed.jsp">Transferring: Finished</a>
 	<%}  else { %><% }
    }else { %>
    <a class="modal-btn">Memo: Sec Gen</a>
-   <a  class="modal-btn">Transferring: Finished</a>
+   <a  class="modal-btn">Shifting: Finished</a>
 	<%} %>
 	
 	
@@ -223,6 +223,12 @@ if(getuser == null) {
   </div>
 
   </ol>
+  
+  <ul class="legend">
+    <li><span class="active"></span> Approved</li>
+    <li><span class="reject"></span> Rejected</li>
+    <li><span class="inp"></span> In Progress</li>
+</ul>
   
 <br>
   </center>

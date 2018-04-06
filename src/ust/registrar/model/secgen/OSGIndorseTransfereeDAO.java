@@ -60,7 +60,7 @@ public class OSGIndorseTransfereeDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(OSGdisapproveTransfer);
 			ps.setString(1, secgen);
-			ps.setString(1, remarks);
+			ps.setString(2, remarks);
 			ps.setString(3, transferid);
 			ps.executeUpdate();
 			

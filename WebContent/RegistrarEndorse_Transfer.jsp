@@ -127,6 +127,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
           <th>Incoming</th>
           <th>Memo Request</th>
           <th>Endorse Student</th>
+          <th>Endorse with Remarks</th>
         </tr>
         </thead>
         <tbody>
@@ -141,12 +142,22 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button href="#<%=rs.getString("transferee_id")%>" class="fancybox btn">View Memo</button></td>
+           <td>
+         <form action="RegistrarIndorseTransferProcess" method = "post">
+         <input type="hidden" name="transferid" value="<%=rs.getString("transferee_id")%>">
+         <input type="hidden" name="getuser" value = "<%=getuser%>">
+         <input type="hidden" name="endorsement" value="">
+         <input type="hidden" name="endorse" value="endorsenow">
+          <button type="submit" class="btn btn-warning">
+          <span class="glyphicon glyphicon-level-up"></span> Endorse now</button>
+         </form>
+        </td>
         <td><button type="button" class = "btn btn-warning registrar_indorsement"
            data-target=".regIndorse"
            data-toggle="modal"
            data-transferee_id = "<%=rs.getString("transferee_id") %>"
            data-getuser = "<%=getuser %>"
-           ><span class="glyphicon glyphicon-level-up"></span>  Endorse</button></td>
+           ><span class="glyphicon glyphicon-level-up"></span>  Endorse with Remarks</button></td>
         </tr>
         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
 					<%
@@ -212,6 +223,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
          <div class="modal-body"><br>
           <input class="transfer_id" type="hidden" name="transferid">
           <input class="getuser" type="hidden" name="getuser">
+        <input type="hidden" name="endorse" value="endorsewithremarks">
           <p>To the Secretary General,</p>
           <p>recommending approval of the application</p>
            <center>
@@ -221,7 +233,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
          </div>
          <div class="modal-footer">
          <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-          <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Endorse Student</button>
+          <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Submit</button>
 
          </div>
          </form>

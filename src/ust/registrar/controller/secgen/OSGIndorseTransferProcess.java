@@ -57,11 +57,13 @@ public class OSGIndorseTransferProcess extends HttpServlet {
         String getsecgen = request.getParameter("getuser");
         String getremarks = request.getParameter("endorsement");
         String getapproval = request.getParameter("approval");
+        String getbutton = request.getParameter("endorse");
         
         OSGIndorseTransfereeDAO o = new OSGIndorseTransfereeDAO();
         o.setSecgen(getsecgen);
         o.setTransferid(gettransferid);
         o.setRemarks(getremarks);
+       if(getbutton.equals("endorsewithremarks")) {
         if(getapproval != null) {
         o.approveTransfer(conn);
         request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
@@ -72,6 +74,13 @@ public class OSGIndorseTransferProcess extends HttpServlet {
         request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
         out.print("<script>alert('Memo of "+gettransferid+" has been disapproved!')</script>");
         }
+       }
+       else if(getbutton.equals("endorsenow")) {
+    	   o.approveTransfer(conn);
+           request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
+           out.print("<script>alert('Memo of "+gettransferid+" approved! Student has been transferred!')</script>");
+    	   
+       }
 	}
 
 }

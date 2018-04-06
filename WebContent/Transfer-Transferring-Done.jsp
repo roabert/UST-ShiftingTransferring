@@ -19,7 +19,7 @@
 		 <script src="scripts/list.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Memo Submitted!</title>
+<title>Congratulations, Thomasian!</title>
 </head>
 
 <body>
