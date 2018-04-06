@@ -144,11 +144,11 @@ public class ShifterTracker {
 
 	public void ShifterTrackerVerification(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status INNER JOIN dean on dean_id = dean.userid INNER JOIN secgen on secgen_id = secgen.userid INNER JOIN ofad on ofad_id = ofad.userid WHERE shifter_id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
 			ps.setString(1, studentid);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				deanfaculty = rs.getString("college");
+				
 				deanverified = rs.getString("dean_verified");
 				osgverified = rs.getString("secgen_verified");
 				ofadverified = rs.getString("ofad_verified");

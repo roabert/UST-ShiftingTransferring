@@ -271,7 +271,7 @@ if(rs4.next()) {
 </div>
       <div class="container">
      <form id="step1shifter" onsubmit = "return false" enctype="multipart/form-data">
-     <div id = "choosecollege">
+     <div id = "choosecollege" class="jumbotron">
      
      <br>
 <div class="row">
@@ -326,7 +326,7 @@ if(rs4.next()) {
   <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right"></span> Next</button>
   </center>
  </div>
- <div id = "fileuploading">
+ <div id = "fileuploading" class="jumbotron">
     <div class="container">
 
 		 	<fieldset>
@@ -357,7 +357,7 @@ if(rs4.next()) {
 <br><br>
    <center>
    <button type = "button" onclick="goback()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</button>
-   <button onclick="step1Submit()" id="submit-button" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-check" style="color:white"></span>Submit</button>
+   <button onclick="step1Submit()" id="submit-button" class="btn btn-warning btn-lg" disabled><span class="glyphicon glyphicon-check" style="color:white"></span>Submit</button>
    </center>
  </div>
 </form>

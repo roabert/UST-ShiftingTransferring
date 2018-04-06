@@ -20,18 +20,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		  <script src="scripts/list.js"></script>
 <head>
-<style>
- form#step1transfer > #fileuploading {display:none;}
- select {
-    width: 50%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-</style>
+
 <meta charset="ISO-8859-1">
-<title>Process | Done</title>
+<title>Process | Failed</title>
 </head>
 <body>
 <%
@@ -129,8 +120,19 @@ if(getuser == null) {
          <%=pf.getOfadremarks()%>
          <%} else {}%>
          </i>
+         <br>
+         <br><br>
+          <form action="RetryTransferring" method="post">
+         <% %>
+         <input type="hidden" name="getuser_retry" value="<%=getuser%>">
+         <button type="submit" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh" style="color:white"></span> Retry Application</button>
+         </form>
        </center>
           </div>
+        
+          
+        
+        
   </div>
      
 </div>

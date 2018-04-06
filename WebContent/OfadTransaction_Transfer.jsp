@@ -207,7 +207,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
          <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
          <br>
           <center>
-          <textarea name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
+          <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
             </center>
        </div>
        <div class="modal-footer">

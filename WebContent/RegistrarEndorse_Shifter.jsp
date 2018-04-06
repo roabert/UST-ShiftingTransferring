@@ -228,7 +228,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
           <p>To the Secretary General,</p>
           <p>recommending approval of the application</p>
            <center>
-          <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 633px; height: 235px;" required></textarea><br><br>
+          <textarea required name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 633px; height: 235px;" required></textarea><br><br>
             <p><input type="checkbox" name="approval" id = "approval" value="Approved"> Approve Endorsement</p>
             </center>
          </div>

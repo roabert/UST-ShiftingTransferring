@@ -264,7 +264,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
          
           <br>
             <center>
-            <textarea name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 505px; height: 131px;"></textarea>
+            <textarea required name="endorsement" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 505px; height: 131px;"></textarea>
              <br><br><p>This student may enroll in your college</p>
          
           <p><input type="checkbox" name="approval" id = "approval" value="Approved"> Approve Endorsement</p>

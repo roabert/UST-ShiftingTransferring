@@ -277,7 +277,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             </div>
             
             <br>
-            <center>   <textarea rows="10" cols="100%" name = "exam_remarks" placeholder="Remarks"></textarea><br><br>
+            <center>   <textarea required rows="10" cols="100%" name = "exam_remarks" placeholder="Remarks"></textarea><br><br>
            </center>
          </div>
          <div class="modal-footer">

@@ -200,7 +200,7 @@ if(getuser == null) {
    <center>
    <a id="text_steps">
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   STEP 1: SELECT OUTGOING PROGRAM
+    STEP 1: Choosing your course and Uploading Requirements
    </a>
    </center>
 </div>
@@ -267,8 +267,9 @@ if(rs4.next()) {
 </div>
 
      <div class="container">
+     <br>
      <form id="step1transfer" onsubmit = "false" enctype="multipart/form-data">
-     <div id = "choosecollege">
+     <div id = "choosecollege" class="jumbotron">
      
      <br>  
       <%
@@ -287,11 +288,11 @@ if(rs4.next()) {
     } %>
     <center>
     <h2>Outgoing College</h2>
-    <select class="form-control" id="country" name="outgoing_college">
+    <select class="form-control" style="width:600px; max-width:100%;" id="country" name="outgoing_college">
 
-</select>
+</select> <br>
     <h2>Outgoing Program</h2>
-    <select class="form-control" id="state" name="outgoing_program">
+    <select class="form-control" style="width:600px; max-width:100%;" id="state" name="outgoing_program">
 
 </select>
 
@@ -299,10 +300,10 @@ if(rs4.next()) {
     <img id="imageToSwap" src="images/d.gif" />
   <br><br>
  
-  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg">Next</button>
+  <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right"></span> Next</button>
   </center>
  </div>
- <div id = "fileuploading">
+ <div id = "fileuploading" class="jumbotron">
     <div class="container">
 
 		 	<fieldset>
@@ -330,8 +331,8 @@ if(rs4.next()) {
 </div>
 <br><br>
    <center>
-   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg">Back</button>
-   <button onclick="step1Submit()" id="submit-button" class="btn btn-warning btn-lg">Submit</button>
+   <button type = "button" onclick="goback()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</button>
+   <button onclick="step1Submit()" id="submit-button" class="btn btn-warning btn-lg" disabled><span class="glyphicon glyphicon-check"></span> Submit</button>
    </center>
  </div>
  </form>
@@ -369,12 +370,17 @@ function swapImage(){
 	image.src = dropd.value;	
 };
 function nextstep() {
-	id("text_steps").innerHTML = "<a><span style=\"font-size:30px;cursor:pointer;color: white; float:left\" class=\"js-toggle-left-slidebar\">&#9776;</span>STEP 1: UPLOAD REQUIREMENTS</span></a>";
+	var faculty = id("country").value;
+	var course = id("state").value;
+  if(faculty != "------Select Faculty------" && course != null) {
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
+  }
+  else {
+	  alert('Please choose the course you want to transfer.');
+  }
 }
 function goback() {
-	id("text_steps").innerHTML = "<a><span style=\"font-size:30px;cursor:pointer;color: white; float:left\" class=\"js-toggle-left-slidebar\">&#9776;</span>STEP 1: SELECT OUTGOING PROGRAM</a>";
 	id("choosecollege").style.display = "block";
 	id("fileuploading").style.display = "none";
 }

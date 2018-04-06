@@ -147,11 +147,11 @@ public class TransfereeTracker {
 
 	public void TransferTrackerVerification(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status INNER JOIN dean on dean_id = dean.userid INNER JOIN secgen on secgen_id = secgen.userid INNER JOIN ofad on ofad_id = ofad.userid WHERE transferee_id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ?");
 			ps.setString(1, studentid);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				deanfaculty = rs.getString("college");
+			
 				osaverified = rs.getString("osa_verified");
 				deanverified = rs.getString("dean_verified");
 				osgverified = rs.getString("secgen_verified");

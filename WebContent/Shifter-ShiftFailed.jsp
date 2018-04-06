@@ -112,6 +112,15 @@ if(getuser == null) {
          <%=pf.getOfadremarks()%>
          <%} else {}%>
          </i>
+         <br>
+         <br>
+         
+         <form action="RetryShifting" method="post">
+         <% %>
+         <input type="hidden" name="getuser_retry" value="<%=getuser%>">
+         <button type="submit" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh" style="color:white"></span> Retry Application</button>
+         </form>
+         
        </center>
           </div>
   </div>
