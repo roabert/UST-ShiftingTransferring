@@ -8,6 +8,74 @@ import java.sql.SQLException;
 public class ShifterTracker {
 	
 	public String studentid, idscore, idsched, deanverified, osgverified, ofadverified;
+	public String dean_timestamp, secgen_timestamp, ofad_timestamp, encoded_timestamp, reviewed_timestamp ;
+	public String indorsed1_timestamp, indorsed2_timestamp;
+	public String deanfaculty;
+	public String getDeanfaculty() {
+		return deanfaculty;
+	}
+
+	public void setDeanfaculty(String deanfaculty) {
+		this.deanfaculty = deanfaculty;
+	}
+
+	public String getDean_timestamp() {
+		return dean_timestamp;
+	}
+
+	public void setDean_timestamp(String dean_timestamp) {
+		this.dean_timestamp = dean_timestamp;
+	}
+
+
+	public String getSecgen_timestamp() {
+		return secgen_timestamp;
+	}
+
+	public void setSecgen_timestamp(String secgen_timestamp) {
+		this.secgen_timestamp = secgen_timestamp;
+	}
+
+	public String getOfad_timestamp() {
+		return ofad_timestamp;
+	}
+
+	public void setOfad_timestamp(String ofad_timestamp) {
+		this.ofad_timestamp = ofad_timestamp;
+	}
+	
+	public String getEncoded_timestamp() {
+		return encoded_timestamp;
+	}
+
+	public void setEncoded_timestamp(String encoded_timestamp) {
+		this.encoded_timestamp = encoded_timestamp;
+	}
+
+	public String getReviewed_timestamp() {
+		return reviewed_timestamp;
+	}
+
+	public void setReviewed_timestamp(String reviewed_timestamp) {
+		this.reviewed_timestamp = reviewed_timestamp;
+	}
+
+	public String getIndorsed1_timestamp() {
+		return indorsed1_timestamp;
+	}
+
+	public void setIndorsed1_timestamp(String indorsed1_timestamp) {
+		this.indorsed1_timestamp = indorsed1_timestamp;
+	}
+
+	public String getIndorsed2_timestamp() {
+		return indorsed2_timestamp;
+	}
+
+	public void setIndorsed2_timestamp(String indorsed2_timestamp) {
+		this.indorsed2_timestamp = indorsed2_timestamp;
+	}
+
 	public String getIdsched() {
 		return idsched;
 	}
@@ -76,14 +144,18 @@ public class ShifterTracker {
 
 	public void ShifterTrackerVerification(Connection conn) {
 		try {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status INNER JOIN dean on dean_id = dean.userid INNER JOIN secgen on secgen_id = secgen.userid INNER JOIN ofad on ofad_id = ofad.userid WHERE shifter_id = ?");
 			ps.setString(1, studentid);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-		
+				deanfaculty = rs.getString("college");
 				deanverified = rs.getString("dean_verified");
 				osgverified = rs.getString("secgen_verified");
 				ofadverified = rs.getString("ofad_verified");
+				reviewed_timestamp = rs.getString("dean_date_reviewed");
+				dean_timestamp = rs.getString("dean_date_verified");
+				secgen_timestamp = rs.getString("secgen_date_verified");
+				ofad_timestamp = rs.getString("ofad_date_verified");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -124,6 +196,7 @@ public class ShifterTracker {
 				idscore = rs.getString("shifter_id");
 		      finalscore = rs.getString("final_score");
 		      deanreview = rs.getString("dean_reviewed");
+		      encoded_timestamp = rs.getString("date_encoded");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -139,6 +212,8 @@ public class ShifterTracker {
 		       registrarindorsed = rs.getString("registrar_indorsed");
 		       secgenindorsed = rs.getString("secgen_indorsed");
 		       memostudentid = rs.getString("shifter_id");
+		       indorsed1_timestamp = rs.getString("registrar_date_indorsed");
+		       indorsed2_timestamp = rs.getString("secgen_date_indorsed");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -115,10 +115,10 @@ public interface DatabaseSQLs {
 		// Registrar memo approval
 		 String RegistrarStatusShifter = "UPDATE shifters_indorsement SET registrar_indorsed = 'In-progress' WHERE shifter_id = ?";
 		 // Secgen memo approval
-		 String OSGapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, shifter_shifting_approved = 'Approved' WHERE shifter_id = ?";
+		 String OSGapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, shifter_shifting_approved = 'Approved', secgen_date_indorsed = NOW() WHERE shifter_id = ?";
 		 String approveShiftingFinal = "UPDATE student_shifter SET shifting_approved = 'Approved' WHERE studentid = ?";
 		 // Secgen memo disapproval
-		 String OSGdisapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?  WHERE shifter_id = ?";
+		 String OSGdisapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?, secgen_date_indorsed = NOW()  WHERE shifter_id = ?";
 		 
 		 // Step 3 MEMO TRANSFER
 		 String generateMemoTransfer = "INSERT INTO transferees_memo (transferee_id, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

@@ -116,10 +116,12 @@ if(getuser == null) {
       <center>
          <table class="table table-striped table-sortable">
         <thead>
+        <tr>
           	<th>User ID</th>
          	<th>Name</th>
           	<th>Type</th>
           	<th>Edit Users</th>
+          	</tr>
         </thead>    
         <tbody>
        <%
