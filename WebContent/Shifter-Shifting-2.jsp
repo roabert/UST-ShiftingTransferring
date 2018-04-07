@@ -97,12 +97,15 @@ if(getuser == null) {
 <br>
 </div>
          <%
-         PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is NOT NULL");
-         ps.setString(1, getuser);
-         ResultSet rs = ps.executeQuery();
-         if(!rs.next()) {
-      	 response.sendRedirect("Shifter-Step1Done.jsp");
-       }
+         
+
+PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ? AND dean_reviewed = 'In-progress'");
+pss1.setString(1, getuser);
+ResultSet rss1 = pss1.executeQuery();
+if(rss1.next()) {
+	
+	 response.sendRedirect("Shifter-ExamDone.jsp");
+} 
   
          %>
 </div>  <br>

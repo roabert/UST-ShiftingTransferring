@@ -167,10 +167,10 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <td>
 		<input type="hidden" name="getstudent" value="<%=rs.getString("transferee_id") %>">
 		<input type="hidden" name="getuser" value="<%=getuser%>">
-		<input type = "number" id="math" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Math"  name="mathscore" required></td>
-	    <td><input type = "number" id="sci" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Sci"  name="sciencescore" required></td>
-	    <td><input type = "number" id="eng" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Eng"  name="englishscore" required></td>
-	    <td><input type = "number" id="iq" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="IQ"  name="iqscore" required></td>
+		<input type = "number" class="form-control" id="math" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Math"  name="mathscore" required></td>
+	    <td><input type = "number" class="form-control" id="sci" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Sci"  name="sciencescore" required></td>
+	    <td><input type = "number" class="form-control" id="eng" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="Eng"  name="englishscore" required></td>
+	    <td><input type = "number" class="form-control" id="iq" size="30" min="0" max="100" oninput="validity.valid||(value='');" placeholder="IQ"  name="iqscore" required></td>
 	    <td>
 	    	<button type="submit"  class="btn btn-warning" 
 		onclick="return confirm('Are you sure? Changes cannot be done after submitting.')">Submit</button>
@@ -214,6 +214,31 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
+
+
+<script type="text/javascript"> 
+$("#math").keypress(function(e) {               
+	  if (this.value == 00 && e.which == 48) {
+	  return false;                                     
+	  }                
+	});
+$("#sci").keypress(function(e) {               
+	  if (this.value == 00 && e.which == 48) {
+	  return false;                                     
+	  }                
+	});
+$("#eng").keypress(function(e) {               
+	  if (this.value == 00 && e.which == 48) {
+	  return false;                                     
+	  }                
+	});
+$("#iq").keypress(function(e) {               
+	  if (this.value == 00 && e.which == 48) {
+	  return false;                                     
+	  }                
+	});
+</script>
+
      
 </body>
 </html>

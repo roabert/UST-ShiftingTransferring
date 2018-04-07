@@ -228,14 +228,7 @@ if(rs1.next()) {
 	
 	 response.sendRedirect("Transfer-Transferring-2.jsp");
 } 
-/**
-PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM transferees_scores WHERE transferee_id = ? AND (final_score is NULL OR dean_reviewed = 'In-progress')");
-pss1.setString(1, getuser);
-ResultSet rss1 = pss1.executeQuery();
-if(rss1.next()) {
-	
-	 response.sendRedirect("Transfer-Transferring-2.jsp");
-}  */
+
 PreparedStatement pss2 = conn.prepareStatement("SELECT * FROM transferees_scores WHERE transferee_id = ? AND dean_reviewed = 'Disapproved'");
 pss2.setString(1, getuser);
 ResultSet rss2 = pss2.executeQuery();

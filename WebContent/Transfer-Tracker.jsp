@@ -184,8 +184,10 @@ if(getuser == null) {
 	</div>
 	<br><br><br><br>
 	<div class="breadcrumb flat">
-	<%if(tracker.getMemostudentid() != null) { %>
-	<a class="modal-btn active">Memo Form: Active</a>
+ <%if(tracker.getMemostudentid() != null && tracker.getRegistrarindorsed() == null) { %>
+	<a class="modal-btn inp" href="Transfer-Memo.jsp">Memo Form: Active</a>
+	<%}else if(tracker.getMemostudentid() != null && tracker.getRegistrarindorsed() != null) {  %>
+	<a class="modal-btn active" href="#studentmemo">Memo Form: Active</a>
 	<%} else {%>
 	<a class="modal-btn">Memo Form: Active</a>
 	<%} %>
@@ -348,7 +350,22 @@ if(getuser == null) {
     <br>
    </div>
 </div>
+<div id="studentmemo" class="modal-window">
+ <div>		 
 
+  		<legend>
+		Student Memo Application
+		</legend>
+		
+    <a href="#modal-close" title="Close" class="modal-close">&times;</a>
+	
+   
+    <div><h4>Time Stamp: <%=tracker.getReviewed_timestamp()%></h4>
+    </div>
+    <br>
+    <br>
+   </div>
+</div>
 <div id="registrarindorsed" class="modal-window">
  <div>		 
 

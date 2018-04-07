@@ -126,16 +126,7 @@ function populateCountries(countryElementId, stateElementId) {
 }
 </script>
 <head>
-<style>
- form#step1transfer > #fileuploading {display:none;}
- select {
-    width: 50%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-</style>
+
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
 </head>
@@ -146,7 +137,18 @@ if(getuser == null) {
 	 response.sendRedirect("login.jsp");
 }	
 %>
+   <%
+         
 
+PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM transferees_scores WHERE transferee_id = ? AND dean_reviewed = 'In-progress'");
+pss1.setString(1, getuser);
+ResultSet rss1 = pss1.executeQuery();
+if(rss1.next()) {
+	
+	 response.sendRedirect("Transfer-ExamDone.jsp");
+} 
+  
+         %>
 <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<br>

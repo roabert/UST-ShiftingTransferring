@@ -168,14 +168,7 @@ if(rs1.next()) {
 	
 	 response.sendRedirect("Shifter-Shifting-2.jsp");
 } 
-/**
-PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ? AND (final_score is NULL OR dean_reviewed = 'In-progress')");
-pss1.setString(1, getuser);
-ResultSet rss1 = pss1.executeQuery();
-if(rss1.next()) {
-	
-	 response.sendRedirect("Shifter-Shifting-2.jsp");
-} */
+
 PreparedStatement pss2 = conn.prepareStatement("SELECT * FROM shifters_scores WHERE shifter_id = ? AND dean_reviewed = 'Disapproved'");
 pss2.setString(1, getuser);
 ResultSet rss2 = pss2.executeQuery();

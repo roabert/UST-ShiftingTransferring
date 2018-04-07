@@ -23,10 +23,10 @@ public interface DatabaseSQLs {
 	 // Dean disapprove student
 	 String Dean_disapproveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
 	//Dean pass or fail the student DeanVerifyScore
-	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ? WHERE shifter_id = ?";
+	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ?, dean_date_reviewed = NOW() WHERE shifter_id = ?";
 	 String Dean_passfailScoreShifter = "UPDATE shifters_scores SET dean_reviewed = ? WHERE shifter_id = ?";
 	 ///Dean pass or fail student transfer DeanVerifyScoreTransfer
-	 String Dean_passfailTransfer = "UPDATE transferees_status SET dean_id_reviewed = ?, dean_reviewed = ? WHERE transferee_id = ?";
+	 String Dean_passfailTransfer = "UPDATE transferees_status SET dean_id_reviewed = ?, dean_reviewed = ?, dean_date_reviewed = NOW() WHERE transferee_id = ?";
 	 String Dean_passfailScoreTransfer = "UPDATE transferees_scores SET dean_reviewed = ? WHERE transferee_id = ?";
 	 
 	 // SecGen approve student OSG_verifyprocess
@@ -65,10 +65,10 @@ public interface DatabaseSQLs {
 	 
 	 //OFAD encode scores shifter EncodeScoreShifter servlet
 	 
-	 String EncodeScores_Shifter = "UPDATE shifters_scores SET userid = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ?, dean_reviewed = 'In-progress' WHERE shifter_id = ?";
+	 String EncodeScores_Shifter = "UPDATE shifters_scores SET userid = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ?, dean_reviewed = 'In-progress', date_encoded = NOW() WHERE shifter_id = ?";
 	 String ExamTaken_Shifter = "UPDATE shifters_status SET exam_taken = 'Approved', dean_reviewed = 'In-progress' WHERE shifter_id = ?";
 	 // OFAD encode scores transfer EncodeScoreTransfer servlet
-	 String EncodeScores_Transfer = "UPDATE transferees_scores SET ofad_id = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ?, dean_reviewed = 'In-progress' WHERE transferee_id = ?";
+	 String EncodeScores_Transfer = "UPDATE transferees_scores SET ofad_id = ?, math_score = ?, science_score = ?, english_score = ?, iq_score = ?, final_score = ?, dean_reviewed = 'In-progress', date_encoded = NOW() WHERE transferee_id = ?";
 	 String ExamTaken_Transfer = "UPDATE transferees_status SET exam_taken = 'Approved', dean_reviewed = 'In-progress' WHERE transferee_id = ?";
 	 
 	 //Admin Modify Users (for admin)
@@ -113,7 +113,7 @@ public interface DatabaseSQLs {
 		 // Step 3 MEMO SHIFTER
 		 String generateMemoShifter = "INSERT INTO shifters_memo (shifter_id, studentid, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		// Registrar memo approval
-		 String RegistrarStatusShifter = "UPDATE shifters_indorsement SET registrar_indorsed = 'In-progress' WHERE shifter_id = ?";
+		 String RegistrarStatusShifter = "UPDATE shifters_indorsement SET registrar_indorsed = 'In-progress', memo_filledup_date = NOW() WHERE shifter_id = ?";
 		 // Secgen memo approval
 		 String OSGapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, shifter_shifting_approved = 'Approved', secgen_date_indorsed = NOW() WHERE shifter_id = ?";
 		 String approveShiftingFinal = "UPDATE student_shifter SET shifting_approved = 'Approved' WHERE studentid = ?";
@@ -123,7 +123,7 @@ public interface DatabaseSQLs {
 		 // Step 3 MEMO TRANSFER
 		 String generateMemoTransfer = "INSERT INTO transferees_memo (transferee_id, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 // Registrar memo approval
-		 String RegistrarStatusTransfer = "UPDATE transferees_indorsement SET registrar_indorsed = 'In-progress' WHERE transferee_id = ?";
+		 String RegistrarStatusTransfer = "UPDATE transferees_indorsement SET registrar_indorsed = 'In-progress', memo_filledup_date = NOW() WHERE transferee_id = ?";
 		 //Secgen memo approval
 		 String OSGapproveTransfer = "UPDATE transferees_indorsement SET secgen_id = ?, secgen_indorsed = 'Approved', secgen_remarks = ?, transfer_transferring_approved = 'Approved', secgen_date_indorsed = NOW() WHERE transferee_id = ?";
 		 String approveTransferFinal = "UPDATE student_transfer SET transferring_approved = 'Approved' WHERE userid = ?";
