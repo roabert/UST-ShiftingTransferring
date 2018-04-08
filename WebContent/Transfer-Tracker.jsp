@@ -313,7 +313,7 @@ if(getuser == null) {
     <a href="#modal-close" title="Close" class="modal-close">&times;</a>
 
     <p>Kindly see the shifting page for details.</p>
-    <div>Time Stamp: <%=tracker.getGetsched() %></div>
+    <div>Time Stamp: <%=tracker.getGetsched_timestamp() %></div>
     </div>
     </div>
     

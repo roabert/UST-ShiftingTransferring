@@ -4,9 +4,17 @@ import java.sql.*;
 public class TransfereeTracker {
 
 	public String studentid, idscore, idsched, deanverified, osaverified, osgverified, ofadverified;
-	public String osa_timestamp, dean_timestamp, secgen_timestamp, ofad_timestamp, encoded_timestamp, reviewed_timestamp ;
+	public String osa_timestamp, dean_timestamp, secgen_timestamp, ofad_timestamp, getsched_timestamp, encoded_timestamp, reviewed_timestamp ;
 	public String indorsed1_timestamp, indorsed2_timestamp;
 	public String deanfaculty;
+	public String getGetsched_timestamp() {
+		return getsched_timestamp;
+	}
+
+	public void setGetsched_timestamp(String getsched_timestamp) {
+		this.getsched_timestamp = getsched_timestamp;
+	}
+
 	public String getOsa_timestamp() {
 		return osa_timestamp;
 	}
@@ -176,6 +184,7 @@ public class TransfereeTracker {
 			while(rs.next()) {
 				idsched = rs.getString("transferee_id");
 		      getsched = rs.getString("exam_schedule_date");
+		      getsched_timestamp = rs.getString("exam_date_added");
 		      examtaken = rs.getString("exam_taken");
 			}
 		} catch (SQLException e) {

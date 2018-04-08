@@ -211,7 +211,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
             ps.setString(1, getuser);
             ResultSet rs = ps.executeQuery();
            while(rs.next()) {
-            	out.println("<tr><p style=color:red>No transactions returned</p></tr>");
+       
  %>
          
         <tr>
