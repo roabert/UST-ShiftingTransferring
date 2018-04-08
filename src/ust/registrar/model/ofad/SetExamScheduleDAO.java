@@ -4,6 +4,31 @@ import java.sql.*;
 import DatabaseHandler.DatabaseSQLs;
 public class SetExamScheduleDAO implements DatabaseSQLs{
    public String shifterid, transferid, examdate, start, end, venue, remarks;
+   public String getvenue, getstart, getend;
+
+public String getGetstart() {
+	return getstart;
+}
+
+public void setGetstart(String getstart) {
+	this.getstart = getstart;
+}
+
+public String getGetend() {
+	return getend;
+}
+
+public void setGetend(String getend) {
+	this.getend = getend;
+}
+
+public String getGetvenue() {
+	return getvenue;
+}
+
+public void setGetvenue(String getvenue) {
+	this.getvenue = getvenue;
+}
 
 public String getVenue() {
 	return venue;
@@ -107,13 +132,49 @@ public void setRemarks(String remarks) {
     	setExamSchedule(conn);
     	fillExamDate(conn);
     	readyForEncode(conn);
+    	setVenue(conn);
     	
     }
     public void doSetExam2(Connection conn) {
     	setExamSchedule2(conn);
     	fillExamDate2(conn);
     	readyForEncode2(conn);
+    	setVenue(conn);
     }
+    
+    public void setVenue(Connection conn) {
+  	  
+  	  try {
+  		PreparedStatement ps = conn.prepareStatement(Ofad_setvenue);
+  		ps.setString(1, start);
+  		ps.setString(2, end);
+  		ps.setString(3, venue);
+  		ps.executeUpdate();
+  	} catch (SQLException e) {
+  		// TODO Auto-generated catch block
+  		e.printStackTrace();
+  	}
+    }
+    public void checkVenue(Connection conn) {
+    
+  		try {
+  			PreparedStatement ps = conn.prepareStatement(Ofad_getvenue);
+			ps.setString(1, venue);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				getvenue = rs.getString("venue");
+				getstart = rs.getString("start_time");
+				getend = rs.getString("end_time");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+  		
+  		
+    }
+  
     
     public void setExamSchedule2(Connection conn) {
   	  
@@ -131,6 +192,8 @@ public void setRemarks(String remarks) {
   		e.printStackTrace();
   	}
     }
+    
+   
     public void fillExamDate2(Connection conn) {
   	  try {
   		PreparedStatement ps = conn.prepareStatement(Ofad_setexamTransfer);

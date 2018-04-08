@@ -161,6 +161,13 @@ if(rss.next()) {
 
 	 response.sendRedirect("Shifter-ShiftFailed.jsp");
 }
+PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND exam_schedule_date is NULL");
+pss1.setString(1, getuser);
+ResultSet rss1 = pss1.executeQuery();
+if(rss1.next()) {
+	
+	 response.sendRedirect("Shifter-Step1Done.jsp");
+} 
 PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM shifters_exams WHERE shifter_id = ? AND (exam_schedule_date is not NULL AND exam_taken is NULL)");
 ps1.setString(1, getuser);
 ResultSet rs1 = ps1.executeQuery();

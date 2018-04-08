@@ -159,13 +159,10 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 			  <tbody>
               <%
                try{
-            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, venue, remarks FROM exam_schedules_transferees");
+            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, venue, remarks, exam_date_added FROM exam_schedules_transferees");
             	   ResultSet r = p.executeQuery();
-            	     if(!r.next()){
-            	        	out.println("<tr><p style=color:red>No exam schedule set for students</p></tr>");
-            	        }
-            	        else {
-            	           do {
+            	     while(r.next()){
+
               %>
               <tr>
                    <td><%=r.getString("date") %></td>
@@ -178,8 +175,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto; height: 600px;">
 			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
 					<%
-						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM transferees_exams where exam_schedule_date = ?");
-						p2.setString(1, r.getString("date"));
+						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM transferees_exams where exam_date_added = ?");
+						p2.setString(1, r.getString("exam_date_added"));
 	            	   	ResultSet r2 = p2.executeQuery();
 	            	   	while(r2.next()){
 						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM student_transfer where userid = ?");
@@ -188,15 +185,15 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 	            	   	while(r3.next()){
 	            	   		%>
 
-	            	   		<p><%=r3.getString("userid") %> - <%=r3.getString("lastname") %>, <%=r3.getString("firstname") %>, <%=r3.getString("middlei") %></p>
+	            	   		<p><%=r3.getString("lastname") %>, <%=r3.getString("firstname") %>, <%=r3.getString("middlei") %></p>
 	            	<% 
 	            	   		}
 					 
             	        }
 					%>
 				</div>
-              <%}while(r.next());
-                    }
+              <%}
+                   
                } catch(SQLException e) {out.print(e);}
               %>
 			  </tbody>
@@ -216,7 +213,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h3 class="modal-title"><span class="glyphicon glyphicon-calendar"></span> Create Schedule</h3>
          </div>
-         <form action="CreateScheduleProcess2" method="post">
+         <form onsubmit = "return false" id = "createscheduleform">
          <div class="modal-body" style="overflow-x:auto; height:500px; width:100%;">
           <div class="container">
             
@@ -234,8 +231,17 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                <th><input type = "time" class="form-control"  name = "endttime" required><br></th>
                </tr>
                 <tr>
-               <th> <h4>Venue</h4></th>
-               <th><input type = "text"  name = "venueexam" required><br></th>
+              <th><h4>Venue</h4></th>
+               <th><select name = "venueexam" class="form-control" required>
+               <option value = "" selected disabled>Venue of exam</option>
+               <% try{ 
+                PreparedStatement p = conn.prepareStatement("SELECT * FROM venue");
+                ResultSet r = p.executeQuery();
+                while(r.next()) {
+               %>
+               <option value = "<%=r.getString("venue")%>"><%=r.getString("venue") %></option>
+               <% } } catch(SQLException e) {out.print(e);}%>
+               </select><br><p style="color:red"><i>Note: Conflict schedules will not be set.</i></p></th>
                </tr>
             </table><br><br>
          
@@ -282,7 +288,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
          </div>
          <div class="modal-footer">
              <button type="button" data-dismiss="modal" class="btn btn-default btn-md">Cancel</button>
-           <button type="submit" class="btn btn-warning btn-md">Submit</button>
+           <button onclick = "createSched()" class="btn btn-warning btn-md">Submit</button>
          </div>
          </form>
       </div>
@@ -321,6 +327,28 @@ function toggle(source) {
 		checkbox[i].checked = source.checked;
 		}
 	}
+}
+function createSched() {
+	var checkstudents = document.getElementsByName("selectstransferees");
+	var isChecked =false;
+	for(var i = 0; i < checkstudents.length; i++) {
+		if(checkstudents[i].checked) {
+			isChecked = true;
+			break;
+			
+		}
+		
+	}
+	
+	if(isChecked) {
+		document.getElementById("createscheduleform").method = "post";
+		document.getElementById("createscheduleform").action = "CreateScheduleProcess2";
+		document.getElementById("createscheduleform").submit();
+	}
+	else {
+		alert("Please select student(s).");
+	}
+	//document.getElementById("CreateScheduleProcess2");
 }
 </script>
      

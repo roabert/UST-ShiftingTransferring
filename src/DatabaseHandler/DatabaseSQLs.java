@@ -44,20 +44,23 @@ public interface DatabaseSQLs {
 	 
 	 //OFAD exam schedss
 	 //for shifter SetExamScheduleDAO
-	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time, venue, remarks) VALUES (?, ?, ?, ?, ?, ?)";
-	String Ofad_setexam = "UPDATE shifters_exams SET exam_schedule_date = ? WHERE shifter_id = ?";
+	 String Ofad_examsched = "INSERT INTO exam_schedules_shifters (shifter_id, date, start_time, end_time, venue, remarks, exam_date_added) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+	String Ofad_setexam = "UPDATE shifters_exams SET exam_schedule_date = ?, exam_date_added = NOW() WHERE shifter_id = ?";
 	 String Ofad_setEncode = "INSERT INTO shifters_scores (shifter_id) VALUES (?)";
 	//for transferee
 	
-	 
+	 String Ofad_setvenue = "UPDATE venue SET start_time = ?, end_time = ? WHERE venue = ?";
+	 String Ofad_getvenue = "SELECT * FROM venue WHERE venue = ?";	
+
 	 //OFAD OFAD_verifyTransfer
 	 String Ofad_approveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ?, ofad_date_verified = NOW() WHERE transferee_id = ?";
 	 String Ofad_disapproveTransfer = "UPDATE transferees_status SET ofad_id = ?, ofad_verified = ?, ofad_remarks = ?, ofad_date_verified = NOW() WHERE transferee_id = ?";
 	 String Ofad_transferForExam = "INSERT INTO transferees_exams (transferee_id) VALUES (?)";
 	 
 	 //OFAD approve scheduling for SetExamScheduleDAO
-	 String Ofad_examschedTransfer = "INSERT INTO exam_schedules_transferees (transferee_id, date, start_time, end_time, venue, remarks) VALUES (?, ?, ?, ?, ?, ?)";
-	 String Ofad_setexamTransfer = "UPDATE transferees_exams SET exam_schedule_date = ? WHERE transferee_id = ?";
+	 String Ofad_examschedTransfer = "INSERT INTO exam_schedules_transferees (transferee_id, date, start_time, end_time, venue, remarks, exam_date_added) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+	 String Ofad_setexamTransfer = "UPDATE transferees_exams SET exam_schedule_date = ?, exam_date_added = NOW() WHERE transferee_id = ?";
+	
 	 String Ofad_setTransferEncode = "INSERT INTO transferees_scores (transferee_id) VALUES (?)";
 	 // OSA approve transferee
 	 String OSA_approveStudent = "UPDATE transferees_status SET osa_id = ?, osa_verified = ?, osa_date_verified = NOW(), dean_verified = 'In-progress' WHERE transferee_id = ?";

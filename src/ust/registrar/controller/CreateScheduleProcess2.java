@@ -60,7 +60,10 @@ public class CreateScheduleProcess2 extends HttpServlet {
 		String remarks = request.getParameter("exam_remarks");
 		
 		SetExamScheduleDAO set = new SetExamScheduleDAO();
-
+        set.checkVenue(conn);
+        set.setVenue(getvenue);
+     
+     if(!(getstarttime.equals(set.getGetstart())) && !(getendtime.equals(set.getGetend())) ) {   
 	   for(int i = 0; i < gettransfers.length; i ++) {
 					set.setTransferid(gettransfers[i]);
 					set.setExamdate(getexamdate);
@@ -74,6 +77,13 @@ public class CreateScheduleProcess2 extends HttpServlet {
 		request.getRequestDispatcher("OfadExamScheduler2.jsp").include(request, response);
 		out.print("<script>alert('Exam Schedule: "+getexamdate+"');</script>");
 		
-	}
+	  }
+     else {
+    	 request.getRequestDispatcher("OfadExamScheduler2.jsp").include(request, response);
+    	 out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('.createsched').modal('show');  });</script>");
+			out.print("<script>alert('There are conflicts in the schedule, please select other time or place for the exam.');</script>");
+ 	}
+  }
+	
 
 }
