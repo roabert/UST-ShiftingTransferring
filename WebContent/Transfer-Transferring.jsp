@@ -21,7 +21,7 @@ var country_arr = new Array
 (
 <% 
 String getColleges = "SELECT * FROM faculty ORDER BY faculty_name";
-String getCourses = "SELECT * FROM courses ORDER BY faculty";
+String getCourses = "SELECT * FROM courses WHERE status = 'active' ORDER BY faculty";
 try{
 PreparedStatement pst = conn.prepareStatement(getColleges);
 ResultSet colleges = pst.executeQuery();

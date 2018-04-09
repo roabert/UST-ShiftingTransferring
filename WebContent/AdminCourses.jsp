@@ -118,6 +118,7 @@ if(getuser == null) {
         <thead>
         <tr>
           	<th>Courses</th>
+          	<th>Status</th>
  	</tr>
         </thead>    
         <tbody>
@@ -128,6 +129,25 @@ if(getuser == null) {
         %>
         <tr>
         <td><%=rs.getString("courses_name") %></td>
+        <td>
+        <form method = "POST" action="ToggleCourses">
+	   	<input type="hidden" value = "<%= rs.getString("courses_name") %>" name = "courseName">
+        <%
+        	if(rs.getString("status").equals("active")){
+        %>
+	   	<input type="hidden" value = "active" name = "status">
+        <button type="submit" class="btn btn-danger student_shift">Deactivate</button>
+        <%
+        	}
+        	else{
+        %>
+	   	<input type="hidden" value = "inactive" name = "status">
+        <button type="submit" class="btn btn-warning student_shift">Activate</button>
+        <%	
+        	}
+        %>
+        </form> 
+	    </td>
         </tr>
         <%}}catch(SQLException e){out.print(e);} %>
            </tbody>
@@ -139,7 +159,11 @@ if(getuser == null) {
       </div>
       <br>
       <br>
-      <form action ="javascript:;"><button type="button" data-target=".addcourses" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Faculty Here</button></form>
+      <form action ="javascript:;">
+	      <button type="button" data-target=".addcourses" data-toggle="modal" class="btn btn-warning btn-lg pull-right">
+	      	Add New Course
+	      </button>
+      </form>
       </div>
     
       <br><br>
