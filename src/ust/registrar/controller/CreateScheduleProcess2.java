@@ -3,6 +3,7 @@ package ust.registrar.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.text.ParseException;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -58,6 +59,7 @@ public class CreateScheduleProcess2 extends HttpServlet {
 		String getendtime = request.getParameter("endttime");
 		String getvenue = request.getParameter("venueexam");
 		String remarks = request.getParameter("exam_remarks");
+		String status = "";
 		
 		SetExamScheduleDAO set = new SetExamScheduleDAO();
         set.checkVenue(conn);
@@ -71,11 +73,29 @@ public class CreateScheduleProcess2 extends HttpServlet {
 					set.setEnd(getendtime);
 					set.setVenue(getvenue);
 					set.setRemarks(remarks);
-					set.doSetExam2(conn);
+					try {
+						status = set.checkAvailability(conn);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (status.equals("NA")){
+						
+					}
+					else{
+						set.doSetExam2(conn);
+					}
 					
 		}
-		request.getRequestDispatcher("OfadExamScheduler2.jsp").include(request, response);
-		out.print("<script>alert('Exam Schedule: "+getexamdate+"');</script>");
+
+		if (status.equals("NA")){
+			request.getRequestDispatcher("OfadExamScheduler2.jsp").include(request, response);
+			out.print("<script>alert('There are conflicts in the schedule, please select other time or place for the exam.');</script>");
+		}
+		else{
+			request.getRequestDispatcher("OfadExamScheduler2.jsp").include(request, response);
+			out.print("<script>alert('Exam Schedule: "+getexamdate+"');</script>");
+		}
 		
 	  }
      else {

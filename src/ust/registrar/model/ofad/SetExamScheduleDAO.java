@@ -1,5 +1,9 @@
 package ust.registrar.model.ofad;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import DatabaseHandler.DatabaseSQLs;
 public class SetExamScheduleDAO implements DatabaseSQLs{
@@ -140,6 +144,82 @@ public void setRemarks(String remarks) {
     	fillExamDate2(conn);
     	readyForEncode2(conn);
     	setVenue(conn);
+    }
+    
+    public String checkAvailability(Connection conn) throws ParseException{
+    	String status = "";
+    	SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+    	Date startTime = format.parse(start);
+    	Date endTime = format.parse(end);
+    	 try {
+    	  		PreparedStatement ps = conn.prepareStatement("SELECT * from exam_schedules_transferees where date = ? and venue = ?");
+    	  		ps.setString(1, examdate);
+    	  		ps.setString(2, venue);
+    	  		ResultSet getScheds = ps.executeQuery();
+    	  		while (getScheds.next()){
+    	  			Date startTimeToo = format.parse(getScheds.getString("start_time"));
+    	  			Date endTimeToo = format.parse(getScheds.getString("end_time"));
+    	  			if(startTime.equals(startTimeToo)){
+    	  				status = "NA";
+    	  			}
+    	  			
+    	  			if(startTime.after(startTimeToo) && startTime.before(endTimeToo)){
+    	  				status = "NA";		
+    	  			}
+    	  			
+    	  			if(endTime.after(startTimeToo) && endTime.before(endTimeToo)){
+    	  				status = "NA";
+    	  			}
+    	  			
+    	  			if(startTime.before(startTimeToo) && endTime.after(endTimeToo)){
+    	  				status = "NA";
+    	  			}
+    	  		}
+    	  		
+    	  	} catch (SQLException e) {
+    	  		// TODO Auto-generated catch block
+    	  		e.printStackTrace();
+    	  	}
+    	 
+    	return status;
+    }
+    
+    public String checkAvailabilityToo(Connection conn) throws ParseException{
+    	String status = "";
+    	SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+    	Date startTime = format.parse(start);
+    	Date endTime = format.parse(end);
+    	 try {
+    	  		PreparedStatement ps = conn.prepareStatement("SELECT * from exam_schedules_shifters where date = ? and venue = ?");
+    	  		ps.setString(1, examdate);
+    	  		ps.setString(2, venue);
+    	  		ResultSet getScheds = ps.executeQuery();
+    	  		while (getScheds.next()){
+    	  			Date startTimeToo = format.parse(getScheds.getString("start_time"));
+    	  			Date endTimeToo = format.parse(getScheds.getString("end_time"));
+    	  			if(startTime.equals(startTimeToo)){
+    	  				status = "NA";
+    	  			}
+    	  			
+    	  			if(startTime.after(startTimeToo) && startTime.before(endTimeToo)){
+    	  				status = "NA";		
+    	  			}
+    	  			
+    	  			if(endTime.after(startTimeToo) && endTime.before(endTimeToo)){
+    	  				status = "NA";
+    	  			}
+    	  			
+    	  			if(startTime.before(startTimeToo) && endTime.after(endTimeToo)){
+    	  				status = "NA";
+    	  			}
+    	  		}
+    	  		
+    	  	} catch (SQLException e) {
+    	  		// TODO Auto-generated catch block
+    	  		e.printStackTrace();
+    	  	}
+    	 
+    	return status;
     }
     
     public void setVenue(Connection conn) {
