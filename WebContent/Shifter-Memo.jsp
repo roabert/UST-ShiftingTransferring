@@ -33,7 +33,7 @@ if(getuser == null) {
 
 <div off-canvas="slidebar-1 left reveal">
 
-		<navhead>
+		
 		<br>
 			 <%
     
@@ -45,6 +45,7 @@ if(getuser == null) {
      
     while(rs.next()) {
     %>
+    <navhead>
 			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="150" height = "150">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>
