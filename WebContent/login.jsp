@@ -645,6 +645,22 @@ function transferSubmit() {
         		alert('Passwords are not the same!');
         	}
         }
+        
+
+        var file = document.getElementById('imagefile');
+
+        file.onchange = function(e){
+            var ext = this.value.match(/\.([^\.]+)$/)[1];
+            switch(ext)
+            {
+                case 'jpg':
+                case 'png':
+                    break;
+                default:
+                    alert('Supported file types are only .jpg and .png files');
+                    this.value='';
+            }
+        };	        
         </script>
         
 </body>
