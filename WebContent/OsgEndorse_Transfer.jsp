@@ -149,8 +149,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
        <tr>
         <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("transferee_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><button href="#<%=rs.getString("transferee_id") %>" class="fancybox btn">View Memo</button></td>
-        <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Registrar's Memo</b></td>
+        <td><button href="#<%=rs.getString("transferee_id") %>" class="fancybox btn">View Memo</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
+        <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Registrar's Memo</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
         <td>
          <form action="OSGIndorseTransferProcess" method = "post">
          <input type="hidden" name="transferid" value="<%=rs.getString("transferee_id")%>">

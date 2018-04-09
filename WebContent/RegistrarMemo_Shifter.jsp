@@ -145,9 +145,9 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-       <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button></td>
-       <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Indorsements</button></td>
-       <td><button href="#<%=rs.getString("id")+"OSG"%>" class="fancybox btn">View Indorsements</button></td>
+       <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
+       <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Indorsements</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
+       <td><button href="#<%=rs.getString("id")+"OSG"%>" class="fancybox btn">View Indorsements</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
         </tr>
          <div id="<%=rs.getString("shifter_id") %>" style="width:600px;display: none;">
 					<%
