@@ -104,6 +104,7 @@ if(getuser == null) {
           </div>
   </div>
 </div>
+</div>
 <div class="footer"></div> 
 <script language="javascript">
 populateCountries("country", "state");

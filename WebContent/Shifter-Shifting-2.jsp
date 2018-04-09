@@ -9,8 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		
-		<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
+		<link rel="stylesheet" href="CSS/profile-style.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		
@@ -42,15 +42,15 @@ if(getuser == null) {
      
     while(rs.next()) {
     %>
-   
+    <navhead>
 			<center><img src="DisplayProfilePic?pkey=<%=rs.getInt("studentid")%>" width ="150" height = "150" class="responsive">
 			<%} }catch(SQLException e) {out.print(e);} %>
-			 <navhead>
+			
 			<h1>Student<br></h1>
 			<p><span><%=getuser %></span><br>
-			</navhead>
-			</center>
 			
+			</center>
+			</navhead>
 			 <nav class="navigation">
     <ul class="mainmenu">
     <li><a href="Shifter-Welcome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>

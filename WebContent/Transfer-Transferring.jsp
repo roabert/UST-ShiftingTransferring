@@ -406,23 +406,20 @@ $(document).ready(function() {
 	  });
 	});
 	
-var file = document.getElementById('requirements_image');
+var file = document.getElementById('requirements_images');
 
 file.onchange = function(e){
     var ext = this.value.match(/\.([^\.]+)$/)[1];
     switch(ext)
     {
         case 'jpg':
-        case 'bmp':
-        case 'png':
-        case 'tif':
-            alert('allowed');
             break;
         default:
-            alert('not allowed');
+            alert('Supported file types are only .jpg files');
             this.value='';
+   		 	document.getElementById("submit-button").disabled = false;
     }
-};
+};	
 </script>
 </body>
 </html>
