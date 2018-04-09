@@ -11,7 +11,8 @@ import DatabaseHandler.DatabaseSQLs;
 
 public class RegisterTransferDAO implements DatabaseSQLs {
 
-	String lname, fname, mname, email, gender, bdate, type, userid;
+	String lname, fname, mname, email, gender, bdate, type, userid, newid;
+	int lastid;
     Part idpic;
 	 public String getUserid() {
 		return userid;
@@ -102,10 +103,16 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 		this.transfernewprogram = transfernewprogram;
 	}
 	
+	public String getNewid() {
+		return newid;
+	}
+	public void setNewid(String newid) {
+		this.newid = newid;
+	}
 	public void RegisterProcessTransfer(Connection conn) {
 		 try{
-				
-					   PreparedStatement ps = conn.prepareStatement(transferRegisterSQL);
+	
+					   PreparedStatement ps = conn.prepareStatement(transferRegisterSQL, Statement.RETURN_GENERATED_KEYS);
 					     ps.setString(1, userid);
 						 ps.setString(2, lname);
 						 ps.setString(3, fname);
@@ -119,13 +126,28 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 						 ps.setString(11, transferoldprogram);
 						 ps.setString(12, "");
 						 ps.setString(13, "");
-						 ps.setBinaryStream(13, idpic.getInputStream(), (int) idpic.getSize());	
+						 ps.setBinaryStream(14, idpic.getInputStream(), (int) idpic.getSize());	
 						
 					     ps.executeUpdate();
-					     
+					     ResultSet rs = ps.getGeneratedKeys();
+					     if(rs.next()) {
+					    	 lastid = rs.getInt(1);
+					     }
+					     newid = userid + Integer.toString(lastid);
+					     PreparedStatement p = conn.prepareStatement("UPDATE student_transfer SET userid = ? WHERE id = ?");
+					     p.setString(1, newid);
+					     p.setInt(2, lastid);
+					     p.executeUpdate();
 					    // request.setAttribute("sessionUser", generateID);
 					  //   request.getRequestDispatcher("Student-Transferee/Transfer-Welcome.jsp")
 					   //  .forward(request, response);
+					     PreparedStatement ps2 = conn.prepareStatement(insertStudentUser);
+						 ps2.setString(1, newid);
+						 ps2.setString(2, bdate);
+						 ps2.setString(3, email);
+						 ps2.setString(4, type);
+						
+					     ps2.executeUpdate();
 				   
 			 }catch(SQLException sql) {
 				 sql.printStackTrace();
@@ -134,31 +156,7 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 					e.printStackTrace();
 				}
 	}
-	public void InsertStudentUser(Connection conn) {
-		 try{
-				// String url = "jdbc:mysql://localhost:3306/capstone";
-				// Class.forName("com.mysql.jdbc.Driver");
-				// Connection con = DriverManager.getConnection(url, "ustregistrar", "ustadmin@2018");
-			
-					 PreparedStatement ps = conn.prepareStatement(insertStudentUser);
-					 ps.setString(1, userid);
-					 ps.setString(2, bdate);
-					 ps.setString(3, type);
-					
-				     ps.executeUpdate();
-				     
-				  //   request.setAttribute("sessionUser", getstudentid);
-				  //   request.getRequestDispatcher("Student-Shifter/Shifter-Welcome.jsp")
-				  //   .forward(request, response);
-				   
-				  
-			 }catch(SQLException sql) {
-				 sql.printStackTrace();
-			 }
-	}
-	public void registerProcess(Connection conn) {
-		InsertStudentUser(conn);
-		RegisterProcessTransfer(conn);
-	}
+
+
 	
 }

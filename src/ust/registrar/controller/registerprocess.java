@@ -67,6 +67,7 @@ public class registerprocess extends HttpServlet {
 		 String getfname = request.getParameter("register_fname");
 		 String getmname = request.getParameter("register_mi");
 		 String getgender = request.getParameter("register_gender");
+		 String getemail = request.getParameter("register_email");
 		 String getbdate = request.getParameter("register_bday");
 		 String gettype = request.getParameter("register_typeofstudent");
      // List of Variables for Shifters 
@@ -85,7 +86,7 @@ public class registerprocess extends HttpServlet {
 		 Part get_transferpic = request.getPart("transfer_idpicture");
 		// String filename = extractFileName(part);
 		
-		 String generateUsername = getlname+getfname+getmname;
+		 String generateUsername = "transferee-";
 	
 		 
      //   part.write(savepath + File.separator + filename);
@@ -99,6 +100,7 @@ public class registerprocess extends HttpServlet {
 			register.setFname(getfname);
 			register.setMname(getmname);
 			register.setGender(getgender);
+			register.setEmail(getemail);
 			register.setBdate(getbdate);
 			register.setUserid(generateUsername);
 			register.setType(gettype);
@@ -106,12 +108,14 @@ public class registerprocess extends HttpServlet {
 			register.setTransferoldcollege(get_transferoldcollege);
 			register.setTransferoldprogram(get_transferoldprogram);
 	        register.setIdpic(get_transferpic);
-			register.registerProcess(conn);
+
+			register.RegisterProcessTransfer(conn);
 			
-			   session.setAttribute("setuser", generateUsername);
-			   request.getRequestDispatcher("Transfer-Transferring.jsp")
-			   .forward(request, response);
-		
+			   session.setAttribute("setuser", register.getNewid());
+			   request.getRequestDispatcher("login.jsp")
+			   .include(request, response);
+			   
+	   
 		 
 	}
 

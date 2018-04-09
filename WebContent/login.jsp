@@ -463,7 +463,7 @@ function transferSubmit() {
          </div>
           <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Email Address:</i></p>
-         <input type="email" class="form-control" name="register_email" id="register_lname" required /> <br>
+         <input type="email" class="form-control" name="register_email" id="register_email" required /> <br>
          </div>
          <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>First Name: </i></p>
