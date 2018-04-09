@@ -442,10 +442,9 @@ file.onchange = function(e){
     switch(ext)
     {
         case 'jpg':
-        case 'png':
             break;
         default:
-            alert('Supported file types are only .jpg and .png files');
+            alert('Supported file types are only .jpg files');
             this.value='';
    		 	document.getElementById("submit-button").disabled = false;
     }
