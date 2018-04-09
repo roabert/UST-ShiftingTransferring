@@ -167,24 +167,26 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 			  </thead>
 			  <tbody>
               <%
+              int count = 0;
                try{
-            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, venue, remarks, exam_date_added FROM exam_schedules_shifters");
+            	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), id, start_time, end_time, venue, remarks, exam_date_added FROM exam_schedules_shifters");
             	   ResultSet r = p.executeQuery();
             	     while(r.next()){
+            	   		count++;
               %>
               <tr>
                    <td><%=r.getString("date") %></td>
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
                 <td><%=r.getString("venue") %></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><button class="fancybox btn" href="#<%=r.getString("date") %>">View Students</button></td>
+                <td><button class="fancybox btn" href="#<%= count %>">View Students</button></td>
              
               </tr>
-			    <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto; height: 600px;">
+			    <div id="<%= count %>" style="width:500px;display: none; overflow:auto; height: 600px;">
 			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
 					<%
-						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_schedule_date = ?");
-						p2.setString(1, r.getString("date"));
+						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_date_added = ?");
+						p2.setString(1, r.getString("exam_date_added"));
 	            	   	ResultSet r2 = p2.executeQuery();
 	            	   	while(r2.next()){
 						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM student_shifter where studentid = ?");

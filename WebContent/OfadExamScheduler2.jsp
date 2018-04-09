@@ -158,10 +158,12 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
               </thead>
 			  <tbody>
               <%
+              int count = 0;
                try{
             	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, venue, remarks, exam_date_added FROM exam_schedules_transferees");
             	   ResultSet r = p.executeQuery();
             	     while(r.next()){
+            	    	 count++;
 
               %>
               <tr>
@@ -169,10 +171,10 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
                 <td><%=r.getString("venue") %></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><button class="fancybox btn" href="#<%=r.getString("date") %>">View Students</button></td>
+                <td><button class="fancybox btn" href="#<%= count %>">View Students</button></td>
            
               </tr>
-               <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto; height: 600px;">
+               <div id="<%= count %>" style="width:500px;display: none; overflow:auto; height: 600px;">
 			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
 					<%
 						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM transferees_exams where exam_date_added = ?");
