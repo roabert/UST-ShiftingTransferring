@@ -3,6 +3,7 @@ package ust.registrar.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -63,6 +64,7 @@ public class registerprocess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	   // List of Variables
+		PrintWriter out = response.getWriter();
 		 String getlname = request.getParameter("register_lname");
 		 String getfname = request.getParameter("register_fname");
 		 String getmname = request.getParameter("register_mi");
@@ -70,19 +72,12 @@ public class registerprocess extends HttpServlet {
 		 String getemail = request.getParameter("register_email");
 		 String getbdate = request.getParameter("register_bday");
 		 String gettype = request.getParameter("register_typeofstudent");
-     // List of Variables for Shifters 
-		 String getstudentid = request.getParameter("register_studentid");
-		 String get_shiftoldcollege = request.getParameter("shift_oldcollege");
-		 String get_shiftoldprogram = request.getParameter("shift_oldprogram");
-		 String get_shiftnewcollege = request.getParameter("shift_newcollege");
-		 String get_shiftnewprogram = request.getParameter("shift_newprogram");
-		 Part get_shiftpic = request.getPart("shifter_idpicture");
+
 	 // List of Variables for Transferees
 		 String getoldschool = request.getParameter("transfer_school");
 		 String get_transferoldcollege = request.getParameter("transfer_oldcollege");
 		 String get_transferoldprogram = request.getParameter("transfer_oldprogram");
-		 String get_transfernewcollege = request.getParameter("transfer_newcollege");
-		 String get_transfernewprogram = request.getParameter("transfer_newprogram");
+
 		 Part get_transferpic = request.getPart("transfer_idpicture");
 		// String filename = extractFileName(part);
 		
@@ -93,9 +88,10 @@ public class registerprocess extends HttpServlet {
 	//	 String imagepath = savepath + File.separator + filename;
 		 HttpSession session = request.getSession();
 
-	
-			
 			RegisterTransferDAO register = new RegisterTransferDAO();
+		
+			
+		
 			register.setLname(getlname);
 			register.setFname(getfname);
 			register.setMname(getmname);
@@ -108,14 +104,21 @@ public class registerprocess extends HttpServlet {
 			register.setTransferoldcollege(get_transferoldcollege);
 			register.setTransferoldprogram(get_transferoldprogram);
 	        register.setIdpic(get_transferpic);
-
+           
+	        register.checkEmail(conn);
+	       
+	        if(!(getemail.equals(register.getGetemail()))) {
 			register.RegisterProcessTransfer(conn);
 			
 			   session.setAttribute("setuser", register.getNewid());
-			   request.getRequestDispatcher("login.jsp")
-			   .include(request, response);
-			   
-	   
+			   request.getRequestDispatcher("Transfer-Transferring.jsp")
+			   .forward(request, response);
+	        }else {
+	        	   request.getRequestDispatcher("login.jsp")
+				   .include(request, response);
+	        	   out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('.register').modal('show');  });</script>");
+	        	   out.print("<script>alert('Account creation was not successful! the email address you have entered is already taken, Try again.');</script>");
+	        }
 		 
 	}
 

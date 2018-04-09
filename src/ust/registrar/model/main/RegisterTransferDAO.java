@@ -6,12 +6,33 @@ import java.sql.*;
 
 import javax.servlet.http.Part;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 import DatabaseHandler.DatabaseSQLs;
 
 
 public class RegisterTransferDAO implements DatabaseSQLs {
 
-	String lname, fname, mname, email, gender, bdate, type, userid, newid;
+	String lname, fname, mname, email, getemail, gender, bdate, type, userid, newid, emailvalidate;
+	public String getGetemail() {
+		return getemail;
+	}
+	public void setGetemail(String getemail) {
+		this.getemail = getemail;
+	}
+	public String getEmailvalidate() {
+		return emailvalidate;
+	}
+	public void setEmailvalidate(String emailvalidate) {
+		this.emailvalidate = emailvalidate;
+	}
+	public int getLastid() {
+		return lastid;
+	}
+	public void setLastid(int lastid) {
+		this.lastid = lastid;
+	}
+
 	int lastid;
     Part idpic;
 	 public String getUserid() {
@@ -109,6 +130,22 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 	public void setNewid(String newid) {
 		this.newid = newid;
 	}
+	
+	public void checkEmail(Connection conn) {
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM useraccounts WHERE email = ?");
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				getemail = rs.getString("email");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	public void RegisterProcessTransfer(Connection conn) {
 		 try{
 	
@@ -151,10 +188,13 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 				   
 			 }catch(SQLException sql) {
 				 sql.printStackTrace();
+				 emailvalidate = sql.getMessage();
+				
 			 } catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+		    
 	}
 
 

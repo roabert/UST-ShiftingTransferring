@@ -375,9 +375,9 @@ function determineStudent() {
 	var mi = id("register_mi").value;
 	var gender = id("register_gender").value;
 	var bdate = id("register_bday").value;
+	var email = id("register_email").value;
 	
-	if(lname.length > 0 && fname.length > 0 && mi.length > 0 && gender.length > 0 && bdate.length > 0){
-   
+	if(lname.length > 0 && fname.length > 0 && mi.length > 0 && gender.length > 0 && bdate.length > 0 && email.length > 0){
  
     	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register(Transferee)";
     	id("step1").style.display ="none";
@@ -436,10 +436,15 @@ function shifterSubmit() {
 	
 }
 function transferSubmit() {
-
+  var getimage = document.getElementById("imagefile");
+  if(getimage.files.length > 0 ) {
 	id("registerform").method = "post";
 	id("registerform").action = "registerprocess";
 	id("registerform").submit();
+  }
+  else {
+	  alert('Please upload your ID picture.');
+  }
   
 }
 </script>
@@ -475,7 +480,7 @@ function transferSubmit() {
           </div>
           
           <div class="col-sm-6">
-          <p style="font-size:2vw; font-size: 2vh;"><i>MI</i></p>
+          <p style="font-size:2vw; font-size: 2vh;"><i>Middle Name: </i></p>
            <input type="text" class="form-control" name="register_mi" id="register_mi"   required />
           </div>
           <div class="col-sm-6">
@@ -558,18 +563,18 @@ function transferSubmit() {
     
         <div class = "col-sm-12">
           <div class="col-sm-12">
-         <p style="font-size: 2vw; font-size: 2vh;"><i>Current School</i></p>
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Current School: </i></p>
          <input type="text" class="form-control" name="transfer_school" id="oldschool" required /><br>
          </div>
           
   <div class="col-sm-12">
-  <p style="font-size: 2vw; font-size: 2vh;"><i>Current Course</i></p>
-         <select class="form-control"  id="transfer_oldcollege" name="transfer_oldcollege"></select><br>
+  <p style="font-size: 2vw; font-size: 2vh;"><i>Current Course: </i></p>
+         <input type="text" name="transfer_oldcollege" class="form-control"><br>
          </div>
          <br>
          <div class="col-sm-12">
-          <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program</i></p>
-         <select class="form-control"  name="transfer_oldprogram" id="transfer_oldprogram"></select><br><br>
+          <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program: </i></p>
+         <input type = "text" name="transfer_oldprogram" class="form-control"><br><br>
          </div>
          <br>
          <p><br></p>
@@ -584,8 +589,8 @@ function transferSubmit() {
          
          
          <center>
-         <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture </i></p><br>
-         <input type="file" type="file" onChange="readURL(this)" name="transfer_idpicture" size="50">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture: </i></p><br>
+         <input type="file" type="file" id="imagefile" onChange="readURL(this)" name="transfer_idpicture" size="50" required>
          <img id="imageview" src="#"required />
          <br><br><br><br>
          <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Transfer()"><span class="glyphicon glyphicon-chevron-left" style="color:white"></span> Back</button>
