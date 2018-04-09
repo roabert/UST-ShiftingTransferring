@@ -170,11 +170,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                try{
             	   PreparedStatement p = conn.prepareStatement("SELECT DISTINCT(date), start_time, end_time, venue, remarks, exam_date_added FROM exam_schedules_shifters");
             	   ResultSet r = p.executeQuery();
-            	     if(!r.next()){
-            	        	out.println("<tr><p style=color:red>No exam schedule set for students</p></tr>");
-            	        }
-            	        else {
-            	           do {
+            	     while(r.next()){
               %>
               <tr>
                    <td><%=r.getString("date") %></td>
@@ -204,8 +200,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             	        }
 					%>
 				</div>
-              <%}while(r.next());
-                    }
+              <%}
+                 
                } catch(SQLException e) {out.print(e);}
               %>
 			  </tbody>

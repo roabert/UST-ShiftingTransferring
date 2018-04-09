@@ -178,7 +178,7 @@ if(getuser == null) {
        <form id = "form1" onsubmit="return false">
          <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h3 class="modal-title"><span class="glyphicon glyphicon-plus-sign" style="color:white; height:30px;"></span> <i>Create Users</i></h3>
+           <h3 class="modal-title"><span class="glyphicon glyphicon-plus-sign" style="color:white; height:30px;"></span> Create Users</h3>
           </div>
           <div class="modal-body"> 	
             <div class="col-sm-12">
@@ -189,7 +189,7 @@ if(getuser == null) {
             <table class="table">
               <tr>
                <td>User ID: </td>
-               <td><input type = "text" class="form-control" name="new_userid"  required></td>
+               <td><input type = "text" class="form-control" name="new_userid" id="username"  required></td>
               </tr>
               <tr>
               <td>Password: </td>
@@ -206,19 +206,19 @@ if(getuser == null) {
                 <table class="table">
                 <tr>
                     <td>Email Adress: </td>
-                    <td><input type = "text" class="form-control" name="new_email"  required></td>
+                    <td><input type = "text" class="form-control" name="new_email" id="email"  required></td>
                   </tr>
                   <tr>
                     <td>Last Name: </td>
-                    <td><input type = "text" class="form-control" name="new_lname"  required></td>
+                    <td><input type = "text" class="form-control" name="new_lname" id="lname"  required></td>
                   </tr>
                    <tr>
                     <td>First Name: </td>
-                    <td><input type = "text" class="form-control" name="new_fname"  required></td>
+                    <td><input type = "text" class="form-control" name="new_fname" id="fname"  required></td>
                   </tr>
                   <tr>
                     <td>Middle Name: </td>
-                    <td><input type = "text" class="form-control" name="new_mname"  required></td>
+                    <td><input type = "text" class="form-control" name="new_mname" id="mname"  required></td>
                   </tr>
                   <tr>
                     <td>Office: </td>
@@ -273,26 +273,26 @@ if(getuser == null) {
    <form action = "AdminEditUsers" method="post">
     <div class="modal-header" style="background-color:#EFB652">
        <button class="close" type="button" data-dismiss="modal">&times;</button>
-       <h3 class="modal-title"><span class="glyphicon glyphicon-pencil" style="color:white"></span> <i>Edit User Accounts</i></h3>
+       <h3 class="modal-title"><span class="glyphicon glyphicon-pencil" style="color:white"></span> Edit User Accounts</h3>
      </div>
      <div class="modal-body">
      <br>
        <table class="table">
        <tr>
           <td>Last Name:</td> 
-          <td><input type="hidden" name = "useridget" class="userid"><input type="text" class="form-control" class="lastname form-control" size="50" name = "edit_lname"></td>
+          <td><input type="hidden" name = "useridget" class="userid"><input type="text" class="lastname form-control" size="50" name = "edit_lname"></td>
       </tr>
       <tr>
       <td>First Name: </td>
-      <td><input type="text" class="form-control" class="firstname form-control" size="50" name = "edit_fname"></td>
+      <td><input type="text" class="firstname form-control" size="50" name = "edit_fname"></td>
      </tr>
       <tr>
       <td>Middle Initial: </td> 
-     <td><input type="text" class="form-control" class="form-control middlename" size="50"name = "edit_mname"></td>
+     <td><input type="text" class="form-control middlename" size="50"name = "edit_mname"></td>
         </tr>
         <tr>
             <td>Position: </td> 
-            <td><input type="text" class="form-control" class="form-control type" size="50" name="edit_type" readonly></td>
+            <td><input type="text" class="form-control type" size="50" name="edit_type" readonly></td>
      </tr>
      <tr>
      <td>College/Faculty(If Dean): </td> 
@@ -330,7 +330,15 @@ function closeNav() {
 function submitForm() {
 	var pw1 = document.getElementById("pw1").value;
 	var pw2 = document.getElementById("pw2").value;
+	var uid = document.getElementById("username").value;
+	var email= document.getElementById("email").value;
+	var lname= document.getElementById("lname").value;
+	var fname= document.getElementById("fname").value;
+	var mname= document.getElementById("mname").value;
+	var office= document.getElementById("officetype").value;
+	var course= document.getElementById("showcollege").value;
 	
+  if(uid.length > 0 && pw1.length > 0 && email.length > 0 && lname.length > 0 && fname.length > 0 && mname.length > 0 && office.length > 0 && course.length > 0 ) {
 	if(pw1 == pw2) {
 		document.getElementById("form1").method = "post";
 		document.getElementById("form1").action = "AdminCreateUsers";
@@ -339,6 +347,10 @@ function submitForm() {
 	else {
 		alert("Passwords are not the same!");
 	}
+  }
+  else {
+	  alert("Please input all fields.");
+  }
 }
 function selectType() {
 	var office = document.getElementById("officetype").value;

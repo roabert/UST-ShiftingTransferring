@@ -379,7 +379,7 @@ function determineStudent() {
 	
 	if(lname.length > 0 && fname.length > 0 && mi.length > 0 && gender.length > 0 && bdate.length > 0 && email.length > 0){
  
-    	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register(Transferee)";
+    	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register Account (Non-Thomasian)";
     	id("step1").style.display ="none";
     	id("step2shifter").style.display ="none";
     	id("step2transferee").style.display ="block";
@@ -414,7 +414,7 @@ function goBack2Shift() {
 	id("step3shifter").style.display ="none";
 }
 function goBack2Transfer() {
-	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register(Transferee)";
+	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register Account (Non-Thomasian)";
 	id("step2transferee").style.display ="block";
 	id("step3transferee").style.display ="none";
 }
@@ -454,7 +454,7 @@ function transferSubmit() {
   <div class="modal-content">
     <div class="modal-header" style="background-color:#EFB652">
      <button type="button" class="close" data-dismiss="modal">&times;</button>
-       <h3 class="modal-title" id="titleregister"><span class="glyphicon glyphicon-user"></span> Register(Transferee)</h3>
+       <h3 class="modal-title" id="titleregister"><span class="glyphicon glyphicon-user"></span> Register Account (Non-Thomasian)</h3>
        
      </div>
      <div class="modal-body row">

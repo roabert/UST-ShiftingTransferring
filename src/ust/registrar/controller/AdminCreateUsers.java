@@ -65,7 +65,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		      
+		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.Admin_insertDetails(conn);
 		}
@@ -74,7 +74,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		      
+		     user.setEmail(getemail); 
 		     user.setType(gettype);
 		     user.Ofad_insertDetails(conn);
 		}
@@ -83,7 +83,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		      
+		     user.setEmail(getemail); 
 		     user.setType(gettype);
 		     user.OSG_insertDetails(conn);
 		}
@@ -92,7 +92,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		      
+		     user.setEmail(getemail);
 		     user.setCollege(getcollege);
 		     user.setType(gettype);
 		     user.Dean_insertDetails(conn);
@@ -102,7 +102,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		      
+		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.OSA_insertDetails(conn);
 		}
@@ -111,7 +111,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setLname(getlname);
 		     user.setFname(getfname);
 		     user.setMnname(getmname);
-		      
+		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.Registrar_insertDetails(conn);
 		}

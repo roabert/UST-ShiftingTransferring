@@ -155,7 +155,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><button href="#<%=rs.getString("transferee_id") %>" class="fancybox btn">View Memo</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
+        <td><button href="#<%=rs.getString("transferee_id") %>" class="fancybox btn">View Memo</button></td>
         <td><b><%=rs.getString("secgen_indorsed") %></b></td>
         </tr>
         <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
@@ -184,7 +184,11 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_4") %></u></p>
 	            	   		 <br>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
-	            	   		<br><br><br><br>	                   
+	            	   		<br><br><br>
+	            	   				<center>
+	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
+	            	   		</center>
+	            	   		<br>	                   
 	            	<% 
 	            	   		}
 					 

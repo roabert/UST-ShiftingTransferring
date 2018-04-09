@@ -136,12 +136,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         String display_Endorsement = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'Approved'";
         PreparedStatement ps = conn.prepareStatement(display_Endorsement); 
         ResultSet rs = ps.executeQuery();
-        if(!rs.next()) {
-        	  out.print("<tr><p style=color:red>No Student Memo pending!</p></tr>");
-          }
-          else {
-             do {
-         
+        while(rs.next()) {
+        
         %>
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
@@ -149,7 +145,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td>
         	<button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button>
-        	<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'>Download</a>
+        	
         </td>
         <td><b><%=rs.getString("registrar_indorsed") %></b></td>
         </tr>
@@ -180,15 +176,18 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_4") %></u></p>
 	            	   		 <br>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
-	            	   		<br><br><br><br>	                   
+	            	   		<br><br><br>
+	            	   				<center>
+	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
+	            	   		</center><br>	                   
 	            	<% 
 	            	   		}
 					 
             	       
 					%>
 				</div>
-        <%}  while(rs.next());
-          }
+        <%}  
+          
          }catch(Exception e) {
         	e.printStackTrace();
         } %>

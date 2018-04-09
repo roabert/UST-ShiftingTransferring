@@ -150,8 +150,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         <tr>
         <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
-        <td><button href="#<%=rs.getString("registrar_id")%>" class="fancybox btn">View Registrar's Memo</button><a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "fancybox btn" >Download</button></a></td>
+        <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button></td>
+        <td><button href="#<%=rs.getString("registrar_id")%>" class="fancybox btn">View Registrar's Memo</button></td>
             <td>
          <form action="OSGIndorseProcess" method = "post">
          <input type="hidden" name="studentid" value="<%=rs.getString("shifter_id")%>">
@@ -197,7 +197,11 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_4") %></u></p>
 	            	   		 <br>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
-	            	   		<br><br><br><br>	                   
+	            	   		<br><br><br>
+	            	   		<center>
+	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
+	            	   		</center>
+	            	   		<br>	                   
 	            	<% 
 	            	   		}
 					 
@@ -229,7 +233,11 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	            	  <i><%=r4.getString("first_name") %> <%=r4.getString("middle_name") %> <%=r4.getString("last_name") %></i>
 	            	  <p>Registrar Office</p> 
 	            	</div>
-	            	<br>
+	            	<br><br><br>
+	            			<center>
+	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
+	            	   		</center>
+	            	   		<br>
 	            	<%
 	            }
 	        %>

@@ -92,7 +92,8 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement(InsertUsersSQL);
 			ps.setString(1, userid);
 			ps.setString(2, password);
-			ps.setString(3, type);
+			ps.setString(3, email);
+			ps.setString(4, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

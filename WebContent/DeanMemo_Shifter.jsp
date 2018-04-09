@@ -246,7 +246,11 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_4") %></u></p>
 	            	   		 <br>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
-	            	   		<br><br><br><br>	                   
+	            	   		<br><br><br>
+	            	   				<center>
+	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
+	            	   		</center>
+	            	   		<br>	                   
 	            	<% 
 	            	   		}
 					 
@@ -278,7 +282,10 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	  <i><%=r4.getString("first_name") %> <%=r4.getString("middle_name") %> <%=r4.getString("last_name") %></i>
 	            	  <p>Registrar Office</p> 
 	            	</div>
-	            	<br>
+	            	<br><br><br>
+	            			<center>
+	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
+	            	   		</center><br>
 	            	<%
 	            }
 	        %>
@@ -308,7 +315,10 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	  <i><%=r5.getString("first_name") %> <%=r5.getString("middle_name") %> <%=r5.getString("last_name") %></i>
 	            	  <p>Office of the Secretary General</p> 
 	            	</div>
-	            	<br>
+	            	<br><br><br>
+	            			<center>
+	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
+	            	   		</center><br>
 	            	<%
 	            }
 	        %>
