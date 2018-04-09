@@ -251,7 +251,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             <br>
             <div class="table-responsive" style="overflow:auto; height:300px;">
            <center>
-             <table class="table">
+             <table class="table table-striped table-sortable">
                  <tr>
                  <th><input type="checkbox" onClick="toggle(this)"></th>
                  <th>ID</th>

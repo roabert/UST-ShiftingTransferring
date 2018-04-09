@@ -56,11 +56,13 @@ public class DeanVerifyScoreTransfer extends HttpServlet {
 		String getstudent = request.getParameter("getstudent");
 		String getdeanid = request.getParameter("getuser");
 		String getstatus = request.getParameter("studentstatus");
+		String getremarks = request.getParameter("remarks");
 		
 		DeanExamStatusTransferDAO d = new DeanExamStatusTransferDAO();
 		d.setDeanid(getdeanid);
 		d.setStatus(getstatus);
 		d.setTransferid(getstudent);
+		d.setRemarks(getremarks);
 		
 		if(getstatus.equals("Approved")) {
 			d.doPassStudent(conn);

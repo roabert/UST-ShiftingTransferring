@@ -53,16 +53,18 @@ public class DeanVerifyScore extends HttpServlet {
 		String getstudent = request.getParameter("getstudent");
 		String getdeanid = request.getParameter("getuser");
 		String getstatus = request.getParameter("studentstatus");
+		String getremarks = request.getParameter("remarks");
 		
 		DeanExamStatusShifterDAO d = new DeanExamStatusShifterDAO();
 		d.setDeanid(getdeanid);
 		d.setStatus(getstatus);
 		d.setStudentid(getstudent);
-		
+		d.setRemarks(getremarks);
 		if(getstatus.equals("Approved")) {
 			d.doPassStudent(conn);
 		}
 		else if(getstatus.equals("Disapproved")) {
+		
 			d.doFailStudent(conn);
 		}
 		

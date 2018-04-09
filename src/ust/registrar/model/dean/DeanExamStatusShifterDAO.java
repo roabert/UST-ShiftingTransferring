@@ -4,7 +4,15 @@ import DatabaseHandler.DatabaseSQLs;
 import java.sql.*;
 
 public class DeanExamStatusShifterDAO implements DatabaseSQLs{
-	public String studentid, deanid, status;
+	public String studentid, deanid, status, remarks;
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 
 	public String getStudentid() {
 		return studentid;
@@ -34,7 +42,8 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement(Dean_passfailShifter);
 			ps.setString(1, deanid);
 			ps.setString(2, status);
-			ps.setString(3, studentid);
+			ps.setString(3, remarks);
+			ps.setString(4, studentid);
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

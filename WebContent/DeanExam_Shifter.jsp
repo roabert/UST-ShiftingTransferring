@@ -199,7 +199,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
           <th>Current Course/Program</th>
           <th>Incoming Course/Program</th>
           <th>Score</th>
-          <th>Remarks</th>
+          <th></th>
           <th></th>
         </tr>
        	</thead>
@@ -210,11 +210,8 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         PreparedStatement ps = conn.prepareStatement(displaywithscore);
         ps.setString(1, getuser);
         ResultSet rs = ps.executeQuery();
-          if(!rs.next()) {
-        	  out.print("<tr><p style=color:red>No scores of students encoded yet!</p></tr>");
-          }
-          else {
-        	  do{
+          while(rs.next()) {
+     
         %>
         
         <tr>
@@ -223,26 +220,26 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><%=rs.getString("final_score") %></td>
-        <form action = "DeanVerifyScore" method = "post">
-        <td>
         
+        <td>
+        <form action = "DeanVerifyScore" method = "post">
         <input type="hidden" name="getuser" value="<%=getuser%>">
         <input type="hidden" name="getstudent" value="<%=rs.getString("shifter_id") %>">
-        <select class="form-control"  name="studentstatus">
-    		<option value="Approved">Approve</option>
-        	<option value="Disapproved">Disapprove</option>
-        </select>
-      
-       
+        <input type="hidden" name="studentstatus" value="Approved">
+        <input type="hidden" name="remarks" value="">
+      <button type="submit" onclick="return confirm('Are you sure? Student will be considered approved by the dean once submitted.');" 
+        class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-up"></span> Approve</button>
+        </form>
         </td>
-        <td>  <button type="submit" onclick="return confirm('Are you sure? Student will be considered approved by the dean once submitted.');" 
-        class="btn btn-warning">Submit</button></td>
-         </form>
+        <td><button type="button" class="btn btn-warning disapprove_score" data-toggle="modal"
+	         data-target=".disapprovestudent"
+	         data-shifter_id="<%=rs.getString("shifter_id")%>"
+	         data-getuser="<%=getuser%>">
+	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button></td>
+      
         </tr>
         
-        <%} while(rs.next());
-         }
-           
+        <%}     
          }catch(Exception e) {
         	e.printStackTrace();
         } %>
@@ -254,6 +251,34 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
   </div>
 </div>
 </div>
+</div>
+
+<div class="modal fade disapprovestudent" role=dialog>
+  <div class="modal-dialog" style="height:400px">
+     <div class="modal-content">
+     <form action = "DeanVerifyScore" method = "post">
+    <div class="modal-header" style="background-color:#EFB652">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Failed Student</h3>
+       </div>
+       <div class="modal-body">
+         <br>
+         <input type="hidden" class="shifter_id" name="getstudent">
+         <input type="hidden" class="getuser" name="getuser">
+         <h4>Are you sure you want to disapprove <i id="studentid"></i>'s exam score?</h4>
+         <br>
+          <center>
+          <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
+            </center>
+       </div>
+       <div class="modal-footer">
+       <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-warning btn-md" type="submit" name ="studentstatus" value="Disapproved">Submit</button>
+        </div>
+        </form>
+     </div>
+  </div>
+
 </div>
 
 
@@ -276,7 +301,18 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
-     
+     <script>
+     $(document).on( "click", '.disapprove_score',function(e) 
+    		 {
+    	    var shifter_id = $(this).data('shifter_id');
+    	    var getuser = $(this).data('getuser');
+
+    	    $(".shifter_id").val(shifter_id);
+    	    $(".getuser").val(getuser);
+    	    $("#studentid").html(shifter_id);
+  
+    	});
+     </script>
      <div class="footer"></div>
 </body>
 </html>

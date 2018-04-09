@@ -183,8 +183,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 			    <div id="<%=r.getString("date") %>" style="width:500px;display: none; overflow:auto; height: 600px;">
 			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
 					<%
-						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_date_added = ?");
-						p2.setString(1, r.getString("exam_date_added"));
+						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM shifters_exams where exam_schedule_date = ?");
+						p2.setString(1, r.getString("date"));
 	            	   	ResultSet r2 = p2.executeQuery();
 	            	   	while(r2.next()){
 						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM student_shifter where studentid = ?");
@@ -261,13 +261,16 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             <br>
            <div class="table-responsive" style="overflow:auto; height:300px;">
            <center>
-             <table class="table">
+             <table class="table table-striped table-sortable">
+             <thead>
                  <tr>
                  <th><input type="checkbox" onClick="toggle(this)"></th>
                  <th>ID</th>
                  <th>Student Name</th>
                  <th>Outgoing</th>
                  </tr>
+                 </thead>
+                 <tbody>
                  <%try {
                	  PreparedStatement ps = conn.prepareStatement("SELECT shifter_id, lastname, firstname, middlei, newcourse, newprogram FROM shifters_exams INNER JOIN student_shifter on shifters_exams.shifter_id = student_shifter.studentid WHERE exam_schedule_date is NULL");
                	  ResultSet rs = ps.executeQuery();
@@ -281,6 +284,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                    <%
                    }  
                  } catch(SQLException e){out.print(e);} %>
+                 
+                 </tbody>
              </table>
          </center>
          </div>

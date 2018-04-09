@@ -4,10 +4,18 @@ import DatabaseHandler.*;
 
 public class processfailed {
     
-	public String getstudentid, osaremarks, deanremarks, osgremarks, ofadremarks;
+	public String getstudentid, osaremarks, deanremarks, osgremarks, ofadremarks, deanreviewed_remarks;
     
+	public String getDeanreviewed_remarks() {
+		return deanreviewed_remarks;
+	}
+
+	public void setDeanreviewed_remarks(String deanreviewed_remarks) {
+		this.deanreviewed_remarks = deanreviewed_remarks;
+	}
+
 	public void displayRemarksTransfer(Connection conn) throws SQLException {
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR secgen_verified = 'Disappproved' OR ofad_verified = 'Disapproved')");
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR secgen_verified = 'Disappproved' OR ofad_verified = 'Disapproved', OR dean_reviewed = 'Disapproved')");
 		ps.setString(1, getstudentid);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
@@ -15,11 +23,13 @@ public class processfailed {
 			deanremarks = rs.getString("dean_remarks");
 			osgremarks = rs.getString("secgen_remarks");
 			ofadremarks = rs.getString("ofad_remarks");
+			deanreviewed_remarks = rs.getString("dean_reviewed_remarks");
+			
 		}
 	}
    
 	public void displayRemarksShifter(Connection conn) throws SQLException {
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'Disapproved' OR secgen_verified = 'Disappproved' OR ofad_verified = 'Disapproved')");
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'Disapproved' OR secgen_verified = 'Disappproved' OR ofad_verified = 'Disapproved' OR dean_reviewed = 'Disapproved')");
 		ps.setString(1, getstudentid);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
@@ -27,6 +37,7 @@ public class processfailed {
 			deanremarks = rs.getString("dean_remarks");
 			osgremarks = rs.getString("secgen_remarks");
 			ofadremarks = rs.getString("ofad_remarks");
+			deanreviewed_remarks = rs.getString("dean_reviewed_remarks");
 		}
 	}
 	

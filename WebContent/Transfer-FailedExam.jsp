@@ -109,12 +109,22 @@ if(getuser == null) {
      <div class="container">
 <br>
 <br>
-
+<%
+   processfailed pf = new processfailed();
+   pf.setGetstudentid(getuser);
+   pf.displayRemarksTransfer(conn);
+ %>
        <center>
        <p><span class="glyphicon glyphicon-remove-sign" style="font-size:100px; color:red;"></span></p>
        <br><br><br>
-         <p style="font-size:20px;">We regret to inform you that your exam results did not reach the passing score.</p>
-         
+           <h3>We regret to inform you that your exam results did not reach the passing score.</h3>     
+            <%
+            if(pf.getDeanreviewed_remarks() != null){
+            %>
+            <h3><%=pf.getDeanreviewed_remarks()%></h3>
+            <%} else { %>
+            <h3></h3>
+            <%} %>
        </center>
           </div>
   </div>

@@ -22,10 +22,10 @@ public interface DatabaseSQLs {
 	 // Dean disapprove student
 	 String Dean_disapproveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ? WHERE shifter_id = ?";
 	//Dean pass or fail the student DeanVerifyScore
-	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ?, dean_date_reviewed = NOW() WHERE shifter_id = ?";
+	 String Dean_passfailShifter = "UPDATE shifters_status SET dean_id_reviewed = ?, dean_reviewed = ?, dean_reviewed_remarks = ?, dean_date_reviewed = NOW() WHERE shifter_id = ?";
 	 String Dean_passfailScoreShifter = "UPDATE shifters_scores SET dean_reviewed = ? WHERE shifter_id = ?";
 	 ///Dean pass or fail student transfer DeanVerifyScoreTransfer
-	 String Dean_passfailTransfer = "UPDATE transferees_status SET dean_id_reviewed = ?, dean_reviewed = ?, dean_date_reviewed = NOW() WHERE transferee_id = ?";
+	 String Dean_passfailTransfer = "UPDATE transferees_status SET dean_id_reviewed = ?, dean_reviewed = ?, dean_reviewed_remarks = ?, dean_date_reviewed = NOW() WHERE transferee_id = ?";
 	 String Dean_passfailScoreTransfer = "UPDATE transferees_scores SET dean_reviewed = ? WHERE transferee_id = ?";
 	 
 	 // SecGen approve student OSG_verifyprocess

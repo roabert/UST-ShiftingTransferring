@@ -225,23 +225,21 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><%=rs.getString("final_score") %></td>
+       <td>
         <form action = "DeanVerifyScoreTransfer" method = "post">
-        <td>
-        
         <input type="hidden" name="getuser" value="<%=getuser%>">
-        <input type="hidden" name="getstudent" value="<%=rs.getString("transferee_id")%>">
-        <select class="form-control"  name="studentstatus">
-    		<option value="Approved">Approve</option>
-        	<option value="Disapproved">Disapprove</option>
-        </select>
-       
-      
+        <input type="hidden" name="getstudent" value="<%=rs.getString("transferee_id") %>">
+        <input type="hidden" name="studentstatus" value="Approved">
+        <input type="hidden" name="remarks" value="">
+      <button type="submit" onclick="return confirm('Are you sure? Student will be considered approved by the dean once submitted.');" 
+        class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-up"></span> Approve</button>
+        </form>
         </td>
-        <td>
-         <button type="submit" onclick="return confirm('Are you sure? Changes will not be done once submitted.');" 
-        class="btn btn-warning">Submit</button>
-        </td>
-          </form>
+        <td><button type="button" class="btn btn-warning disapprove_score" data-toggle="modal"
+	         data-target=".disapprovestudent"
+	         data-transferee_id="<%=rs.getString("transferee_id")%>"
+	         data-getuser="<%=getuser%>">
+	        <span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove</button></td>
         </tr>
         
         <%}while(rs.next());
@@ -260,6 +258,36 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 
 </div>
 </div>
+
+<div class="modal fade disapprovestudent" role=dialog>
+  <div class="modal-dialog" style="height:400px">
+     <div class="modal-content">
+     <form action = "DeanVerifyScoreTransfer" method = "post">
+    <div class="modal-header" style="background-color:#EFB652">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h3 class="modal-title"><span class="glyphicon glyphicon-thumbs-down" style="color:white;"></span> Disapprove Failed Student</h3>
+       </div>
+       <div class="modal-body">
+         <br>
+         <input type="hidden" class="transferee_id" name="getstudent">
+         <input type="hidden" class="getuser" name="getuser">
+         <h4>Are you sure you want to disapprove <i id="studentid"></i>'s exam score?</h4>
+         <br>
+          <center>
+          <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
+            </center>
+       </div>
+       <div class="modal-footer">
+       <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-warning btn-md" type="submit" name ="studentstatus" value="Disapproved">Submit</button>
+        </div>
+        </form>
+     </div>
+  </div>
+
+</div>
+
+
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
 
@@ -279,6 +307,19 @@ function closeNav() {
     document.getElementById("main").style.marginLeft= "0";
 }
 </script>
+  <script>
+     $(document).on( "click", '.disapprove_score',function(e) 
+    		 {
+    	    var transferee_id = $(this).data('transferee_id');
+    	    var getuser = $(this).data('getuser');
+
+    	    $(".transferee_id").val(transferee_id);
+    	    $(".getuser").val(getuser);
+    	    $("#studentid").html(transferee_id);
+  
+    	});
+     </script>
+
           <div class="footer"></div>
 </body>
 </html>

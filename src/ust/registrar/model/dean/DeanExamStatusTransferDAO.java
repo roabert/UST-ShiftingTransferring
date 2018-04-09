@@ -7,7 +7,15 @@ import java.sql.SQLException;
 import DatabaseHandler.DatabaseSQLs;
 
 public class DeanExamStatusTransferDAO implements DatabaseSQLs{
-	public String transferid, deanid, status;
+	public String transferid, deanid, status, remarks;
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 
 	public String getTransferid() {
 		return transferid;
@@ -37,7 +45,8 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement(Dean_passfailTransfer);
 			ps.setString(1, deanid);
 			ps.setString(2, status);
-			ps.setString(3, transferid);
+			ps.setString(3, remarks);
+			ps.setString(4, transferid);
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
