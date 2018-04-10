@@ -226,11 +226,11 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
        </tr>
           <tr>
                <th> <h4>Start Time</h4></th>
-               <th><input type = "time" class="form-control"  name = "starttime" required></th>
+               <th><input type = "time" class="form-control" id="starttime"  name = "starttime" required></th>
           </tr>
            <tr>
                <th> <h4>End Time</h4></th>
-               <th><input type = "time" class="form-control"  name = "endttime" required><br></th>
+               <th><input type = "time" class="form-control" id = "endtime"  name = "endttime" required><br></th>
                </tr>
                 <tr>
               <th><h4>Venue</h4></th>
@@ -333,6 +333,8 @@ function toggle(source) {
 function createSched() {
 	var checkstudents = document.getElementsByName("selectstransferees");
 	var isChecked =false;
+	var start = document.getElementById("starttime").value;
+	var end = document.getElementById("endtime").value;
 	for(var i = 0; i < checkstudents.length; i++) {
 		if(checkstudents[i].checked) {
 			isChecked = true;
@@ -343,9 +345,11 @@ function createSched() {
 	}
 	
 	if(isChecked) {
+		 if((start >= "06:00:00" && end <= "18:00:00") && (start != end) )
 		document.getElementById("createscheduleform").method = "post";
 		document.getElementById("createscheduleform").action = "CreateScheduleProcess2";
 		document.getElementById("createscheduleform").submit();
+	   }
 	}
 	else {
 		alert("Please select student(s).");

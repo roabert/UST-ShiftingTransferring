@@ -22,7 +22,7 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>Student Transfer | Memo</title>
+<title>Step 3: | Memo</title>
 </head>
 <body>
 <%
@@ -113,56 +113,114 @@ try {
 Student Number: <input type="text" class="" id="fname" value = "<%=r.getString("studentid") %>" name="studentid" placeholder="Student Number" > Date: <input type="text" class="" align="right" value = "<%=format.format(date) %>" name="date" placeholder="Date today" ><br><br>
 <p>I, <input type="text" class="" id="fname" name="fullname" value = "<%=r.getString("firstname") %> <%=r.getString("middlei") %> <%=r.getString("lastname") %>" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
 Faculty/College/Institute <br><br><input type="text" class="" id="fname" value = "<%=r.getString("newcourse") %>" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
-Term # <input type="text" class="" id="fname" name="semester" placeholder="Term #" style="width:60px">AY 20- <input type="text" class="" id="fname" name="firstyear" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="secondyear" placeholder="" style="width:60px"> <br><br> My complete college attendance to date:  <input type="text" class="" id="fname" value="<%=r.getString("oldcourse") %>" name="currentcourse" placeholder="Current Faculty" style="width:500px"  >
+Term # <select name="semester" placeholder="Term #" style="width:100px">
+  <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+</select>AY 20- <input type="text" class="" id="firstyear" onchange="incrementFirstYear(this.value)" name="firstyear" placeholder="" style="width:60px"> 
+- 20<input type="text" class="" id="secondyear" name="secondyear" placeholder="" style="width:60px"> <br><br> My complete college attendance to date:  <input type="text" class="" id="fname" value="<%=r.getString("oldcourse") %>" name="currentcourse" placeholder="Current Faculty" style="width:500px"  >
 </p>
 <center>
-<p>
+<div class="row">
+<div class="col-sm-6">
 <table class="table-year">
    <tr>
-    <td>1st Term</td>
-    <td>-</td>
-    <td>2nd Term</td>
-    <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="firstterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="firstterm_1year" placeholder="" style="width:60px">
+  
+    <td>Term <select name="firstterm" style="width:100px">
+      <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+    </select> 
+    AY 20- <input type="text" class="" id="fname" name="firstterm_1year" placeholder="" style="width:60px">
 - 20<input type="text" class="" id="fname" name="firstterm_2year" placeholder="" style="width:60px"></td>
-    <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_1" placeholder="" style="width:60px"></td>
+   
   </tr> 
      <tr>
-    <td>1st Term</td>
-    <td>-</td>
-    <td>2nd Term</td>
-    <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="secondterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="secondterm_1year" placeholder="" style="width:60px">
+ 
+    <td>Term <select id="fname" name="secondterm" style="width:100px" class="">
+       <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+    </select>
+     AY 20- <input type="text" class="" id="fname" name="secondterm_1year" placeholder="" style="width:60px">
 - 20<input type="text" class="" id="fname" name="secondterm_2year" placeholder="" style="width:60px"></td>
-    <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_2" placeholder="" style="width:60px"></td>
   </tr> 
      <tr>
-    <td>1st Term</td>
-    <td>-</td>
-    <td>2nd Term</td>
-    <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="thirdterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="thirdterm_1year" placeholder="" style="width:60px">
+
+    <td>Term <select id="fname" name="thirdterm" placeholder="" style="width:100px">
+       <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+    </select>
+     AY 20- <input type="text" class="" id="fname" name="thirdterm_1year" placeholder="" style="width:60px">
 - 20<input type="text" class="" id="fname" name="thirdterm_2year" placeholder="" style="width:60px"></td>
-    <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_3" placeholder="" style="width:60px"></td>
+ 
   </tr> 
      <tr>
-    <td>1st Term</td>
-    <td>-</td>
-    <td>2nd Term</td>
-    <td>:</td>
-    <td>Term <input type="text" class="" id="fname" name="fourthterm" placeholder="" style="width:60px"> AY 20- <input type="text" class="" id="fname" name="fourthterm_1year" placeholder="" style="width:60px">
+
+    <td>Term <select id="fname" name="fourthterm" placeholder="" style="width:100px">
+      <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+     </select>
+     AY 20- <input type="text" class="" id="fname" name="fourthterm_1year" placeholder="" style="width:60px">
 - 20<input type="text" class="" id="fname" name="fourthterm_2year" placeholder="" style="width:60px"></td>
-    <td>:</td>
-    <td>Special Term <input type="text" class="" id="fname" name="specialterm_4" placeholder="" style="width:60px"></td>
+
   </tr> 
  
-</table><br><br>
+</table>
+</div>
+<div class="col-sm-6">
+<table class="table-year">
+   <tr>
+  
+    <td>Term <select name="fifthterm" style="width:100px">
+      <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+    </select> 
+    AY 20- <input type="text" class="" id="fname" name="fifthterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="fifthterm_2year" placeholder="" style="width:60px"></td>
+   
+  </tr> 
+     <tr>
+ 
+    <td>Term <select id="fname" name="sixthterm" style="width:100px" class="">
+       <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+    </select>
+     AY 20- <input type="text" class="" id="fname" name="sixthterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="sixthterm_2year" placeholder="" style="width:60px"></td>
+  </tr> 
+     <tr>
+
+    <td>Term <select id="fname" name="seventhterm" placeholder="" style="width:100px">
+       <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+    </select>
+     AY 20- <input type="text" class="" id="fname" name="seventhterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="seventhterm_2year" placeholder="" style="width:60px"></td>
+ 
+  </tr> 
+     <tr>
+
+    <td>Term <select id="fname" name="eightterm" placeholder="" style="width:100px">
+      <option value = "Summer Term">Summer Term</option>
+      <option value="1st Term">1st Term</option>
+      <option value="2nd Term">2nd Term</option>
+     </select>
+     AY 20- <input type="text" class="" id="fname" name="eightterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fname" name="eightterm_2year" placeholder="" style="width:60px"></td>
+
+  </tr> 
+ 
+</table>
+</div>
+</div><br><br>
 <input type="checkbox" name="termsandcondition" value="Agree" id="termcheckbox">I agree that my enrollment will be AUTOMATICALLY CANCELLED if it turns out that I have been debarred from the prevoius college.
-</p><br><br>
+<br><br>
 <button onClick="submitMemo()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right"></span> Submit</button>
 </center>
 <%}}catch(SQLException e) {out.print(e);} %>
@@ -208,6 +266,14 @@ function submitMemo() {
 		alert('You must agree first the condition!');
 	}
 }
+
+function incrementFirstYear(num) {
+	var newnum = ++num;
+	document.getElementById("secondyear").value = newnum;
+}
+
+
+
 </script>
 </body>
 </html>
