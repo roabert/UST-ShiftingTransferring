@@ -236,7 +236,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
          <div class="modal-footer">
          <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
            <button onclick = "EndorseMemo()" class="btn btn-md btn-warning">Submit</button>
-
+         <p style="color:red;"><i>Note: Leaving the approval uncheck will disapprove the request of student</i></p>
          </div>
          </form>
      </div>

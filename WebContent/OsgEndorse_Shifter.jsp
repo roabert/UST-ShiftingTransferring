@@ -272,6 +272,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
              <br><br><p>This student may enroll in your college</p>
          
           <p><input type="checkbox" name="approval" id = "approval" value="Approved"> Approve Endorsement</p>
+           <p style="color:red;"><i>Note: Leaving the approval uncheck will disapprove the request of student</i></p>
             </center>
          </div>
          <div class="modal-footer">
