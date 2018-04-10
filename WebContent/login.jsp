@@ -143,6 +143,10 @@ function populateCountries(countryElementId, stateElementId) {
 }
 </script>
 
+    <script type="text/javascript">
+    	localStorage.clear();
+    </script>
+    
 <title>UST - Shifting and Transferring System</title>
 </head>	
 

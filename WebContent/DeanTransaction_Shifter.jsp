@@ -54,6 +54,8 @@ int totalShiftsExam = notifs.getDeanShiftScores(conn);
 int totalTransfersExam = notifs.getDeanTransferScores(conn);
 %>
 
+
+
  <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<navhead>
@@ -359,6 +361,15 @@ function closeNav() {
 		        } %> 
          })
          </script>     
+         
+    <script type="text/javascript">
+        var alerted = localStorage.getItem('alerted') || '';
+        if (alerted != 'yes') {
+         alert("Hello! You have:\n <%= totalShifts %> Shifter Transactions\n <%= totalTransfers %> Transferee Transactions\n <%= totalShiftsExam %> Shifter Exam Results\n <%= totalTransfersExam %> Transferee Exam Results  ");
+         localStorage.setItem('alerted','yes');
+        }
+    </script>
+    
           <div class="footer"></div>
 </body>
 </html>
