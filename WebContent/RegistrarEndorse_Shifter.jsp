@@ -191,9 +191,6 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 	            	   		 <br>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
 	            	   		<br><br><br>
-	            	   		<center>
-	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
-	            	   		</center>
 	            	   		<br>	                   
 	            	<% 
 	            	   		}

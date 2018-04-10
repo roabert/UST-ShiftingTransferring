@@ -8,7 +8,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-public class StudentMemoPDF {
+public class TransfereeMemoPDF {
 
 	public String firstyear, secondyear, firstterm_1year, firstterm_2year, secondterm_1year,
 	secondterm_2year, thirdterm_1year, thirdterm_2year, fourthterm_1year, fourthterm_2year;

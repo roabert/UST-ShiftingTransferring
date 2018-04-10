@@ -150,6 +150,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
        <td><button href="#<%=rs.getString("id")+"OSG"%>" class="fancybox btn">View Indorsements</button></td>
         </tr>
          <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
+          <div id = "studentmemo">
 					<%
 						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM transferees_memo where transferee_id = ?");
 						p3.setString(1, rs.getString("transferee_id"));
@@ -177,16 +178,20 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 	            	   		 <br>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
 	            	   		<br><br><br>
-	            	   				<center>
-	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
-	            	   		</center><br>	                   
+	            	   				                   
 	            	<% 
 	            	   		}
 					 
             	       
 					%>
+					
+					 </div>
+					 	<center>
+	            	   		<button class="btn" onclick = "printStudentMemo()">Print</button>
+	            	   		</center><br>
 				</div>
 				<div id="<%=rs.getString("id") %>" style="width:600px;display: none;">
+				<div id = "firstindorsement">
 	        <%
 	            PreparedStatement p4 = conn.prepareStatement("SELECT * FROM transferees_indorsement INNER JOIN registrar on registrar_id = registrar.userid INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE transferee_id = ?");
 	            p4.setString(1, rs.getString("transferee_id"));
@@ -212,15 +217,19 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 	            	  <p>Registrar Office</p> 
 	            	</div>
 	            	<br><br><br>
-	            			<center>
-	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
-	            	   		</center>
-	            	   		<br>
+	            			
 	            	<%
 	            }
 	        %>
+	    
+	         </div>
+	             <center>
+	            	   		<button class="btn" onclick = "printFirstIndorsement()">Print</button>
+	            	   		</center>
+	            	   		<br>
 	      </div>
 	      <div id="<%=rs.getString("id")+"OSG" %>" style="width:600px;display: none;">
+	      <div id = "secondindorsement">
 	        <%
 	            PreparedStatement p5 = conn.prepareStatement("SELECT * FROM transferees_indorsement INNER JOIN secgen on secgen_id = secgen.userid INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE transferee_id = ?");
 	            p5.setString(1, rs.getString("transferee_id"));
@@ -246,12 +255,15 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 	            	  <p>Office of the Secretary General</p> 
 	            	</div>
 	            	<br><br><br>
-	            			<center>
-	            	   		<a href='dito mo lalagay yung link, yung target para magoopen sya ng new tab' target='_blank' download='Dito mo lalagay yung filename, may ganyan sa dulo kasi pdf file dapat diba.pdf'><button class = "btn" >Download</button></a>
-	            	   		</center><br>
+	            			
 	            	<%
 	            }
 	        %>
+	  
+	        </div>
+	              <center>
+	            	   		<button class="btn" onclick = "printSecondIndorsement()">Print</button>
+	            	   		</center><br>
 	      </div>
         <%}
            
@@ -290,6 +302,41 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function printStudentMemo()  {
+	var style;
+
+	var prtContent = document.getElementById("studentmemo");
+	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.focus();
+	WinPrint.print();
+	WinPrint.close();
+	 
+}
+
+function printFirstIndorsement()  {
+	var style;
+
+	var prtContent = document.getElementById("firstindorsement");
+	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.focus();
+	WinPrint.print();
+	WinPrint.close();
+	 
+}
+
+function printSecondIndorsement()  {
+	var style;
+
+	var prtContent = document.getElementById("secondindorsement");
+	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.focus();
+	WinPrint.print();
+	WinPrint.close();
+	 
 }
 </script>
      

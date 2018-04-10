@@ -3,26 +3,27 @@
         <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
-    <%@ page import = "ust.registrar.model.shifting.*" %>
-    <%@ page import = "java.util.Date" %>
+       <%@ page import = "java.util.Date" %>
     <%@ page import = "java.text.*" %>
-     <% Connection conn = SingletonDB.getConnection(); %>
+   <% Connection conn = SingletonDB.getConnection(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="CSS/styles.css"type="text/css">
 		<link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		 <script src="scripts/list.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		  <script src="scripts/list.js"></script>
 <head>
-<meta charset="ISO-8859-1">
-<title>Student-Shifter | Memo</title>
-</head>
 
+<meta charset="ISO-8859-1">
+<title>Student Transfer | Memo</title>
+</head>
 <body>
 <%
 String getuser = (String)session.getAttribute("setuser"); 
@@ -32,7 +33,6 @@ if(getuser == null) {
 %>
 
 <div off-canvas="slidebar-1 left reveal">
-
 		
 		<br>
 			 <%
@@ -61,14 +61,12 @@ if(getuser == null) {
   </ul>
 </nav>
 
-			</div>
-
-
-
 		</div>
 <div canvas="contain">
-<div canvas="main">
+<div id="main">
 <div id="wrapper">
+
+
 
 <header class="header-fixed">
 
@@ -88,18 +86,16 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   
-   FILL UP MEMO
+  
+ STEP 3: FILL UP MEMO
    </a>
    </center>
 </div>
-         <%
-    
-         %>
+<br>
 </div>
-      <div id="content">
-    <div class="container">
+     <div class="container">
     <br><br>
+
 <div class="announcement jumbotron">
 <br>
 <form onsubmit = "return false" id = "shiftermemo_form">
@@ -172,17 +168,21 @@ Term # <input type="text" class="" id="fname" name="semester" placeholder="Term 
 <%}}catch(SQLException e) {out.print(e);} %>
  </form>
 </div>
-   </div>
+     
+          </div>
   </div>
+   
+					
+
 </div>
-</div>
-  <div class="footer"></div>    
-<script language="javascript">
-populateCountries("country", "state");
-</script>
+  <br><br><br><br><br>
+ <div class="footer"></div>
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
-       
+  
+  <script language="javascript">
+populateCountries("country", "state");
+</script>
 <script>
 
 function id(x) {
@@ -197,12 +197,6 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
-function swapImage(){
-	var image = document.getElementById("imageToSwap");
-	var dropd = document.getElementById("dlist");
-	image.src = dropd.value;	
-};
-
 function submitMemo() {
 	var terms = id("termcheckbox");
 	if(terms.checked == true) {
@@ -215,6 +209,5 @@ function submitMemo() {
 	}
 }
 </script>
-
 </body>
 </html>
