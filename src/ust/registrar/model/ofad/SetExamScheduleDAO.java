@@ -162,6 +162,10 @@ public void setRemarks(String remarks) {
     	  			if(startTime.equals(startTimeToo)){
     	  				status = "NA";
     	  			}
+    	 	  		
+     	  			if(endTime.equals(endTimeToo)){
+     	  				status = "NA";
+     	  			}
     	  			
     	  			if(startTime.after(startTimeToo) && startTime.before(endTimeToo)){
     	  				status = "NA";		
@@ -180,6 +184,39 @@ public void setRemarks(String remarks) {
     	  		// TODO Auto-generated catch block
     	  		e.printStackTrace();
     	  	}
+    	 try {
+ 	  		PreparedStatement ps = conn.prepareStatement("SELECT * from exam_schedules_shifters where date = ? and venue = ?");
+ 	  		ps.setString(1, examdate);
+ 	  		ps.setString(2, venue);
+ 	  		ResultSet getScheds = ps.executeQuery();
+ 	  		while (getScheds.next()){
+ 	  			Date startTimeToo = format.parse(getScheds.getString("start_time"));
+ 	  			Date endTimeToo = format.parse(getScheds.getString("end_time"));
+ 	  			if(startTime.equals(startTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  		
+ 	  			if(endTime.equals(endTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  			
+ 	  			if(startTime.after(startTimeToo) && startTime.before(endTimeToo)){
+ 	  				status = "NA";		
+ 	  			}
+ 	  			
+ 	  			if(endTime.after(startTimeToo) && endTime.before(endTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  			
+ 	  			if(startTime.before(startTimeToo) && endTime.after(endTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  		}
+ 	  		
+ 	  	} catch (SQLException e) {
+ 	  		// TODO Auto-generated catch block
+ 	  		e.printStackTrace();
+ 	  	}
     	 
     	return status;
     }
@@ -200,6 +237,10 @@ public void setRemarks(String remarks) {
     	  			if(startTime.equals(startTimeToo)){
     	  				status = "NA";
     	  			}
+    	 	  		
+     	  			if(endTime.equals(endTimeToo)){
+     	  				status = "NA";
+     	  			}
     	  			
     	  			if(startTime.after(startTimeToo) && startTime.before(endTimeToo)){
     	  				status = "NA";		
@@ -218,6 +259,39 @@ public void setRemarks(String remarks) {
     	  		// TODO Auto-generated catch block
     	  		e.printStackTrace();
     	  	}
+    	 try {
+ 	  		PreparedStatement ps = conn.prepareStatement("SELECT * from exam_schedules_transferees where date = ? and venue = ?");
+ 	  		ps.setString(1, examdate);
+ 	  		ps.setString(2, venue);
+ 	  		ResultSet getScheds = ps.executeQuery();
+ 	  		while (getScheds.next()){
+ 	  			Date startTimeToo = format.parse(getScheds.getString("start_time"));
+ 	  			Date endTimeToo = format.parse(getScheds.getString("end_time"));
+ 	  			if(startTime.equals(startTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  		
+ 	  			if(endTime.equals(endTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  			
+ 	  			if(startTime.after(startTimeToo) && startTime.before(endTimeToo)){
+ 	  				status = "NA";		
+ 	  			}
+ 	  			
+ 	  			if(endTime.after(startTimeToo) && endTime.before(endTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  			
+ 	  			if(startTime.before(startTimeToo) && endTime.after(endTimeToo)){
+ 	  				status = "NA";
+ 	  			}
+ 	  		}
+ 	  		
+ 	  	} catch (SQLException e) {
+ 	  		// TODO Auto-generated catch block
+ 	  		e.printStackTrace();
+ 	  	}
     	 
     	return status;
     }
