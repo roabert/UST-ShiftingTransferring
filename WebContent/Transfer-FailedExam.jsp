@@ -51,7 +51,8 @@ if(getuser == null) {
     ResultSet rs = psts.executeQuery();
      
     while(rs.next()) {
-    %><navhead>
+    %>
+    <navhead>
 			<center><img src="DisplayProfileTransfer?pkey=<%=rs.getString("userid")%>" width ="150" height = "150">
 			<%} }catch(SQLException e) {out.print(e);} %>
 			<h1>Student<br></h1>

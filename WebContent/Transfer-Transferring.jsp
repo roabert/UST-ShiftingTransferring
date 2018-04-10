@@ -289,11 +289,11 @@ if(rs4.next()) {
     	out.print(e);
     } %>
     <center>
-    <h2>Outgoing College</h2>
+    <h2>Incoming College</h2>
     <select class="form-control" style="width:600px; max-width:100%;" id="country" name="outgoing_college">
 
 </select> <br>
-    <h2>Outgoing Program</h2>
+    <h2>Incoming Program</h2>
     <select class="form-control" style="width:600px; max-width:100%;" id="state" name="outgoing_program">
 
 </select>

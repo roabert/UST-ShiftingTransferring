@@ -307,9 +307,9 @@ if(rs4.next()) {
     <input type="hidden" name="typeofstudent" value="<%=rs.getString("typeofstudent")%>">
      <input type="hidden" value = "<%=rs.getString("oldcourse")%>" id = "checkcourse">
     <h2>Current College</h2>
-     <h3 style ="color:gold;"><b><%=rs.getString("oldcourse") %></b></h3>
+     <h3 style ="color:#EFB652"><b><%=rs.getString("oldcourse") %></b></h3>
     <h2>Current Program</h2>
-     <h3 style="color:gold;"><b><%=rs.getString("oldprogram") %></b></h3>
+     <h3 style="color:#EFB652"><b><%=rs.getString("oldprogram") %></b></h3>
      	</div>
     <%} 
     } catch(Exception e) {

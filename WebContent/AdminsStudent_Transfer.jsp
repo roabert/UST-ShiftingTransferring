@@ -114,6 +114,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       <center>
       <table class="table table-striped table-sortable">
          <thead>
+         <tr>
           <th><input type="checkbox" onclick = "checkAll(this)"></th>
           <th>ID</th>
           <th>Student Name</th>
@@ -121,7 +122,8 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
           <th>Outgoing</th>
           <th>Incoming</th>
           <th>View Documents</th>
-		  <th>Clear Documents</th>    
+		  <th>Clear Documents</th>
+		  </tr>    
         </thead>
         
         <tbody>

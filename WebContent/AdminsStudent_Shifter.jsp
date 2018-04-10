@@ -131,7 +131,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
         PreparedStatement ps = conn.prepareStatement(displaystudent); 
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
-        	   String status = clearDocs.checkStatusShifter(conn, rs.getString("userid"));
+        	   String status = clearDocs.checkStatusShifter(conn, rs.getString("studentid"));
         %>
         <tr>
 			<td><input type="checkbox" name="deletestudent[]" id="deletestudent[]" value="<%=rs.getString("studentid") %>"></td>
@@ -142,9 +142,9 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
 			<td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button class="btn" href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</button></td>		
 		<td>
-	        <form method="POST" action ="ClearDocumentsShift">
-	        <input name="id" type=hidden value="<%=rs.getString("userid") %>">
-	        <input name="status" type=hidden value="<%= status %>">
+	        <form method="POST" action ="ClearDocumentsShifter">
+	        <input name="id" type=hidden value="<%=rs.getString("studentid") %>">
+	        <input name="status" type=hidden value="<%=status %>">
 	        <button class="btn btn-warning btn-lg pull-right" type="submit" 
 	        <%
 	        if(status.equals("NA")){

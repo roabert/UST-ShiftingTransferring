@@ -197,16 +197,18 @@ function populateCountries(countryElementId, stateElementId) {
 						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
 						<div class="login-top">
 	 <div class="announcement">
-  <h3>Instructions</h3>
-  <p>1.) File Must Be In JPEG format.</p>
-  <p>2.) Maximum file size is 2MB.</p>
-  <p>3.) Filename must be in this format: <strong>lastname-firstname-document(otr/goodmoral.. etc))</strong></p>
-  <h3>Documents Needed:</h3>
-  <p>1.) Official OTR</p>
-  <p>2.) Certificate of Good Moral.</p>
-  <p>3.) Letter to the Dean</p>
-  <p>4.) Letter to the Guidance</p>
-  <p>5.) Photocopy of ID</p>
+  <h3>For Shifters</h3>
+  <p>Use your Student number as your USER ID.</p>
+  <p>(ex. 2014069171)</p>
+  <p>Use your birthday as your password</p>
+  <p>(ex. yyyy-mm-dd)</p>
+  </div>
+  <div class="announcement">
+  <h3>For Transferees:</h3>
+ <p>Use your registered id as your USER ID.</p>
+  <p>(ex. transferee-1)</p>
+  <p>Use your birthday as your password</p>
+  <p>(ex. yyyy-mm-dd)</p>
 </div>
 							</div>
 							
@@ -590,8 +592,8 @@ function transferSubmit() {
          
          <center>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture: </i></p><br>
-         <input type="file" type="file" id="imagefile" onChange="readURL(this)" name="transfer_idpicture" size="50" required>
-         <img id="imageview" src="#"required />
+         <input type="file" id="imagefile" onChange="readURL(this)" name="transfer_idpicture" size="50" required>
+         <img id="imageview" src="#" required />
          <br><br><br><br>
          <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Transfer()"><span class="glyphicon glyphicon-chevron-left" style="color:white"></span> Back</button>
           <button onclick="transferSubmit()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-check" style="color:white"></span> Submit & Login</button>

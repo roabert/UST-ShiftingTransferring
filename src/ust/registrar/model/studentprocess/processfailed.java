@@ -15,7 +15,7 @@ public class processfailed {
 	}
 
 	public void displayRemarksTransfer(Connection conn) throws SQLException {
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR secgen_verified = 'Disappproved' OR ofad_verified = 'Disapproved', OR dean_reviewed = 'Disapproved')");
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR secgen_verified = 'Disappproved' OR ofad_verified = 'Disapproved' OR dean_reviewed = 'Disapproved')");
 		ps.setString(1, getstudentid);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
