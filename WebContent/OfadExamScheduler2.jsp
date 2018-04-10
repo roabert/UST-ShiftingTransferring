@@ -140,8 +140,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
      
     <br><br>
            <ul class = "nav nav-tabs">
-          <li><a href="OfadExamScheduler.jsp">Shifters <% if(totalShifters>0){ %> <span class="notification alert-notif"><%= totalShifters %></span> <% } %></a></li>
-          <li class="active"><a href="OfadExamScheduler2.jsp">Transferees <% if(totalTransfers>0){ %> <span class="notification alert-notif"><%= totalTransfers %></span> <% } %></a></li>
+          <li><a href="OfadExamScheduler.jsp">Shifters <% if(totalShiftersExam>0){ %> <span class="notification alert-notif"><%= totalShiftersExam %></span> <% } %></a></li>
+          <li class="active"><a href="OfadExamScheduler2.jsp">Transferees <% if(totalTransfersExam>0){ %> <span class="notification alert-notif"><%= totalTransfersExam %></span> <% } %></a></li>
           </ul>
           <div class="tab-content">
           <br>
