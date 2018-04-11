@@ -131,8 +131,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
     </select> 
-    AY 20- <input type="text" class="" id="fname" name="firstterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="firstterm_2year" placeholder="" style="width:60px"></td>
+    AY 20- <input type="text" class="" id="firstterm_1year" onchange="firstTerm1year(this.value)" name="firstterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="firstterm_2year" name="firstterm_2year" placeholder="" style="width:60px"></td>
    
   </tr> 
      <tr>
@@ -142,8 +142,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
     </select>
-     AY 20- <input type="text" class="" id="fname" name="secondterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="secondterm_2year" placeholder="" style="width:60px"></td>
+     AY 20- <input type="text" class="" id="secondterm1_year" onchange="secondTerm1year(this.value)" name="secondterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="secondterm_2year" name="secondterm_2year" placeholder="" style="width:60px"></td>
   </tr> 
      <tr>
 
@@ -152,8 +152,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
     </select>
-     AY 20- <input type="text" class="" id="fname" name="thirdterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="thirdterm_2year" placeholder="" style="width:60px"></td>
+     AY 20- <input type="text" onchange="thirdTerm1year(this.value)" id="thirdterm_1year" name="thirdterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="thirdterm_2year" name="thirdterm_2year" placeholder="" style="width:60px"></td>
  
   </tr> 
      <tr>
@@ -163,8 +163,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
      </select>
-     AY 20- <input type="text" class="" id="fname" name="fourthterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="fourthterm_2year" placeholder="" style="width:60px"></td>
+     AY 20- <input type="text" id="fourthterm_1year" onchange="fourthTerm1year(this.value)" name="fourthterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="fourthterm_2year" name="fourthterm_2year" placeholder="" style="width:60px"></td>
 
   </tr> 
  
@@ -179,8 +179,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
     </select> 
-    AY 20- <input type="text" class="" id="fname" name="fifthterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="fifthterm_2year" placeholder="" style="width:60px"></td>
+    AY 20- <input type="text" id="fifthterm_1year" onchange="fifthTerm1year(this.value)" name="fifthterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" id="fifthterm_2year" name="fifthterm_2year" placeholder="" style="width:60px"></td>
    
   </tr> 
      <tr>
@@ -190,8 +190,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
     </select>
-     AY 20- <input type="text" class="" id="fname" name="sixthterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="sixthterm_2year" placeholder="" style="width:60px"></td>
+     AY 20- <input type="text" id="sixthterm_1year" onchange="sixthTerm1year(this.value)" name="sixthterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" id="sixthterm_2year" onchange="sixthTerm1year(this.value)" name="sixthterm_2year" placeholder="" style="width:60px"></td>
   </tr> 
      <tr>
 
@@ -200,8 +200,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
     </select>
-     AY 20- <input type="text" class="" id="fname" name="seventhterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="seventhterm_2year" placeholder="" style="width:60px"></td>
+     AY 20- <input type="text" id="seventhterm_1year" onchange="seventhTerm1year(this.value)" name="seventhterm_1year" placeholder="" style="width:60px">
+- 20<input type="text" class="" id="seventhterm_2year" name="seventhterm_2year" placeholder="" style="width:60px"></td>
  
   </tr> 
      <tr>
@@ -211,8 +211,8 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
      </select>
-     AY 20- <input type="text" class="" id="fname" name="eightterm_1year" placeholder="" style="width:60px">
-- 20<input type="text" class="" id="fname" name="eightterm_2year" placeholder="" style="width:60px"></td>
+     AY 20- <input type="text" id="eightterm_1year" onchange="eightTerm1year(this.value)" name="eightterm_1year" style="width:60px">
+- 20<input type="text" class="" id="eightterm_2year" name="eightterm_2year" style="width:60px"></td>
 
   </tr> 
  
@@ -222,11 +222,13 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
 <input type="checkbox" name="termsandcondition" value="Agree" id="termcheckbox">I agree that my enrollment will be AUTOMATICALLY CANCELLED if it turns out that I have been debarred from the prevoius college.
 <br><br>
 <button onClick="submitMemo()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right"></span> Submit</button>
+
 </center>
 <%}}catch(SQLException e) {out.print(e);} %>
  </form>
+ 
 </div>
-     
+     <br><br><br><br><br><br><br>
           </div>
   </div>
    
@@ -272,6 +274,38 @@ function incrementFirstYear(num) {
 	document.getElementById("secondyear").value = newnum;
 }
 
+function firstTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("firstterm_2year").value = newnum;
+}
+function secondTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("secondterm_2year").value = newnum;
+}
+function thirdTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("thirdterm_2year").value = newnum;
+}
+function fourthTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("fourthterm_2year").value = newnum;
+}
+function fifthTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("fifthterm_2year").value = newnum;
+}
+function sixthTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("sixthterm_2year").value = newnum;
+}
+function seventhTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("seventhterm_2year").value = newnum;
+}
+function eightTerm1year(num) {
+	var newnum = ++num;
+	document.getElementById("eightterm_2year").value = newnum;
+}
 
 
 </script>

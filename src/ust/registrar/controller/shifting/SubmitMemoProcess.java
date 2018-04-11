@@ -73,10 +73,21 @@ public class SubmitMemoProcess extends HttpServlet {
 		String getfourthterm = request.getParameter("fourthterm");
 		String getfourth1year =  request.getParameter("fourthterm_1year");
 		String getfourth2year =  request.getParameter("fourthterm_2year");
-		String getspecial1 = request.getParameter("specialterm_1");
-		String getspecial2 = request.getParameter("specialterm_2");
-		String getspecial3 = request.getParameter("specialterm_3");
-		String getspecial4 = request.getParameter("specialterm_4");
+		
+		String getfifthterm = request.getParameter("fifthterm");
+		String getfifth1year =  request.getParameter("fifthterm_1year");
+		String getfifth2year =  request.getParameter("fifthterm_2year");
+		String getsixthterm = request.getParameter("sixthterm");
+		String getsixth1year =  request.getParameter("sixthterm_1year");
+		String getsixth2year =  request.getParameter("sixthterm_2year");
+		String getseventhterm = request.getParameter("seventhterm");
+		String getseventh1year =  request.getParameter("seventhterm_1year");
+		String getseventh2year =  request.getParameter("seventhterm_2year");
+		String geteightterm = request.getParameter("eightterm");
+		String geteight1year =  request.getParameter("eightterm_1year");
+		String geteight2year =  request.getParameter("eightterm_2year");
+	
+		
 		
 		ShifterMemoDAO s = new ShifterMemoDAO();
 		s.setShifterid(getshifterid);
@@ -91,19 +102,29 @@ public class SubmitMemoProcess extends HttpServlet {
 		s.setFirstterm(getfirstterm);
 		s.setFirstterm_1year(getfirst1year);
 		s.setFirstterm_2year(getfirst2year);
-		s.setSpecialterm_1(getspecial1);
 		s.setSecondterm(getsecondterm);
 		s.setSecondterm_1year(getsecond1year);
 		s.setSecondterm_2year(getsecond2year);
-		s.setSpecialterm_2(getspecial2);
 		s.setThirdterm(getthirdterm);
 		s.setThirdterm_1year(getthird1year);
 		s.setThirdterm_2year(getthird2year);
-		s.setSpecialterm_3(getspecial3);
 		s.setFourthterm(getfourthterm);
 		s.setFourthterm_1year(getfourth1year);
 		s.setFourthterm_2year(getfourth2year);
-		s.setSpecialterm_4(getspecial4);
+		
+		s.setFifthterm(getfifthterm);
+		s.setFifthterm_1year(getfifth1year);
+		s.setFifthterm_2year(getfifth2year);
+		s.setSixthterm(getsixthterm);
+		s.setSixthterm_1year(getsixth1year);
+		s.setSixthterm_2year(getsixth2year);
+		s.setSixthterm(getseventhterm);
+		s.setSeventhterm_1year(getseventh1year);
+		s.setSeventhterm_2year(getseventh2year);
+		s.setEightterm(geteightterm);
+		s.setEightterm_1year(geteight1year);
+		s.setEightterm_2year(geteight2year);
+		
 		s.doStep3Indorsed(conn);
 		
 		response.sendRedirect("Shifter-MemoDone.jsp");

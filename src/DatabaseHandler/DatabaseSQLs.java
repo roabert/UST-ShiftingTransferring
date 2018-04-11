@@ -113,7 +113,7 @@ public interface DatabaseSQLs {
 		 String encodeExamShifter  = "SELECT * FROM shifters_scores WHERE shifter_id = ?";
 		 
 		 // Step 3 MEMO SHIFTER
-		 String generateMemoShifter = "INSERT INTO shifters_memo (shifter_id, studentid, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		 String generateMemoShifter = "INSERT INTO shifters_memo (shifter_id, studentid, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, second_term, secondterm_1year, secondterm_2year, third_term, thirdterm_1year, thirdterm_2year, fourth_term, fourthterm_1year, fourthterm_2year, fifth_term, fifthterm_1year, fifthterm_2year, sixth_term, sixthterm_1year, sixthterm_2year, seventh_term, seventhterm_1year, seventhterm_2year, eight_term, eightterm_1year, eightterm_2year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		// Registrar memo approval
 		 String RegistrarStatusShifter = "UPDATE shifters_indorsement SET registrar_indorsed = 'In-progress', memo_filledup_date = NOW() WHERE shifter_id = ?";
 		 // Secgen memo approval
@@ -123,7 +123,7 @@ public interface DatabaseSQLs {
 		 String OSGdisapproveShifter = "UPDATE shifters_indorsement SET secgen_id = ?, secgen_indorsed = 'Disapproved', secgen_remarks = ?, secgen_date_indorsed = NOW()  WHERE shifter_id = ?";
 		 
 		 // Step 3 MEMO TRANSFER
-		 String generateMemoTransfer = "INSERT INTO transferees_memo (transferee_id, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, specialterm_1, second_term, secondterm_1year, secondterm_2year, specialterm_2, third_term, thirdterm_1year, thirdterm_2year, specialterm_3, fourth_term, fourthterm_1year, fourthterm_2year, specialterm_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		 String generateMemoTransfer = "INSERT INTO transferees_memo (transferee_id, date, full_name, newcourse, semester_start, firstyear_start, secondyear_start, oldcourse, first_term, firstterm_1year, firstterm_2year, second_term, secondterm_1year, secondterm_2year, third_term, thirdterm_1year, thirdterm_2year, fourth_term, fourthterm_1year, fourthterm_2year, fifth_term, fifthterm_1year, fifthterm_2year, sixth_term, sixthterm_1year, sixthterm_2year, seventh_term, seventhterm_1year, seventhterm_2year, eight_term, eightterm_1year, eightterm_2year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 // Registrar memo approval
 		 String RegistrarStatusTransfer = "UPDATE transferees_indorsement SET registrar_indorsed = 'In-progress', memo_filledup_date = NOW() WHERE transferee_id = ?";
 		 //Secgen memo approval

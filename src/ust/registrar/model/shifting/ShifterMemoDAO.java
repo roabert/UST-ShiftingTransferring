@@ -4,8 +4,8 @@ import DatabaseHandler.DatabaseSQLs;
 
 public class ShifterMemoDAO implements DatabaseSQLs{
 
-	public String shifterid, studentid, date, fullname, newcourse, semester, currentcourse, firstterm, secondterm, thirdterm, fourthterm, specialterm_1,
-	specialterm_2, specialterm_3, specialterm_4;
+	public String shifterid, studentid, date, fullname, newcourse, semester, currentcourse, firstterm, secondterm, thirdterm, fourthterm, fifthterm,
+	sixthterm, seventhterm, eightterm;
 	public String getShifterid() {
 		return shifterid;
 	}
@@ -72,29 +72,29 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 	public void setFourthterm(String fourthterm) {
 		this.fourthterm = fourthterm;
 	}
-	public String getSpecialterm_1() {
-		return specialterm_1;
+	public String getFifthterm() {
+		return fifthterm;
 	}
-	public void setSpecialterm_1(String specialterm_1) {
-		this.specialterm_1 = specialterm_1;
+	public void setFifthterm(String fifthterm) {
+		this.fifthterm = fifthterm;
 	}
-	public String getSpecialterm_2() {
-		return specialterm_2;
+	public String getSixthterm() {
+		return sixthterm;
 	}
-	public void setSpecialterm_2(String specialterm_2) {
-		this.specialterm_2 = specialterm_2;
+	public void setSixthterm(String sixthterm) {
+		this.sixthterm = sixthterm;
 	}
-	public String getSpecialterm_3() {
-		return specialterm_3;
+	public String getSeventhterm() {
+		return seventhterm;
 	}
-	public void setSpecialterm_3(String specialterm_3) {
-		this.specialterm_3 = specialterm_3;
+	public void setSeventhterm(String seventhterm) {
+		this.seventhterm = seventhterm;
 	}
-	public String getSpecialterm_4() {
-		return specialterm_4;
+	public String getEightterm() {
+		return eightterm;
 	}
-	public void setSpecialterm_4(String specialterm_4) {
-		this.specialterm_4 = specialterm_4;
+	public void setEightterm(String eightterm) {
+		this.eightterm = eightterm;
 	}
 	public String getFirstyear() {
 		return firstyear;
@@ -158,8 +158,58 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 	}
 	public String firstyear, secondyear, firstterm_1year, firstterm_2year, secondterm_1year,
 	secondterm_2year, thirdterm_1year, thirdterm_2year, fourthterm_1year, fourthterm_2year;
+	public String fifthterm_1year, fifthterm_2year, sixthterm_1year, sixthterm_2year, seventhterm_1year,
+	seventhterm_2year, eightterm_1year, eightterm_2year;
 	
 	
+	public String getFifthterm_1year() {
+		return fifthterm_1year;
+	}
+	public void setFifthterm_1year(String fifthterm_1year) {
+		this.fifthterm_1year = fifthterm_1year;
+	}
+	public String getFifthterm_2year() {
+		return fifthterm_2year;
+	}
+	public void setFifthterm_2year(String fifthterm_2year) {
+		this.fifthterm_2year = fifthterm_2year;
+	}
+	public String getSixthterm_1year() {
+		return sixthterm_1year;
+	}
+	public void setSixthterm_1year(String sixthterm_1year) {
+		this.sixthterm_1year = sixthterm_1year;
+	}
+	public String getSixthterm_2year() {
+		return sixthterm_2year;
+	}
+	public void setSixthterm_2year(String sixthterm_2year) {
+		this.sixthterm_2year = sixthterm_2year;
+	}
+	public String getSeventhterm_1year() {
+		return seventhterm_1year;
+	}
+	public void setSeventhterm_1year(String seventhterm_1year) {
+		this.seventhterm_1year = seventhterm_1year;
+	}
+	public String getSeventhterm_2year() {
+		return seventhterm_2year;
+	}
+	public void setSeventhterm_2year(String seventhterm_2year) {
+		this.seventhterm_2year = seventhterm_2year;
+	}
+	public String getEightterm_1year() {
+		return eightterm_1year;
+	}
+	public void setEightterm_1year(String eightterm_1year) {
+		this.eightterm_1year = eightterm_1year;
+	}
+	public String getEightterm_2year() {
+		return eightterm_2year;
+	}
+	public void setEightterm_2year(String eightterm_2year) {
+		this.eightterm_2year = eightterm_2year;
+	}
 	public void generateMemo(Connection conn) {
 		try {
 			PreparedStatement ps = conn.prepareStatement(generateMemoShifter);
@@ -175,19 +225,27 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 			ps.setString(10, firstterm);
 			ps.setString(11, firstterm_1year);
 			ps.setString(12, firstterm_2year);
-			ps.setString(13, specialterm_1);
-			ps.setString(14, secondterm);
-			ps.setString(15, secondterm_1year);
-			ps.setString(16, secondterm_2year);
-			ps.setString(17, specialterm_2);
-			ps.setString(18, thirdterm);
-			ps.setString(19, thirdterm_1year);
-			ps.setString(20, thirdterm_2year);
-			ps.setString(21, specialterm_3);
-			ps.setString(22, fourthterm);
-			ps.setString(23, fourthterm_1year);
-			ps.setString(24, fourthterm_2year);
-			ps.setString(25, specialterm_4);
+			ps.setString(13, secondterm);
+			ps.setString(14, secondterm_1year);
+			ps.setString(15, secondterm_2year);
+			ps.setString(16, thirdterm);
+			ps.setString(17, thirdterm_1year);
+			ps.setString(18, thirdterm_2year);
+			ps.setString(19, fourthterm);
+			ps.setString(20, fourthterm_1year);
+			ps.setString(21, fourthterm_2year);
+			ps.setString(22, fifthterm);
+			ps.setString(23, fifthterm_1year);
+			ps.setString(24, fifthterm_2year);
+			ps.setString(25, sixthterm);
+			ps.setString(26, sixthterm_1year);
+			ps.setString(27, sixthterm_2year);
+			ps.setString(28, seventhterm);
+			ps.setString(29, seventhterm_1year);
+			ps.setString(30, seventhterm_2year);
+			ps.setString(31, eightterm);
+			ps.setString(32, eightterm_1year);
+			ps.setString(33, eightterm_2year);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
