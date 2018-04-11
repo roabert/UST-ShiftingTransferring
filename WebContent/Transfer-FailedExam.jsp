@@ -118,7 +118,7 @@ if(getuser == null) {
        <center>
        <p><span class="glyphicon glyphicon-remove-sign" style="font-size:100px; color:red;"></span></p>
        <br><br><br>
-           <h3>We regret to inform you that your exam results did not reach the passing score.</h3>     
+           <h3>We regret to inform you that you have not met the standards of a Thomasian student .</h3>     
             <%
             if(pf.getDeanreviewed_remarks() != null){
             %>
