@@ -382,7 +382,7 @@ function createSched() {
    
   
 	if(isChecked) {
-	  if((start >= "06:00:00" && end <= "18:00:00") && (start != end) ) {
+		 if((start >= "05:59:59" && end <= "17:59:59") && (start != end) ) {
 		document.getElementById("createscheduleform").method = "post";
 		document.getElementById("createscheduleform").action = "CreateScheduleProcess";
 		document.getElementById("createscheduleform").submit();

@@ -323,9 +323,7 @@ if(rs4.next()) {
 		<center>
 		  <input type="file" size="50" id="requirements_images" name="requirements_images" type="file" accept="image/*" multiple="multiple"> 
 		</center>
- 
-</table>
-		
+   
 		 </fieldset>
         
 		
@@ -338,7 +336,9 @@ if(rs4.next()) {
    </center>
  </div>
  </form>
+    <br> <br><br><br><br><br><br>
           </div>
+          <br><br><br><br><br><br><br>
    </div>    
    
 </div>
@@ -374,11 +374,11 @@ function swapImage(){
 function nextstep() {
 	var faculty = id("country").value;
 	var course = id("state").value;
-  if(faculty != "------Select Faculty------" && course != null) {
+  if(faculty != "------Select Faculty------" || course != "") {
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
   }
-  else {
+  else if(faculty != "------Select Faculty------" || course == ""){
 	  alert('Please choose the course you want to transfer.');
   }
 }

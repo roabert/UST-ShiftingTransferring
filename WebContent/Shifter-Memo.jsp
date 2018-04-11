@@ -100,8 +100,8 @@ if(getuser == null) {
 <br>
 <form onsubmit = "return false" id = "shiftermemo_form">
 <%
-  DateFormat format = new SimpleDateFormat("yyyy/mm/dd");
-  Date date = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+String date = sdf.format(new Date());
 try {
 	
  PreparedStatement p = conn.prepareStatement("SELECT * FROM student_shifter WHERE studentid = ?");
@@ -110,7 +110,7 @@ try {
  while(r.next()) {
 %>
 <input type="hidden" name="getstudent" value="<%=getuser%>">
-Student Number: <input type="text" class="" id="fname" value = "<%=r.getString("studentid") %>" name="studentid" placeholder="Student Number" > Date: <input type="text" class="" align="right" value = "<%=format.format(date) %>" name="date" placeholder="Date today" ><br><br>
+Student Number: <input type="text" class="" id="fname" value = "<%=r.getString("studentid") %>" name="studentid" placeholder="Student Number" > Date: <input type="text" class="" align="right" value = "<%=date %>" name="date" placeholder="Date today" ><br><br>
 <p>I, <input type="text" class="" id="fname" name="fullname" value = "<%=r.getString("firstname") %> <%=r.getString("middlei") %> <%=r.getString("lastname") %>" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
 Faculty/College/Institute <br><br><input type="text" class="" id="fname" value = "<%=r.getString("newcourse") %>" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
 Term # <select name="semester" placeholder="Term #" style="width:100px">

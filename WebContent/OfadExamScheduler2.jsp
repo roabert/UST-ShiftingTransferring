@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -149,12 +150,13 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
           <div class="table-responsive" style="overflow-x:auto; ">
               <table class="table table-stripped table-sortable">
               <thead>
+              <tr>
                   <th>Date</th>
                  <th>Time</th>
                  <th>Venue</th>
                  <th>Remarks</th>
                  <th>View Students</th>
-    
+          </tr>
               </thead>
 			  <tbody>
               <%
@@ -171,10 +173,10 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                 <td><%=r.getString("start_time") %> - <%=r.getString("end_time") %></td>
                 <td><%=r.getString("venue") %></td>
                 <td><%=r.getString("remarks") %></td>
-                <td><button class="fancybox btn" href="#<%= count %>">View Students</button></td>
+                <td><button class="fancybox btn" href="#<%=count %>">View Students</button></td>
            
               </tr>
-               <div id="<%= count %>" style="width:500px;display: none; overflow:auto; height: 600px;">
+               <div id="<%=count %>" style="width:500px;display: none; overflow:auto; height: 600px;">
 			    <h3>Exam Schedule: <%=r.getString("date") %></h3><br>
 					<%
 						PreparedStatement p2 = conn.prepareStatement("SELECT * FROM transferees_exams where exam_date_added = ?");
@@ -309,7 +311,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
     $('.fancybox').fancybox(); 
-} );
+});
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
@@ -342,11 +344,16 @@ function createSched() {
 	}
 	
 	if(isChecked) {
-		 if((start >= "06:00:00" && end <= "18:00:00") && (start != end) )
+		 if((start >= "05:59:59" && end <= "17:59:59") && (start != end) ) {
 		document.getElementById("createscheduleform").method = "post";
 		document.getElementById("createscheduleform").action = "CreateScheduleProcess2";
 		document.getElementById("createscheduleform").submit();
-	   }
+		 }
+	     else {
+			  alert("Exam schedule time should only be between 6:00 AM and 6:00 PM");
+			  
+		  }
+	}
 	
 	else {
 		alert("Please select student(s).");

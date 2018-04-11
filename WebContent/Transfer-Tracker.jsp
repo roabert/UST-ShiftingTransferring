@@ -213,10 +213,10 @@ if(getuser == null) {
 	  <a  class="modal-btn">Transferring: Finished</a>
 	<%} else if(tracker.getSecgenindorsed().equals("Approved")) {%>
 	  <a class="modal-btn active" href="#secgenindorsed">Memo: Sec Gen</a>
-	  <a  class="modal-btn active" href="Shifter-Shifting-Done.jsp">Transferring: Finished</a>
+	  <a  class="modal-btn active" href="Transfer-Transferring-Done.jsp">Transferring: Finished</a>
 	<%} else if(tracker.getSecgenindorsed().equals("Disapproved")) {%>
 	   <a class="modal-btn reject" href="#secgenindorsed">Memo: Sec Gen</a>
-	   <a  class="modal-btn" href="Shifter-ShiftFailed.jsp">Transferring: Finished</a>
+	   <a  class="modal-btn" href="Transfer-TransferFailed.jsp">Transferring: Finished</a>
 	<%}  else { %><% }
    }else { %>
    <a class="modal-btn">Memo: Sec Gen</a>
