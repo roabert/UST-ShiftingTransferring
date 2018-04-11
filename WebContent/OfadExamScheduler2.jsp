@@ -305,13 +305,10 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 
 
 <script>
-$(document).ready(function() {
 
-	$('.fancybox').fancybox(); 
-	
-	})
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
+    $('.fancybox').fancybox(); 
 } );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
@@ -350,7 +347,7 @@ function createSched() {
 		document.getElementById("createscheduleform").action = "CreateScheduleProcess2";
 		document.getElementById("createscheduleform").submit();
 	   }
-	}
+	
 	else {
 		alert("Please select student(s).");
 	}

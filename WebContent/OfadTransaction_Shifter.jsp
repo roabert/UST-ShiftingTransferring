@@ -232,7 +232,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
     <script type="text/javascript">
         var alerted = localStorage.getItem('alerted') || '';
         if (alerted != 'yes') {
-         alert("Hello! You have:\n <%= totalShifters %> Shifter Transactions\n <%= totalTransfers %> Transferee Transactions\n <%= totalShiftersExam %> Shifter Exam Results\n <%= totalTransfersExam %> Transferee Exam Results  \nPlease view sidebar at all times to see notifications");
+         alert("Hello! You have:\n <%= totalShifters %> Shifter Transactions\n <%= totalTransfers %> Transferee Transactions\n <%= totalShiftersExam %> Shifter Exam Schedule Pending\n <%= totalTransfersExam %> Transferee Exam Schedule Pending \n <%= totalShiftersScores%> Shifter Exam Scores \n <%= totalTransfersScores%> Transferee Exam Scores \nPlease view sidebar at all times to see notifications");
          localStorage.setItem('alerted','yes');
         }
     </script>

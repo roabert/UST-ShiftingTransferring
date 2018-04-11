@@ -35,7 +35,7 @@
 		 
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Administrator | Profile
 </head>
 <body>
 <%

@@ -113,7 +113,7 @@ public class SubmitMemoProcess extends HttpServlet {
 		s.setSixthterm(getsixthterm);
 		s.setSixthterm_1year(getsixth1year);
 		s.setSixthterm_2year(getsixth2year);
-		s.setSixthterm(getseventhterm);
+		s.setSeventhterm(getseventhterm);
 		s.setSeventhterm_1year(getseventh1year);
 		s.setSeventhterm_2year(getseventh2year);
 		s.setEightterm(geteightterm);

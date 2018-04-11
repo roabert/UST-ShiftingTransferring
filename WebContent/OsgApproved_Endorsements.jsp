@@ -158,7 +158,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button></td>
         <td><b><%=rs.getString("secgen_indorsed") %></b></td>
         </tr>
-        <div id="<%=rs.getString("shifter_id") %>" style="width:600px;display: none;">
+        <div id="<%=rs.getString("shifter_id") %>" style="width:670px;display: none;">
 					<%
 						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM shifters_memo where shifter_id = ?");
 						p3.setString(1, rs.getString("shifter_id"));
@@ -179,16 +179,25 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 	            	   		 <p>MY COMPLETE COLLEGE ATTENDANCE TO DATE:</p>
 	            	   		 <p>College(s) previously attended: <u><%=r3.getString("oldcourse") %></u></p>
 	            	   		 <br>
-	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("first_term") %></u> AY 20<u><%=r3.getString("firstterm_1year") %></u> - 20<u><%=r3.getString("firstterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_1") %></u></p>
-	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("second_term") %></u> AY 20<u><%=r3.getString("secondterm_1year") %></u> - 20<u><%=r3.getString("secondterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_2") %></u></p>
-	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("third_term") %></u> AY 20<u><%=r3.getString("thirdterm_1year") %></u> - 20<u><%=r3.getString("thirdterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_3") %></u></p>
-	            	   		 <p>1st Term - 2nd Term: Term <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u>: Special Term <u><%=r3.getString("specialterm_4") %></u></p>
+	            	   		  <div class="row">
+	            	   		 <div class="col-sm-6">
+	            	   		 <p>Term: <u><%=r3.getString("first_term") %></u> AY 20<u><%=r3.getString("firstterm_1year") %></u> - 20<u><%=r3.getString("firstterm_2year") %></u></p>
+	            	   		 <p>Term: <u><%=r3.getString("second_term") %></u> AY 20<u><%=r3.getString("secondterm_1year") %></u> - 20<u><%=r3.getString("secondterm_2year") %></u></p>
+	            	   		 <p>Term: <u><%=r3.getString("third_term") %></u> AY 20<u><%=r3.getString("thirdterm_1year") %></u> - 20<u><%=r3.getString("thirdterm_2year") %></u></p>
+	            	   		 <p>Term: <u><%=r3.getString("fourth_term") %></u> AY 20<u><%=r3.getString("fourthterm_1year") %></u> - 20<u><%=r3.getString("fourthterm_2year") %></u></p>
 	            	   		 <br>
+	            	   		 </div>
+	            	   		  <div class="col-sm-6">
+	            	   		 <p>Term: <u><%=r3.getString("fifth_term") %></u> AY 20<u><%=r3.getString("fifthterm_1year") %></u> - 20<u><%=r3.getString("fifthterm_2year") %></u></p>
+	            	   		 <p>Term: <u><%=r3.getString("sixth_term") %></u> AY 20<u><%=r3.getString("sixthterm_1year") %></u> - 20<u><%=r3.getString("sixthterm_2year") %></u></p>
+	            	   		 <p>Term: <u><%=r3.getString("seventh_term") %></u> AY 20<u><%=r3.getString("seventhterm_1year") %></u> - 20<u><%=r3.getString("seventhterm_2year") %></u></p>
+	            	   		 <p>Term: <u><%=r3.getString("eight_term") %></u> AY 20<u><%=r3.getString("eightterm_1year") %></u> - 20<u><%=r3.getString("eightterm_2year") %></u></p>
+	            	   		 <br>
+	            	   		 </div>
+	            	   		 </div>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
 	            	   		<br><br><br>
-	            	   				<center>
-	            	   		<button class="btn" onclick = "printThis()">Print</button>
-	            	   		</center>
+	            	   		
 	            	   		<br>	                   
 	            	<% 
 	            	   		}
@@ -223,6 +232,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
+    $('.fancybox').fancybox();
 } );
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";

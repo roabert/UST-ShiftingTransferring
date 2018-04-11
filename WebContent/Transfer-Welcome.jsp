@@ -118,7 +118,11 @@ if(getuser == null) {
 			<div class="w3-message">
 			<a>Type</a> <br>
 				<h5><%=usercontent.getString("typeofstudent") %></h5><br><a>Program</a> 
-				<h5><%=usercontent.getString("oldschool") %></h5>
+				<% if(usercontent.getString("transferring_approved") == null) {%> 
+				<h5><%=usercontent.getString("oldprogram") %></h5>
+				<%}else { %>
+					<h5><%=usercontent.getString("newprogram") %></h5>
+				<%} %>
 			<div class="w3ls-touch">
 			</div>
 			</div>

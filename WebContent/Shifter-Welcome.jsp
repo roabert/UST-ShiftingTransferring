@@ -18,7 +18,7 @@
 		 
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Shifter | Step 3
 </head>
 <body>
 <%
@@ -122,7 +122,11 @@ if(getuser == null) {
 			<div class="w3-message">
 			<a>Type</a> <br>
 				<h5><%=usercontent.getString("typeofstudent") %></h5><br><a>Program</a> 
+				<%if(usercontent.getString("shifting_approved") == null) { %>
 				<h5><%=usercontent.getString("oldprogram") %></h5>
+				<%} else { %>
+				<h5><%=usercontent.getString("newprogram") %></h5>
+				<%} %>
 			<div class="w3ls-touch">
 			</div>
 			</div>

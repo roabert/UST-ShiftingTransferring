@@ -35,7 +35,7 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 		
 <head>
-<title>Welcome</title>
+<title>Administrator | Users
 </head>
 <body>
 <%
