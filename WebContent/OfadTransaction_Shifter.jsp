@@ -56,6 +56,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 %>
 
 
+
+
  <div off-canvas="slidebar-1 left reveal">
 		<div>
 		<navhead>
@@ -227,7 +229,13 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
   </div>
 
 </div>
-
+    <script type="text/javascript">
+        var alerted = localStorage.getItem('alerted') || '';
+        if (alerted != 'yes') {
+         alert("Hello! You have:\n <%= totalShifters %> Shifter Transactions\n <%= totalTransfers %> Transferee Transactions\n <%= totalShiftersExam %> Shifter Exam Results\n <%= totalTransfersExam %> Transferee Exam Results  \nPlease view sidebar at all times to see notifications");
+         localStorage.setItem('alerted','yes');
+        }
+    </script>
 <script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();

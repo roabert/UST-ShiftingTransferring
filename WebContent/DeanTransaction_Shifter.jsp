@@ -365,7 +365,7 @@ function closeNav() {
     <script type="text/javascript">
         var alerted = localStorage.getItem('alerted') || '';
         if (alerted != 'yes') {
-         alert("Hello! You have:\n <%= totalShifts %> Shifter Transactions\n <%= totalTransfers %> Transferee Transactions\n <%= totalShiftsExam %> Shifter Exam Results\n <%= totalTransfersExam %> Transferee Exam Results  ");
+         alert("Hello! You have:\n <%= totalShifts %> Shifter Transactions\n <%= totalTransfers %> Transferee Transactions\n <%= totalShiftsExam %> Shifter Exam Results\n <%= totalTransfersExam %> Transferee Exam Results  \nPlease view sidebar at all times to see notifications");
          localStorage.setItem('alerted','yes');
         }
     </script>

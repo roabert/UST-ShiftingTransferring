@@ -292,7 +292,14 @@ function closeNav() {
 		        } %> 
          })
          </script>
-     
+      <script type="text/javascript">
+        var alerted = localStorage.getItem('alerted') || '';
+        if (alerted != 'yes') {
+         alert("Hello! You have:\n <%= totalShifters %> Shifter Transactions\n <%= totalTransfers %> Transferee Transactions\n <%= totalIndorseShifters %> Pending Shifter Endorsements\n <%= totalIndorseTransfers %>  Pending Transferee Endorsements  \nPlease view sidebar at all times to see notifications");
+         localStorage.setItem('alerted','yes');
+        }
+    </script>
+    
      <div class="footer"></div>
 </body>
 </html>

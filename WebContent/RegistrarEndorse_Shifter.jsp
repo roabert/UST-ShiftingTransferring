@@ -293,6 +293,12 @@ function EndorseMemo() {
     	//    tinyMCE.get('business_skill_content').setContent(content);   
     	});
      </script>
-          
+           <script type="text/javascript">
+        var alerted = localStorage.getItem('alerted') || '';
+        if (alerted != 'yes') {
+         alert("Hello! You have:\n <%= totalIndorseShifters %>Pending Shifter Endorsements\n <%= totalIndorseTransfers %> Pending Transferee Endorsements\nPlease view sidebar at all times to see notifications");
+         localStorage.setItem('alerted','yes');
+        }
+    </script>
 </body>
 </html>
