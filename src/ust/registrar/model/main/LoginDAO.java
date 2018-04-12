@@ -3,6 +3,7 @@ package ust.registrar.model.main;
 import java.sql.*;
 
 import DatabaseHandler.DatabaseSQLs;
+import ust.registrar.utility.EncryptionTool;
 
 public class LoginDAO implements DatabaseSQLs {
 

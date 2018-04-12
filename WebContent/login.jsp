@@ -3,9 +3,13 @@
 <%@ page import="java.sql.*" %>
 <%@ page import = "DatabaseHandler.SingletonDB" %>
 <% Connection conn = SingletonDB.getConnection(); %>
+
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <link rel="stylesheet" href="CSS/Login_CSS.css">
 <link rel="stylesheet" href="CSS/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
@@ -24,11 +28,7 @@
 			    });
 				
 </script>	
-<%
-response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
-response.setHeader("Pragma","no-cache"); //HTTP 1.0
-response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
-%>
+
 <!--script-->
 <!---Google Analytics Designmaz.net-->
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

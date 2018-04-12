@@ -4,11 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Expires" content="-1"> 
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"> 
 <title>Insert title here</title>
 </head>
 <body>
 <%
    request.getSession().invalidate();
+
+response.setHeader("Cache-Control","no-store"); //HTTP 1.1 
+response.setHeader("Cache-Control","no-cache"); 
+response.setHeader("Pragma","no-cache"); //HTTP 1.0 
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server 
    response.sendRedirect("login.jsp");
 %>
 </body>

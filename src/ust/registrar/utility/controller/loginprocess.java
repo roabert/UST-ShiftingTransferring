@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.main.LoginDAO;
+import ust.registrar.utility.EncryptionTool;
 
 import java.sql.*;
 

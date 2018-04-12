@@ -114,6 +114,7 @@ Student Number: <input type="text" class="" id="fname" value = "<%=r.getString("
 <p>I, <input type="text" class="" id="fname" name="fullname" value = "<%=r.getString("firstname") %> <%=r.getString("middlei") %> <%=r.getString("lastname") %>" placeholder="Full name here"  style="width:500px"  > wish to apply admission to the
 Faculty/College/Institute <br><br><input type="text" class="" id="fname" value = "<%=r.getString("newcourse") %>" name="newcourse" placeholder="Outgoing Faculty"  style="width:500px"  >,
 Term # <select name="semester" placeholder="Term #" style="width:100px">
+  <option value = "" disabled selected>--</option>
   <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -127,6 +128,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
    <tr>
   
     <td>Term <select name="firstterm" style="width:100px">
+    <option value = "" disabled selected>--</option>
       <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -138,6 +140,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
      <tr>
  
     <td>Term <select id="fname" name="secondterm" style="width:100px" class="">
+    <option value = "" disabled selected>--</option>
        <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -148,6 +151,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
      <tr>
 
     <td>Term <select id="fname" name="thirdterm" placeholder="" style="width:100px">
+    <option value = "" disabled selected>--</option>
        <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -159,6 +163,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
      <tr>
 
     <td>Term <select id="fname" name="fourthterm" placeholder="" style="width:100px">
+    <option value = "" disabled selected>--</option>
       <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -175,6 +180,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
    <tr>
   
     <td>Term <select name="fifthterm" style="width:100px">
+    <option value = "" disabled selected>--</option>
       <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -186,6 +192,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
      <tr>
  
     <td>Term <select id="fname" name="sixthterm" style="width:100px" class="">
+    <option value = "" disabled selected>--</option>
        <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -196,6 +203,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
      <tr>
 
     <td>Term <select id="fname" name="seventhterm" placeholder="" style="width:100px">
+    <option value = "" disabled selected>--</option>
        <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
@@ -207,6 +215,7 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
      <tr>
 
     <td>Term <select id="fname" name="eightterm" placeholder="" style="width:100px">
+    <option value = "" disabled selected>--</option>
       <option value = "Summer Term">Summer Term</option>
       <option value="1st Term">1st Term</option>
       <option value="2nd Term">2nd Term</option>
