@@ -24,10 +24,10 @@
 </head>
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("shifteruser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
-}	
+	 response.sendRedirect("logout.jsp");
+}
 %>
 
 <div off-canvas="slidebar-1 left reveal">

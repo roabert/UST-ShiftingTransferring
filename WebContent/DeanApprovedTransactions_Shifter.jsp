@@ -42,9 +42,9 @@
 
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("deanuser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
+	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
 notifs.setDeanCollege(conn, getuser);
@@ -329,7 +329,7 @@ function closeNav() {
 				        %>
 						{
 							href : "DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg",
-							title: "<a href='DisplayRequirementTransfer?pkey=<%=rs3.getInt("id")%>.jpg' target='_blank' download='<%= rs2.getString("transferee_id") %>.jpg'>Download</a>"
+							title: "<a href='DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg' target='_blank' download='<%= rs2.getString("shifter_id") %>.jpg'>Download</a>"
 						},
 						<%
 				        }

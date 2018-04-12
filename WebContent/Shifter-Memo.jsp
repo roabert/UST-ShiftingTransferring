@@ -26,9 +26,9 @@
 </head>
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("shifteruser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
+	 response.sendRedirect("logout.jsp");
 }	
 %>
 
@@ -100,7 +100,7 @@ if(getuser == null) {
 <br>
 <form onsubmit = "return false" id = "shiftermemo_form">
 <%
-SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 String date = sdf.format(new Date());
 try {
 	

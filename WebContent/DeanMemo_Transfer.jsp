@@ -43,9 +43,9 @@
 
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("deanuser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
+	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
 notifs.setDeanCollege(conn, getuser);

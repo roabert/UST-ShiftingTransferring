@@ -99,7 +99,7 @@ if(getuser == null) {
 <br>
 <form onsubmit = "return false" id = "transfermemo_form">
 <%
-SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 String date = sdf.format(new Date());
   
 try {

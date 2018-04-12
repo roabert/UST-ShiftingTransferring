@@ -142,10 +142,10 @@ function populateCountries(countryElementId, stateElementId) {
 <body>
 <%
 String webpage;
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("shifteruser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
-}	
+	 response.sendRedirect("logout.jsp");
+}
 
 PreparedStatement pst = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR ofad_verified = 'In-progress')");
 pst.setString(1, getuser);

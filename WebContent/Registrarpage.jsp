@@ -26,9 +26,9 @@
 
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("registraruser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
+	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
 int totalIndorseShifters = notifs.getRegistrarShiftEndorsement(conn);

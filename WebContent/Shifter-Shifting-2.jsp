@@ -18,15 +18,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Student | Shifting</title>
+<title>Shifter | Step 2</title>
 </head>
 
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("shifteruser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
-}	
+	 response.sendRedirect("logout.jsp");
+}
 %>
 
 <div off-canvas="slidebar-1 left reveal">

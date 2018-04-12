@@ -40,9 +40,9 @@
 
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("secgenuser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
+	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
 int totalShifters = notifs.getSecGenShiftTransactions(conn);
