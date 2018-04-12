@@ -36,11 +36,11 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 		
 <head>
-<title>Admin | Courses</title>
+<title>Administrator | Courses</title>
 </head>
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("administrator"); 
 if(getuser == null) {
 	 response.sendRedirect("logout.jsp");
 }	
@@ -70,7 +70,8 @@ if(getuser == null) {
         
       </ul>
     </li>
-	<li><a href="#"  class="active"><span class="glyphicon glyphicon-duplicate"></span>Courses</a></li>
+	<li><a href="AdminCourses.jsp"  class="active"><span class="glyphicon glyphicon-duplicate"></span> Courses</a></li>
+	 <li><a href="AdminLogs.jsp" ><span class="glyphicon glyphicon-inbox"></span> Logs</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>

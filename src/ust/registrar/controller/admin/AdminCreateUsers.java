@@ -68,6 +68,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.Admin_insertDetails(conn);
+		     user.insertUseraccounts(conn);
 		}
 		else if(gettype.contains("OFAD")) {
 		     user.setUserid(getuserid);
@@ -77,6 +78,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail); 
 		     user.setType(gettype);
 		     user.Ofad_insertDetails(conn);
+		     user.insertUseraccounts(conn);
 		}
 		else if(gettype.contains("OSG")) {
 		     user.setUserid(getuserid);
@@ -86,6 +88,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail); 
 		     user.setType(gettype);
 		     user.OSG_insertDetails(conn);
+		     user.insertUseraccounts(conn);
 		}
 		else if(gettype.contains("Dean")) {
 		     user.setUserid(getuserid);
@@ -96,6 +99,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setCollege(getcollege);
 		     user.setType(gettype);
 		     user.Dean_insertDetails(conn);
+		     user.insertUseraccounts(conn);
 		}
 		else if(gettype.contains("OSA")) {
 		     user.setUserid(getuserid);
@@ -105,6 +109,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.OSA_insertDetails(conn);
+		     user.insertUseraccounts(conn);
 		}
 		else if(gettype.contains("Registrar")) {
 		     user.setUserid(getuserid);
@@ -114,6 +119,7 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.Registrar_insertDetails(conn);
+		     user.insertUseraccounts(conn);
 		}
 		
 		request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);

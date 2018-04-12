@@ -35,7 +35,7 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 		
 <head>
-<title>Administrator | Users
+<title>Administrator | Users</title>
 </head>
 <body>
 <%
@@ -69,8 +69,8 @@ if(getuser == null) {
         
       </ul>
     </li>
-    <li><a href="AdminCourses.jsp"><span class="glyphicon glyphicon-duplicate"></span>Courses</a></li>
-   
+    <li><a href="AdminCourses.jsp"><span class="glyphicon glyphicon-duplicate"></span> Courses</a></li>
+     <li><a href="AdminLogs.jsp" ><span class="glyphicon glyphicon-inbox"></span> Logs</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -168,8 +168,10 @@ if(getuser == null) {
       
 </div>
   <div class="container-fluid">
-  <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Users Here</button></form>
+  <form action ="javascript:;"><button type="button" data-target=".createusers" data-toggle="modal" class="btn btn-warning btn-lg pull-right">Create Users Here</button><br><br><br><br></form>
+  <br><br>
   </div>
+  <br><br><br>
 
 					</div>
   <div id="createusers" class="modal fade createusers" role="dialog">

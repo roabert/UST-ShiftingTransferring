@@ -37,7 +37,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin | Students</title>
+<title>Administrator | Students</title>
 </head>
 <body>
 <%
@@ -72,7 +72,8 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
         
       </ul>
     </li>
-     <li><a href="AdminCourses.jsp"><span class="glyphicon glyphicon-duplicate"></span>Courses</a></li>
+     <li><a href="AdminCourses.jsp"><span class="glyphicon glyphicon-duplicate"></span> Courses</a></li>
+     <li><a href="AdminLogs.jsp" ><span class="glyphicon glyphicon-inbox"></span> Logs</a></li>
     <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
