@@ -1,12 +1,14 @@
 package ust.registrar.model.studentprocess;
 
-import java.sql.PreparedStatement;
 import java.io.IOException;
 import java.sql.*;
 import javax.servlet.http.Part;
 
-public class RequirementsDAO {
+import DatabaseHandler.DatabaseSQLs;
+
+public class RequirementsDAO implements DatabaseSQLs{
   public String studentid, newcourse, newprogram;
+  public String event, description;
   public String getNewcourse() {
 	return newcourse;
 }
@@ -85,6 +87,7 @@ public void setRequirements(Part requirements) {
  public void doStep1Shifter(Connection conn) throws IOException {
 	 updateCourseShifter(conn);
 	 step1ShifterStatus(conn);
+	 insertLogs(conn);
  }
  
  
@@ -113,9 +116,33 @@ public void setRequirements(Part requirements) {
 			 e.printStackTrace();
 		 }
  }
- public void doStep1Transfer(Connection conn) throws IOException {
+ public String getEvent() {
+	return event;
+}
+public void setEvent(String event) {
+	this.event = event;
+}
+public String getDescription() {
+	return description;
+}
+public void setDescription(String description) {
+	this.description = description;
+}
+public void doStep1Transfer(Connection conn) throws IOException {
 	 updateCourseTransfer(conn);
 	 step1TransferStatus(conn);
+	 insertLogs(conn);
  }
-	 
+ public void insertLogs(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(logs);
+			ps.setString(1, studentid);
+			ps.setString(2, event);
+			ps.setString(3, description);
+			ps.executeUpdate(); 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

@@ -26,7 +26,7 @@
 <%
 String getuser = (String)session.getAttribute("administrator"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
+	 response.sendRedirect("logout.jsp");
 }	
 %>
 

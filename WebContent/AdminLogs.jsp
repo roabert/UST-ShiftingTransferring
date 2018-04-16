@@ -103,7 +103,7 @@ if(getuser == null) {
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   ARCHIVE LOGS
+   ACTIVITY LOGS
    </a>
    </center>
 </div>
@@ -118,37 +118,23 @@ if(getuser == null) {
          <table class="table table-striped table-sortable">
         <thead>
         <tr>
-          	<th>Courses</th>
-          	<th>Status</th>
+          	<th>User</th>
+          	<th>Events</th>
+          	<th>Events Description</th>
+          	<th>Time stamp</th>
  	</tr>
         </thead>    
         <tbody>
         <%try { 
-         PreparedStatement ps = conn.prepareStatement("SELECT * FROM courses");
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM logs");
          ResultSet rs = ps.executeQuery();
          while(rs.next()) {
         %>
         <tr>
-        <td><%=rs.getString("courses_name") %></td>
-        <td>
-        <form method = "POST" action="ToggleCourses">
-	   	<input type="hidden" value = "<%= rs.getString("courses_name") %>" name = "courseName">
-        <%
-        	if(rs.getString("status").equals("active")){
-        %>
-	   	<input type="hidden" value = "active" name = "status">
-        <button type="submit" class="btn btn-danger student_shift">Deactivate</button>
-        <%
-        	}
-        	else{
-        %>
-	   	<input type="hidden" value = "inactive" name = "status">
-        <button type="submit" class="btn btn-warning student_shift">Activate</button>
-        <%	
-        	}
-        %>
-        </form> 
-	    </td>
+        <td><%=rs.getString("userid") %></td>
+        <td><%=rs.getString("events") %></td>
+        <td><%=rs.getString("description") %></td>
+        <td><%=rs.getString("event_date") %></td>
         </tr>
         <%}}catch(SQLException e){out.print(e);} %>
            </tbody>
@@ -166,61 +152,6 @@ if(getuser == null) {
 </div>
 
 					</div>
-  <div id="addcourses" class="modal fade addcourses" role="dialog">
-    <div class="modal-dialog modal-lg">
-       <div class="modal-content">
-       <form action = "AddCourses" method="post">
-         <div class="modal-header" style="background-color:#EFB652">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h3 class="modal-title"><span class="glyphicon glyphicon-th-list"></span> Add Courses</h3>
-          </div>
-          <div class="modal-body"> 	
-            <div class="col-sm-12">
-            <br>
-            
-            <h4>Faculty</h4>         
-            <table class="table">
-            <%try { 
-            	   PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM faculty");
-                   ResultSet rs2 = ps2.executeQuery();
-                
-            %>
-              <tr>
-               <td>Faculty/College/Institute: </td>
-               <td>
-               <select class="form-control" name = "getfaculty" >
-               <%   while(rs2.next()) { %>
-               <option value="<%=rs2.getString("faculty_name")%>"><%=rs2.getString("faculty_name")%></option>
-               <%} %>
-               </select>
-               </td>
-              </tr>
-              <% }catch(SQLException x){out.print(x);}%>
-            </table>
-             <h4>Courses</h4>         
-            <table class="table">
-              <tr>
-               <td>Course: </td>
-               <td><input type = input type = "text" class="form-control" class="form-control" class="form-control" name="newcourses"  required></td>
-              </tr>
-             
-            </table>
-   
-            </div>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-            <button type="submit" class = "btn btn-warning btn-md">Create</button>
-           
-         
-          </div>
-          </form>
-       </div>
-    </div>
-  </div>
-
-<!-- Edit account -->
-
 
  
 <script src="scripts/slidebars.js"></script>

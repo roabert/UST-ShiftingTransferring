@@ -68,7 +68,10 @@ Connection conn = null;
 				String gettype = request.getParameter("typeofstudent");
 				//Requirement Upload//
 				RequirementsDAO r = new RequirementsDAO();
-				 
+				 String event = "Requirements Submission";
+				 String description = getstudent+" submitted requirements in the process";
+				 r.setEvent(event);
+				 r.setDescription(description);
 				r.setNewcourse(newcourse);
 				r.setNewprogram(newprogram);
 				r.setStudentid(getstudent);

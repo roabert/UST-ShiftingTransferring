@@ -49,15 +49,21 @@ public class loginprocess extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String uname_get = request.getParameter("userbox");
 		String pwd_get = request.getParameter("pwdbox");
-
+       //for logs
+		
+		String event = "Log in authentication";
+		String description = "This user is currently logged in";
+		
 			LoginDAO login = new LoginDAO();
 			login.setUserid(uname_get);
 			login.setPassword(pwd_get);
+			login.setEvent(event);
+			login.setDescription(description);
 			login.Login(conn);
 			HttpSession session = request.getSession();
 			if(login.getType() != null) {
 			   if(login.getType().equals("OFAD")) {
-			    	session.setAttribute("setuser", uname_get);
+			    	session.setAttribute("ofaduser", uname_get);
 			    	request.getRequestDispatcher("OfadTransaction_Shifter.jsp")
 			    	.forward(request, response);
 			 

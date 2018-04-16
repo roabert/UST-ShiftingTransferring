@@ -8,6 +8,8 @@ import ust.registrar.utility.EncryptionTool;
 public class LoginDAO implements DatabaseSQLs {
 
 	public String userid, password, type;
+	
+	public String event, description;
 
 	public String getUserid() {
 		return userid;
@@ -33,7 +35,7 @@ public class LoginDAO implements DatabaseSQLs {
 		this.type = type;
 	}
 	
-	public void Login(Connection conn) {
+	public void LoginUser(Connection conn) {
 		
 		
 		try {
@@ -56,7 +58,37 @@ public class LoginDAO implements DatabaseSQLs {
 		}
 		
 	}
-	public void ResultLogin() {
-		
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void Login(Connection conn) {
+		LoginUser(conn);
+		insertLogs(conn);
+	}
+	
+	public void insertLogs(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(logs);
+			ps.setString(1, userid);
+			ps.setString(2, event);
+			ps.setString(3, description);
+			ps.executeUpdate(); 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -14,6 +14,19 @@ import DatabaseHandler.DatabaseSQLs;
 public class RegisterTransferDAO implements DatabaseSQLs {
 
 	String lname, fname, mname, email, getemail, gender, bdate, type, userid, newid, emailvalidate;
+	String event, description;
+	public String getEvent() {
+		return event;
+	}
+	public void setEvent(String event) {
+		this.event = event;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getGetemail() {
 		return getemail;
 	}
@@ -185,6 +198,12 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 						 ps2.setString(4, type);
 						
 					     ps2.executeUpdate();
+					     
+					     PreparedStatement ps3 = conn.prepareStatement(logs);
+							ps3.setString(1, newid);
+							ps3.setString(2, event);
+							ps3.setString(3, description);
+							ps3.executeUpdate(); 
 				   
 			 }catch(SQLException sql) {
 				 sql.printStackTrace();
@@ -197,6 +216,4 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 		    
 	}
 
-
-	
 }

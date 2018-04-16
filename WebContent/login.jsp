@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="CSS/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="scripts/easyResponsiveTabs.js" type="text/javascript"></script>
 		    <script type="text/javascript">
 			    $(document).ready(function () {
@@ -475,26 +476,21 @@ function transferSubmit() {
        <div class="col-sm-12">
          <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Last Name:</i></p>
-         <input type="text" class="form-control" name="register_lname" id="register_lname" required /> <br>
+         <input type="text" class="form-control" name="register_lname" id="register_lname" required /> 
          </div>
-          <div class="col-sm-6">
-         <p style="font-size: 2vw; font-size: 2vh;"><i>Email Address:</i></p>
-         <input type="email" class="form-control" name="register_email" id="register_email" required /> <br>
-         </div>
-         <div class="col-sm-6">
+           <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>First Name: </i></p>
-          <input type="text" class="form-control" name="register_fname" id="register_fname" required /> 
+          <input type="text" class="form-control" name="register_fname" id="register_fname" required /> <br> 
           </div>
-          <div class="col-sm-6">
-         <p style="font-size: 2vw; font-size: 2vh;"><i>Birth Date: </i></p>
-          <input type="date" class="form-control" name="register_bday" id="register_bday" required /> <br>
-          </div>
-          
-          <div class="col-sm-6">
+           <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>Middle Name: </i></p>
            <input type="text" class="form-control" name="register_mi" id="register_mi"   required />
           </div>
           <div class="col-sm-6">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Email Address:</i></p>
+         <input type="email" class="form-control" name="register_email" id="register_email" required /> <br>
+         </div>
+        <div class="col-sm-6">
           <p style="font-size:2vw; font-size: 2vh;"><i>Gender</i></p>
           <select class="form-control" name="register_gender" id="register_gender"   >
            <option selected="true" value="" disabled="disabled">&lt;Select Gender&gt;</option>
@@ -504,6 +500,13 @@ function transferSubmit() {
           <input type = "hidden" name = "register_typeofstudent" value = "Transferee">
           <br><br>
           </div>
+          <div class="col-sm-6">
+         <p style="font-size: 2vw; font-size: 2vh;"><i>Birth Date: </i></p>
+          <input type="date" class="form-control" name="register_bday" id="register_bday" required /> <br><br>
+          </div>
+          
+         
+         
        
           <br>
           <br><p><br></p>
@@ -601,8 +604,8 @@ function transferSubmit() {
          
          <center>
          <p style="font-size: 2vw; font-size: 2vh;"><i>Upload ID Picture: </i></p><br>
-         <input type="file" id="imagefile" onChange="readURL(this)" name="transfer_idpicture" size="50" required>
-         <img id="imageview" src="#" required />
+         <input type="file" id="imagefile" value = "Images/dp.png" onChange="readURL(this)" name="transfer_idpicture" size="50" required><br><br>
+         <img id="imageview" src = "Images/dp.png" height = "180" width = "180" class="responsive"/>
          <br><br><br><br>
          <button class="btn btn-warning btn-lg" style="width:100px;" onclick="goBack2Transfer()"><span class="glyphicon glyphicon-chevron-left" style="color:white"></span> Back</button>
           <button onclick="transferSubmit()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-check" style="color:white"></span> Submit & Login</button>
@@ -622,12 +625,6 @@ function transferSubmit() {
         <div id="footer">
         </div>
     </div>
-    	<script language="javascript">
-            populateCountries("shift_oldcollege", "shift_oldprogram");
-        </script>
-            		<script language="javascript">
-            populateCountries("transfer_oldcollege", "transfer_oldprogram");
-        </script>
         
         <script>
         function readURL(input) {
@@ -639,6 +636,7 @@ function transferSubmit() {
                         .attr('src', e.target.result)
                         .width(150)
                         .height(200);
+                    
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -658,7 +656,7 @@ function transferSubmit() {
         }
         
 
-        var file = document.getElementById('imagefile');
+      /**  var file = document.getElementById('imagefile');
 
         file.onchange = function(e){
             var ext = this.value.match(/\.([^\.]+)$/)[1];
@@ -670,7 +668,7 @@ function transferSubmit() {
                     alert('Supported file types are only .jpg files');
                     this.value='';
             }
-        };	        
+        }; */	        
         </script>
         
 </body>

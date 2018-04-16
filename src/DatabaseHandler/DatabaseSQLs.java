@@ -1,6 +1,9 @@
 package DatabaseHandler;
 
 public interface DatabaseSQLs {
+	
+	String logs = "INSERT INTO logs (userid, events, description, event_date) VALUES (?, ?, ?, NOW())";
+	
 	String shiftRegisterSQL = "INSERT INTO student_shifter (lastname, firstname, middlei, gender, typeofstudent, birthday, studentid"
 	 		+ ", oldcourse, oldprogram, idpicture) "
 	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";

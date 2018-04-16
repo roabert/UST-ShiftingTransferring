@@ -82,16 +82,19 @@ public class registerprocess extends HttpServlet {
 		// String filename = extractFileName(part);
 		
 		 String generateUsername = "transferee-";
-	
-		 
+	     
+		 String event = "Account registration of transferee";
+		 String description = "New account of a transferee, "+getfname+" "+getlname+" has been created";
      //   part.write(savepath + File.separator + filename);
 	//	 String imagepath = savepath + File.separator + filename;
 		 HttpSession session = request.getSession();
 
+		 
+		 
 			RegisterTransferDAO register = new RegisterTransferDAO();
-		
-			
-		
+   
+		    register.setEvent(event); 
+		    register.setDescription(description);
 			register.setLname(getlname);
 			register.setFname(getfname);
 			register.setMname(getmname);

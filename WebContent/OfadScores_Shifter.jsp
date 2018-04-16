@@ -41,9 +41,9 @@
 
 <body>
 <%
-String getuser = (String)session.getAttribute("setuser"); 
+String getuser = (String)session.getAttribute("ofaduser"); 
 if(getuser == null) {
-	 response.sendRedirect("login.jsp");
+	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
 int totalShifters = notifs.getOFADShiftTransactions(conn);
