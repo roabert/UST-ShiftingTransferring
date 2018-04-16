@@ -228,7 +228,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             <h3 class="modal-title"><span class="glyphicon glyphicon-calendar" style="color:white;"></span> Create Schedule</h3>
          </div>
          <form onsubmit = "return false" id = "createscheduleform">
-         <div class="modal-body" style="overflow-x:auto; height:500px; width:100%;">
+         <div class="modal-body" style="overflow:auto; height:500px; width:100%;">
           <div class="container">
             
            <table>

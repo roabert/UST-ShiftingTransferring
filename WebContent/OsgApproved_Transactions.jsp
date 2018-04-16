@@ -130,7 +130,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
      <div class="tab-content">
      <br>
   <fieldset>
-      <div class="table-responsive" style="overflow-x:auto; height:500px;">
+      <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
       
       <table class="table table-striped table-sortable">

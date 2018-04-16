@@ -113,7 +113,7 @@ if(getuser == null) {
 </div>
       <div class="container-fluid">
       <br>
-       <div class="table-responsive" style="overflow-x:auto; height:500px;">
+       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
          <table class="table table-striped table-sortable">
         <thead>
