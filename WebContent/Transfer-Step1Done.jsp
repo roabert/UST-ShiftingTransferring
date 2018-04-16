@@ -20,7 +20,7 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>Transferee | Step 1</title>
+<title>Transferee | Requirements Submitted!</title>
 </head>
 <body>
 <%

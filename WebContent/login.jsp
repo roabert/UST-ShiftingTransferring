@@ -228,8 +228,9 @@ function populateCountries(countryElementId, stateElementId) {
 			</div>	
 		</div>	
 		<div class="clear"></div>
-	</div>	
 	
+	</div>	
+		<br><br><br><br><br>
 	
       <!--  <div class="header" ><center>
  <img src="Images/usthead2.PNG" style="width:80%; height:auto;"required />
