@@ -205,7 +205,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved''";
+		        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudent_osg); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){
