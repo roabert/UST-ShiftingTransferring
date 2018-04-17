@@ -39,6 +39,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>OFAD | Exam Schedule</title>
+<script>
+$(document).ready(function() {
+
+	$('.fancybox').fancybox(); 
+	
+	})
+</script>
 </head>
 
 <body>
@@ -311,7 +318,6 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
-    $('.fancybox').fancybox(); 
 });
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
