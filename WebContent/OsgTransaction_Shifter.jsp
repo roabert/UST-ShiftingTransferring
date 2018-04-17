@@ -269,7 +269,7 @@ function closeNav() {
 				        while(rs3.next()){
 				        %>
 						{
-							href : "DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg"
+							href : "DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg",
 							title: "<a href='DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg' target='_blank' download='<%= rs2.getString("shifter_id") %>.jpg'>Download</a>"
 							
 						},
