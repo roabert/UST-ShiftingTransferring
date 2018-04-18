@@ -386,15 +386,21 @@ function createSched() {
    
   
 	if(isChecked) {
-		 if((start >= "05:59:59" && end <= "17:59:59") && (start != end) ) {
-		document.getElementById("createscheduleform").method = "post";
-		document.getElementById("createscheduleform").action = "CreateScheduleProcess";
-		document.getElementById("createscheduleform").submit();
-	  }
-	  else {
-		  alert("Exam schedule time should only be between 6:00 AM and 6:00 PM");
-		  
-	  }
+		  if((start >= end )) {
+			  	alert("You have entered an end time that is earlier than your start time. Please recheck");				  
+			  }
+		  else {
+				 if((start >= "05:59:59" && end <= "17:59:59") && (start != end) ) {
+						document.getElementById("createscheduleform").method = "post";
+						document.getElementById("createscheduleform").action = "CreateScheduleProcess";
+						document.getElementById("createscheduleform").submit();
+					  }
+					  else {
+						  alert("Exam schedule time should only be between 6:00 AM and 6:00 PM");
+						  
+					  }
+		  }
+		 
 	}
 	else {
 		alert("Please select student(s).");
