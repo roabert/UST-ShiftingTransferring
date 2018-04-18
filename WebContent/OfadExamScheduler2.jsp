@@ -141,11 +141,11 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 <br>
             
             <form action="javascript:;">
-            <button class="btn btn-lg btn-warning pull-right" type="button" data-target=".createsched" data-toggle="modal">
+            <button class="btn btn-md btn-warning pull-right"  type="button" data-target=".createsched" data-toggle="modal">
             Create Exam Schedule
             <% if(totalTransfersExam>0){ %> <span class="notification"><% if(totalTransfersExam<=99){ %> <%= totalTransfersExam %> <% }else{ %> 99+ <%} %></span> <% } %>
             </button>
-            </form>
+            </form><br>
      
     <br><br>
            <ul class = "nav nav-tabs">
@@ -156,7 +156,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
           <br>
           <fieldset>
           <div class="table-responsive" style="overflow:auto; ">
-              <table class="table table-stripped table-sortable">
+              <table class="table table-striped table-sortable">
               <thead>
               <tr>
                   <th>Date</th>
