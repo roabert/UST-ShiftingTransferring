@@ -55,10 +55,13 @@ public class ChangeOldPassword extends HttpServlet {
 	         String getpassword = request.getParameter("change_password");
 	         String getEmail = request.getParameter("getemail1");
 	         
+	         String event = "Password Recovery";
+	         String description = "This user has recovered his/her password successfully";
 	         forgotpassword f = new forgotpassword();
 	         f.setPassword(getpassword);
 	         f.setChangepassemail(getEmail);
-	         
+	         f.setEvent(event);
+	         f.setDescription(description);
 	         f.ChangePasswordSuccessful(conn);
 	         
 	         request.getRequestDispatcher("login.jsp").include(request, response);

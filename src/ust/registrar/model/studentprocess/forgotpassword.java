@@ -1,9 +1,24 @@
 package ust.registrar.model.studentprocess;
 import java.sql.*;
-public class forgotpassword {
+
+import DatabaseHandler.DatabaseSQLs;
+public class forgotpassword implements DatabaseSQLs{
 
 	public String email, getemail, passcode, confirmcode, confirmemail, password, changepassemail, changegetuser;
+	public String event, description;
 
+	public String getEvent() {
+		return event;
+	}
+	public void setEvent(String event) {
+		this.event = event;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getChangegetuser() {
 		return changegetuser;
 	}
@@ -116,8 +131,20 @@ public class forgotpassword {
 	public void ChangePasswordSuccessful(Connection conn) {
 		getUsernameLogin(conn);
 		changePassword(conn);
-		
+		insertLogs(conn);
 	}
+	 public void insertLogs(Connection conn) {
+			try {
+				PreparedStatement ps = conn.prepareStatement(logs);
+				ps.setString(1, changegetuser);
+				ps.setString(2, event);
+				ps.setString(3, description);
+				ps.executeUpdate(); 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	public String getEmail() {
 		return email;
 	}
