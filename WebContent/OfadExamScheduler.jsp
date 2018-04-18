@@ -14,10 +14,12 @@
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
 <!-- Add jQuery library -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="datatables/js/jquery.dataTables.js"></script>
 <!-- Add mousewheel plugin (this is optional) -->
@@ -234,7 +236,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
            <table>
            <tr>
               <th>  <h4>Date of Exam</h4></th>
-              <th> <input type = "date" class="form-control"  name = "examdate" required></th>
+              <th><p style="color:red;">Note: Click this box to select exam date</p> <input type = "text" class="form-control" id="pickdate" name = "examdate" required readonly><br></th>
        </tr>
           <tr>
                <th> <h4>Start Time</h4></th>
@@ -255,7 +257,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                %>
                <option value = "<%=r.getString("venue")%>"><%=r.getString("venue") %></option>
                <% } } catch(SQLException e) {out.print(e);}%>
-               </select><br><p style="color:red"><i>Note: Conflict schedules will not be set.</i></p></th>
+               </select><p style="color:red"><i>Note: Conflict schedules will not be set.</i></p></th>
                </tr>
             </table><br><br>
          
@@ -334,7 +336,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
          </div>
          <div class="modal-footer">
          <button type="button" data-dismiss="modal" class="btn btn-default btn-md">Cancel</button>
-           <button onclick = "createSched()" class="btn btn-warning btn-md">Submit</button>
+           <button onclick = "createSched()" id = "submitbutton" class="btn btn-warning btn-md">Submit</button>
          </div>
          </form>
       </div>
@@ -399,6 +401,25 @@ function createSched() {
 	}
 	//document.getElementById("CreateScheduleProcess2");
 }
+$(document).ready(function() {
+    $('#pickdate').datepicker({
+        onSelect: function(dateText, inst) {
+            //Get today's date at midnight
+            var today = new Date();
+            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+            //Get the selected date (also at midnight)
+            var selDate = Date.parse(dateText);
+
+            if(selDate < today) {
+                //If the selected date was before today, continue to show the datepicker
+                  alert("Picking exam date before the current date is invalid.");
+                $('#pickdate').val('');
+                $(inst).datepicker('show');
+              
+            }
+        }
+    });
+});
 </script>
      
 </body>

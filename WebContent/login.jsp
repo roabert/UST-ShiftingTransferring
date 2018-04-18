@@ -164,6 +164,7 @@ function populateCountries(countryElementId, stateElementId) {
 			</h1>
 				<h1>UNIVERSITY OF SANTO TOMAS</h1>
 				<h2>Shifting and Transferring System</h2>
+			
 			</div>
 			<div class="logo-bottom">
 				<section class="sky-form">									
@@ -177,8 +178,6 @@ function populateCountries(countryElementId, stateElementId) {
 				<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 					<ul class="resp-tabs-list">
 						<li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Login</span></li>
-						<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><label>/</label><span>Guide</span></li>
-
 					</ul>				  	 
 					<div class="resp-tabs-container">
 						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
@@ -192,30 +191,30 @@ function populateCountries(countryElementId, stateElementId) {
 									<br>
 										<a href="javascript:;" data-toggle="modal" data-target="#forgotpassword">Forgot your password?</a>									
 									<br>
-										<input type="submit" value="LOGIN" class="button"required />
+										<input type="submit" value="LOGIN" class="button"required /> or
+										<input type="submit" value="REGISTER"  class="button" href="javascript:;" data-toggle="modal" data-target=".register"/>
+								
+										
 									</center>
-									
+									<div class="announcement">
+							  <h3>GUIDELINES</h3>
+							  <p>Use your Student number as your USER ID.</p>
+							  <p>(ex. 2014069171)</p>
+						   	  <h4>For Transferees:</h4>
+							  <p>Use your registered id as your USER ID.</p>
+							  <p>(ex. transferee-1)</p>
+							  <p>Use your birthday as your password</p>
+							  <p>(ex. yyyy-mm-dd)</p>
+							  </div>
+							  
 								</form>
-								<center>
-							<a href="javascript:;" data-toggle="modal" data-target=".register" style="color:black;"><h4> or Register here</h4></a>
-								</center>
+								
 							</div>
 						</div>
 						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
 						<div class="login-top">
 	 <div class="announcement">
-  <h3>For Shifters</h3>
-  <p>Use your Student number as your USER ID.</p>
-  <p>(ex. 2014069171)</p>
-  <p>Use your birthday as your password</p>
-  <p>(ex. yyyy-mm-dd)</p>
-  </div>
-  <div class="announcement">
-  <h3>For Transferees:</h3>
- <p>Use your registered id as your USER ID.</p>
-  <p>(ex. transferee-1)</p>
-  <p>Use your birthday as your password</p>
-  <p>(ex. yyyy-mm-dd)</p>
+
 </div>
 							</div>
 							

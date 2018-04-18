@@ -10,16 +10,16 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
 <link rel="stylesheet" href="CSS/styles.css"type="text/css">
 <link rel="stylesheet" href="CSS/sidebar.css"type="text/css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css"type="text/css">
 <!-- Add jQuery library -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="datatables/js/jquery.dataTables.js"></script>
 <!-- Add mousewheel plugin (this is optional) -->
@@ -35,7 +35,6 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <!-- Add Media helper (this is optional) -->
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-
 <head>
 <meta charset="ISO-8859-1">
 <title>OFAD | Exam Schedule</title>
@@ -44,7 +43,7 @@ $(document).ready(function() {
 
 	$('.fancybox').fancybox(); 
 	
-	})
+	});
 </script>
 </head>
 
@@ -232,7 +231,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
            <table>
            <tr>
               <th>  <h4>Date of Exam</h4></th>
-              <th> <input type = "date" class="form-control"  name = "examdate" required></th>
+              <th><p style="color:red;">Note: Click this box to select exam date</p> <input type = "text" class="form-control" id="pickdate" name = "examdate" required readonly><br></th>
        </tr>
           <tr>
                <th> <h4>Start Time</h4></th>
@@ -253,7 +252,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                %>
                <option value = "<%=r.getString("venue")%>"><%=r.getString("venue") %></option>
                <% } } catch(SQLException e) {out.print(e);}%>
-               </select><br><p style="color:red"><i>Note: Conflict schedules will not be set.</i></p></th>
+               </select><p style="color:red"><i>Note: Conflict schedules will not be set.</i></p></th>
                </tr>
             </table><br><br>
          
@@ -264,12 +263,15 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             <div class="table-responsive" style="overflow:auto; height:300px;">
            <center>
              <table class="table table-striped table-sortable">
+             <thead>
                  <tr>
                  <th><input type="checkbox" onClick="toggle(this)"></th>
                  <th>ID</th>
                  <th>Student Name</th>
                  <th>Outgoing</th>
                  </tr>
+                 </thead>
+                 <tbody>
                  <%try {
                	  PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_exams INNER JOIN student_transfer on transferees_exams.transferee_id = student_transfer.userid WHERE exam_schedule_date is NULL");
                	  ResultSet rs2 = ps2.executeQuery();
@@ -280,9 +282,11 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                   <td><%=rs2.getString("lastname") %>, <%=rs2.getString("firstname") %> <%=rs2.getString("middlei") %></td>
                   <td><%=rs2.getString("newcourse") %>, <%=rs2.getString("newprogram") %></td>
                   </tr>
+               
                    <%
                    }  
                  } catch(SQLException e){out.print(e);} %>
+                 </tbody>
              </table>
          </center>
          </div>
@@ -367,6 +371,26 @@ function createSched() {
 	}
 	//document.getElementById("CreateScheduleProcess2");
 }
+
+$(document).ready(function() {
+    $('#pickdate').datepicker({
+        onSelect: function(dateText, inst) {
+            //Get today's date at midnight
+            var today = new Date();
+            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+            //Get the selected date (also at midnight)
+            var selDate = Date.parse(dateText);
+
+            if(selDate < today) {
+                //If the selected date was before today, continue to show the datepicker
+                  alert("Picking exam date before the current date is invalid.");
+                $('#pickdate').val('');
+                $(inst).datepicker('show');
+              
+            }
+        }
+    });
+});
 </script>
      
 </body>

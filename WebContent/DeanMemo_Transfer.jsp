@@ -182,7 +182,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
    <center>
    <a>
    <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-  MEMO: TRANSFERRING
+  COMPLETED MEMO: TRANSFERRING
    </a>
    </center>
 </div>
@@ -200,6 +200,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
           <th>Student Memo</th>
           <th>Registrar Indorsement</th>
           <th>OSG Indorsement</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -218,6 +219,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
        <td><button class = "fancybox btn" href="#<%=rs.getString("transferee_id")%>">View Memo</button></td>
        <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Indorsements</button></td>
        <td><button href="#<%=rs.getString("id")+"OSG"%>" class="fancybox btn">View Indorsements</button></td>
+       <td><button class="btn" onclick="printAllPDF()" ><span class="glyphicon glyphicon-print"></span> Print All</button></td>
         </tr>
          <div id="<%=rs.getString("transferee_id") %>" style="width:600px;display: none;">
           <div id = "studentmemo">
@@ -407,6 +409,19 @@ function printSecondIndorsement()  {
 	var prtContent = document.getElementById("secondindorsement");
 	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
 	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.focus();
+	WinPrint.print();
+	WinPrint.close();
+	 
+}
+function printAllPDF()  {
+	var style;
+
+	var studentmemo = document.getElementById("studentmemo");
+	var firstindorse = document.getElementById("firstindorsement");
+	var secondindorse = document.getElementById("secondindorsement");
+	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+	WinPrint.document.write(studentmemo.innerHTML + "<br><br><br><br><br><br><br><br><br><br>" + firstindorse.innerHTML + secondindorse.innerHTML);
 	WinPrint.focus();
 	WinPrint.print();
 	WinPrint.close();

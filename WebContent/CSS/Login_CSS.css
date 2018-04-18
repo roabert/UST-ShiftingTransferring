@@ -138,8 +138,7 @@ img {
 
 }
 .announcement {
-  padding: 1px 15px 0px;
-  background-color: white;
+  padding: 1px 10px 0px;
   border-radius: 4px;
   font-family:"Segoe UI";
 }
@@ -159,8 +158,8 @@ img {
     background: url(../Images/l3.png) no-repeat 98% 67%;
 }
 .login-top {
-    padding: 0px 25px;
-    margin-top: 25%;
+    padding: 5px;
+    float: center;
 }
 .submit{
 	float:left;
@@ -629,7 +628,7 @@ h2.resp-accordion {
 
 }
 .logo-top {
-    margin-top: 1.1%;
+    margin-top: 0;
 }
 .footer {
     margin-top: 6%;
