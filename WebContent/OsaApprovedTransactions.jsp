@@ -60,7 +60,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
     <li><a href="Osapage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions <% if(totalTransfers>0){ %> <span class="notification"><% if(totalTransfers<=99){ %> <%= totalTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
    <li><a href="OsaApprovedTransactions.jsp" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a></li>
-    <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    <li><a href="logout.jsp?userset=<%=getuser%>"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
 			</div>
@@ -128,7 +128,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
-        <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
+        <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
          <td><button type="button" class="btn" id="<%=rs.getString("transferee_id")%>" href="javascript:;">View Documents</button>
       </td>
         <td><b><%=rs.getString("osa_verified") %></b></td>

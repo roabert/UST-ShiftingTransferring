@@ -4,8 +4,27 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class RegistrarIndorseTransferDAO {
+import DatabaseHandler.DatabaseSQLs;
+
+public class RegistrarIndorseTransferDAO implements DatabaseSQLs{
 	public String transferid, registrar, Endorsement;
+	public String event, description;
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public String getEndorsement() {
 		return Endorsement;
@@ -52,6 +71,18 @@ public class RegistrarIndorseTransferDAO {
 			ps.setString(2, Endorsement);
 			ps.setString(3, transferid);
 			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void insertLogs(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(logs);
+			ps.setString(1, registrar);
+			ps.setString(2, event);
+			ps.setString(3, description);
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

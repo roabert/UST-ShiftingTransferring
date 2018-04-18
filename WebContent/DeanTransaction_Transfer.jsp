@@ -149,7 +149,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         
       </ul>
  </li>
-    <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    <li><a href="logout.jsp?userset=<%=getuser%>"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
 			</div>

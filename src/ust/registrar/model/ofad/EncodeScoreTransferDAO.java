@@ -8,6 +8,19 @@ import DatabaseHandler.DatabaseSQLs;
 public class EncodeScoreTransferDAO implements DatabaseSQLs{
 	 public String transferid, userid;
 	 public int math, science, english, iq, total;
+	 public String event, description;
+	public String getEvent() {
+		return event;
+	}
+	public void setEvent(String event) {
+		this.event = event;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getTransferid() {
 		return transferid;
 	}
@@ -81,5 +94,18 @@ public class EncodeScoreTransferDAO implements DatabaseSQLs{
 		 EncodeScore(conn);
 		 ExamTaken(conn);
 	 }
+	 
+	 public void insertLogs(Connection conn) {
+			try {
+				PreparedStatement ps = conn.prepareStatement(logs);
+				ps.setString(1, userid);
+				ps.setString(2, event);
+				ps.setString(3, description);
+				ps.executeUpdate(); 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 }

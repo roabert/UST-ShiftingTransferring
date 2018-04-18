@@ -48,10 +48,14 @@ public class RetryTransferring extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String gettransferid = request.getParameter("getuser_retry");
-		
+		String event = "Re-requirements submission";
+		String description = "Student has reset his/her process and will try again to submit requirements";
 		RetryTransferringDAO r = new RetryTransferringDAO();
+		r.setEvent(event);
+		r.setDescription(description);
 		r.setTransferid(gettransferid);
 		r.RetryProcess(conn);
+		r.insertLogs(conn);
 		
 		request.getRequestDispatcher("Transfer-Transferring.jsp").include(request, response);
 		out.print("<script>alert('You may now retry your application for shifting.');</script>");

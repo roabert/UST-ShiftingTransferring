@@ -62,9 +62,12 @@ public class EncodeScoresTransfer extends HttpServlet {
 		
 		int getallscore = getmath_score + getscience_score + getenglish_score + getiq_score;
 		int getaverage = getallscore / 4;
-		
+		String event = "Exam score encoding";
+		String description = "The exam score of "+getstudentid+" has been reviewed and encoded";
 		EncodeScoreTransferDAO e = new EncodeScoreTransferDAO();
 	    e.setUserid(getofadid);
+	    e.setEvent(event);
+	    e.setDescription(description);
 	    e.setMath(getmath_score);
 	    e.setScience(getscience_score);
 	    e.setEnglish(getenglish_score);
@@ -72,7 +75,7 @@ public class EncodeScoresTransfer extends HttpServlet {
 	    e.setTotal(getaverage);
 	    e.setTransferid(getstudentid);
 	    e.doEncodeTransfer(conn);
-	    
+	    e.insertLogs(conn);
 	    request.getRequestDispatcher("OfadScores_Transfer.jsp").include(request, response);
 	    out.print("<script>alert('Exam score of "+getstudentid+" has been encoded!');</script>");
 		

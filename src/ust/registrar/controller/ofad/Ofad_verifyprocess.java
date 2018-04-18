@@ -58,9 +58,13 @@ public class Ofad_verifyprocess extends HttpServlet {
 		String getremarks = request.getParameter("remarks");
 	    String verified;
 	    
+	    String event = "Requirements Approval";
+	    String description = "Checking the requirements of "+getstudentid;
+	    
 		OFADVerifyDAO ofad = new OFADVerifyDAO();
 		ofad.setOfadid(getofadid);
-	
+	    ofad.setEvent(event);
+	    ofad.setDescription(description);
 		ofad.setStudentid(getstudentid);
 		if(getButton.equals("Approved")){
 		verified = "Approved";
@@ -73,7 +77,7 @@ public class Ofad_verifyprocess extends HttpServlet {
 			ofad.setRemarks(getremarks);
 		ofad.dontverifyOfad(conn);
 		}
-         
+        ofad.insertLogs(conn); 
 		request.getRequestDispatcher("OfadTransaction_Shifter.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");
 	}

@@ -87,9 +87,12 @@ public class SubmitMemoProcess extends HttpServlet {
 		String geteight1year =  request.getParameter("eightterm_1year");
 		String geteight2year =  request.getParameter("eightterm_2year");
 	
-		
+		String event = "Memo submission";
+		String description = "Student has submitted a request memo";
 		
 		ShifterMemoDAO s = new ShifterMemoDAO();
+		s.setEvent(event);
+		s.setDescription(description);
 		s.setShifterid(getshifterid);
 		s.setStudentid(getstudentid);
 		s.setDate(getdate);
@@ -126,7 +129,7 @@ public class SubmitMemoProcess extends HttpServlet {
 		s.setEightterm_2year(geteight2year);
 		
 		s.doStep3Indorsed(conn);
-		
+		s.insertLogs(conn);
 		response.sendRedirect("Shifter-MemoDone.jsp");
 	}
 

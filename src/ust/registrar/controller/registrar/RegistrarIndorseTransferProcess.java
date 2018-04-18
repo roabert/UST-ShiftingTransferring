@@ -57,8 +57,11 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 		String getremarks = request.getParameter("endorsement");
 		String ifchecked = request.getParameter("approval");
 		String getbutton = request.getParameter("endorse");
-		
+		String event = "Endorsement Approval";
+		String description = "Memo request of "+gettransferid+" has been reviewed";
 		RegistrarIndorseTransferDAO d = new RegistrarIndorseTransferDAO();
+		d.setEvent(event);
+		d.setDescription(description);
 		d.setRegistrar(getdeanid);
 		d.setTransferid(gettransferid);
 		d.setEndorsement(getremarks);
@@ -66,12 +69,14 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
      if(getbutton.equals("endorsewithremarks")) {
 		if(ifchecked != null){
 		d.registrarIndorsed(conn);
+		d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+gettransferid+" forwarded!');</script>");
 		}
 		else {
 		d.registrarNotIndorsed(conn);
+		d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+gettransferid+" was rejected!');</script>");
@@ -79,6 +84,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 	  }
      else if(getbutton.equals("endorsenow")){
     		d.registrarIndorsed(conn);
+    		d.insertLogs(conn);
    		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
    		    .include(request, response);
    		    out.print("<script>alert('Memo of "+gettransferid+" forwarded!');</script>");

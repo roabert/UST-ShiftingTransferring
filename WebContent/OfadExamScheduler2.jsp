@@ -101,7 +101,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         
       </ul>
  </li>
-    <li><a href="logout.jsp"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    <li><a href="logout.jsp?userset=<%=getuser%>"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
 			</div>
@@ -228,7 +228,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
          <form onsubmit = "return false" id = "createscheduleform">
          <div class="modal-body" style="overflow:auto; height:500px; width:100%;">
           <div class="container">
-            
+            <input type="hidden" name = "getofadid" value = "<%=getuser%>">
            <table>
            <tr>
               <th>  <h4>Date of Exam</h4></th>

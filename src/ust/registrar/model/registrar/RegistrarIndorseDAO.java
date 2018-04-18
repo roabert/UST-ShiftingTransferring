@@ -1,8 +1,27 @@
 package ust.registrar.model.registrar;
 import java.sql.*;
-public class RegistrarIndorseDAO {
+
+import DatabaseHandler.DatabaseSQLs;
+public class RegistrarIndorseDAO implements DatabaseSQLs{
 
 	public String studentid, registrar, Endorsement;
+	public String event, description;
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public String getEndorsement() {
 		return Endorsement;
@@ -49,6 +68,18 @@ public class RegistrarIndorseDAO {
 			ps.setString(2, Endorsement);
 			ps.setString(3, studentid);
 			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void insertLogs(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(logs);
+			ps.setString(1, registrar);
+			ps.setString(2, event);
+			ps.setString(3, description);
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -53,9 +53,13 @@ public class OSG_verifyprocess extends HttpServlet {
 		String getButton = request.getParameter("optionverify");
 		String verified;
 		
+		String event = "Requirements Approval";
+		String description = "Checking the requirements of "+getstudentid+"";
+		
 		OSGVerifyDAO osg = new OSGVerifyDAO();
 		osg.setOsgname(getosgname);
-	
+	    osg.setEvent(event);
+	    osg.setDescription(description);
 		osg.setStudentid(getstudentid);
 		
 		if(getButton.equals("Approved")){
@@ -69,6 +73,8 @@ public class OSG_verifyprocess extends HttpServlet {
 		    osg.setApproved(verified);
 	    osg.dontverifyStudent(conn);
 		}
+		
+		osg.insertLogs(conn);
 		
 		//out.println(getstudentid + getosgname + remarks);
 		request.getRequestDispatcher("OsgTransaction_Shifter.jsp").include(request, response);

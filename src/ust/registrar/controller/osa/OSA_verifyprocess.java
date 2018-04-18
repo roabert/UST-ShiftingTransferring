@@ -51,15 +51,21 @@ public class OSA_verifyprocess extends HttpServlet {
 		String getButton = request.getParameter("optionverify");
 		String verified;
 		
+		String event = "Requirements Approval";
+		String description = "Checking the requirements of "+gettransferid+"";
+		
 		OSAVerifyDAO osa = new OSAVerifyDAO();
 		osa.setUserid(getosaid);
-		
+		osa.setEvent(event);
+		osa.setDescription(description);
+
 		osa.setTransferid(gettransferid);
 		
 		if(getButton.equals("Approved")){
 			verified="Approved";
 			osa.setApproved(verified);
 			osa.verifyStudent(conn);
+			
 		}
 		else if(getButton.equals("Disapproved")){
 			verified = "Disapproved";
@@ -67,6 +73,8 @@ public class OSA_verifyprocess extends HttpServlet {
 			osa.setRemarks(getremarks);
 			osa.dontverifyStudent(conn);
 		}
+		
+		osa.insertLogs(conn);
 		
 		request.getRequestDispatcher("OsaTransactions.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");

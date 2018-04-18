@@ -9,6 +9,19 @@ import DatabaseHandler.DatabaseSQLs;
 public class TransferMemoDAO implements DatabaseSQLs{
 	public String transferid, date, fullname, newcourse, semester, currentcourse, firstterm, secondterm, thirdterm, fourthterm, fifthterm,
 	sixthterm, seventhterm, eightterm;
+	public String event, description;
+	public String getEvent() {
+		return event;
+	}
+	public void setEvent(String event) {
+		this.event = event;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getTransferid() {
 		return transferid;
 	}
@@ -261,5 +274,17 @@ public class TransferMemoDAO implements DatabaseSQLs{
 	public void doStep3Indorsed(Connection conn) {
 		generateMemo(conn);
 		submitMemoIndorsed(conn);
+	}
+	public void insertLogs(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(logs);
+			ps.setString(1, transferid);
+			ps.setString(2, event);
+			ps.setString(3, description);
+			ps.executeUpdate(); 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

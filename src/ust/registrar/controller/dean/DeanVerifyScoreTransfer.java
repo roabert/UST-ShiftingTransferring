@@ -57,9 +57,12 @@ public class DeanVerifyScoreTransfer extends HttpServlet {
 		String getdeanid = request.getParameter("getuser");
 		String getstatus = request.getParameter("studentstatus");
 		String getremarks = request.getParameter("remarks");
-		
+		String event = "Exam results approval";
+		String description = "The exam result of "+getstudent+" has been determined";
 		DeanExamStatusTransferDAO d = new DeanExamStatusTransferDAO();
 		d.setDeanid(getdeanid);
+		d.setEvent(event);
+		d.setDescription(description);
 		d.setStatus(getstatus);
 		d.setTransferid(getstudent);
 		d.setRemarks(getremarks);
@@ -70,7 +73,7 @@ public class DeanVerifyScoreTransfer extends HttpServlet {
 		else if(getstatus.equals("Disapproved")) {
 			d.doFailStudent(conn);
 		}
-		
+		d.insertLogs(conn);
 		request.getRequestDispatcher("DeanExam_Transfer.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");
 		

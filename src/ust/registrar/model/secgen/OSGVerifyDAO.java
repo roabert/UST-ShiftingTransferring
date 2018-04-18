@@ -5,6 +5,7 @@ import DatabaseHandler.DatabaseSQLs;
 public class OSGVerifyDAO implements DatabaseSQLs {
 
 	public String studentid, osgname, approved, remarks;
+	public String event, description;
 
 	public String getStudentid() {
 		return studentid;
@@ -20,6 +21,22 @@ public class OSGVerifyDAO implements DatabaseSQLs {
 
 	public void setOsgname(String osgname) {
 		this.osgname = osgname;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getRemarks() {
@@ -59,6 +76,18 @@ public void dontverifyStudent(Connection conn) {
 		}
 		
 	}
+public void insertLogs(Connection conn) {
+	try {
+		PreparedStatement ps = conn.prepareStatement(logs);
+		ps.setString(1, osgname);
+		ps.setString(2, event);
+		ps.setString(3, description);
+		ps.executeUpdate(); 
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 
 public String getApproved() {
 	return approved;

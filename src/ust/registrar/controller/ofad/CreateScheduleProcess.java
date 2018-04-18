@@ -51,7 +51,7 @@ public class CreateScheduleProcess extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		
+		String getofad = request.getParameter("getofadid");
 		String getshifters[] = request.getParameterValues("selectshifters");
 		String gettransfers[] = request.getParameterValues("selectstransferees");
 		String getexamdate = request.getParameter("examdate");
@@ -61,7 +61,12 @@ public class CreateScheduleProcess extends HttpServlet {
 		String remarks = request.getParameter("exam_remarks");
 		String status = "";
 		
+		String event = "Exam Scheduling";
+		String description = "Exam date, time and venue has been settled for shifters";
 		SetExamScheduleDAO set = new SetExamScheduleDAO();
+		  set.setUserid(getofad);
+		  set.setEvent(event);
+		  set.setDescription(description);
 		
 		  set.checkVenue(conn);
 	        set.setVenue(getvenue);
@@ -94,6 +99,7 @@ public class CreateScheduleProcess extends HttpServlet {
 		out.print("<script>alert('There are conflicts in the schedule, please select other time or place for the exam.');</script>");
 	}
 	else{
+		set.insertLogs(conn);
 		request.getRequestDispatcher("OfadExamScheduler.jsp").include(request, response);
 		out.print("<script>alert('Exam Schedule: "+getexamdate+"');</script>");
 	}

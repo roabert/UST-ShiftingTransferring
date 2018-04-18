@@ -85,8 +85,11 @@ public class SubmitMemoProcess extends HttpServlet {
 		String geteightterm = request.getParameter("eightterm");
 		String geteight1year =  request.getParameter("eightterm_1year");
 		String geteight2year =  request.getParameter("eightterm_2year");
-		
+		String event = "Memo Submission";
+		String description = "Student has submitted a request memo";
 		TransferMemoDAO s = new TransferMemoDAO();
+		s.setEvent(event);
+		s.setDescription(description);
 		s.setTransferid(gettransferid);
 		s.setDate(getdate);
 		s.setFullname(getfullname);
@@ -120,7 +123,7 @@ public class SubmitMemoProcess extends HttpServlet {
 		s.setEightterm_1year(geteight1year);
 		s.setEightterm_2year(geteight2year);
 		s.doStep3Indorsed(conn);
-		
+		s.insertLogs(conn);
 		response.sendRedirect("Transfer-MemoDone.jsp");
 
 	}

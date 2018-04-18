@@ -47,11 +47,14 @@ public class RetryShifting extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String getstudentid = request.getParameter("getuser_retry");
-		
+		String event = "Re-requirements submission";
+		String description = "Student has reset his/her process and will try again to submit requirements";
 		RetryShiftingDAO r = new RetryShiftingDAO();
+		r.setEvent(event);
+		r.setDescription(description);
 		r.setStudentid(getstudentid);
 		r.RetryProcess(conn);
-		
+		r.insertLogs(conn);
 		request.getRequestDispatcher("Shifter-Shifting.jsp").include(request, response);
 		out.print("<script>alert('You may now retry your application for shifting.');</script>");
 	}

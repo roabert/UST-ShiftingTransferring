@@ -52,11 +52,15 @@ public class Dean_verifyprocess extends HttpServlet {
 		String getdeanname = request.getParameter("getuser");
 		String remarks = request.getParameter("remarks");
 		String verified;
-	    String getButton = request.getParameter("optionverify");	
-		
+	    String getButton = request.getParameter("optionverify");
+	    
+	    String event = "Requirements Approval";
+	    String description = "Checking the requirements of "+getstudentid+"";
+	    
 		DeanVerifyDAO d = new DeanVerifyDAO();
 		d.setDeanname(getdeanname);
-		
+		d.setEvent(event);
+		d.setDescription(description);
 		d.setStudentid(getstudentid);
 		
 	    if(getButton.equals("Approved")){
@@ -70,6 +74,8 @@ public class Dean_verifyprocess extends HttpServlet {
 	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
 	    }
+	    
+	    d.insertLogs(conn);
 	    
 		request.getRequestDispatcher("DeanTransaction_Shifter.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>"); 

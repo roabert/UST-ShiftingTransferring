@@ -58,25 +58,31 @@ public class OSGIndorseProcess extends HttpServlet {
         String getremarks = request.getParameter("endorsement");
         String getapproval = request.getParameter("approval");
         String getbutton = request.getParameter("endorse");
-        
+        String event = "Endorsement Approval";
+        String description = "Memo request of "+getstudentid+" has been reviewed";
         OSGIndorseStudentDAO o = new OSGIndorseStudentDAO();
+       o.setEvent(event);
+       o.setDescription(description);
         o.setSecgen(getsecgen);
         o.setStudentid(getstudentid);
         o.setRemarks(getremarks);
        if(getbutton.equals("endorsewithremarks")) {
         if(getapproval != null) {
         o.finalStep(conn);
+        o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
         out.print("<script>alert('Memo of "+getstudentid+" approved! Student has been shifted!')</script>");
         }
         else { 
         o.dontIndorseStudent(conn);
+        o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
         out.print("<script>alert('Memo of "+getstudentid+" has been disapproved!')</script>");
         }
        }
        else if(getbutton.equals("endorsenow")) {
            o.finalStep(conn);
+           o.insertLogs(conn);
            request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
            out.print("<script>alert('Memo of "+getstudentid+" approved! Student has been shifted!')</script>");
        }

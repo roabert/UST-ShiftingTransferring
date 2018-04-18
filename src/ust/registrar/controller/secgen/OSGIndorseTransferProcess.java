@@ -58,25 +58,31 @@ public class OSGIndorseTransferProcess extends HttpServlet {
         String getremarks = request.getParameter("endorsement");
         String getapproval = request.getParameter("approval");
         String getbutton = request.getParameter("endorse");
-        
+        String event = "Endorsement Approval";
+        String description = "Memo request of "+gettransferid+" has been reviewed";
         OSGIndorseTransfereeDAO o = new OSGIndorseTransfereeDAO();
+        o.setEvent(event);
+        o.setDescription(description);
         o.setSecgen(getsecgen);
         o.setTransferid(gettransferid);
         o.setRemarks(getremarks);
        if(getbutton.equals("endorsewithremarks")) {
         if(getapproval != null) {
         o.approveTransfer(conn);
+        o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
         out.print("<script>alert('Memo of "+gettransferid+" approved! Student has been transferred!')</script>");
         }
         else { 
         o.dontIndorseStudent(conn);
+        o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
         out.print("<script>alert('Memo of "+gettransferid+" has been disapproved!')</script>");
         }
        }
        else if(getbutton.equals("endorsenow")) {
     	   o.approveTransfer(conn);
+    	   o.insertLogs(conn);
            request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
            out.print("<script>alert('Memo of "+gettransferid+" approved! Student has been transferred!')</script>");
     	   

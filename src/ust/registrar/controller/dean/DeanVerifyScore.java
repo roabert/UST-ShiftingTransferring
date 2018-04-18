@@ -54,8 +54,11 @@ public class DeanVerifyScore extends HttpServlet {
 		String getdeanid = request.getParameter("getuser");
 		String getstatus = request.getParameter("studentstatus");
 		String getremarks = request.getParameter("remarks");
-		
+		String event = "Exam results approval";
+		String description = "The exam result of "+getstudent+" has been determined";
 		DeanExamStatusShifterDAO d = new DeanExamStatusShifterDAO();
+		d.setEvent(event);
+		d.setDescription(description);
 		d.setDeanid(getdeanid);
 		d.setStatus(getstatus);
 		d.setStudentid(getstudent);
@@ -67,7 +70,7 @@ public class DeanVerifyScore extends HttpServlet {
 		
 			d.doFailStudent(conn);
 		}
-		
+		d.insertLogs(conn);
 		request.getRequestDispatcher("DeanExam_Shifter.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");
 	}

@@ -51,9 +51,14 @@ public class OSG_verifyTransfer extends HttpServlet {
 		String remarks = request.getParameter("remarks");
 		String verified;
 		
+		String event = "Requirements Approval";
+		String description = "Checking the requirements of "+gettransferid+"";
+		
 		OSGVerifyTransferDAO osg = new OSGVerifyTransferDAO();
 		osg.setSecgenid(getosgname);
 		osg.setTransferid(gettransferid);
+		osg.setEvent(event);
+		osg.setDescription(description);
 		
 		if(getButton.equals("Approved")){
 		verified = "Approved";
@@ -66,7 +71,7 @@ public class OSG_verifyTransfer extends HttpServlet {
 			osg.setRemarks(remarks);
 	    osg.dontverifyStudent(conn);
 		}
-		
+		osg.insertLogs(conn);
 		//out.println(getstudentid + getosgname + remarks);
 		request.getRequestDispatcher("OsgTransaction_Transfer.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");

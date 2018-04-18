@@ -56,10 +56,14 @@ public class Dean_verifyTransfer extends HttpServlet {
 		String getButton = request.getParameter("optionverify");
 		String verified;
 		String remarks = request.getParameter("remarks");
+		
+		String event = "Requirements Approval";
+		String description = "Checking the requirements of "+gettransferid+"";
 		 
 		DeanVerifyTransferDAO d = new DeanVerifyTransferDAO();
 		d.setDeanid(getdeanid);
-		
+		d.setEvent(event);
+		d.setDescription(description);
 		d.setTransferid(gettransferid);
 		
 	    if(getButton.equals("Approved")) {
@@ -73,6 +77,8 @@ public class Dean_verifyTransfer extends HttpServlet {
 	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
 	    }
+	    
+	    d.insertLogs(conn);
 	    
 		request.getRequestDispatcher("DeanTransaction_Transfer.jsp").include(request, response);
 		out.print("<script>alert('Submitted!');</script>");

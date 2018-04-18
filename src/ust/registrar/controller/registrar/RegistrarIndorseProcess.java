@@ -56,22 +56,27 @@ public class RegistrarIndorseProcess extends HttpServlet {
 		String getremarks = request.getParameter("endorsement");
 		String ifchecked = request.getParameter("approval");
 		String getbutton = request.getParameter("endorse");
-		
+		String event = "Endorsement Approval";
+		String description = "Memo request of "+getstudentid+" has been reviewed";
 		RegistrarIndorseDAO d = new RegistrarIndorseDAO();
+		d.setEvent(event);
+		d.setDescription(description);
 		d.setRegistrar(getdeanid);
 		d.setStudentid(getstudentid);
 		d.setEndorsement(getremarks);
 		
-
+        
 	 if(getbutton.equals("endorsewithremarks")) {
 		if(ifchecked != null){
 		d.registrarIndorsed(conn);
+		d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+getstudentid+" forwarded!');</script>");
 		}
 		else {
 		d.registrarNotIndorsed(conn);
+		d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+getstudentid+" was rejected!');</script>");
@@ -79,6 +84,7 @@ public class RegistrarIndorseProcess extends HttpServlet {
 	 }
 	 else if(getbutton.equals("endorsenow")) {
 		 d.registrarIndorsed(conn);
+		 d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+getstudentid+" forwarded!');</script>");
