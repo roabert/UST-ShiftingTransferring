@@ -292,7 +292,7 @@ if(rs4.next()) {
     <h2>Shifting To College/Faculty/Institute</h2>
     <select class="form-control" id="country" name="outgoing_college">
 
-</select>
+</select><br><br>
     <h2>Shifting To Program:</h2>
     <select class="form-control" id="state" name="outgoing_program">
 
@@ -396,10 +396,14 @@ function swapImage(){
 function nextstep() {
 	//id("text_steps").innerHTML = "<p><i>SHIFTING(Step 2-a): UPLOAD REQUIREMENTS</i></p>";
 	var selectedcourse = id("checkcourse").value;
-	var oldprogram = id("state").value;
-	var oldcourse = id("country").value;
-   if(oldcourse != "------Select Faculty------" && oldprogram != null) {
-	if(selectedcourse != oldcourse) {
+	var oldprogram = id("state");
+	var selectedoldprogram = oldprogram.options[oldprogram.selectedIndex].text;
+	var oldcourse = id("country");
+	var oldcourse1 = id("country").value;
+	var selectedoldcourse = oldcourse.options[oldcourse.selectedIndex].text;
+	
+   if(selectedoldcourse != "------Select Faculty------" && selectedoldprogram != "------Select Program------" && selectedoldprogram != "") {
+	if(selectedcourse != oldcourse1) {
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
 	}

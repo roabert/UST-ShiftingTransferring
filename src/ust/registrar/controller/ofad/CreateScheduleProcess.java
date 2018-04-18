@@ -95,9 +95,10 @@ public class CreateScheduleProcess extends HttpServlet {
 		}
 
 	if (status.equals("NA")){
-		 out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('.createsched').modal('show');  });</script>");
-			
+		 
 		request.getRequestDispatcher("OfadExamScheduler.jsp").include(request, response);
+		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('.createsched').modal('show');  });</script>");
+		
 		out.print("<script>alert('There are conflicts in the schedule, please select other time or place for the exam.');</script>");
 	}
 	else{

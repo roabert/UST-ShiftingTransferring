@@ -221,7 +221,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 
      <div class="footer"></div>
 <div class="modal fade createsched" role="dialog">
-   <div class="modal-dialog modal-lg" style="width:1250px;">
+   <div class="modal-dialog modal-lg" style="max-width:100%; width:1250px;">
       <div class="modal-content">
         <div class="modal-header" style="background-color:#EFB652">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -329,7 +329,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
             </div>
             
             <br>
-            <center>   <textarea required rows="10" cols="100%" name = "exam_remarks" placeholder="Remarks"></textarea><br><br>
+            <center>   <textarea required rows="10" cols="90%" style="max-width:100%; max-height:100%;" name = "exam_remarks" placeholder="Remarks"></textarea><br><br>
            </center>
          </div>
          <div class="modal-footer">

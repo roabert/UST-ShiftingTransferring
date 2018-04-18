@@ -299,7 +299,7 @@ if(rs4.next()) {
 </select>
 
    <br>
-    <img id="imageToSwap" src="images/d.gif" />
+  
   <br><br>
  
   <button type = "button" onclick="nextstep()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right"></span> Next</button>
@@ -372,14 +372,16 @@ function swapImage(){
 	image.src = dropd.value;	
 };
 function nextstep() {
-	var faculty = id("country").value;
-	var course = id("state").value;
-  if(faculty != "------Select Faculty------" || course != "") {
+	var faculty = id("country");
+	var selectedfaculty = faculty.options[faculty.selectedIndex].text;
+	var course = id("state");
+	var selectedcourse = course.options[course.selectedIndex].text;
+  if(selectedfaculty != "------Select Faculty------" && selectedcourse != "" && selectedcourse != "------Select Program------") {
 	id("choosecollege").style.display = "none";
 	id("fileuploading").style.display = "block";
   }
-  else if(faculty != "------Select Faculty------" || course == ""){
-	  alert('Please choose the course you want to transfer.');
+  else {
+	  alert('Choose your destined course and program.');
   }
 }
 function goback() {

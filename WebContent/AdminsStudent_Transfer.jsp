@@ -149,7 +149,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
 	        <form method="POST" action ="ClearDocumentsTransfer">
 	        <input name="id" type=hidden value="<%=rs.getString("userid") %>">
 	        <input name="status" type=hidden value="<%= status %>">
-	        <button class="btn btn-warning btn-lg pull-right" type="submit" 
+	        <button class="btn btn-warning pull-right" type="submit" 
 	        <%
 	        if(status.equals("NA")){
 	        %>	
@@ -175,7 +175,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       </center>
       
       </div>
-       <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Clear Docs</button></form>
+       <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Remove Requirements</button></form>
       </div>
       
       <br><br>

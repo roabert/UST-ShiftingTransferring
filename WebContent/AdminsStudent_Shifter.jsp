@@ -119,6 +119,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       <center>
       <table class="table table-striped table-sortable">
          <thead>
+         <tr>
           <th><input type="checkbox" onclick = "checkAll(this)"></th>
           <th>ID</th>
           <th>Student Name</th>
@@ -126,7 +127,8 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
           <th>Outgoing</th>
           <th>Incoming</th>
           <th>View Documents</th>
-		  <th>Clear Documents</th>    
+		  <th>Clear Documents</th>
+		  </tr>    
         </thead>
         
         <tbody>
@@ -145,12 +147,12 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
 			<td><%=rs.getString("typeofstudent") %></td>
 			<td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
 			<td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><button class="btn" href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</button></td>		
+        <td><button type="button" class="btn" id="<%=rs.getString("shifter_id")%>" href="javascript:;">View Documents</button></td>		
 		<td>
 	        <form method="POST" action ="ClearDocumentsShifter">
 	        <input name="id" type=hidden value="<%=rs.getString("studentid") %>">
 	        <input name="status" type=hidden value="<%=status %>">
-	        <button class="btn btn-warning btn-lg pull-right" type="submit" 
+	        <button class="btn btn-warning pull-right" type="submit" 
 	        <%
 	        if(status.equals("NA")){
 	        %>	
@@ -175,7 +177,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       </center>
       
       </div>
-       <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Clear Docs</button></form>
+       <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Remove Requirements</button></form>
       </div>
       
       <br><br>
@@ -208,6 +210,49 @@ function checkAll(source) {
 	}
 }
 </script>
-     
+       <script type="text/javascript">
+		 $(document).ready(function() {
+		        <%
+		         try{
+		        String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid";
+		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
+		        ResultSet rs2 = ps2.executeQuery();
+		        if(!rs2.next()){
+		        }
+		        else {
+		          do {
+		        %>   
+				$("#<%=rs2.getString("shifter_id")%>").click(function() {
+					$.fancybox.open([
+				        <%
+				        String displayrequirement = "SELECT * FROM shifters_requirements WHERE shifter_id = ?";
+				        PreparedStatement ps3 = conn.prepareStatement(displayrequirement); 
+				        ps3.setString(1, rs2.getString("shifter_id"));
+				        ResultSet rs3 = ps3.executeQuery();
+				        while(rs3.next()){
+				        %>
+						{
+							href : "DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg",
+							title: "<a href='DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg' target='_blank' download='<%= rs2.getString("shifter_id") %>.jpg'>Download</a>"
+						},
+						<%
+				        }
+						%>
+					], {
+						helpers : {
+							thumbs : {
+								width: 75,
+								height: 50
+							}
+						}
+					});
+	         	});
+	        <%} while(rs2.next());
+		         }  
+		         }catch(Exception e) {
+		        	e.printStackTrace();
+		        } %> 
+         })
+         </script>  
 </body>
 </html>
