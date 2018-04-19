@@ -2,6 +2,7 @@ package ust.registrar.model.studentprocess;
 import java.sql.*;
 
 import DatabaseHandler.DatabaseSQLs;
+import ust.registrar.utility.EncryptionTool;
 public class forgotpassword implements DatabaseSQLs{
 
 	public String email, getemail, passcode, confirmcode, confirmemail, password, changepassemail, changegetuser;
@@ -104,7 +105,7 @@ public class forgotpassword implements DatabaseSQLs{
 	public void changePassword(Connection conn) {
 		try {
 			PreparedStatement ps = conn.prepareStatement("UPDATE useraccounts SET password = ? WHERE email = ?");
-			ps.setString(1, password);
+			ps.setString(1, EncryptionTool.encrypt(password));
 			ps.setString(2, changepassemail);
 			ps.executeUpdate();
 	

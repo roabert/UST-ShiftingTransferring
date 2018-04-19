@@ -2,6 +2,7 @@ package ust.registrar.model.admin;
 
 import java.sql.*;
 import DatabaseHandler.DatabaseSQLs;
+import ust.registrar.utility.EncryptionTool;
 
 public class CreateUsersDAO implements DatabaseSQLs{
 
@@ -91,7 +92,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(InsertUsersSQL);
 			ps.setString(1, userid);
-			ps.setString(2, password);
+			ps.setString(2, EncryptionTool.encrypt(password));
 			ps.setString(3, email);
 			ps.setString(4, type);
 			ps.executeUpdate();
