@@ -91,8 +91,16 @@ if(getuser == null) {
  <div class="container">
 <div class="row">
 <center>
-<ol class="progress-meter">
-<h2>PHASE ONE:<h2>
+<div class="progress-meter">
+<br>
+    <div class="breadcrumb flat legend">
+    <span class="modal-sub">Legend</span>
+    <a class="modal-btn active legend">Completed</a>
+    <a class="modal-btn inp legend">In-Progress</a>
+    <a class="modal-btn reject legend">Rejected</a>
+    </div>
+    
+<h2>PHASE ONE:</h2>
     <div class="breadcrumb flat">
    <%
      TransfereeTracker tracker = new TransfereeTracker();
@@ -150,7 +158,7 @@ if(getuser == null) {
 	    <a class="modal-btn">OFAD Verification</a>
 	    <%} %>
 	    </div>
-	      <h2>PHASE TWO:<h2>
+	      <h2>PHASE TWO:</h2>
 	    <div class="breadcrumb flat">
 	  
 	 <%if(tracker.getGetsched() != null && tracker.getIdsched() != null) {%>
@@ -183,7 +191,7 @@ if(getuser == null) {
    <%} %>
 	
 	</div>
-	<h2>PHASE THREE:<h2>
+	<h2>PHASE THREE:</h2>
 	<div class="breadcrumb flat">
 	
  <%if(tracker.getMemostudentid() != null && tracker.getRegistrarindorsed() == null) { %>
@@ -225,23 +233,6 @@ if(getuser == null) {
 	
 	
 	</div>
-</ol>
-
-<button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#legend">Legend</button>
- <div id="legend" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      
-      <div class="modal-body">
-        
-<img src="Images/legends.png" class="responsive-legend"style="width:300px;height:120px;">
-      </div>
-     
-    </div>
-
-  </div>
 </div>
   </div>
 

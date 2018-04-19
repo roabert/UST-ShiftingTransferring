@@ -425,3 +425,19 @@ span.notification.alert-notif{
 	font-size: 16px;
     padding: 1px 10px;
 }
+.breadcrumb.flat.legend {
+    background: none;
+    box-shadow: none;
+}
+.modal-btn.legend:before{
+	content:none;
+}
+.modal-btn.legend:after{
+	content:none;
+}
+.modal-sub{
+	display:block;
+	text-align:left;
+	font-size:16px;
+	font-weight:600;
+}
