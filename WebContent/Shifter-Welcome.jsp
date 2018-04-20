@@ -127,6 +127,12 @@ if(getuser == null) {
 				<%} else { %>
 				<h5><%=usercontent.getString("newprogram") %></h5>
 				<%} %>
+				<br>
+				<center>
+				<button class="btn btn-warning" data-target="#changepassword" data-toggle="modal" href="javascript:;">
+				<span class="glyphicon glyphicon-pencil"></span> Change Password
+				</button>
+				</center>
 			<div class="w3ls-touch">
 			</div>
 			</div>
@@ -192,9 +198,45 @@ if(getuser == null) {
  
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
-  
+  <div class="modal fade" role="dialog" id="changepassword">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+          <div class="modal-header" style="background-color:#EFB652">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Modify password</h4>
+          </div>
+          <form onsubmit ="return false" id = "changepasswordform">
+          <div class="modal-body">
+      
+           <input type="hidden" name="getuser" value="<%=getuser%>">
+          <h4>Enter your new password</h4>
+          <br>
+             <center>
+             
+              <table class="table">
+                <tr> 
+                   <td>Password: </td>
+                   <td><input type="password" class="form-control" id="password1" name="change_password" required></td>
+                </tr>
+                   <tr> 
+                   <td>Confirm Password: </td>
+                   <td><input type="password" class="form-control" id="passwordconfirm" name="change_retypepassword"  required></td>
+                </tr>
+              </table>
+           
+             </center>
+          </div>
+          <div class="modal-footer">
+          <button type="button" onclick = "changePassword()" class="btn btn-warning btn-md" value="Submit">Change Password</button>          
+          </div>
+             </form>
+      </div>
+    </div>
+ </div>
 <script>
-
+function id(x) {
+	return document.getElementById(x);
+}
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
@@ -203,6 +245,23 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function changePassword() {
+	var pw1 = id("password1").value;
+	var pw2 = id("passwordconfirm").value;
+  if(pw1.length > 0 && pw2.length > 0) {	
+	if(pw1 == pw2) {
+		id("changepasswordform").action = "EditPassword";
+		id("changepasswordform").method = "post";
+		id("changepasswordform").submit();
+	}
+	else {
+		alert('Passwords are not the same!');
+	}
+  }
+  else {
+	  alert('Please input the fields.');
+  }
 }
 </script>
      <div class="footer"></div>

@@ -209,6 +209,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 		<legend>
 		<p>USER ID: <%=usercontent.getString("userid") %></p>
 		</legend>
+		</fieldset>
 			<div class="profile-pic wthree">
 					
 				<img src="Images/dp.png" alt="">
@@ -217,6 +218,12 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 			<div class="w3-message">
 				<a>Type</a><h5><%=usercontent.getString("type") %></h5><br>
 				<a>College | Institute | Faculty</a><h5><%=usercontent.getString("college") %></h5>
+				<br>
+				<center>
+				<button class="btn btn-warning" data-target="#changepassword" data-toggle="modal" href="javascript:;">
+				<span class="glyphicon glyphicon-pencil"></span> Change Password
+				</button>
+				</center>
 			<div class="w3ls-touch">
 			</div>
 			</div>
@@ -227,7 +234,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
             }         
             %>
 		</div>
-    </fieldset>
+   
   </div>
 
 </div>
@@ -239,170 +246,8 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 </div>
 <!-- #wrapper -->
 		
-		
-<%-- <div canvas="contain">
-<div id="main">
-<div id="wrapper">
-	<header class="header-fixed">
-
-	<div class="header-limiter">
-
-		<h1>UNIVERSITY OF SANTO TOMAS</h1>
-
-		<nav>
-		
-			<a>Shifting and Transferring System</a>
-		</nav>
-
-	</div>
-
-</header>
-<div class="topnav">
-   <center>
-   <a>
-   <span style="font-size:30px;cursor:pointer;color: white; float:left" class="js-toggle-left-slidebar">&#9776;</span>
-   
-   PERSONAL INFORMATION
-   </a>
-   </center>
-</div>
-</div>
-<!-- You need this element to prevent the content of the page from jumping up -->
-<div class="header-fixed-placeholder"></div>
-
-</header>
-   <%
-    String returnsql = "SELECT * FROM dean WHERE userid = ?";
-    try{
-    PreparedStatement pst = conn.prepareStatement(returnsql);
-    pst.setString(1, getuser);
-    ResultSet usercontent = pst.executeQuery();
-     
-    
-    %>          
- <div class="container">
-      <div id="content">
-                 <% while(usercontent.next()) { %>
-                 
-<div class="profile">
-
-	<div class="wrap">
-	
-		<div class="profile-main">
-<legend>
-		<p>USER ID: <%=usercontent.getString("userid") %></p>
-		</legend>
-			<div class="profile-pic wthree">
-					
-				<img src="Images/dp.png" alt="">
-				<h2><%=usercontent.getString("last_name")%>, <%=usercontent.getString("first_name")%></h2>
-			</div>
-			<div class="w3-message">
-				<h5><%=usercontent.getString("type") %>, <%=usercontent.getString("college") %></h5>
-			<div class="w3ls-touch">
-			</div>
-			</div>
-			            <%
-               }
-            }   catch(Exception e) {
-            	e.printStackTrace();
-            }         
-            %>
-		</div>
-		<div class="wthree_footer_copy">
-			<p>© 2018 Creative Design Profile Widget. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-		</div>
-	</div>
-</div>
-
-</div>
-</div> --%>
-<%-- <div canvas="contain">
-<div id="main">
-<div id="wrapper">
 
 
-<div class="header">
- <a class="logo" >
- <span style="font-size:50px;margin-top:-20px;cursor:pointer;color: black" class="js-toggle-left-slidebar">&#9776;</span>
- UNIVERSITY OF SANTO TOMAS</a>
-  <div class="header-right">  
-    <a class="active">Shifting and Transferring System</a>
-  </div>
-</div>
-<div class="topnav">
-  <a href="#">MyUSTe</a>
-  <a href="#">Programs</a>
-  <a href="#" >Guidelines</a>
-</div>
-
-
-<br>
-            <p><i>PROFILE INFORMATION</i></p>
-</div>
-    <%
-    String returnsql = "SELECT * FROM dean WHERE userid = ?";
-    try{
-    PreparedStatement pst = conn.prepareStatement(returnsql);
-    pst.setString(1, getuser);
-    ResultSet usercontent = pst.executeQuery();
-     
-    
-    %>
-    <br>
-     <div class="container">
-          <fieldset>
-            
-            <center>
-            <div class="table-responsive">
-            <% while(usercontent.next()) { %>
-            <table class="table">
-               <tr>
-                 <td>Name </td>
-                 <td><input type="text" class="form-control" size = "60" value = "<%=usercontent.getString("last_name")%>, <%=usercontent.getString("first_name")%>"  readonly></td>
-                 <td rowspan = "4"><center><img src="Images/dp.png" style="width:50%; height:50%;" class="responsive"></center></td>
-               </tr>
-               <tr>
-                 <td>ID </td>
-                 <td><input type="text" class="form-control" size = "60" value="<%=usercontent.getString("userid")%>"  readonly></td>
-               </tr>
-               <tr>
-                 <td>College </td>
-                 <td><input type="text" class="form-control" size = "60" value="<%=usercontent.getString("college") %>"  readonly></td>
-               </tr>
-               <tr>
-                 <td>Type </td>
-                 <td><input type="text" class="form-control" size = "60" value="<%=usercontent.getString("type") %>"  readonly></td>
-               </tr>
-               <tr>
-                 <td>Gender </td>
-                 <td><input type="text" class="form-control" size = "60" value="<%=usercontent.getString("gender") %>"  readonly></td>
-                 <td><center><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>Edit Profile</button></center></td>
-               </tr>
-            </table>
-            <%
-               }
-            }   catch(Exception e) {
-            	e.printStackTrace();
-            }         
-            %>
-            </div>
-             </center>
-          </fieldset>
-     </div>
-</div>
-
- <footer class="footer-distributed">
-
-			<div class="footer-left">
-				<p class="footer-company-name"><img src="Images/seal.png" style="width:10%; height:auto;"/> CodeUS Operandi &copy; 2018</p>
-			</div>
-
-					</footer>
-					
-
-</div>
- --%>
 <!-- </div>
 
 <div class="footer">(C) CodeUS Operandi</div>
@@ -411,9 +256,46 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
  
 		<script src="scripts/slidebars.js"></script>
 		<script src="scripts/scripts.js"></script>
-
+<div class="modal fade" role="dialog" id="changepassword">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+          <div class="modal-header" style="background-color:#EFB652">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Modify password</h4>
+          </div>
+          <form onsubmit ="return false" id = "changepasswordform">
+          <div class="modal-body">
+      
+           <input type="hidden" name="getuser" value="<%=getuser%>">
+          <h4>Enter your new password</h4>
+          <br>
+             <center>
+             
+              <table class="table">
+                <tr> 
+                   <td>Password: </td>
+                   <td><input type="password" class="form-control" id="password1" name="change_password" required></td>
+                </tr>
+                   <tr> 
+                   <td>Confirm Password: </td>
+                   <td><input type="password" class="form-control" id="passwordconfirm" name="change_retypepassword"  required></td>
+                </tr>
+              </table>
+           
+             </center>
+          </div>
+          <div class="modal-footer">
+          <button type="button" onclick = "changePassword()" class="btn btn-warning btn-md" value="Submit">Change Password</button>          
+          </div>
+             </form>
+      </div>
+    </div>
+ </div>
 
 <script>
+function id(x) {
+	return document.getElementById(x);
+}
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
     document.getElementById("main").style.marginLeft = "300px";
@@ -422,6 +304,23 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+}
+function changePassword() {
+	var pw1 = id("password1").value;
+	var pw2 = id("passwordconfirm").value;
+  if(pw1.length > 0 && pw2.length > 0) {	
+	if(pw1 == pw2) {
+		id("changepasswordform").action = "EditPassword";
+		id("changepasswordform").method = "post";
+		id("changepasswordform").submit();
+	}
+	else {
+		alert('Passwords are not the same!');
+	}
+  }
+  else {
+	  alert('Please input the fields.');
+  }
 }
 </script>
      <div class="footer"></div>
