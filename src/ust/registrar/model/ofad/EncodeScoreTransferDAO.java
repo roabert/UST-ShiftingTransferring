@@ -73,7 +73,7 @@ public class EncodeScoreTransferDAO implements DatabaseSQLs{
 			ps.setInt(5, iq);
 			ps.setInt(6, total);
 			ps.setString(7, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class EncodeScoreTransferDAO implements DatabaseSQLs{
 		  try {
 			PreparedStatement ps = conn.prepareStatement(ExamTaken_Transfer);
 			ps.setString(1, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +101,7 @@ public class EncodeScoreTransferDAO implements DatabaseSQLs{
 				ps.setString(1, userid);
 				ps.setString(2, event);
 				ps.setString(3, description);
-				ps.executeUpdate(); 
+				ps.executeUpdate(); ps.close(); 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

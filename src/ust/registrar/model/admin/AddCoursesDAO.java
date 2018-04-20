@@ -24,7 +24,7 @@ public class AddCoursesDAO {
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO courses (courses_name, faculty) VALUES (?, ?)");
 			ps.setString(1, courses);
 			ps.setString(2, faculty);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

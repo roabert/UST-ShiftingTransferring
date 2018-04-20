@@ -56,7 +56,7 @@ public class OSGIndorseStudentDAO implements DatabaseSQLs {
 			ps.setString(1, secgen);
 			ps.setString(2, remarks);
 			ps.setString(3, studentid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +69,7 @@ public class OSGIndorseStudentDAO implements DatabaseSQLs {
 			ps.setString(1, secgen);
 			ps.setString(2, remarks);
 			ps.setString(3, studentid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -80,7 +80,7 @@ public class OSGIndorseStudentDAO implements DatabaseSQLs {
 		try {
 			PreparedStatement ps = conn.prepareStatement(approveShiftingFinal);
 			ps.setString(1, studentid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -97,7 +97,7 @@ public class OSGIndorseStudentDAO implements DatabaseSQLs {
 			ps.setString(1, secgen);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); 
+			ps.executeUpdate(); ps.close(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

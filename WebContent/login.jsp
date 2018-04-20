@@ -192,7 +192,7 @@ function populateCountries(countryElementId, stateElementId) {
 										<a href="javascript:;" data-toggle="modal" data-target="#forgotpassword">Forgot your password?</a>									
 									<br>
 										<input type="submit" value="LOGIN" class="button"required /> or
-										<input type="submit" value="REGISTER"  class="button" href="javascript:;" data-toggle="modal" data-target=".register"/>
+										<button type="button" class="button" href="javascript:;" data-toggle="modal" data-target=".register"/>REGISTER</button>
 								
 										
 									</center>
@@ -358,7 +358,7 @@ function populateCountries(countryElementId, stateElementId) {
                    <td><input type="password" class="form-control" id="password1" name="change_password" required></td>
                 </tr>
                    <tr> 
-                   <td>Change Password: </td>
+                   <td>Confirm Password: </td>
                    <td><input type="password" class="form-control" id="passwordconfirm" name="change_retypepassword"  required></td>
                 </tr>
               </table>

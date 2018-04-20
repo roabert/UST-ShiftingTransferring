@@ -244,7 +244,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
                 <tr>
               <th><h4>Venue</h4></th>
                <th><select name = "venueexam" class="form-control" required>
-               <option value = "" selected disabled>Venue of exam</option>
+               <option value = "" selected disabled>Please select a venue</option>
                <% try{ 
                 PreparedStatement p = conn.prepareStatement("SELECT * FROM venue");
                 ResultSet r = p.executeQuery();
@@ -355,13 +355,13 @@ function createSched() {
 	}
   
 	if(isChecked) {
-		  if((start >= end )) {
+		  if(start >= end ) {
 			  	alert("You have entered an end time that is earlier than your start time. Please recheck");				  
 			  }
 		  else {
 				 if((start >= "05:59:59" && end <= "17:59:59") && (start != end) ) {
 						document.getElementById("createscheduleform").method = "post";
-						document.getElementById("createscheduleform").action = "CreateScheduleProcess";
+						document.getElementById("createscheduleform").action = "CreateScheduleProcess2";
 						document.getElementById("createscheduleform").submit();
 					  }
 					  else {
@@ -382,7 +382,7 @@ $(document).ready(function() {
         onSelect: function(dateText, inst) {
             //Get today's date at midnight
             var today = new Date();
-            today = Date.parse(today.getMonth()+1+'/'+today.getDate()+'/'+today.getFullYear());
+            today = Date.parse(today.getMonth()+1+'-'+today.getDate()+'-'+today.getFullYear());
             //Get the selected date (also at midnight)
             var selDate = Date.parse(dateText);
 

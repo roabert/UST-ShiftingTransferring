@@ -35,7 +35,7 @@ public class RetryShiftingDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM shifters_status WHERE shifter_id = ?");
 			ps.setString(1, studentid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class RetryShiftingDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM shifters_requirements WHERE shifter_id = ?");
 			ps.setString(1, studentid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class RetryShiftingDAO implements DatabaseSQLs{
 			ps.setString(1, studentid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); 
+			ps.executeUpdate(); ps.close(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

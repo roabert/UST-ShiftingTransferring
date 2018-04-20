@@ -111,7 +111,7 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 					 ps.setString(11, "");
 					 ps.setBinaryStream(12, picture.getInputStream(), (int) picture.getSize());					
 										
-				     ps.executeUpdate();
+				     ps.executeUpdate(); ps.close();
 				     
 				  //   request.setAttribute("sessionUser", getstudentid);
 				  //   request.getRequestDispatcher("Student-Shifter/Shifter-Welcome.jsp")
@@ -136,7 +136,7 @@ public class RegisterShifterDAO implements DatabaseSQLs {
 					 ps.setString(2, bdate);
 					 ps.setString(3, type);
 					
-				     ps.executeUpdate();
+				     ps.executeUpdate(); ps.close();
 				     
 				  //   request.setAttribute("sessionUser", getstudentid);
 				  //   request.getRequestDispatcher("Student-Shifter/Shifter-Welcome.jsp")

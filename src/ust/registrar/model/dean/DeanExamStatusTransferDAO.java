@@ -64,7 +64,7 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 			ps.setString(2, status);
 			ps.setString(3, remarks);
 			ps.setString(4, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,7 +76,7 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement(Dean_passfailScoreTransfer);
 			ps.setString(1, status);
 			ps.setString(2, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -87,7 +87,7 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(removeExamSchedTransfer);
 			ps.setString(1, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -98,7 +98,7 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(MemoForm_Tranfer);
 			ps.setString(1, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,7 +122,7 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 			ps.setString(1, deanid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); 
+			ps.executeUpdate(); ps.close(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

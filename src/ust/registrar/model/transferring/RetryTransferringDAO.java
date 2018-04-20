@@ -38,7 +38,7 @@ public class RetryTransferringDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM transferees_status WHERE transferee_id = ?");
 			ps.setString(1, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class RetryTransferringDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM transferees_requirements WHERE transferee_id = ?");
 			ps.setString(1, transferid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,7 +64,7 @@ public class RetryTransferringDAO implements DatabaseSQLs{
 			ps.setString(1, transferid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); 
+			ps.executeUpdate(); ps.close(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

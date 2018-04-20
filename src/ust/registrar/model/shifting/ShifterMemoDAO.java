@@ -259,7 +259,7 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 			ps.setString(31, eightterm);
 			ps.setString(32, eightterm_1year);
 			ps.setString(33, eightterm_2year);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -270,7 +270,7 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(RegistrarStatusShifter);
 			ps.setString(1, studentid);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -288,7 +288,7 @@ public class ShifterMemoDAO implements DatabaseSQLs{
 			ps.setString(1, shifterid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); 
+			ps.executeUpdate(); ps.close(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

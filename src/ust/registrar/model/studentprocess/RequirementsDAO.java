@@ -42,7 +42,7 @@ public void setRequirements(Part requirements) {
 		PreparedStatement ps = conn.prepareStatement("INSERT INTO `shifters_requirements` (`id`, `shifter_id`, `uploaded_file`) VALUES (NULL, ?, ?)");
 		ps.setString(1, studentid);
 		ps.setBinaryStream(2, requirements.getInputStream(), (int) requirements.getSize());
-		ps.executeUpdate();
+		ps.executeUpdate(); ps.close();
 	 }
 	 catch(SQLException e) {
 		 e.printStackTrace();
@@ -54,7 +54,7 @@ public void setRequirements(Part requirements) {
 		PreparedStatement ps = conn.prepareStatement("INSERT INTO `transferees_requirements` (`id`, `transferee_id`, `uploaded_file`) VALUES (NULL, ?, ?)");
 		ps.setString(1, studentid);
 		ps.setBinaryStream(2, requirements.getInputStream(), (int) requirements.getSize());
-		ps.executeUpdate();
+		ps.executeUpdate(); ps.close();
 	 }
 	 catch(SQLException e) {
 		 e.printStackTrace();
@@ -139,7 +139,7 @@ public void doStep1Transfer(Connection conn) throws IOException {
 			ps.setString(1, studentid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); 
+			ps.executeUpdate(); ps.close(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

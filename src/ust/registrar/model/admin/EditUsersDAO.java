@@ -62,7 +62,7 @@ public class EditUsersDAO implements DatabaseSQLs {
 			ps.setString(2, fname);
 			ps.setString(3, mname);
 			ps.setString(4, userget);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class EditUsersDAO implements DatabaseSQLs {
 			ps.setString(2, fname);
 			ps.setString(3, mname);
 			ps.setString(4, userget);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +90,7 @@ public class EditUsersDAO implements DatabaseSQLs {
 			ps.setString(2, fname);
 			ps.setString(3, mname);
 			ps.setString(4, userget);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,7 +104,7 @@ public class EditUsersDAO implements DatabaseSQLs {
 			ps.setString(2, fname);
 			ps.setString(3, mname);
 			ps.setString(4, userget);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,7 +118,7 @@ public class EditUsersDAO implements DatabaseSQLs {
 			ps.setString(2, fname);
 			ps.setString(3, mname);
 			ps.setString(4, userget);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class EditUsersDAO implements DatabaseSQLs {
 			ps.setString(2, fname);
 			ps.setString(3, mname);
 			ps.setString(4, userget);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

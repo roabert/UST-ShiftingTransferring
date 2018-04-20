@@ -9,6 +9,7 @@ import javax.servlet.http.Part;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import DatabaseHandler.DatabaseSQLs;
+import ust.registrar.utility.EncryptionTool;
 
 
 public class RegisterTransferDAO implements DatabaseSQLs {
@@ -178,7 +179,7 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 						 ps.setString(13, "");
 						 ps.setBinaryStream(14, idpic.getInputStream(), (int) idpic.getSize());	
 						
-					     ps.executeUpdate();
+					     ps.executeUpdate(); 
 					     ResultSet rs = ps.getGeneratedKeys();
 					     if(rs.next()) {
 					    	 lastid = rs.getInt(1);
@@ -193,7 +194,7 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 					   //  .forward(request, response);
 					     PreparedStatement ps2 = conn.prepareStatement(insertStudentUser);
 						 ps2.setString(1, newid);
-						 ps2.setString(2, bdate);
+						 ps2.setString(2, EncryptionTool.encrypt(bdate));
 						 ps2.setString(3, email);
 						 ps2.setString(4, type);
 						

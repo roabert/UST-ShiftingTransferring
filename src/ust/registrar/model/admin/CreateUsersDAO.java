@@ -95,7 +95,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, EncryptionTool.encrypt(password));
 			ps.setString(3, email);
 			ps.setString(4, type);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,7 +110,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,7 +125,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,7 +156,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(5, email);
 			ps.setString(6, college);
 			ps.setString(7, type);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -171,7 +171,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -186,7 +186,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate();
+			ps.executeUpdate(); ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
