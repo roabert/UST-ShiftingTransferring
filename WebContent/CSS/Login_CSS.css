@@ -83,6 +83,8 @@ body {
    	 width: 45%;
    	 float: left;
    	 background-image: url("../Images/login-wall2.jpg");
+   	 background-repeat: no-repeat;
+   	 background-size: cover;
    	 padding: 11.57% 0;
      position: relative;
 	 object-fit: cover;
@@ -118,7 +120,7 @@ img {
 .login {
     width: 55%;
     float: right;
-    padding: 4% 0;
+    padding: 4% 0 0 0;
 	background:#fff;
 }
 .login input[type="text"], .login input[type="password"] {

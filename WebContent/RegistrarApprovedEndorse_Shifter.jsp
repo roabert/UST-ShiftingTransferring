@@ -133,10 +133,12 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
         <tbody>
         <%
          try{
+        int cout = 0;
         String display_Endorsement = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid WHERE registrar_indorsed = 'Approved'";
         PreparedStatement ps = conn.prepareStatement(display_Endorsement); 
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
+        	cout++;
         
         %>
         <tr>
@@ -144,12 +146,12 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td>
-        	<button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button>
+        	<button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>+cout">View Memo</button>
         	
         </td>
         <td><b><%=rs.getString("registrar_indorsed") %></b></td>
         </tr>
-         <div id="<%=rs.getString("shifter_id") %>" style="width:670px;display: none;">
+         <div id="<%=rs.getString("shifter_id")+cout %>" style="width:670px;display: none;">
   
 					<%
 						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM shifters_memo where shifter_id = ?");
