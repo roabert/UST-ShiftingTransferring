@@ -208,13 +208,13 @@ if(getuser == null) {
        <%
 String webpage = "";
        
-PreparedStatement pm = conn.prepareStatement("SELECT * FROM student_transfer  WHERE userid = ?");
+PreparedStatement pm = conn.prepareStatement("SELECT * FROM student_transfer WHERE userid = ? AND passwordchanged is NULL");
 pm.setString(1, getuser);
 ResultSet rm = pm.executeQuery();
 if(rm.next()) {
-	if(rm.getString("passwordchanged") == null) {
-		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#passwordrecovery').modal('show');  });</script>");
-	}
+	
+		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#changepassword').modal({backdrop: 'static', keyboard: false, show: true});  });</script>");
+	
 }
        
 PreparedStatement pst = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR osa_verified = 'In-progress' OR ofad_verified = 'In-progress')");
@@ -399,7 +399,7 @@ populateCountries("country", "state");
 </script>
 <script>
 
-$('#changepassword').modal({backdrop: 'static', keyboard: false})  
+//$('#changepassword').modal({backdrop: 'static', keyboard: false})  
 
 function id(x) {
 	return document.getElementById(x);
