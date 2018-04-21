@@ -38,7 +38,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Dean | Memo
+<title>Dean | Memo</title>
 </head>
 
 <body>
