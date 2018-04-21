@@ -191,6 +191,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
 	            	   		 </div>
 	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
 	            	   		<br><br><br><br>
+	            	   		<span style="display:block; text-align:right;">ISO NUMBER</span>
 	            	   				                   
 	            	<% 
 	            	   		}

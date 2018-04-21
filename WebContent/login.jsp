@@ -6,6 +6,7 @@
 
 <html>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="CSS/Login_CSS.css">
 <link rel="stylesheet" href="CSS/w3.css">
@@ -191,20 +192,18 @@ function populateCountries(countryElementId, stateElementId) {
 									<br>
 										<a href="javascript:;" data-toggle="modal" data-target="#forgotpassword">Forgot your password?</a>									
 									<br>
-										<input type="submit" value="LOGIN" class="button"required /> or
+										<input type="submit" value="LOGIN" class="button"required /> 
 										<button type="button" class="button" href="javascript:;" data-toggle="modal" data-target=".register"/>REGISTER</button>
 								
 										
 									</center>
 									<div class="announcement">
 							  <h3>GUIDELINES</h3>
-							  <p>Use your Student number as your USER ID.</p>
-							  <p>(ex. 2014069171)</p>
+							  <p>Default USER ID (Student #): (ex. 2014069171)</p>
+							  <p>Default Password (Birthdate): (ex. yyyy-mm-dd)</p>
 						   	  <h4>For Transferees:</h4>
 							  <p>Use your registered id as your USER ID.</p>
 							  <p>(ex. transferee-1)</p>
-							  <p>Use your birthday as your password</p>
-							  <p>(ex. yyyy-mm-dd)</p>
 							  </div>
 							  
 								</form>
