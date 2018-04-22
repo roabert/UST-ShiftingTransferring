@@ -208,10 +208,12 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <%
          try{
         String display_finalmemo = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE shifter_shifting_approved = 'Approved' AND dean.userid = ?";
-       PreparedStatement ps = conn.prepareStatement(display_finalmemo);
+        int cout = 0;
+        PreparedStatement ps = conn.prepareStatement(display_finalmemo);
        ps.setString(1, getuser);
         ResultSet rs = ps.executeQuery();
            while(rs.next()) {
+        	   cout++;
         %>
         <tr>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
@@ -219,10 +221,67 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
        <td><button class = "fancybox btn" href="#<%=rs.getString("shifter_id")%>">View Memo</button></td>
        <td><button href="#<%=rs.getString("id")%>" class="fancybox btn">View Indorsements</button></td>
        <td><button href="#<%=rs.getString("id")+"OSG"%>" class="fancybox btn">View Indorsements</button></td>
-      <td><button class="btn" onclick="printAllPDF()" ><span class="glyphicon glyphicon-print"></span> Print All</button></td>
+      <td><button class="btn" onclick="printAllPDF<%= cout %>()" ><span class="glyphicon glyphicon-print"></span> Print All</button></td>
         </tr>
-         <div id="<%=rs.getString("shifter_id") %>" style="width:670px;display: none;">
-          <div id = "studentmemo">
+        <div id="<%=rs.getString("shifter_id") %>Memo">
+          <style>
+          @media print {
+          		.memo{
+          			display:block!important;
+          		}
+          		
+          		.studentmemo{
+          			border-right:1px solid #000;
+          			padding-right: 3%;
+          			width:45%!important;
+          			float:left;
+          		}
+          		
+          		.firstindorsement{
+          			width:45%!important;
+          			padding-left: 3%;
+          			float:left;
+          		}
+          		
+          		.secondindorsement{
+          			border-top:1px solid #000;
+          			display:block;
+          			float:left;
+          			width:100%!important;
+          		}
+          		
+          		.hide-in-print-all{
+          			display:none!important;
+          		}
+          		
+          		.dont-hide-in-print-all{
+          			display:block!important;
+          			margin-top:20px;
+          		}
+          		
+          		
+			}
+          </style>
+	      <center>
+	          	<div class="dont-hide-in-print-all" style="display: none;">
+	            	 	<h2>UNIVERSITY OF SANTO TOMAS</h2>
+	            	 	<h4>OFFICE OF THE SECRETARY GENERAL</h4>
+	           	</div>
+	     </center>
+         <div id="<%=rs.getString("shifter_id") %>" class="memo studentmemo" style="width:670px;display: none;">
+          <div id = "studentmemo<%= cout %>">
+          <style>
+          @media print {
+          		.col-sm-6{
+          			display:inline-block!important;
+          			width:50%!important;
+          		}
+          		
+          		button{
+          			display:none;
+          		}
+			}
+          </style>
 					<%
 						PreparedStatement p3 = conn.prepareStatement("SELECT * FROM shifters_memo where shifter_id = ?");
 						p3.setString(1, rs.getString("shifter_id"));
@@ -230,8 +289,10 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	   	while(r3.next()){
 	            	   		%>
 	            	   		<center>
+	            	   		<div class="hide-in-print-all">
 	            	   		<h2>UNIVERSITY OF SANTO TOMAS</h2>
 	            	   		<h4>OFFICE OF THE SECRETARY GENERAL</h4>
+	            	   		</div>
 	            	   		</center>
 	            	   		<br>
 	            	   		<p>Date: <u><%=r3.getString("date") %></u></p><br>
@@ -269,11 +330,18 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 					%>
 					</div>
 						  <center>
-	            	   		<button class="btn" onclick = "printStudentMemo()">Print</button>
+	            	   		<button class="btn" onclick = "printStudentMemo<%= cout %>()">Print</button>
 	            	   		</center><br>		
 				</div>
-				<div id="<%=rs.getString("id") %>" style="width:600px;display: none;">
-				<div id = "firstindorsement">
+				<div id="<%=rs.getString("id") %>" class="memo firstindorsement" style="width:600px;display: none;">
+				<div id = "firstindorsement<%= cout %>">
+		          <style>
+		          @media print {
+		          		button{
+		          			display:none;
+		          		}
+					}
+		          </style>
 	        <%
 	            PreparedStatement p4 = conn.prepareStatement("SELECT * FROM shifters_indorsement INNER JOIN registrar on registrar_id = registrar.userid WHERE shifter_id = ?");
 	            p4.setString(1, rs.getString("shifter_id"));
@@ -305,11 +373,18 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	        %>
 	         </div>
 	         	<center>
-	            	   		<button class="btn" onclick = "printFirstIndorsement()">Print</button>
+	            	   		<button class="btn" onclick = "printFirstIndorsement<%= cout %>()">Print</button>
 	            	   		</center><br>
 	      </div>
-	      <div id="<%=rs.getString("id")+"OSG" %>" style="width:600px;display: none;">
-	       <div id = "secondindorsement">
+	      <div id="<%=rs.getString("id")+"OSG" %>" class="memo secondindorsement" style="width:600px;display: none;">
+	       <div id = "secondindorsement<%= cout %>">
+		          <style>
+		          @media print {
+		          		button{
+		          			display:none;
+		          		}
+					}
+		          </style>
 	        <%
 	            PreparedStatement p5 = conn.prepareStatement("SELECT * FROM shifters_indorsement INNER JOIN secgen on secgen_id = secgen.userid INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE shifter_id = ?");
 	            p5.setString(1, rs.getString("shifter_id"));
@@ -341,8 +416,9 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	        %>
 	      </div>
 	           	<center>
-	            	   		<button class="btn" onclick = "printSecondIndorsement()">Print</button>
+	            	   		<button class="btn" onclick = "printSecondIndorsement<%= cout %>()">Print</button>
 	            	   		</center><br>
+	     </div>
 	     </div>
         <%}
            
@@ -359,6 +435,20 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 </div>
 </div>
      <div class="footer"></div>
+	      
+		      <div id = "iso">
+			          <style>
+			          @media print {
+			          		.iso{
+			          			display:block!important;
+			          			position:fixed;
+			          			bottom:0;
+			          			right:0;
+			          		}
+						}
+			          </style>
+			          <span class="iso" style="display:none;">UST:S033-04-F022</span>
+		       </div>
 
 
 <script src="scripts/slidebars.js"></script>
@@ -379,55 +469,75 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
-function printStudentMemo()  {
+
+
+<%
+ try{
+String display_finalmemo = "SELECT * FROM shifters_indorsement INNER JOIN student_shifter on shifters_indorsement.shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE shifter_shifting_approved = 'Approved' AND dean.userid = ?";
+int cout = 0;
+PreparedStatement ps = conn.prepareStatement(display_finalmemo);
+ps.setString(1, getuser);
+ResultSet rs = ps.executeQuery();
+   while(rs.next()) {
+	   cout++;
+%>
+
+function printStudentMemo<%= cout %>()  {
 	var style;
 
-	var prtContent = document.getElementById("studentmemo");
+	var prtContent = document.getElementById("studentmemo<%= cout %>");
+	var iso = document.getElementById("iso");
 	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.document.write(prtContent.innerHTML + iso.innerHTML);
 	WinPrint.focus();
 	WinPrint.print();
 	WinPrint.close();
 	 
 }
 
-function printFirstIndorsement()  {
+function printFirstIndorsement<%= cout %>()  {
 	var style;
 
-	var prtContent = document.getElementById("firstindorsement");
+	var prtContent = document.getElementById("firstindorsement<%= cout %>");
+	var iso = document.getElementById("iso");
 	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.document.write(prtContent.innerHTML + iso.innerHTML);
 	WinPrint.focus();
 	WinPrint.print();
 	WinPrint.close();
 	 
 }
 
-function printSecondIndorsement()  {
+function printSecondIndorsement<%= cout %>()  {
 	var style;
 
-	var prtContent = document.getElementById("secondindorsement");
+	var prtContent = document.getElementById("secondindorsement<%= cout %>");
+	var iso = document.getElementById("iso");
 	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.document.write(prtContent.innerHTML + iso.innerHTML);
+	WinPrint.focus();
+	WinPrint.print();
+	WinPrint.close();
+	 
+}
+function printAllPDF<%= cout %>()  {
+	var style;
+
+	var studentmemo = document.getElementById("<%=rs.getString("shifter_id") %>Memo");
+	var iso = document.getElementById("iso");
+	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+	WinPrint.document.write(studentmemo.innerHTML + iso.innerHTML);
 	WinPrint.focus();
 	WinPrint.print();
 	WinPrint.close();
 	 
 }
 
-function printAllPDF()  {
-	var style;
-
-	var studentmemo = document.getElementById("studentmemo");
-	var firstindorse = document.getElementById("firstindorsement");
-	var secondindorse = document.getElementById("secondindorsement");
-	var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-	WinPrint.document.write(studentmemo.innerHTML + "<br><br><br><br><br><br><br><br><br><br>" + firstindorse.innerHTML + secondindorse.innerHTML);
-	WinPrint.focus();
-	WinPrint.print();
-	WinPrint.close();
-	 
-}
+<%}
+   
+ }catch(Exception e) {
+	e.printStackTrace();
+} %>
 </script>
      <script>
      $(document).on( "click", '.dean_Endorsement',function(e) 
