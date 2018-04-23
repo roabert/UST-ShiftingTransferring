@@ -354,16 +354,6 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 
 
 <script>
-$(function(){
-    $("#pickdate").datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
-        var minValue = $(this).val();
-        minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
-        minValue.setDate(minValue.getDate()+1);
-        $("#pickdate").datepicker( "option", "minDate", minValue );
-    })
-});
-</script>
-<script>
 $(document).ready(function() {
     $('table.table-sortable').DataTable();
 });
@@ -404,7 +394,7 @@ function createSched() {
 			  	alert("You have entered an end time that is earlier than your start time. Please recheck");				  
 			  }
 		  else {
-				 if((start >= "05:59:59" && end <= "17:59:59") && (start != end) ) {
+				 if((start >= "05:59:59" && end <= "18:00:01") && (start != end) ) {
 						document.getElementById("createscheduleform").method = "post";
 						document.getElementById("createscheduleform").action = "CreateScheduleProcess";
 						document.getElementById("createscheduleform").submit();
@@ -423,6 +413,8 @@ function createSched() {
 }
 $(document).ready(function() {
     $('#pickdate').datepicker({
+    	
+    	dateFormat: 'yy-mm-dd',
         onSelect: function(dateText, inst) {
             //Get today's date at midnight
             var today = new Date();

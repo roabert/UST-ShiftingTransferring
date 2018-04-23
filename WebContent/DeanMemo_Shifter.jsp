@@ -264,6 +264,10 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
           			margin-top:20px;
           		}
           		
+          		p{
+          			font-size:10px;
+          		}
+          		
           		
 			}
           </style>
@@ -279,10 +283,15 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
           @media print {
           		.col-sm-6{
           			display:inline-block!important;
-          			width:50%!important;
+          			width:45%!important;
+          			vertical-align:top;
           		}
           		
           		button{
+          			display:none;
+          		}
+          		
+          		input{
           			display:none;
           		}
 			}
@@ -325,8 +334,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	   		 <br>
 	            	   		 </div>
 	            	   		 </div>
-	            	   		 <input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.
-	            	   		<br><br><br>
+	            	   		 <p><input type="checkbox" checked disabled readonly> I agree that my enrollment will be automatically cancelled if it turns out that I have been debarred from the previous college.</p>
 	            	   		                   
 	            	<% 
 	            	   		}
@@ -371,7 +379,6 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	  <i><%=r4.getString("first_name") %> <%=r4.getString("middle_name") %> <%=r4.getString("last_name") %></i>
 	            	  <p>Registrar Office</p> 
 	            	</div>
-	            	<br><br><br>
 	            		
 	            	<%
 	            }
@@ -414,7 +421,6 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	  <i><%=r5.getString("first_name") %> <%=r5.getString("middle_name") %> <%=r5.getString("last_name") %></i>
 	            	  <p>Office of the Secretary General</p> 
 	            	</div>
-	            	<br><br><br>
 	            		
 	            	<%
 	            }

@@ -323,17 +323,6 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 
 
 
-
-<script>
-$(function(){
-    $("#pickdate").datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
-        var minValue = $(this).val();
-        minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
-        minValue.setDate(minValue.getDate()+1);
-        $("#pickdate").datepicker( "option", "minDate", minValue );
-    })
-});
-</script>
 <script>
 
 $(document).ready(function() {
@@ -395,6 +384,8 @@ function createSched() {
 
 $(document).ready(function() {
     $('#pickdate').datepicker({
+    	
+    	dateFormat: 'yy-mm-dd',
         onSelect: function(dateText, inst) {
             //Get today's date at midnight
             var today = new Date();
