@@ -3,6 +3,9 @@
     
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
+    
+    <%@ page import="java.time.format.DateTimeFormatter" %>
+    <%@ page import="java.time.LocalDateTime" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
         <%@ page import = "ust.registrar.model.admin.*" %>
    <% Connection conn = SingletonDB.getConnection(); %>
@@ -39,6 +42,8 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <!-- Add Media helper (this is optional) -->
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+<script type="text/javascript" src="jszip/dist/jszip.js"></script>
+<script type="text/javascript" src="jszip-utils-master/dist/jszip-utils.js"></script>
 
 <head>
 <meta charset="ISO-8859-1">
@@ -183,6 +188,19 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       
       </div>
        <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Clear all</button></form>
+      
+      		
+      		<%
+      	   	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
+      	   	LocalDateTime now = LocalDateTime.now();  
+      		%>
+	        
+   			<a id="archive" download="ShifterArchive<%= dtf.format(now) %>.zip" type=".zip">
+   			<button type="submit" class="btn btn-warning btn-lg pull-right" style="margin-right:10px;">
+   			Archive All
+   			</button>
+   			</a>
+   			
       </div>
       
       <br><br>
@@ -213,6 +231,79 @@ function checkAll(source) {
 	for(var i in checkboxes) {
 		checkboxes[i].checked = source.checked;
 	}
+}
+//create archive before loading process begin
+var zip = new JSZip();
+
+//image list to add:
+var images = [
+<%
+ try{
+     String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid";
+     PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
+     ResultSet rs2 = ps2.executeQuery();
+if(!rs2.next()){
+}
+else {
+	
+  do {
+%>   
+        <%
+        String displayrequirement = "SELECT * FROM shifters_requirements WHERE shifter_id = ?";
+        PreparedStatement ps3 = conn.prepareStatement(displayrequirement); 
+        ps3.setString(1, rs2.getString("shifter_id"));
+        ResultSet rs3 = ps3.executeQuery();
+        while(rs3.next()){
+        %>
+        "DisplayRequirement?pkey=<%=rs3.getInt("id")%>.jpg",
+		<%
+        }
+		%>
+<%} while(rs2.next());
+ }  
+ }catch(Exception e) {
+	e.printStackTrace();
+} %> 
+],
+index = 0;  // for loader
+
+// function to load a single image as arraybuffer using XMLHttpRequests
+// it will assume cross-origin usage is allowed
+function loadAsArrayBuffer(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
+  xhr.responseType = "arraybuffer";
+  xhr.onerror = function() {/* handle errors*/};
+  xhr.onload = function() {
+    if (xhr.status === 200) {callback(xhr.response, url)}
+    else {/* handle errors*/}
+  };
+  xhr.send();
+}
+
+// loading process. Here it will load one and one image.
+// You can modify it to load several at once but some browsers put
+// a cap on how many XHR connections can be open at the same time..
+(function load() {
+  if (index < images.length) {
+    loadAsArrayBuffer(images[index++], function(buffer, url) {
+      var filename = getFilename(url);
+      zip.file(filename, buffer); // image has loaded, add it to archive
+      load();                     // load next image
+    })
+  }
+  else {                          // done! present archive somehow
+    zip.generateAsync({type:"blob"}).then(function(content) {
+      // save out
+    	archive.href = URL.createObjectURL(content);
+    });
+  }
+})();
+
+// Just for this demo! keep separate array with filename or
+// modify to allow for "filename-less" uris.
+function getFilename(url) {
+  return url.substr(url.lastIndexOf("/") + 1)
 }
 </script>
        <script type="text/javascript">
