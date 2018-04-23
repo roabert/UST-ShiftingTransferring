@@ -40,6 +40,7 @@
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <!-- Add Media helper (this is optional) -->
 <script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+<script type="text/javascript" src="jszip/dist/jszip.js"></script>
 
 <head>
 <meta charset="ISO-8859-1">
@@ -148,7 +149,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
 			<td><%=rs.getString("typeofstudent") %></td>
 			<td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
 			<td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
-        <td><button class="btn" href="javascript:;" data-target=".viewdocument" data-toggle="modal">View Documents</button></td>
+        <td><button class="btn" href="javascript:;" id="<%=rs.getString("userid")%>" data-target=".viewdocument" data-toggle="modal">View Documents</button></td>
 		
 		<td>
 	        <form method="POST" action ="ClearDocumentsTransfer">
@@ -181,6 +182,14 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       
       </div>
        <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Clear all</button></form>
+      
+	        
+   			<a id="archive" download="Download.zip" type=".zip">
+   			<button type="submit" class="btn btn-warning btn-lg pull-right" style="margin-right:10px;">
+   			Archive All
+   			</button>
+   			</a>
+   			
       </div>
       
       <br><br>
@@ -212,7 +221,97 @@ function checkAll(source) {
 		checkboxes[i].checked = source.checked;
 	}
 }
+
+var zip = new JSZip();
+
+//Add an top-level, arbitrary text file with contents
+zip.file("Hello.txt", "Hello World\n");
+
+<%
+ try{
+String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE dean_verified = 'Approved'";
+PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
+ResultSet rs2 = ps2.executeQuery();
+int count=0;
+String text="";
+if(!rs2.next()){
+}
+else {
+  do {
+%>  
+
+<%
+String displayrequirement = "SELECT * FROM transferees_requirements WHERE transferee_id = ?";
+PreparedStatement ps3 = conn.prepareStatement(displayrequirement); 
+ps3.setString(1, rs2.getString("transferee_id"));
+ResultSet rs3 = ps3.executeQuery();
+while(rs3.next()){
+%>
+
+<%
+}
+%>
+
+<%} while(rs2.next());
+}  
+}catch(Exception e) {
+	e.printStackTrace();
+} %> 
+
+var img = zip.folder("images");
+img.file("smile.gif");
+
+//Generate the zip file asynchronously
+zip.generateAsync({type:"blob"})
+.then(function(content) {
+ // Force down of the Zip file
+	archive.href = URL.createObjectURL(content);
+});
 </script>
+       <script type="text/javascript">
+		 $(document).ready(function() {
+		        <%
+		         try{
+		             String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid";
+		             PreparedStatement ps2 = conn.prepareStatement(displaystudent); 
+		             ResultSet rs2 = ps2.executeQuery();
+		        if(!rs2.next()){
+		        }
+		        else {
+		          do {
+		        %>   
+				$("#<%=rs2.getString("userid")%>").click(function() {
+					$.fancybox.open([
+				        <%
+				        String displayrequirement = "SELECT * FROM transferees_requirements WHERE transferee_id = ?";
+				        PreparedStatement ps3 = conn.prepareStatement(displayrequirement); 
+				        ps3.setString(1, rs2.getString("userid"));
+				        ResultSet rs3 = ps3.executeQuery();
+				        while(rs3.next()){
+				        %>
+						{
+							href : "DisplayRequirementTransfer?pkey=<%=rs3.getInt("id")%>.jpg",
+							title: "<a href='DisplayRequirementTransfer?pkey=<%=rs3.getInt("id")%>.jpg' target='_blank' download='<%= rs2.getString("userid") %>.jpg'>Download</a>"
+						},
+						<%
+				        }
+						%>
+					], {
+						helpers : {
+							thumbs : {
+								width: 75,
+								height: 50
+							}
+						}
+					});
+	         	});
+	        <%} while(rs2.next());
+		         }  
+		         }catch(Exception e) {
+		        	e.printStackTrace();
+		        } %> 
+         })
+         </script>  
      
 </body>
 </html>

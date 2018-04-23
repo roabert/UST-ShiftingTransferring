@@ -406,12 +406,9 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 	            	<center>
 	            	<br>
 	            	<h3>Second Indorsement</h3>
-	            	<br>
 	            	</center>
 	            	<h4>To the Dean of the <i><%=r5.getString("newcourse") %></i></h4><br>
 	            	<h4>This student may enroll in your college.</h4>
-	            	<br>
-	            
 	            	<p>Remarks: </p>
 	            		<center>
 	            	<p><%=r5.getString("secgen_remarks") %></p>
