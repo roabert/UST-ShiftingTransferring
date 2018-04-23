@@ -350,11 +350,11 @@ if(getuser == null) {
         	  alert(val);
           }
        </script>
-       
+       <!-- 
        <center>
        <button type="submit" value="ResetPass" class="btn btn-danger" name="getbutton"><span class="glyphicon glyphicon-remove" style="color:white;"></span> Remove Password</button>
        </center>
-       <br>
+       <br> -->
      </div>
      <div class="modal-footer">
       <button type="submit" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>

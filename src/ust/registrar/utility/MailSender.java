@@ -36,15 +36,15 @@ public class MailSender {
            Message mailMessage = new MimeMessage(mailSession);
            forgotpassword f = new forgotpassword();
            
-           mailMessage.setFrom(new InternetAddress("ustshiftdummy@gmail.com"));
+           mailMessage.setFrom(new InternetAddress("ustadministrator@ust-ics.mygbiz.com"));
            mailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
            mailMessage.setText(message);
-           mailMessage.setSubject("HEY!");
+           mailMessage.setSubject("Password recovery code for "+ email);
            f.setGetemail(email);
            f.setPasscode(message);
            f.generateCode(conn);
            Transport transport = mailSession.getTransport("smtp");
-           transport.connect("smtp.gmail.com","ustshiftdummy@gmail.com","UST1232018");
+           transport.connect("smtp.gmail.com","ustadministrator@ust-ics.mygbiz.com","UST1232018");
            
            transport.sendMessage(mailMessage, mailMessage.getAllRecipients());
        	} catch (Exception ex) {
