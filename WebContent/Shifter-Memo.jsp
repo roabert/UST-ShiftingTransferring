@@ -6,6 +6,11 @@
        <%@ page import = "java.util.Date" %>
     <%@ page import = "java.text.*" %>
    <% Connection conn = SingletonDB.getConnection(); %>
+<%        
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setDateHeader("Expires", -1);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
