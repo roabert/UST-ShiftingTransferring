@@ -254,7 +254,7 @@ public class TransferMemoDAO implements DatabaseSQLs{
 			ps.setString(30, eightterm);
 			ps.setString(31, eightterm_1year);
 			ps.setString(32, eightterm_2year);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -265,7 +265,7 @@ public class TransferMemoDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(RegistrarStatusTransfer);
 			ps.setString(1, transferid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -281,7 +281,7 @@ public class TransferMemoDAO implements DatabaseSQLs{
 			ps.setString(1, transferid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); ps.close(); 
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

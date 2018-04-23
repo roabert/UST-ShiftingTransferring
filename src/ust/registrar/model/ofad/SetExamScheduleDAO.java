@@ -130,7 +130,7 @@ public void setRemarks(String remarks) {
 		ps.setString(4, end);
 		ps.setString(5, venue);
 		ps.setString(6, remarks);
-		ps.executeUpdate(); ps.close();
+		ps.executeUpdate(); 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -141,7 +141,7 @@ public void setRemarks(String remarks) {
 		PreparedStatement ps = conn.prepareStatement(Ofad_setexam);
 		ps.setString(1, examdate);
 		ps.setString(2, shifterid);
-		ps.executeUpdate(); ps.close();
+		ps.executeUpdate(); 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -152,7 +152,7 @@ public void setRemarks(String remarks) {
 			PreparedStatement ps = conn.prepareStatement(Ofad_setEncode);
 		
 			ps.setString(1, shifterid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -329,7 +329,7 @@ public void setRemarks(String remarks) {
   		ps.setString(1, start);
   		ps.setString(2, end);
   		ps.setString(3, venue);
-  		ps.executeUpdate(); ps.close();
+  		ps.executeUpdate(); 
   	} catch (SQLException e) {
   		// TODO Auto-generated catch block
   		e.printStackTrace();
@@ -366,7 +366,7 @@ public void setRemarks(String remarks) {
   		ps.setString(4, end);
   		ps.setString(5, venue);
   		ps.setString(6, remarks);
-  		ps.executeUpdate(); ps.close();
+  		ps.executeUpdate(); 
   	} catch (SQLException e) {
   		// TODO Auto-generated catch block
   		e.printStackTrace();
@@ -379,7 +379,7 @@ public void setRemarks(String remarks) {
   		PreparedStatement ps = conn.prepareStatement(Ofad_setexamTransfer);
   		ps.setString(1, examdate);
   		ps.setString(2, transferid);
-  		ps.executeUpdate(); ps.close();
+  		ps.executeUpdate(); 
   	} catch (SQLException e) {
   		// TODO Auto-generated catch block
   		e.printStackTrace();
@@ -390,7 +390,7 @@ public void setRemarks(String remarks) {
   			PreparedStatement ps = conn.prepareStatement(Ofad_setTransferEncode);
   		
   			ps.setString(1, transferid);
-  			ps.executeUpdate(); ps.close();
+  			ps.executeUpdate(); 
   		} catch (SQLException e) {
   			// TODO Auto-generated catch block
   			e.printStackTrace();
@@ -402,7 +402,7 @@ public void setRemarks(String remarks) {
 			ps.setString(1, userid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); ps.close(); 
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

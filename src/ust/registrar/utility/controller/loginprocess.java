@@ -61,45 +61,57 @@ public class loginprocess extends HttpServlet {
 			login.setDescription(description);
 			login.Login(conn);
 			HttpSession session = request.getSession();
-			if(login.getType() != null) {
+		 
+	
+	if(login.getType() != null) {
+           if(login.getStatus() != null) {		   
+             if(login.getStatus().equals("active")) {
 			   if(login.getType().equals("OFAD")) {
+				   login.insertLogs(conn);
 			    	session.setAttribute("ofaduser", uname_get);
 			    	request.getRequestDispatcher("OfadTransaction_Shifter.jsp")
 			    	.forward(request, response);
 			 
 			    }
 			     else if(login.getType().equals("Admin")) {	
+			    	 login.insertLogs(conn);
 		    	session.setAttribute("administrator", uname_get);
 		    	request.getRequestDispatcher("AdminsStudent_Shifter.jsp")
 		    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("Dean")) {
+			    	 login.insertLogs(conn);
 			    	session.setAttribute("deanuser", uname_get);
 			    	request.getRequestDispatcher("DeanTransaction_Shifter.jsp")
 			    	.forward(request, response);
 			    	
 			    }
 			    else if(login.getType().equals("Registrar")) {
+			    	 login.insertLogs(conn);
 			    	session.setAttribute("registraruser", uname_get);
 			    	request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("OSG")) {
+			    	 login.insertLogs(conn);
 			    	session.setAttribute("secgenuser", uname_get);
 			    	request.getRequestDispatcher("OsgTransaction_Shifter.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("OSA")) {
+			    	 login.insertLogs(conn);
 			    	session.setAttribute("osauser", uname_get);
 			    	request.getRequestDispatcher("OsaTransactions.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("Shifter")) {
+			    	 login.insertLogs(conn);
 			    	session.setAttribute("shifteruser", uname_get);
 			    	request.getRequestDispatcher("Shifter-Shifting.jsp")
 			    	.forward(request, response);
 			    }
 			    else if(login.getType().equals("Transferee")) {
+			    	 login.insertLogs(conn);
 			    	session.setAttribute("setuser", uname_get);
 			    	request.getRequestDispatcher("Transfer-Transferring.jsp")
 			    	.forward(request, response);
@@ -107,12 +119,19 @@ public class loginprocess extends HttpServlet {
 			    else{
 				request.getRequestDispatcher("login.jsp").include(request, response);
 				out.print("<script>alert('Invalid Credentials!');</script>");
-			    } 
+			    }
+              }
+             else if(login.getStatus().equals("disabled")) {
+            	  request.getRequestDispatcher("login.jsp").include(request, response);
+  				out.print("<script>alert('This user has been deactivated. Please contact the administrator');</script>");
+                }
+              }
 			}
 			else {
 				request.getRequestDispatcher("login.jsp").include(request, response);
 				out.print("<script>alert('Invalid Credentials!');</script>");
 			}
+		  
 	       
 	}
 

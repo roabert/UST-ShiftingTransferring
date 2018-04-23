@@ -61,7 +61,7 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 			ps.setString(2, status);
 			ps.setString(3, remarks);
 			ps.setString(4, studentid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -73,7 +73,7 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement(Dean_passfailScoreShifter);
 			ps.setString(1, status);
 			ps.setString(2, studentid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -84,7 +84,7 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(removeExamSchedShifter);
 			ps.setString(1, studentid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -95,7 +95,7 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 		try {
 			PreparedStatement ps = conn.prepareStatement(MemoForm_Shifter);
 			ps.setString(1, studentid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -120,7 +120,7 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 			ps.setString(1, deanid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); ps.close(); 
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

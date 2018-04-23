@@ -7,8 +7,16 @@ import ust.registrar.utility.EncryptionTool;
 
 public class LoginDAO implements DatabaseSQLs {
 
-	public String userid, password, type;
+	public String userid, password, type, status;
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String event, description;
 
 	public String getUserid() {
@@ -35,11 +43,11 @@ public class LoginDAO implements DatabaseSQLs {
 		this.type = type;
 	}
 	
-	public void LoginUser(Connection conn) {
+	public void Login(Connection conn) {
 		
 		
 		try {
-		PreparedStatement ps = conn.prepareStatement("SELECT userid, password, type FROM useraccounts WHERE userid = ? AND password = ?");
+		PreparedStatement ps = conn.prepareStatement("SELECT userid, password, type, status FROM useraccounts WHERE userid = ? AND password = ?");
 		ps.setString(1, userid);
 		ps.setString(2, EncryptionTool.encrypt(password));
 	/**	ps.setString(3, userid);
@@ -50,6 +58,7 @@ public class LoginDAO implements DatabaseSQLs {
 		while(rs.next()){
 		
 		type = rs.getString("type");
+		status = rs.getString("status");
 		
 		}
 		}
@@ -74,10 +83,7 @@ public class LoginDAO implements DatabaseSQLs {
 		this.description = description;
 	}
 
-	public void Login(Connection conn) {
-		LoginUser(conn);
-		insertLogs(conn);
-	}
+
 	
 	public void insertLogs(Connection conn) {
 		try {
@@ -85,7 +91,7 @@ public class LoginDAO implements DatabaseSQLs {
 			ps.setString(1, userid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); ps.close(); 
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

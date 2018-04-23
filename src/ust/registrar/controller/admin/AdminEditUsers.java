@@ -44,15 +44,21 @@ public class AdminEditUsers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          PrintWriter out = response.getWriter();
+         String getadmin = request.getParameter("admingets");
          String getuserid = request.getParameter("useridget");
 		  String getlname = request.getParameter("edit_lname");
 		  String getfname = request.getParameter("edit_fname");
 		  String getmname = request.getParameter("edit_mname");
 		  String gettype = request.getParameter("edit_type");
 		  String getcollege= request.getParameter("edit_college");
+		  String getbutton = request.getParameter("getbutton");
+		  String event, description;
 		  EditUsersDAO edit = new EditUsersDAO();
 		  
+		  event = "User editing";
+		  description = "User information of "+getuserid+" has been modified";
 		  //out.print(getuserid + getlname + getfname + getmname + gettype);
+    if(getbutton.equals("Modify")) {
 	  if(gettype.equals("Admin")) {
 			  edit.setLname(getlname);
 			  edit.setFname(getfname);
@@ -85,6 +91,7 @@ public class AdminEditUsers extends HttpServlet {
 			  edit.setLname(getlname);
 			  edit.setFname(getfname);
 			  edit.setMname(getmname);
+			  edit.setCollege(getcollege);
 			  edit.setUserget(getuserid);
 			  edit.modify_Dean(conn);
 		  }
@@ -95,10 +102,21 @@ public class AdminEditUsers extends HttpServlet {
 			  edit.setUserget(getuserid);
 			  edit.modify_Ofad(conn);
 		  }
+		 
 		  
-		  request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);
-		  out.print("<script>alert('User "+getuserid+" Modified!');</script>");
-		
+       }
+    else if(getbutton.equals("ResetPass")) {
+    	edit.setUserget(getuserid);
+    	edit.resetPassword(conn);
+       
+       
+    }
+         edit.setEvent(event);
+         edit.setDescription(description);
+         edit.setAdmin(getadmin);
+         edit.insertLogs(conn);
+    request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);
+	  out.print("<script>alert('User "+getuserid+" Modified!');</script>");
 	}
 
 }

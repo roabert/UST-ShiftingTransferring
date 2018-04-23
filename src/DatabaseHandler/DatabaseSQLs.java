@@ -83,14 +83,14 @@ public interface DatabaseSQLs {
 		//Admin Modify Users (for secgen)
 		 String Admin_OSG_editUsersSQL = "UPDATE secgen SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
 		//Admin Modify Users (for admin)
-		 String Admin_Dean_editUsersSQL = "UPDATE dean SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
+		 String Admin_Dean_editUsersSQL = "UPDATE dean SET last_name = ?, first_name = ?, middle_name = ?, college = ? WHERE userid = ?";
 		//Admin Modify Users (for osa)
 		 String Admin_OSA_editUsersSQL = "UPDATE osa SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
 		//Admin Modify Users (for ofad)
 		 String Admin_Ofad_editUsersSQL = "UPDATE ofad SET last_name = ?, first_name = ?, middle_name = ? WHERE userid = ?";
 		 
 		 //Admin create users
-		 String InsertUsersSQL = "INSERT INTO useraccounts (userid, password, email, type) VALUES (?, ?, ?, ?)";
+		 String InsertUsersSQL = "INSERT INTO useraccounts (userid, password, email, type, status) VALUES (?, ?, ?, ?, 'active')";
 		 // Admin Create user details (for admin)
 		 String Admin_InsertUsersSQL = "INSERT INTO admins (userid, last_name, first_name, middle_name, email, type) VALUES (?, ?, ?, ?, ?, ?)";
 		 // Admin Create user details (for admin)

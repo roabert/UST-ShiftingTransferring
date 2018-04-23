@@ -46,6 +46,7 @@ public class AdminCreateUsers extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		String getadmin = request.getParameter("getadmin");
 		String getuserid = request.getParameter("new_userid");
 		String getpassword = request.getParameter("new_password");
 		String getemail = request.getParameter("new_email");
@@ -54,13 +55,22 @@ public class AdminCreateUsers extends HttpServlet {
 		String getmname = request.getParameter("new_mname");
 		String gettype = request.getParameter("new_type");
 		String getcollege = request.getParameter("new_college");
+	
+		String event = "Registering user accounts";
+		String description = "Account of a/an "+gettype+" has been created";
 		
 		CreateUsersDAO user = new CreateUsersDAO();
+		user.setAdmin(getadmin);
+		user.setEvent(event);
+		user.setDescription(description);
 		user.setUserid(getuserid);
 		user.setPassword(getpassword);
+		user.setEmail(getemail);
 		user.setType(gettype);
+		user.checkUserandEmail(conn);
+	if(!(getemail.equals(user.getGetemail())) && !(getuserid.equals(user.getGetuser())) ) {
 		user.insertUseraccounts(conn);
-		if(gettype.contains("Admin")) {
+		if(gettype.equals("Admin")) {
 		     user.setUserid(getuserid);
 		     user.setLname(getlname);
 		     user.setFname(getfname);
@@ -68,9 +78,9 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.Admin_insertDetails(conn);
-		     user.insertUseraccounts(conn);
+		     
 		}
-		else if(gettype.contains("OFAD")) {
+		else if(gettype.equals("OFAD")) {
 		     user.setUserid(getuserid);
 		     user.setLname(getlname);
 		     user.setFname(getfname);
@@ -78,9 +88,9 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail); 
 		     user.setType(gettype);
 		     user.Ofad_insertDetails(conn);
-		     user.insertUseraccounts(conn);
+		     
 		}
-		else if(gettype.contains("OSG")) {
+		else if(gettype.equals("OSG")) {
 		     user.setUserid(getuserid);
 		     user.setLname(getlname);
 		     user.setFname(getfname);
@@ -88,9 +98,9 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail); 
 		     user.setType(gettype);
 		     user.OSG_insertDetails(conn);
-		     user.insertUseraccounts(conn);
+		     
 		}
-		else if(gettype.contains("Dean")) {
+		else if(gettype.equals("Dean")) {
 		     user.setUserid(getuserid);
 		     user.setLname(getlname);
 		     user.setFname(getfname);
@@ -99,9 +109,9 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setCollege(getcollege);
 		     user.setType(gettype);
 		     user.Dean_insertDetails(conn);
-		     user.insertUseraccounts(conn);
+		     
 		}
-		else if(gettype.contains("OSA")) {
+		else if(gettype.equals("OSA")) {
 		     user.setUserid(getuserid);
 		     user.setLname(getlname);
 		     user.setFname(getfname);
@@ -109,9 +119,9 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.OSA_insertDetails(conn);
-		     user.insertUseraccounts(conn);
+		     
 		}
-		else if(gettype.contains("Registrar")) {
+		else if(gettype.equals("Registrar")) {
 		     user.setUserid(getuserid);
 		     user.setLname(getlname);
 		     user.setFname(getfname);
@@ -119,11 +129,18 @@ public class AdminCreateUsers extends HttpServlet {
 		     user.setEmail(getemail);
 		     user.setType(gettype);
 		     user.Registrar_insertDetails(conn);
-		     user.insertUseraccounts(conn);
+		     
 		}
-		
+		user.insertLogs(conn);
 		request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);
-		out.print("<script>alert('Creation Successful!');</script>");
+		out.print("<script>alert('Account Created!');</script>");
+	  }
+	else {
+		request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);
+		out.print("<script>alert('Email/Username is already taken!');</script>");
+		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('.createusers').modal('show');  });</script>");
+		
+	}
 	}
 
 }

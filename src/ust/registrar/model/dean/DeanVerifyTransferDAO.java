@@ -92,7 +92,7 @@ public class DeanVerifyTransferDAO implements DatabaseSQLs{
 			ps.setString(1, deanid);
 			ps.setString(2, event);
 			ps.setString(3, description);
-			ps.executeUpdate(); ps.close(); 
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

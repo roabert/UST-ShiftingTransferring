@@ -74,7 +74,7 @@ public class EncodeScoreShifterDAO implements DatabaseSQLs{
 			ps.setInt(5, iq);
 			ps.setInt(6, total);
 			ps.setString(7, studentid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class EncodeScoreShifterDAO implements DatabaseSQLs{
 		  try {
 			PreparedStatement ps = conn.prepareStatement(ExamTaken_Shifter);
 			ps.setString(1, studentid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +101,7 @@ public class EncodeScoreShifterDAO implements DatabaseSQLs{
 				ps.setString(1, userid);
 				ps.setString(2, event);
 				ps.setString(3, description);
-				ps.executeUpdate(); ps.close(); 
+				ps.executeUpdate(); 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

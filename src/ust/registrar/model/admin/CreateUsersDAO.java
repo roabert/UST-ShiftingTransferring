@@ -6,7 +6,50 @@ import ust.registrar.utility.EncryptionTool;
 
 public class CreateUsersDAO implements DatabaseSQLs{
 
+	public String admin;
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
+
+	public String getGetemail() {
+		return getemail;
+	}
+
+	public void setGetemail(String getemail) {
+		this.getemail = getemail;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String userid, password, email, lname, fname, mname, gender, type, college;
+	public String getuser, getemail;
+	public String event, description;
 
 	public String getEmail() {
 		return email;
@@ -88,6 +131,20 @@ public class CreateUsersDAO implements DatabaseSQLs{
 		this.college = college;
 	}
 	
+	public void checkUserandEmail(Connection conn) {
+		try {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM useraccounts");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			   getemail = rs.getString("email");
+			   getuser = rs.getString("userid");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void insertUseraccounts(Connection conn) {
 		try {
 			PreparedStatement ps = conn.prepareStatement(InsertUsersSQL);
@@ -95,7 +152,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(2, EncryptionTool.encrypt(password));
 			ps.setString(3, email);
 			ps.setString(4, type);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,7 +167,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,7 +182,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,7 +197,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,7 +213,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(5, email);
 			ps.setString(6, college);
 			ps.setString(7, type);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -171,7 +228,7 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -186,10 +243,23 @@ public class CreateUsersDAO implements DatabaseSQLs{
 			ps.setString(4, mname);
 			ps.setString(5, email);
 			ps.setString(6, type);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	 public void insertLogs(Connection conn) {
+			try {
+				PreparedStatement ps = conn.prepareStatement(logs);
+				ps.setString(1, admin);
+				ps.setString(2, event);
+				ps.setString(3, description);
+				ps.executeUpdate(); 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

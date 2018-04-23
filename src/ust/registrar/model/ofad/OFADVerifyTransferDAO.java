@@ -63,7 +63,7 @@ public void verifyOfad(Connection conn) {
 		ps.setString(1, ofadid);
 		ps.setString(2, approved);
 		ps.setString(3, transferid);
-		ps.executeUpdate(); ps.close();
+		ps.executeUpdate(); 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -76,7 +76,7 @@ public void dontverifyOfad(Connection conn) {
 		ps.setString(2, approved);
 		ps.setString(3, remarks);
 		ps.setString(4, transferid);
-		ps.executeUpdate(); ps.close();
+		ps.executeUpdate(); 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -87,7 +87,7 @@ public void transferForExam(Connection conn) {
 	   try {
 		PreparedStatement ps = conn.prepareStatement(Ofad_transferForExam);
 		ps.setString(1, transferid);
-		ps.executeUpdate(); ps.close();
+		ps.executeUpdate(); 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -99,7 +99,7 @@ public void insertLogs(Connection conn) {
 		ps.setString(1, ofadid);
 		ps.setString(2, event);
 		ps.setString(3, description);
-		ps.executeUpdate(); ps.close(); 
+		ps.executeUpdate(); 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

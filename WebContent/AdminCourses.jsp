@@ -137,13 +137,13 @@ if(getuser == null) {
         	if(rs.getString("status").equals("active")){
         %>
 	   	<input type="hidden" value = "active" name = "status">
-        <button type="submit" class="btn btn-danger student_shift">Deactivate</button>
+        <button type="submit" class="btn btn-danger student_shift"><span class="glyphicon glyphicon-ban-circle"></span> Deactivate</button>
         <%
         	}
         	else{
         %>
 	   	<input type="hidden" value = "inactive" name = "status">
-        <button type="submit" class="btn btn-warning student_shift">Activate</button>
+        <button type="submit" class="btn btn-success student_shift"><span class="glyphicon glyphicon-ok-sign"></span> Activate</button>
         <%	
         	}
         %>

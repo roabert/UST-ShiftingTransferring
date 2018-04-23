@@ -42,7 +42,7 @@ public class NewPasswordDAO implements DatabaseSQLs{
 			ps.setString(1, EncryptionTool.encrypt(password));
 			ps.setString(2, transferid);
 			ps.executeUpdate(); 
-	        ps.close();
+	        
 	       
 		}
 	 catch (SQLException e) {
@@ -56,7 +56,7 @@ public class NewPasswordDAO implements DatabaseSQLs{
 		
 			ps.setString(1, transferid);
 			ps.executeUpdate(); 
-	        ps.close();
+	        
 	       
 		}
 	 catch (SQLException e) {
@@ -71,7 +71,7 @@ public class NewPasswordDAO implements DatabaseSQLs{
 				ps.setString(2, event);
 				ps.setString(3, description);
 				ps.executeUpdate(); 
-				ps.close(); 
+				
 			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

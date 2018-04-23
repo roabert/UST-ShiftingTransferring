@@ -12,24 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
-import ust.registrar.model.admin.CoursesDAO;
+import ust.registrar.model.admin.AccountStatus;
 
 /**
- * Servlet implementation class ToggleCourses
+ * Servlet implementation class ToggleUsers
  */
-@WebServlet("/ToggleCourses")
-public class ToggleCourses extends HttpServlet {
+@WebServlet("/ToggleUsers")
+public class ToggleUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ToggleCourses() {
+    public ToggleUsers() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    Connection conn = null;
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */Connection conn = null;
 	public void init(ServletConfig config) throws ServletException {
 		conn = SingletonDB.getConnection();
 	}
@@ -39,6 +41,7 @@ public class ToggleCourses extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 	}
 
 	/**
@@ -46,23 +49,34 @@ public class ToggleCourses extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		String getCourse = request.getParameter("courseName");
-		String getStatus = request.getParameter("status");
-		CoursesDAO toggle = new CoursesDAO();
-		
-		if (getStatus.equals("active")){
-			
-			toggle.deactivateCourse(conn, getCourse);
-		
-			
-		}else{
-			
-			toggle.activateCourse(conn, getCourse);
-			
-			
-		}
-		request.getRequestDispatcher("AdminCourses.jsp").forward(request, response);
+	    PrintWriter out = response.getWriter();
+		String getuser = request.getParameter("getusers");
+	    String getadmin = request.getParameter("adminuser");
+	    
+	    String event = "Toggling Users";
+	    String description;
+		AccountStatus a = new AccountStatus();
+		a.setUserid(getuser);
+	    a.setAdmin(getadmin);
+	    a.setEvent(event);
+	    a.checkStatusAccount(conn); 
+	    
+	   if(a.getStatus() != null) {
+	    if(a.getStatus().equals("disabled")) {
+	    	description = "The user "+getuser+" has been activated";
+	    	a.setDescription(description);
+	    	a.activateAccount(conn);
+	    }
+	    else if(a.getStatus().equals("active")) {
+	    	description = "The user "+getuser+" has been deactivated";
+	    	a.setDescription(description);
+	    	a.disableAccount(conn);
+	    }
+	   }
+	    a.insertLogs(conn);
+	    request.getRequestDispatcher("AdminsAccount.jsp").include(request, response);
+	   
+	    
 		
 	}
 

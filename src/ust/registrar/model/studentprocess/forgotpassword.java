@@ -80,7 +80,7 @@ public class forgotpassword implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement("UPDATE useraccounts SET reset_key = ? WHERE email = ?");
 			ps.setString(1, passcode);
 			ps.setString(2, getemail);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		}
 	 catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -107,7 +107,7 @@ public class forgotpassword implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement("UPDATE useraccounts SET password = ? WHERE email = ?");
 			ps.setString(1, EncryptionTool.encrypt(password));
 			ps.setString(2, changepassemail);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 	
 		}
 	 catch (SQLException e) {
@@ -140,7 +140,7 @@ public class forgotpassword implements DatabaseSQLs{
 				ps.setString(1, changegetuser);
 				ps.setString(2, event);
 				ps.setString(3, description);
-				ps.executeUpdate(); ps.close(); 
+				ps.executeUpdate(); 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -36,7 +36,7 @@ public class DeanIndorseStudentDAO {
 			ps.setString(2, Endorsement);
 			ps.setString(3, studentid);
 			
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class DeanIndorseStudentDAO {
 			ps.setString(1, deanid);
 			ps.setString(2, Endorsement);
 			ps.setString(3, studentid);
-			ps.executeUpdate(); ps.close();
+			ps.executeUpdate(); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

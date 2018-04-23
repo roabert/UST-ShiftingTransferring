@@ -3,6 +3,7 @@
     
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
+    <%@ page import = "ust.registrar.model.admin.*" %>
        
         <%@ page import = "DatabaseHandler.SingletonDB" %>
    <% Connection conn = SingletonDB.getConnection(); %>
@@ -121,6 +122,7 @@ if(getuser == null) {
          	<th>Name</th>
           	<th>Type</th>
           	<th>Edit Users</th>
+       
           	</tr>
         </thead>    
         <tbody>
@@ -137,6 +139,7 @@ if(getuser == null) {
         <td><%=rs.getString("type") %></td>
         
         <td>
+          <form action = "ToggleUsers" method = "post">
          <button type="button"
           data-target=".edit_users"
           data-userid = "<%=rs.getString("userid") %>"
@@ -146,8 +149,24 @@ if(getuser == null) {
           data-type="<%=rs.getString("type") %>"
           data-toggle="modal"
            class="btn btn-warning useraccounts"><span class="glyphicon glyphicon-cog"></span> Edit</button>
+           
+         <input type="hidden" name = "getusers" value = "<%=rs.getString("userid")%>">
+         <input type="hidden" name = "adminuser" value = "<%=getuser%>">
+         <%
+         AccountStatus a = new AccountStatus();
+         a.setUserid(rs.getString("userid"));
+         a.checkStatusAccount(conn);
+         %>
+        <%if (a.getStatus() != null) { %>
+         <%if(a.getStatus().equals("active")) { %>
+         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle" style="color:white"></span> Deactivate</button>
+         <% } else if(a.getStatus().equals("disabled")) {%>
+         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign" style="color:white"></span> Activate</button>
+         <%} %>
+         <%} %>
+        </form>
         </td>
-        
+ 
         </tr>
         
         <%}
@@ -175,7 +194,7 @@ if(getuser == null) {
 
 					</div>
   <div id="createusers" class="modal fade createusers" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="max-width:100%;">
        <div class="modal-content">
        <form id = "form1" onsubmit="return false">
          <div class="modal-header" style="background-color:#EFB652">
@@ -191,7 +210,7 @@ if(getuser == null) {
             <table class="table">
               <tr>
                <td>User ID: </td>
-               <td><input type = "text" class="form-control" name="new_userid" id="username"  required></td>
+               <td><input type="hidden" name="getadmin" value="<%=getuser%>"><input type = "text" class="form-control" name="new_userid" id="username"  required></td>
               </tr>
               <tr>
               <td>Password: </td>
@@ -203,7 +222,7 @@ if(getuser == null) {
               </tr>
             </table>
             </center>
-            <h4><br>User Information</h4>
+            <h4><b>User Information</b></h4>
               <center>
                 <table class="table">
                 <tr>
@@ -272,39 +291,68 @@ if(getuser == null) {
 <div class="modal fade edit_users" role="dialog">
  <div class="modal-dialog" style="width:600px">
    <div class="modal-content">
-   <form action = "AdminEditUsers" method="post">
+   
     <div class="modal-header" style="background-color:#EFB652">
        <button class="close" type="button" data-dismiss="modal">&times;</button>
-       <h3 class="modal-title"><span class="glyphicon glyphicon-pencil" style="color:white"></span> Edit User Accounts</h3>
+       <h3 class="modal-title"><span class="glyphicon glyphicon-pencil" style="color:white"></span> Edit Users</h3>
      </div>
+     <form action = "AdminEditUsers" method="post">
      <div class="modal-body">
      <br>
        <table class="table">
        <tr>
           <td>Last Name:</td> 
-          <td><input type="hidden" name = "useridget" class="userid"><input type="text" class="lastname form-control" size="50" name = "edit_lname"></td>
+          <td><input type="hidden" name="admingets" value="<%=getuser%>"><input type="hidden" name = "useridget" class="userid"><input type="text" class="lastname form-control" size="50" name = "edit_lname" required></td>
       </tr>
       <tr>
       <td>First Name: </td>
-      <td><input type="text" class="firstname form-control" size="50" name = "edit_fname"></td>
+      <td><input type="text" class="firstname form-control" size="50" name = "edit_fname" required></td>
      </tr>
       <tr>
       <td>Middle Initial: </td> 
-     <td><input type="text" class="form-control middlename" size="50"name = "edit_mname"></td>
+     <td><input type="text" class="form-control middlename" size="50"name = "edit_mname" required></td>
         </tr>
         <tr>
             <td>Position: </td> 
-            <td><input type="text" class="form-control type" size="50" name="edit_type" readonly></td>
+            <td><input type="text" class="form-control type" id="getposition" onchange="getRole(this.value)" size="50" name="edit_type" readonly required></td>
      </tr>
      <tr>
      <td>College/Faculty(If Dean): </td> 
-     <td><input type="text" class="form-control"  size="50" value="<%%>" name="edit_college"></td>
+     <td>
+     <select class="form-control" name="edit_college" id="colleges">
+     <option value="" selected disabled style="display:none;">Select Faculty</option>
+     <% PreparedStatement pq = conn.prepareStatement("SELECT * FROM faculty");
+       ResultSet rq = pq.executeQuery();
+       while(rq.next()) {
+    	   %>
+    	 <option value = "<%=rq.getString("faculty_name")%>"><%=rq.getString("faculty_name") %></option>  
+    	   <% 
+       }
+       %>
+     </select></td>
         </tr> 
        </table>
+       <script>
+          function getRole(val) {
+        	/**  var getcollege = document.getElementById("colleges");
+        	  if(val != "Dean") {
+        		  getcollege.disabled = true;
+        	  }
+        	  else {
+        		  getcollege.disabled = false;
+        	  }*/
+        	  alert(val);
+          }
+       </script>
+       
+       <center>
+       <button type="submit" value="ResetPass" class="btn btn-danger" name="getbutton"><span class="glyphicon glyphicon-remove" style="color:white;"></span> Remove Password</button>
+       </center>
+       <br>
      </div>
      <div class="modal-footer">
       <button type="submit" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-        <button type="submit" class = "btn btn-warning btn-md">Modify</button>
+        <button type="submit" class = "btn btn-warning btn-md" name="getbutton" value="Modify">Modify</button>
            
      </div>
      </form>

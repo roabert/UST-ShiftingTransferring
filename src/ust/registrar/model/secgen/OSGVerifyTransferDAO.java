@@ -93,7 +93,7 @@ public void insertLogs(Connection conn) {
 		ps.setString(1, secgenid);
 		ps.setString(2, event);
 		ps.setString(3, description);
-		ps.executeUpdate(); ps.close(); 
+		ps.executeUpdate(); 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

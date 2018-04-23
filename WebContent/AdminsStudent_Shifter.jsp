@@ -177,7 +177,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       </center>
       
       </div>
-       <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Remove Requirements</button></form>
+       <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Clear all</button></form>
       </div>
       
       <br><br>
