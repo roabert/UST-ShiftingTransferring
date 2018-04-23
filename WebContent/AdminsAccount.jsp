@@ -123,9 +123,9 @@ if(getuser == null) {
          <table class="table table-striped table-sortable">
         <thead>
         <tr>
+            <th>Office</th>
           	<th>User ID</th>
          	<th>Name</th>
-          	<th>Type</th>
           	<th>Edit Users</th>
        
           	</tr>
@@ -139,9 +139,10 @@ if(getuser == null) {
            while(rs.next()) {
         %>       
         <tr>
+         <td><%=rs.getString("type") %></td>
         <td><%=rs.getString("userid") %></td>
         <td><%=rs.getString("first_name") %> <%=rs.getString("middle_name") %>. <%=rs.getString("last_name") %></td>
-        <td><%=rs.getString("type") %></td>
+       
         
         <td>
           <form action = "ToggleUsers" method = "post">
@@ -349,11 +350,11 @@ if(getuser == null) {
         	  alert(val);
           }
        </script>
-       
+       <!-- 
        <center>
        <button type="submit" value="ResetPass" class="btn btn-danger" name="getbutton"><span class="glyphicon glyphicon-remove" style="color:white;"></span> Remove Password</button>
        </center>
-       <br>
+       <br> -->
      </div>
      <div class="modal-footer">
       <button type="submit" class = "btn btn-default btn-md" data-dismiss="modal">Cancel</button>

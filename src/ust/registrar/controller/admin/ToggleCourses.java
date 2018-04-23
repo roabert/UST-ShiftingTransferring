@@ -49,19 +49,29 @@ public class ToggleCourses extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String getCourse = request.getParameter("courseName");
 		String getStatus = request.getParameter("status");
+		String event = "Toggling courses/programs";
+		
+		String getadmin = request.getParameter("getuser");
 		CoursesDAO toggle = new CoursesDAO();
+		toggle.setAdmin(getadmin);
+		toggle.setEvent(event);
 		
 		if (getStatus.equals("active")){
 			
 			toggle.deactivateCourse(conn, getCourse);
+			String description = getCourse+" has been deactivated";
+			toggle.setDescription(description);
 		
 			
 		}else{
 			
 			toggle.activateCourse(conn, getCourse);
+			String description = getCourse+" has been activated";
+			toggle.setDescription(description);
 			
 			
 		}
+		toggle.insertLogs(conn);
 		request.getRequestDispatcher("AdminCourses.jsp").forward(request, response);
 		
 	}

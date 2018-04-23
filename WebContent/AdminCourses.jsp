@@ -137,6 +137,7 @@ if(getuser == null) {
         <td><%=rs.getString("courses_name") %></td>
         <td>
         <form method = "POST" action="ToggleCourses">
+        <input type="hidden" name="getuser" value="<%=getuser%>">
 	   	<input type="hidden" value = "<%= rs.getString("courses_name") %>" name = "courseName">
         <%
         	if(rs.getString("status").equals("active")){

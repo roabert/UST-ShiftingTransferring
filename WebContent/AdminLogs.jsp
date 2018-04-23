@@ -123,23 +123,25 @@ if(getuser == null) {
          <table class="table table-striped table-sortable">
         <thead>
         <tr>
+            <th>Time stamp</th>
           	<th>User</th>
           	<th>Events</th>
           	<th>Events Description</th>
-          	<th>Time stamp</th>
+          	
  	</tr>
         </thead>    
         <tbody>
         <%try { 
-         PreparedStatement ps = conn.prepareStatement("SELECT * FROM logs");
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM logs ORDER BY event_date ASC");
          ResultSet rs = ps.executeQuery();
          while(rs.next()) {
         %>
         <tr>
+         <td><%=rs.getString("event_date") %></td>
         <td><%=rs.getString("userid") %></td>
         <td><%=rs.getString("events") %></td>
         <td><%=rs.getString("description") %></td>
-        <td><%=rs.getString("event_date") %></td>
+       
         </tr>
         <%}}catch(SQLException e){out.print(e);} %>
            </tbody>
