@@ -123,9 +123,9 @@ if(getuser == null) {
          <table class="table table-striped table-sortable">
         <thead>
         <tr>
+            <th>Office</th>
           	<th>User ID</th>
          	<th>Name</th>
-          	<th>Type</th>
           	<th>Edit Users</th>
        
           	</tr>
@@ -139,9 +139,10 @@ if(getuser == null) {
            while(rs.next()) {
         %>       
         <tr>
+         <td><%=rs.getString("type") %></td>
         <td><%=rs.getString("userid") %></td>
         <td><%=rs.getString("first_name") %> <%=rs.getString("middle_name") %>. <%=rs.getString("last_name") %></td>
-        <td><%=rs.getString("type") %></td>
+       
         
         <td>
           <form action = "ToggleUsers" method = "post">
