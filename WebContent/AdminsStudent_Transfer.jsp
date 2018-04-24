@@ -254,7 +254,7 @@ else {
         ResultSet rs3 = ps3.executeQuery();
         while(rs3.next()){
         %>
-        "DisplayRequirementTransfer?pkey=<%=rs3.getInt("id") %>.jpg",
+        "DisplayRequirementTransfer?pkey=<%=rs3.getInt("id") %>.png",
 		<%
         }
 		%>

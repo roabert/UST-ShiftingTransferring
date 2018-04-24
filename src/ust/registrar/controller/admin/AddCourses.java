@@ -51,13 +51,21 @@ public class AddCourses extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		
+		String getadmin = request.getParameter("getadmin");
 		String getcourse = request.getParameter("newcourses");
 		String getfaculty = request.getParameter("getfaculty");
+		
+		String event = "Courses Addition";
+		String description = "A new course " + getcourse + " has been added to the "+getfaculty;
+		
 		AddCoursesDAO add = new AddCoursesDAO();
+		add.setAdmin(getadmin);
+		add.setEvent(event);
+		add.setDescription(description);
 		add.setCourses(getcourse);
 		add.setFaculty(getfaculty);
 		add.addCourses(conn);
+		add.insertLogs(conn);
 		request.getRequestDispatcher("AdminCourses.jsp").include(request, response);
 		out.print("<script>alert('New course has been added!')</script>");
 	}

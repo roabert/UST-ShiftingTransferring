@@ -295,7 +295,7 @@ if(getuser == null) {
 <!-- Edit account -->
 
 <div class="modal fade edit_users" role="dialog">
- <div class="modal-dialog" style="width:600px">
+ <div class="modal-dialog" style="width:600px; max-width:100%;">
    <div class="modal-content">
    
     <div class="modal-header" style="background-color:#EFB652">

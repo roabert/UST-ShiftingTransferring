@@ -399,6 +399,9 @@ function determineStudent() {
 }
 function transferFinalStep(){
 	var getoldschool = id("oldschool").value;
+	var getcollege = id("oldcollege").value;
+	var getprogram = id("oldprogram").value;
+   if(getcollege.length > 0 && getprogram.length > 0 && getoldschool.length > 0) {
 	  if(getoldschool == "University of Santo Tomas" || getoldschool == "UST" || getoldschool == "UNIVERISTY OF SANTO TOMAS") {
 		  alert("You can't transfer from the same school!");
 	  }
@@ -409,6 +412,10 @@ function transferFinalStep(){
 	id("step2transferee").style.display ="none";
 	id("step3transferee").style.display ="block";
 	}
+   }
+   else {
+	   alert("Please input all fields");
+   }
 }
 function goBack() {
 	 id("titleregister").innerHTML = "<span class='glyphicon glyphicon-user'></span> Register";
@@ -494,7 +501,7 @@ function transferSubmit() {
            <option value="Female">Female</option>
           </select>
           <input type = "hidden" name = "register_typeofstudent" value = "Transferee">
-          <br><br>
+          
           </div>
           <div class="col-sm-6">
          <p style="font-size: 2vw; font-size: 2vh;"><i>Birth Date: </i></p>
@@ -578,16 +585,17 @@ function transferSubmit() {
          </div>
           
   <div class="col-sm-12">
-  <p style="font-size: 2vw; font-size: 2vh;"><i>Current Course: </i></p>
-         <input type="text" name="transfer_oldcollege" class="form-control"><br>
+  <p style="font-size: 2vw; font-size: 2vh;"><i>Current Faculty: </i></p>
+         <input type="text" id="oldcollege" name="transfer_oldcollege" class="form-control" required><br>
          </div>
          <br>
          <div class="col-sm-12">
           <p style="font-size: 2vw; font-size: 2vh;"><i>Current Program: </i></p>
-         <input type = "text" name="transfer_oldprogram" class="form-control"><br><br>
+         <input type = "text" id="oldprogram" name="transfer_oldprogram" class="form-control" required><br><br>
          </div>
          <br>
          <p><br></p>
+         <br><p style="color:red"><i>Note: If you are not a college student, Just type on current course: Undergraduate and on current program: High School/Senior High School</i></p><br>
        <center><button class="btn btn btn-warning btn-lg" style="width:100px;" onclick="goBack()"><span class="glyphicon glyphicon-chevron-left" style="color:white"></span> Back</button>
         <button onclick="transferFinalStep()" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-right" style="color:white"></span> Next</button></center>
       

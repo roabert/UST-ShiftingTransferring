@@ -168,11 +168,11 @@ if(getuser == null) {
       <br>
       <form action ="javascript:;">
 	      <button type="button" data-target=".addcourses" data-toggle="modal" class="btn btn-warning btn-lg pull-right">
-	      	Add New Course
-	      </button>
+	      	Add Course
+	      </button><br><br><br><br><br>
       </form>
       </div>
-    
+    <br><br>
       <br><br>
 </div>
 
@@ -189,7 +189,7 @@ if(getuser == null) {
             <div class="col-sm-12">
             <br>
             
-            <h4>Faculty</h4>         
+            <h4>Faculty</h4>     <input type = "hidden" name="getadmin" value="<%=getuser%>">    
             <table class="table">
             <%try { 
             	   PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM faculty");

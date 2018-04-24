@@ -1,11 +1,46 @@
 package ust.registrar.model.admin;
 import java.sql.*;
-public class AddCoursesDAO {
+
+import DatabaseHandler.DatabaseSQLs;
+public class AddCoursesDAO implements DatabaseSQLs {
 
 	public String faculty, courses, getcollege;
+	public String event, description, admin;
 
 	public String getFaculty() {
 		return faculty;
+	}
+
+	public String getGetcollege() {
+		return getcollege;
+	}
+
+	public void setGetcollege(String getcollege) {
+		this.getcollege = getcollege;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
 	}
 
 	public void setFaculty(String faculty) {
@@ -30,4 +65,16 @@ public class AddCoursesDAO {
 			e.printStackTrace();
 		}
 	}
+	 public void insertLogs(Connection conn) {
+			try {
+				PreparedStatement ps = conn.prepareStatement(logs);
+				ps.setString(1, admin);
+				ps.setString(2, event);
+				ps.setString(3, description);
+				ps.executeUpdate(); 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

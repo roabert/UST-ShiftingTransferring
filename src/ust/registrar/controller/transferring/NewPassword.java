@@ -66,7 +66,7 @@ public class NewPassword extends HttpServlet {
 	         f.TransfereeChangePassword(conn);
 	         
 	         request.getRequestDispatcher("Transfer-Welcome.jsp").include(request, response);
-	         out.print("<script>alert('You have changed your password successfully!');</script>");
+	         out.print("<script>alert('You have changed your password successfully! You may now proceed to do the process. Kindly open the side menu');</script>");
 		
 	}
 
