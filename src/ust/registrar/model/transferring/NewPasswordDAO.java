@@ -2,6 +2,7 @@ package ust.registrar.model.transferring;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import DatabaseHandler.DatabaseSQLs;
@@ -10,7 +11,13 @@ import ust.registrar.utility.EncryptionTool;
 public class NewPasswordDAO implements DatabaseSQLs{
 
 
-	public String password, transferid;
+	public String password, transferid, getpassword;
+	public String getGetpassword() {
+		return getpassword;
+	}
+	public void setGetpassword(String getpassword) {
+		this.getpassword = getpassword;
+	}
 	public String event, description;
 	public String getEvent() {
 		return event;
@@ -36,6 +43,23 @@ public class NewPasswordDAO implements DatabaseSQLs{
 	public void setTransferid(String transferid) {
 		this.transferid = transferid;
 	}
+	
+	public void checkPassword(Connection conn) {
+	    try {
+			PreparedStatement ps = conn.prepareStatement("SELECT password FROM useraccounts WHERE userid = ?");
+			ps.setString(1, transferid);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				getpassword = EncryptionTool.decrypt(rs.getString("password"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	}
+	
 	public void changePassword(Connection conn) {
 		try {
 			PreparedStatement ps = conn.prepareStatement("UPDATE useraccounts SET password = ? WHERE userid = ?");
@@ -81,6 +105,6 @@ public class NewPasswordDAO implements DatabaseSQLs{
 	 public void TransfereeChangePassword(Connection conn) {
 		 changePassword(conn);
 		 changedPasswordProof(conn);
-		 insertLogs(conn);
+		
 	 }
 }

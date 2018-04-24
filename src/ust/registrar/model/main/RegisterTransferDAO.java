@@ -206,11 +206,7 @@ public class RegisterTransferDAO implements DatabaseSQLs {
 							ps3.setString(3, description);
 							ps3.executeUpdate(); 
 							
-							
-							p.close();
-							ps2.close();
-							ps3.close();
-				   
+		
 			 }catch(SQLException sql) {
 				 sql.printStackTrace();
 				 emailvalidate = sql.getMessage();

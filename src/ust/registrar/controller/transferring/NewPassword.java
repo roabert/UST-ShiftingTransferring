@@ -61,12 +61,20 @@ public class NewPassword extends HttpServlet {
 	         NewPasswordDAO f = new NewPasswordDAO();
 	         f.setPassword(getpassword);
 	         f.setTransferid(getuser);
+	         f.checkPassword(conn);
 	         f.setEvent(event);
 	         f.setDescription(description);
+	         if(!(getpassword.equals(f.getGetpassword()))) {
 	         f.TransfereeChangePassword(conn);
-	         
+	         f.insertLogs(conn);
 	         request.getRequestDispatcher("Transfer-Welcome.jsp").include(request, response);
 	         out.print("<script>alert('You have changed your password successfully! You may now proceed to do the process. Kindly open the side menu');</script>");
+	         }
+	         else if(getpassword.equals(f.getGetpassword())){
+	        	 request.getRequestDispatcher("Transfer-Transferring.jsp").include(request, response);
+	            out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#changepassword').modal('show');  });</script>");
+	        		
+	         }
 		
 	}
 

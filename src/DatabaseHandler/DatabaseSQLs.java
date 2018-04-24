@@ -16,7 +16,7 @@ public interface DatabaseSQLs {
 				+ " SELECT id, birthday, typeofstudent FROM student_transfer WHERE id = ? AND birthday = ?";
 	 String loginuserSQL = "SELECT userid, password, type FROM useraccounts WHERE userid = ? AND password = ?";
 	 
-	 String insertStudentUser =  "INSERT INTO useraccounts (userid, password, email, type) VALUES (?, ?, ?, ?)";
+	 String insertStudentUser =  "INSERT INTO useraccounts (userid, password, email, type, status) VALUES (?, ?, ?, ?, ?)";
 
 	 // Dean approve student
 	 String Dean_approveStudent = "UPDATE shifters_status SET dean_id = ?, dean_verified = ?, secgen_verified = 'In-progress' WHERE shifter_id = ?";
