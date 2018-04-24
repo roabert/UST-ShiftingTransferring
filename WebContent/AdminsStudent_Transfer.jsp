@@ -126,7 +126,6 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       <table class="table table-striped table-sortable">
          <thead>
          <tr>
-          <th><input type="checkbox" onclick = "checkAll(this)"></th>
           <th>ID</th>
           <th>Student Name</th>
           <th>Type</th>
@@ -147,7 +146,6 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
         	   String status = clearDocs.checkStatusTransfer(conn, rs.getString("userid"));
         %>
         <tr>
-			<td><input type="checkbox" name="deletestudent[]" id="deletestudent[]" value="<%=rs.getString("userid") %>"></td>
 			<td><%=rs.getString("userid") %></td>
 			<td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
 			<td><%=rs.getString("typeofstudent") %></td>
@@ -185,8 +183,6 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       </center>
       
       </div>
-       <form action ="admin_removestudent"><button type="submit" class="btn btn-warning btn-lg pull-right">Clear all</button></form>
-      		
       		<%
       	   	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
       	   	LocalDateTime now = LocalDateTime.now();  
@@ -194,7 +190,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
 	        
    			<a id="archive" download="TransfereeArchive<%= dtf.format(now) %>.zip" type=".zip">
    			<button type="submit" class="btn btn-warning btn-lg pull-right" style="margin-right:10px;">
-   			Archive All
+   			Archive Documents
    			</button>
    			</a>
    			
