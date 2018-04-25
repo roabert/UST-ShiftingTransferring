@@ -3,6 +3,7 @@
         <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import = "ust.registrar.utility.GetTransactions" %>
     <%@ page import = "ust.registrar.model.studentprocess.*" %>
      <% Connection conn = SingletonDB.getConnection(); %>
 <%        
@@ -32,7 +33,12 @@
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
 	 response.sendRedirect("logout.jsp");
-}	
+}
+GetTransactions transacs = new GetTransactions();	
+int OSATries = transacs.CountTransactionsSpecificBad(conn, getuser, "osa");	
+int DeanTries = transacs.CountTransactionsSpecificBad(conn, getuser, "dean");	
+int OSGTries = transacs.CountTransactionsSpecificBad(conn, getuser, "osg");	
+int OFADTries = transacs.CountTransactionsSpecificBad(conn, getuser, "ofad");
 %>
 
 <div off-canvas="slidebar-1 left reveal">
@@ -117,50 +123,50 @@ if(getuser == null) {
    %>
      <%if(tracker.getOsaverified() != null) {%>
    <% if(tracker.getOsaverified().equals("In-progress")) {%>
-	  <a class="modal-btn inp">OSA Verification</a>
+	  <a class="modal-btn inp" href="#osaverified">OSA Verification<%if(OSATries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	  <%} else if(tracker.getOsaverified().equals("Approved")) {%>
-	   <a class="modal-btn active" href="#osaverified">OSA Verification</a>
+	   <a class="modal-btn active" href="#osaverified">OSA Verification<%if(OSATries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	   <%} else if(tracker.getOsaverified().equals("Disapproved")) {%>
-	    <a class="modal-btn reject" href="#osaverified">OSA Verification</a>
+	    <a class="modal-btn reject" href="#osaverified">OSA Verification<%if(OSATries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	    <%} else { %>  <%} %>
 	      <%} else {
-	    	  %> <a class="modal-btn" href="#open-modal">OSA Verification</a> <% 
+	    	  %> <a class="modal-btn" href="#osaverified">OSA Verification<%if(OSATries > 0){%><span style="color:red;">*</span><%} ;%></a> <% 
 	      } %>
 	      
 	<%if(tracker.getDeanverified() != null)  {%>
 	    <%if (tracker.getDeanverified().equals("In-progress")) {%>
-	  	<a class="modal-btn inp">Dean Verification</a>
+	  	<a class="modal-btn inp" href="#deanverified">Dean Verification<%if(DeanTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	  	<%} else if (tracker.getDeanverified().equals("Approved")) {%>
-	  	<a class="modal-btn active" href="#deanverified">Dean Verification</a>
+	  	<a class="modal-btn active" href="#deanverified">Dean Verification<%if(DeanTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	  	<%} else if (tracker.getDeanverified().equals("Disapproved")) {%>
-	  	<a class="modal-btn reject" href="#deanverified">Dean Verification</a>
+	  	<a class="modal-btn reject" href="#deanverified">Dean Verification<%if(DeanTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	  	<%} else {%> <%} %>
 	  	<%} else { %>
-	  	<a class="modal-btn">Dean Verification</a>
+	  	<a class="modal-btn" href="#deanverified">Dean Verification<%if(DeanTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	  	<%} %>
 	 
 	 <%if(tracker.getOsgverified() != null) {%>
 	  	   <%if (tracker.getOsgverified().equals("In-progress")) {%>
-	   <a class="modal-btn inp">OSG Verification</a>
+	   <a class="modal-btn inp" href="#secgenverified">OSG Verification<%if(OSGTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	   <%} else if (tracker.getOsgverified().equals("Approved")) {%>
-	   <a class="modal-btn active" href="#secgenverified">OSG Verification</a>
+	   <a class="modal-btn active" href="#secgenverified">OSG Verification<%if(OSGTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	   <%} else if (tracker.getOsgverified().equals("Disapproved")) {%>
-       <a class="modal-btn reject" href="#secgenverified">OSG Verification</a>
+       <a class="modal-btn reject" href="#secgenverified">OSG Verification<%if(OSGTries > 0){%><span style="color:red;">*</span><%} ;%></a>
        <%} else {%>  <%} %>
      <%} else { %>
-     <a class="modal-btn">OSG Verification</a>
+     <a class="modal-btn" href="#secgenverified">OSG Verification<%if(OSGTries > 0){%><span style="color:red;">*</span><%} ;%></a>
      <%} %>
 
       <%if(tracker.getOfadverified()!=null) { %>
        <% if(tracker.getOfadverified().equals("In-progress")) {%>
-	    <a class="modal-btn inp">OFAD Verification</a>
+	    <a class="modal-btn inp" href="#ofadverified">OFAD Verification<%if(OFADTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	    <%} else if(tracker.getOfadverified().equals("Approved")) {%>
-	    <a class="modal-btn active" href="#ofadverified">OFAD Verification</a>
+	    <a class="modal-btn active" href="#ofadverified">OFAD Verification<%if(OFADTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	    <%} else if(tracker.getOfadverified().equals("Disapproved")) {%>
-	    <a class="modal-btn reject" href="#ofadverified">OFAD Verification</a>
+	    <a class="modal-btn reject" href="#ofadverified">OFAD Verification<%if(OFADTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	    <%} else {%> <%} %>
 	    <%} else { %>
-	    <a class="modal-btn">OFAD Verification</a>
+	    <a class="modal-btn" href="#ofadverified">OFAD Verification<%if(OFADTries > 0){%><span style="color:red;">*</span><%} ;%></a>
 	    <%} %>
 	    </div>
 	      <h2>PHASE TWO:</h2>
@@ -169,18 +175,18 @@ if(getuser == null) {
 	 <%if(tracker.getGetsched() != null && tracker.getIdsched() != null) {%>
 	  <a class="modal-btn active" href="#ofadsched">OFAD Exam Schedule</a>
 	  <%} else if(tracker.getGetsched() == null && tracker.getIdsched() != null) {%>
-	   <a class="modal-btn inp">OFAD Exam Schedule</a>
+	   <a class="modal-btn inp" href="#ofadsched">OFAD Exam Schedule</a>
 	  <%} 
 	  else if(tracker.getGetsched() == null && tracker.getIdsched() == null) {%>
-	  <a class="modal-btn">OFAD Exam Schedule</a>
+	  <a class="modal-btn" href="#ofadsched">OFAD Exam Schedule</a>
 	  <%} %>
 	  
 	  <%if(tracker.getFinalscore() != null && tracker.getIdscore() != null) {%>
 	<a class="modal-btn active" href="#ofadencoded">OFAD Encode Scores</a>
 	<% }else if(tracker.getFinalscore() == null && tracker.getIdscore() != null) {%>
-	<a class="modal-btn inp">OFAD Encode Scores</a>
+	<a class="modal-btn inp" href="#ofadencoded">OFAD Encode Scores</a>
 	<%} else if(tracker.getFinalscore() == null && tracker.getIdscore() == null){%>
-	<a class="modal-btn" href="#open-modal">OFAD Encode Scores</a>
+	<a class="modal-btn" href="#ofadencoded">OFAD Encode Scores</a>
 	<%} %>
 	
    <% if(tracker.getDeanreview() != null) {%>
@@ -192,7 +198,7 @@ if(getuser == null) {
 	<a class="modal-btn reject" href="#deanreviewed">Dean Verifies Results</a>
 	<%} %>
    <%} else {%>
-   <a class="modal-btn" href="#open-modal">Dean Verifies Results</a>
+   <a class="modal-btn" href="#deanreviewed">Dean Verifies Results</a>
    <%} %>
 	
 	</div>
@@ -204,12 +210,12 @@ if(getuser == null) {
 	<%}else if(tracker.getMemostudentid() != null && tracker.getRegistrarindorsed() != null) {  %>
 	<a class="modal-btn active" href="#studentmemo">Memo Form: Active</a>
 	<%} else {%>
-	<a class="modal-btn">Memo Form: Active</a>
+	<a class="modal-btn" href="#studentmemo">Memo Form: Active</a>
 	<%} %>
 	
    <%if (tracker.getRegistrarindorsed() != null) {%>
     <% if(tracker.getRegistrarindorsed().equals("In-progress")) {%>
-	<a class="modal-btn inp">Memo: Registrar</a>
+	<a class="modal-btn inp" href="#registrarindorsed">Memo: Registrar</a>
 	<%} else if(tracker.getRegistrarindorsed().equals("Approved")) {%>
 	<a class="modal-btn active" href="#registrarindorsed">Memo: Registrar</a>
 	<%} else if(tracker.getRegistrarindorsed().equals("Disapproved")) {%>
@@ -217,13 +223,13 @@ if(getuser == null) {
 	  <%} else { %>
 	   <%} %>
    <%} else {%>
-   <a class="modal-btn" href="#open-modal">Memo: Registrar</a>
+   <a class="modal-btn" href="#registrarindorsed">Memo: Registrar</a>
    <%} %>
 	
    <%if(tracker.getSecgenindorsed() != null) {%>
 	 <% if(tracker.getSecgenindorsed().equals("In-progress")) {%>
-	  <a class="modal-btn inp">Memo: Sec Gen</a>
-	  <a  class="modal-btn">Transferring: Finished</a>
+	  <a class="modal-btn inp" href="#secgenindorsed">Memo: Sec Gen</a>
+	  <a  class="modal-btn" href="#secgenindorsed">Transferring: Finished</a>
 	<%} else if(tracker.getSecgenindorsed().equals("Approved")) {%>
 	  <a class="modal-btn active" href="#secgenindorsed">Memo: Sec Gen</a>
 	  <a  class="modal-btn active" href="Transfer-Transferring-Done.jsp">Transferring: Finished</a>
@@ -232,8 +238,8 @@ if(getuser == null) {
 	   <a  class="modal-btn" href="Transfer-TransferFailed.jsp">Transferring: Finished</a>
 	<%}  else { %><% }
    }else { %>
-   <a class="modal-btn">Memo: Sec Gen</a>
-   <a  class="modal-btn">Transferring: Finished</a>
+   <a class="modal-btn" href="#secgenindorsed">Memo: Sec Gen</a>
+   <a  class="modal-btn" href="#secgenindorsed">Transferring: Finished</a>
 	<%} %>
 	
 	
@@ -263,7 +269,19 @@ if(getuser == null) {
     <a href="#modal-close" title="Close" class="modal-close">&times;</a>
 
    
-    <div><h4>Time Stamp: <%=tracker.getOsa_timestamp()%></h4>
+    <div>
+    
+    <%
+    
+    String[] OSAReports = transacs.getTransactions(conn, getuser, "osa");
+    
+    for(String report:OSAReports){
+    %>
+    <h5><%=report%></h5>
+    <%
+    }
+    
+    %>
     </div>
     <br>
     <br>
@@ -278,7 +296,19 @@ if(getuser == null) {
     <a href="#modal-close" title="Close" class="modal-close">&times;</a>
 
    
-    <div><h4>Time Stamp: <%=tracker.getDean_timestamp()%></h4>
+    <div>
+    
+    <%
+    
+    String[] DeanReports = transacs.getTransactions(conn, getuser, "dean");
+    
+    for(String report:DeanReports){
+    %>
+    <h5><%=report%></h5>
+    <%
+    }
+    
+    %>
     </div>
     <br>
     <br>
@@ -294,7 +324,19 @@ if(getuser == null) {
     <a href="#modal-close" title="Close" class="modal-close">&times;</a>
 
    
-    <div><h4>Time Stamp: <%=tracker.getSecgen_timestamp()%></h4>
+    <div>
+    
+    <%
+    
+    String[] OSGReports = transacs.getTransactions(conn, getuser, "osg");
+    
+    for(String report:OSGReports){
+    %>
+    <h5><%=report%></h5>
+    <%
+    }
+    
+    %>
     </div>
     <br>
     <br>
@@ -311,7 +353,19 @@ if(getuser == null) {
     <a href="#modal-close" title="Close" class="modal-close">&times;</a>
 	
    
-    <div><h4>Time Stamp: <%=tracker.getOfad_timestamp()%></h4>
+    <div>
+    
+    <%
+    
+    String[] OFADReports = transacs.getTransactions(conn, getuser, "ofad");
+    
+    for(String report:OSGReports){
+    %>
+    <h5><%=report%></h5>
+    <%
+    }
+    
+    %>
     </div>
     <br>
     <br>
@@ -355,7 +409,19 @@ if(getuser == null) {
     <a href="#modal-close" title="Close" class="modal-close">&times;</a>
 	
    
-    <div><h4>Time Stamp: <%=tracker.getReviewed_timestamp()%></h4>
+    <div>
+    
+    <%
+    
+    String[] DeanExamReports = transacs.getTransactions(conn, getuser, "deanExam");
+    
+    for(String report:DeanExamReports){
+    %>
+    <h5><%=report%></h5>
+    <%
+    }
+    
+    %>
     </div>
     <br>
     <br>

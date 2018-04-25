@@ -130,7 +130,11 @@ function populateCountries(countryElementId, stateElementId) {
 <%
 String getuser = (String)session.getAttribute("setuser"); 
 if(getuser == null) {
-	 response.sendRedirect("logout.jsp");
+	%>
+	 <script>
+	 	window.location.href = 'logout.jsp';
+	 </script>
+	<%
 }	
 %>
 
@@ -203,64 +207,98 @@ if(rm.next()) {
 		out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#changepassword').modal({backdrop: 'static', keyboard: false, show: true});  });</script>");
 	
 }
-       
-PreparedStatement pst = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR osa_verified = 'In-progress' OR ofad_verified = 'In-progress')");
-pst.setString(1, getuser);
-ResultSet rst = pst.executeQuery();
-if(rst.next()) {
-	webpage = "Transfer-Step1Done.jsp";
-	 response.sendRedirect(webpage);
-}
+
 PreparedStatement pss = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR secgen_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
 pss.setString(1, getuser);
 ResultSet rss = pss.executeQuery();
 if(rss.next()) {
 
-	 response.sendRedirect("Transfer-TransferFailed.jsp");
+%>
+ <script>
+ 	window.location.href = 'Transfer-TransferFailed.jsp';
+ </script>
+<%
+}
+
+PreparedStatement pst = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (dean_verified = 'In-progress' OR secgen_verified = 'In-progress' OR osa_verified = 'In-progress' OR ofad_verified = 'In-progress')");
+pst.setString(1, getuser);
+ResultSet rst = pst.executeQuery();
+if(rst.next()) {
+
+%>
+ <script>
+ 	window.location.href = 'Transfer-Step1Done.jsp';
+ </script>
+<%
 }
 
 PreparedStatement pss1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND exam_schedule_date is NULL");
 pss1.setString(1, getuser);
 ResultSet rss1 = pss1.executeQuery();
 if(rss1.next()) {
-	
-	 response.sendRedirect("Transfer-Step1Done.jsp");
+
+%>
+ <script>
+ 	window.location.href = 'Transfer-Step1Done.jsp';
+ </script>
+<%
 } 
 
 PreparedStatement ps1 = conn.prepareStatement("SELECT * FROM transferees_exams WHERE transferee_id = ? AND (exam_schedule_date is not NULL AND exam_taken is NULL)");
 ps1.setString(1, getuser);
 ResultSet rs1 = ps1.executeQuery();
 if(rs1.next()) {
-	
-	 response.sendRedirect("Transfer-Transferring-2.jsp");
+
+%>
+ <script>
+ 	window.location.href = 'Transfer-Transferring-2.jsp';
+ </script>
+<%
 } 
 
 PreparedStatement pss2 = conn.prepareStatement("SELECT * FROM transferees_scores WHERE transferee_id = ? AND dean_reviewed = 'Disapproved'");
 pss2.setString(1, getuser);
 ResultSet rss2 = pss2.executeQuery();
 if(rss2.next()) {
-	
-	 response.sendRedirect("Transfer-FailedExam.jsp");
+
+%>
+ <script>
+ 	window.location.href = 'Transfer-TransferFailedExam.jsp';
+ </script>
+<%
 } 
 PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ? AND registrar_indorsed is NULL");
 ps2.setString(1, getuser);
 ResultSet rs2 = ps2.executeQuery();
 if(rs2.next()) {
-	
-	 response.sendRedirect("Transfer-Memo.jsp");
+
+%>
+ <script>
+ 	window.location.href = 'Transfer-Memo.jsp';
+ </script>
+<%
 } 
 PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ?  AND (secgen_indorsed = 'In-progress' OR registrar_indorsed = 'In-progress')");
 ps3.setString(1, getuser);
 ResultSet rs3 = ps3.executeQuery();
 if(rs3.next()) {
-	
-	 response.sendRedirect("Transfer-MemoDone.jsp");
+
+%>
+ <script>
+ 	window.location.href = 'Transfer-MemoDone.jsp';
+ </script>
+<%
 } 
 PreparedStatement ps4 = conn.prepareStatement("SELECT * FROM transferees_indorsement WHERE transferee_id = ? AND (transfer_transferring_approved = 'Approved' OR secgen_indorsed = 'Approved')");
 ps4.setString(1, getuser);
 ResultSet rs4 = ps4.executeQuery();
 if(rs4.next()) {
-	response.sendRedirect("Transfer-Transferring-Done.jsp");
+
+%>
+ <script>
+ 	window.location.href = 'Transfer-Transferring-Done.jsp';
+ </script>
+<%
 }
 %>
 </div>
@@ -291,7 +329,7 @@ if(rs4.next()) {
 
 </select> <br>
     <h2>College of Program</h2>
-    <select class="form-control" style="width:600px; max-width:100%;" id="state" name="outgoing_college" disabled>
+    <select class="form-control" style="width:600px; max-width:100%;" id="state" name="outgoing_college">
 
 </select>
 

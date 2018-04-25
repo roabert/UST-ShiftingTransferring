@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
+import ust.registrar.model.registrar.LogTransactionsDAO;
 import ust.registrar.model.secgen.OSGVerifyDAO;
 import ust.registrar.utility.NotifSender;
 
@@ -49,6 +50,7 @@ public class OSG_verifyprocess extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		NotifSender notif = new NotifSender();
+		LogTransactionsDAO logs = new LogTransactionsDAO();
 		String getstudentid = request.getParameter("studentid");
 		String getosgname = request.getParameter("getuser");
 		String remarks = request.getParameter("remarks");
@@ -69,6 +71,7 @@ public class OSG_verifyprocess extends HttpServlet {
 	    osg.setApproved(verified);
 		osg.verifyStudent(conn);
 		notif.sendNotif(getstudentid);
+		logs.insertLogs(conn, getstudentid, getosgname, "osg");
 		}
 		else if(getButton.equals("Disapproved")){
 			verified = "Disapproved";
@@ -76,6 +79,7 @@ public class OSG_verifyprocess extends HttpServlet {
 		    osg.setApproved(verified);
 	    osg.dontverifyStudent(conn);
 	    notif.sendNotif(getstudentid);
+	    logs.insertBadLogs(conn, getstudentid, getosgname, "osg");
 		}
 		
 		osg.insertLogs(conn);
