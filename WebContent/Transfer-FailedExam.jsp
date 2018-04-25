@@ -121,7 +121,7 @@ if(getuser == null) {
    pf.displayRemarksTransfer(conn);
  %>
        <center>
-       <p><span class="glyphicon glyphicon-remove-sign" style="font-size:100px; color:red;"></span></p>
+      <br><br> <p><span class="glyphicon glyphicon-remove-sign" style="font-size:150px; color:red;"></span></p>
        <br><br><br>
            <h3>We regret to inform you that you have not met the standards of a Thomasian student .</h3>     
             <%

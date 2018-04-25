@@ -64,7 +64,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
     <ul class="mainmenu">
     <li><a href="Osapage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions <% if(totalTransfers>0){ %> <span class="notification"><% if(totalTransfers<=99){ %> <%= totalTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
-   <li><a href="OsaApprovedTransactions.jsp"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a></li>
+   <li><a href="OsaApprovedTransactions.jsp"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a></li>
     <li><a href="logout.jsp?userset=<%=getuser%>"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>

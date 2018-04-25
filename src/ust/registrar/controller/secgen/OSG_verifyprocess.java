@@ -71,7 +71,7 @@ public class OSG_verifyprocess extends HttpServlet {
 		notif.sendNotif(getstudentid);
 		}
 		else if(getButton.equals("Disapproved")){
-			verified = "Dispproved";
+			verified = "Disapproved";
 			osg.setRemarks(remarks);
 		    osg.setApproved(verified);
 	    osg.dontverifyStudent(conn);

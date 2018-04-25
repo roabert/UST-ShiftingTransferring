@@ -98,7 +98,7 @@ if(getuser == null) {
 <br>
 <br>
        <center>
-       <p><span class="glyphicon glyphicon-search" style="font-size:100px;"></span></p>
+       <br><br><p><span class="glyphicon glyphicon-search" style="font-size:150px;"></span></p>
        <br><br><br>
        <form action="Transfer-Tracker.jsp"><button type="submit" class="btn btn-lg btn-warning">See Tracker</button></form>
        </center>

@@ -104,7 +104,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 		</a></li>
       </ul>
     </li>
-     <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+     <li><a href="#" class="active"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="DeanApprovedTransactions_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="DeanApprovedTransactions_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
@@ -208,7 +208,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <tbody>
         <%
          try{
-        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid INNER JOIN dean on student_transfer.newcourse = dean.college WHERE dean_verified = 'Approved' AND dean.userid = ?";
+        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid INNER JOIN dean on student_transfer.newcourse = dean.college WHERE dean_verified = 'Approved' AND dean.userid = ? OR dean_verified = 'Disapproved'";
         PreparedStatement ps = conn.prepareStatement(displaystudent);
         ps.setString(1, getuser);
         ResultSet rs = ps.executeQuery();
@@ -277,7 +277,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE dean_verified = 'Approved'";
+		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE dean_verified = 'Approved' OR dean_verified = ''";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

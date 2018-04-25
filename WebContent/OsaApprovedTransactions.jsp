@@ -64,7 +64,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
     <ul class="mainmenu">
     <li><a href="Osapage.jsp" ><span class="glyphicon glyphicon-user"></span> Profile</a></li>
     <li><a href="OsaTransactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions <% if(totalTransfers>0){ %> <span class="notification"><% if(totalTransfers<=99){ %> <%= totalTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
-   <li><a href="OsaApprovedTransactions.jsp" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a></li>
+   <li><a href="OsaApprovedTransactions.jsp" class="active"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a></li>
     <li><a href="logout.jsp?userset=<%=getuser%>"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>
@@ -122,7 +122,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
         <tbody>
         <%
          try{
-        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'Approved'";
+        String displaystudent = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'Approved' OR osa_verified = 'Disapproved'";
         PreparedStatement ps = conn.prepareStatement(displaystudent); 
         ResultSet rs = ps.executeQuery();
        while(rs.next()) {
@@ -193,7 +193,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'Approved'";
+		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE osa_verified = 'Disapproved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

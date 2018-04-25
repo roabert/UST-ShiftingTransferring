@@ -109,7 +109,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         
       </ul>
     </li>
-     <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+     <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="DeanApprovedTransactions_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="DeanApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
