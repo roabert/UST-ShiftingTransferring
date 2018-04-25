@@ -229,7 +229,7 @@ if(rst.next()) {
 	webpage = "Transfer-Step1Done.jsp";
 	 response.sendRedirect(webpage);
 }
-PreparedStatement pss = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
+PreparedStatement pss = conn.prepareStatement("SELECT * FROM transferees_status WHERE transferee_id = ? AND (osa_verified = 'Disapproved' OR dean_verified = 'Disapproved' OR secgen_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
 pss.setString(1, getuser);
 ResultSet rss = pss.executeQuery();
 if(rss.next()) {

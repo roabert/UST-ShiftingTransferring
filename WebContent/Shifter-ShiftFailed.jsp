@@ -105,7 +105,7 @@ if(getuser == null) {
    pf.displayRemarksShifter(conn);
  %>
        <center>
-       <p><span class="glyphicon glyphicon-remove-sign" style="font-size:100px; color:red;"></span></p>
+      <br><br> <p><span class="glyphicon glyphicon-remove-sign" style="font-size:150px; color:red;"></span></p>
        <br><br><br>
          <p style="font-size:20px;">We regret to inform you that your application for transferring has failed.</p>
          <i style ="font-size:20px">

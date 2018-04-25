@@ -85,6 +85,9 @@ public class DeanExamStatusShifterDAO implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement(removeExamSchedShifter);
 			ps.setString(1, studentid);
 			ps.executeUpdate(); 
+			PreparedStatement p = conn.prepareStatement("DELETE FROM exam_schedules_shifters WHERE shifter_id = ?");
+			p.setString(1, studentid);
+			p.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

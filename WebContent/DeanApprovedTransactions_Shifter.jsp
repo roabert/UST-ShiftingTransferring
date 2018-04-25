@@ -107,7 +107,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         
       </ul>
     </li>
-     <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+     <li><a href="#" class="active"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="DeanApprovedTransactions_Shifter.jsp" class="active"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="DeanApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
@@ -211,7 +211,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <tbody>
         <%
         try{
-            String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'Approved' AND dean.userid = ?";                               
+            String displaystudent = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'Approved' OR dean_verified = 'Disapproved' AND dean.userid = ?";                               
             PreparedStatement ps = conn.prepareStatement(displaystudent); 
             ps.setString(1, getuser);
             ResultSet rs = ps.executeQuery();
@@ -315,7 +315,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'Approved'";
+		        String displaystudentagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid INNER JOIN dean on student_shifter.newcourse = dean.college WHERE dean_verified = 'Approved' OR dean_verified = 'Disapproved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

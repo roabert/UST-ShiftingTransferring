@@ -217,7 +217,7 @@ if(getuser == null) {
    <%if(tracker.getSecgenindorsed() != null) {%>
 	 <% if(tracker.getSecgenindorsed().equals("In-progress")) {%>
 	  <a class="modal-btn inp">Memo: Sec Gen</a>
-	  <a  class="modal-btn">Transferring: Finished</a>
+	  <a  class="modal-btn">Shifting: Finished</a>
 	<%} else if(tracker.getSecgenindorsed().equals("Approved")) {%>
 	  <a class="modal-btn active" href="#secgenindorsed">Memo: Sec Gen</a>
 	  <a  class="modal-btn active" href="Shifter-Shifting-Done.jsp">Shifting: Finished</a>

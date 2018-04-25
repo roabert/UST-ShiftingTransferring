@@ -83,7 +83,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         
       </ul>
  </li>
- <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+ <li><a href="#" class="active"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="OsgApproved_Transactions.jsp" class="active"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
         <li><a href="OsgApproved_Endorsements.jsp"><span class="glyphicon glyphicon-check"></span> Endorsements</a></li>
@@ -152,7 +152,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
        <tbody>
         <%
          try{
-        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved'";
+        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved' OR secgen_verified = 'Disapproved'";
          PreparedStatement ps = conn.prepareStatement(displaystudent_osg); 
         ResultSet rs = ps.executeQuery();
        while(rs.next()) {
@@ -210,7 +210,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved'";
+		        String displaystudent_osg = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE secgen_verified = 'Approved' OR secgen_verified = 'Disapproved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudent_osg); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

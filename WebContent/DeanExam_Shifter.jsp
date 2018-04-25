@@ -107,7 +107,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         
       </ul>
     </li>
-    <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+    <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="DeanApprovedTransactions_Shifter.jsp"><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="DeanApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
@@ -203,7 +203,11 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
           <th>Student Name</th>
           <th>Current Course/Program</th>
           <th>Incoming Course/Program</th>
-          <th>Score</th>
+          <th>Math</th>
+          <th>Science</th>
+          <th>English</th>
+          <th>IQ</th>
+          <th>Average</th>
           <th></th>
           <th></th>
         </tr>
@@ -224,6 +228,10 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
+        <td><%=rs.getString("math_score") %></td>
+        <td><%=rs.getString("science_score") %></td>
+        <td><%=rs.getString("english_score") %></td>
+        <td><%=rs.getString("iq_score") %></td>
         <td><%=rs.getString("final_score") %></td>
         
         <td>

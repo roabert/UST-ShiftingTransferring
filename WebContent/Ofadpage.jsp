@@ -78,7 +78,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <li><a href="OfadTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalTransfers>0){ %> <span class="notification"><% if(totalTransfers<=99){ %> <%= totalTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
       </ul>
     </li>
-      <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+      <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="OfadApprovedTransactions_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadApprovedTransactions_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>

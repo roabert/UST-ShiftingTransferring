@@ -83,7 +83,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
         
       </ul>
  </li>
-  <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> Approved Students</a>
+  <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="OsgApproved_Transactions.jsp"><span class="glyphicon glyphicon-random"></span> Transactions</a></li>
         <li><a href="OsgApproved_Endorsements.jsp"><span class="glyphicon glyphicon-check"></span> Endorsements</a></li>

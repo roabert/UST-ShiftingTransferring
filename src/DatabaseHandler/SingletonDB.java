@@ -19,8 +19,9 @@ public class SingletonDB {
 
 			// load the driver
 			Class.forName("com.mysql.jdbc.Driver");
-
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone_inventory", "ustregistrar", "6HaQDu3xrzdYqzDX");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone_inventory", "root", "");
+			
+			//connection = DriverManager.getConnection("jdbc:mysql://node20674-ustieinventory.kilatiron.com:3306/capstone", "ieinventory", "65HARvS0PCIuVyeW");
 		} catch (ClassNotFoundException cfne) {
 			System.err.println(cfne.getMessage());
 

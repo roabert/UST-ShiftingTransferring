@@ -79,7 +79,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <li><a href="OfadTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalTransfers>0){ %> <span class="notification"><% if(totalTransfers<=99){ %> <%= totalTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>  
       </ul>
     </li>
-      <li><a href="#" class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+      <li><a href="#" class="active"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="OfadApprovedTransactions_Shifter.jsp" class="active" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadApprovedTransactions_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
@@ -151,7 +151,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <tbody>
         <%
          try{
-        String displaystudent_ofad = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'Approved'";
+        String displaystudent_ofad = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'Approved' OR ofad_verified = 'Disapproved'";
          PreparedStatement ps = conn.prepareStatement(displaystudent_ofad); 
         ResultSet rs = ps.executeQuery();
         
@@ -213,7 +213,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudent_ofadagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'Approved'";
+		        String displaystudent_ofadagain = "SELECT * FROM shifters_status INNER JOIN student_shifter on shifter_id = student_shifter.studentid WHERE ofad_verified = 'Approved' OR ofad_verified = 'Disapproved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudent_ofadagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

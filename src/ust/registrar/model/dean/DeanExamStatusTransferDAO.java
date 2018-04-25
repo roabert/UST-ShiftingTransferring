@@ -88,6 +88,9 @@ public class DeanExamStatusTransferDAO implements DatabaseSQLs{
 			PreparedStatement ps = conn.prepareStatement(removeExamSchedTransfer);
 			ps.setString(1, transferid);
 			ps.executeUpdate(); 
+			PreparedStatement p = conn.prepareStatement("DELETE FROM exam_schedules_transferees WHERE transferee_id = ?");
+			p.setString(1, transferid);
+			p.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

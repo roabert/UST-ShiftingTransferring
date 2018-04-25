@@ -125,7 +125,7 @@ if(rss1.next()) {
         	while(r.next()) {
         	%>
         <h4><i>Date of Exam:</i> <%=r.getString("date") %></h4>
-        <h4><i>Time of Exam:</i> <%=r.getString("start_time") %> AM - <%=r.getString("end_time") %> PM</h4>
+        <h4><i>Time of Exam:</i> <%=r.getString("start_time") %>  - <%=r.getString("end_time") %> (Military Time)</h4>
         <h4><i>Venue:</i> <%=r.getString("venue") %></h4>
         <br>
         <h4><i>Bring:</i> </h4>

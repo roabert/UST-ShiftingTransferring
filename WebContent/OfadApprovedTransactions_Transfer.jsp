@@ -79,7 +79,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <li><a href="OfadTransaction_Transfer.jsp"><span class="glyphicon glyphicon-cloud-download"></span> Transferees <% if(totalTransfers>0){ %> <span class="notification"><% if(totalTransfers<=99){ %> <%= totalTransfers %> <% }else{ %> 99+ <%} %></span> <% } %> </a></li>
       </ul>
     </li>
-     <li><a href="#"  class="active"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a>
+     <li><a href="#"  class="active"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a>
     <ul class="submenu">
         <li><a href="OfadApprovedTransactions_Shifter.jsp" ><span class="glyphicon glyphicon-cloud-upload"></span> Shifters</a></li>
         <li><a href="OfadApprovedTransactions_Transfer.jsp" class="active"><span class="glyphicon glyphicon-cloud-download"></span> Transferees</a></li>
@@ -151,8 +151,7 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         <tbody>
         <%
          try{
-        String displaystudents_ofad = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE secgen_verified = 'Approved' AND ofad_verified = 'Approved'";
-        String displaystudent = "SELECT studentid, lastname, firstname, middlei, typeofstudent, oldcourse, oldprogram, newprogram, newcourse FROM student_shifter UNION SELECT id, lastname, firstname, middlei, typeofstudent, oldschool, oldprogram, newprogram, newcourse FROM student_transfer";
+        String displaystudents_ofad = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE ofad_verified = 'Approved' OR ofad_verified = 'Disapproved'";
         PreparedStatement ps = conn.prepareStatement(displaystudents_ofad); 
         ResultSet rs = ps.executeQuery();
        while(rs.next()) {
@@ -207,7 +206,7 @@ function closeNav() {
 		 $(document).ready(function() {
 		        <%
 		         try{
-		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE ofad_verified = 'Approved'";
+		        String displaystudentagain = "SELECT * FROM transferees_status INNER JOIN student_transfer on transferee_id = student_transfer.userid WHERE ofad_verified = 'Approved' OR ofad_verified = 'Disapproved'";
 		        PreparedStatement ps2 = conn.prepareStatement(displaystudentagain); 
 		        ResultSet rs2 = ps2.executeQuery();
 		        if(!rs2.next()){

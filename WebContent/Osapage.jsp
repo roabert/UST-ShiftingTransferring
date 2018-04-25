@@ -60,7 +60,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
 	        <%} %></span>
 		<%	} %>       
 		</a></li>
-    <li><a href="OsaApprovedTransactions.jsp"><span class="glyphicon glyphicon-ok-sign"></span> Approved Transactions</a></li>
+    <li><a href="OsaApprovedTransactions.jsp"><span class="glyphicon glyphicon-briefcase"></span> Student Reports</a></li>
     <li><a href="logout.jsp?userset=<%=getuser%>"> <span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
   </ul>
 </nav>

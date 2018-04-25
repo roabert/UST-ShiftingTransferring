@@ -159,7 +159,7 @@ if(rst.next()) {
 	webpage = "Shifter-Step1Done.jsp";
 	 response.sendRedirect(webpage);
 }
-PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
+PreparedStatement pss = conn.prepareStatement("SELECT * FROM shifters_status WHERE shifter_id = ? AND (dean_verified = 'Disapproved' OR secgen_verified = 'Disapproved' OR ofad_verified = 'Disapproved')");
 pss.setString(1, getuser);
 ResultSet rss = pss.executeQuery();
 if(rss.next()) {
