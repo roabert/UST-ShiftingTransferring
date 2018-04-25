@@ -57,6 +57,10 @@ if(getuser == null) {
 	 response.sendRedirect("logout.jsp");
 }
 ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();	
+SchoolYearDAO scDAO = new SchoolYearDAO();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 %>
 
 
@@ -121,6 +125,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
     <br>
     
       <div class="container-fluid">
+      <h3>Current School Year is <%=  actualSchoolYear %></h3>
        <div class="table-responsive" style="overflow:auto; height:450px;">
       <center>
       <table class="table table-striped table-sortable">
@@ -183,6 +188,13 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       </center>
       
       </div>
+	        <form method="POST" action ="SetSchoolYear">
+	        <input name="getadmin" type=hidden value="<%=getuser %>">
+   			<button type="submit" class="btn btn-warning btn-lg pull-right" style="margin-right:10px;">
+   			End Current School Year
+   			</button>
+	        </form>
+	        
       		<%
       	   	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
       	   	LocalDateTime now = LocalDateTime.now();  
