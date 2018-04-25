@@ -389,6 +389,8 @@ if(getuser == null) {
    
     <div><h4>Time Stamp: <%=tracker.getIndorsed1_timestamp()%></h4>
     </div>
+    <h4>Please present your hard copy of Honorable dismissal personally to the Registrar</h4>
+    <h4>Venue: 3rd Floor, UST Main Building</h4>
     <br>
     <br>
    </div>
