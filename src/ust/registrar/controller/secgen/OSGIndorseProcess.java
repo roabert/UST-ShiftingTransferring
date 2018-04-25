@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.secgen.OSGIndorseStudentDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class OSGIndorseProcess
@@ -52,7 +53,7 @@ public class OSGIndorseProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-	
+		NotifSender notif = new NotifSender();
         String getstudentid = request.getParameter("studentid");
         String getsecgen = request.getParameter("getuser");
         String getremarks = request.getParameter("endorsement");
@@ -69,12 +70,14 @@ public class OSGIndorseProcess extends HttpServlet {
        if(getbutton.equals("endorsewithremarks")) {
         if(getapproval != null) {
         o.finalStep(conn);
+        notif.sendNotif(getstudentid);
         o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
         out.print("<script>alert('Memo of "+getstudentid+" approved! Student has been shifted!')</script>");
         }
         else { 
         o.dontIndorseStudent(conn);
+        notif.sendNotif(getstudentid);
         o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
         out.print("<script>alert('Memo of "+getstudentid+" has been disapproved!')</script>");
@@ -82,6 +85,7 @@ public class OSGIndorseProcess extends HttpServlet {
        }
        else if(getbutton.equals("endorsenow")) {
            o.finalStep(conn);
+           notif.sendNotif(getstudentid);
            o.insertLogs(conn);
            request.getRequestDispatcher("OsgEndorse_Shifter.jsp").include(request, response);
            out.print("<script>alert('Memo of "+getstudentid+" approved! Student has been shifted!')</script>");

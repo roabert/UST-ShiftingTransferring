@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.registrar.RegistrarIndorseTransferDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class RegistrarIndorseTransferProcess
@@ -52,6 +53,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		NotifSender notif = new NotifSender();
 		String gettransferid = request.getParameter("transferid");
 		String getdeanid = request.getParameter("getuser");
 		String getremarks = request.getParameter("endorsement");
@@ -69,6 +71,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
      if(getbutton.equals("endorsewithremarks")) {
 		if(ifchecked != null){
 		d.registrarIndorsed(conn);
+		notif.sendNotif(gettransferid);
 		d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
 		    .include(request, response);
@@ -76,6 +79,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 		}
 		else {
 		d.registrarNotIndorsed(conn);
+		notif.sendNotif(gettransferid);
 		d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
 		    .include(request, response);
@@ -84,6 +88,7 @@ public class RegistrarIndorseTransferProcess extends HttpServlet {
 	  }
      else if(getbutton.equals("endorsenow")){
     		d.registrarIndorsed(conn);
+    		notif.sendNotif(gettransferid);
     		d.insertLogs(conn);
    		 request.getRequestDispatcher("RegistrarEndorse_Transfer.jsp")
    		    .include(request, response);

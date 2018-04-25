@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.dean.DeanIndorseStudentDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class DeanIndorseProcess
@@ -51,6 +52,7 @@ public class DeanIndorseProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		NotifSender notif = new NotifSender();
 		String getstudentid = request.getParameter("studentid");
 		String getdeanid = request.getParameter("getuser");
 		String getremarks = request.getParameter("endorsement");
@@ -63,12 +65,14 @@ public class DeanIndorseProcess extends HttpServlet {
 		
 		if(ifchecked != null){
 		d.deanIndorsed(conn);
+		notif.sendNotif(getstudentid);
 		 request.getRequestDispatcher("DeanMemo_Shifter.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+getstudentid+" forwarded!');</script>");
 		}
 		else {
 		d.deanNotIndorsed(conn);
+		notif.sendNotif(getstudentid);
 		 request.getRequestDispatcher("DeanMemo_Shifter.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+getstudentid+" was rejected!');</script>");

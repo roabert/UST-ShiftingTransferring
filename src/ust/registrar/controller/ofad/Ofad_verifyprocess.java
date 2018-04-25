@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.ofad.OFADVerifyDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class Ofad_verifyprocess
@@ -52,6 +53,7 @@ public class Ofad_verifyprocess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		NotifSender notif = new NotifSender();
 		String getstudentid = request.getParameter("studentid");
 		String getofadid = request.getParameter("getuser");
 		String getButton = request.getParameter("optionverify");
@@ -70,12 +72,14 @@ public class Ofad_verifyprocess extends HttpServlet {
 		verified = "Approved";
 		ofad.setApproved(verified);
 		ofad.doVerifyStudent(conn);
+		notif.sendNotif(getstudentid);
 		}
 		else if(getButton.equals("Disapproved")) {
 			verified = "Disapproved";
 			ofad.setApproved(verified);
 			ofad.setRemarks(getremarks);
 		ofad.dontverifyOfad(conn);
+		notif.sendNotif(getstudentid);
 		}
         ofad.insertLogs(conn); 
 		request.getRequestDispatcher("OfadTransaction_Shifter.jsp").include(request, response);

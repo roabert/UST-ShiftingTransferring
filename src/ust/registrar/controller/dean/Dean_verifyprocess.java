@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.dean.DeanVerifyDAO;
+import ust.registrar.utility.NotifSender;
 
 
 /**
@@ -47,7 +48,7 @@ public class Dean_verifyprocess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter out  = response.getWriter();
-		
+		NotifSender notif = new NotifSender();
 		String getstudentid = request.getParameter("studentid");
 		String getdeanname = request.getParameter("getuser");
 		String remarks = request.getParameter("remarks");
@@ -67,12 +68,14 @@ public class Dean_verifyprocess extends HttpServlet {
 	    	verified = "Approved";
 	    	d.setApproved(verified);
 		d.verifyStudent(conn);
+		notif.sendNotif(getstudentid);
 	    }
 	    else if(getButton.equals("Disapproved")){
 	    	verified = "Disapproved";
 	    	d.setApproved(verified);
 	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
+		notif.sendNotif(getstudentid);
 	    }
 	    
 	    d.insertLogs(conn);

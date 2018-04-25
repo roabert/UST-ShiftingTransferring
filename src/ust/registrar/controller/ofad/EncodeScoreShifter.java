@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.ofad.EncodeScoreShifterDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class EncodeScoreShifter

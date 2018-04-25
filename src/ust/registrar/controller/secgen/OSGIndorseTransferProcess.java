@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.secgen.OSGIndorseTransfereeDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class OSGIndorseTransferProcess
@@ -52,7 +53,7 @@ public class OSGIndorseTransferProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		
+		NotifSender notif = new NotifSender();
         String gettransferid = request.getParameter("transferid");
         String getsecgen = request.getParameter("getuser");
         String getremarks = request.getParameter("endorsement");
@@ -69,12 +70,14 @@ public class OSGIndorseTransferProcess extends HttpServlet {
        if(getbutton.equals("endorsewithremarks")) {
         if(getapproval != null) {
         o.approveTransfer(conn);
+        notif.sendNotif(gettransferid);
         o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
         out.print("<script>alert('Memo of "+gettransferid+" approved! Student has been transferred!')</script>");
         }
         else { 
         o.dontIndorseStudent(conn);
+        notif.sendNotif(gettransferid);
         o.insertLogs(conn);
         request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
         out.print("<script>alert('Memo of "+gettransferid+" has been disapproved!')</script>");
@@ -82,6 +85,7 @@ public class OSGIndorseTransferProcess extends HttpServlet {
        }
        else if(getbutton.equals("endorsenow")) {
     	   o.approveTransfer(conn);
+    	   notif.sendNotif(gettransferid);
     	   o.insertLogs(conn);
            request.getRequestDispatcher("OsgEndorse_Transfer.jsp").include(request, response);
            out.print("<script>alert('Memo of "+gettransferid+" approved! Student has been transferred!')</script>");

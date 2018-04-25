@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.osa.OSAVerifyDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class OSA_verifyprocess
@@ -45,6 +46,7 @@ public class OSA_verifyprocess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		NotifSender notif = new NotifSender();
 		String gettransferid = request.getParameter("transferid");
 		String getosaid = request.getParameter("getuser");
 		String getremarks = request.getParameter("remarks");
@@ -65,6 +67,7 @@ public class OSA_verifyprocess extends HttpServlet {
 			verified="Approved";
 			osa.setApproved(verified);
 			osa.verifyStudent(conn);
+			notif.sendNotif(gettransferid);
 			
 		}
 		else if(getButton.equals("Disapproved")){
@@ -72,6 +75,7 @@ public class OSA_verifyprocess extends HttpServlet {
 			osa.setApproved(verified);
 			osa.setRemarks(getremarks);
 			osa.dontverifyStudent(conn);
+			notif.sendNotif(gettransferid);
 		}
 		
 		osa.insertLogs(conn);

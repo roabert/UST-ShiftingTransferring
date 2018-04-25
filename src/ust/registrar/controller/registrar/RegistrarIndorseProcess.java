@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.registrar.*;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class DeanIndorseProcess
@@ -51,6 +52,7 @@ public class RegistrarIndorseProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		NotifSender notif = new NotifSender();
 		String getstudentid = request.getParameter("studentid");
 		String getdeanid = request.getParameter("getuser");
 		String getremarks = request.getParameter("endorsement");
@@ -69,6 +71,7 @@ public class RegistrarIndorseProcess extends HttpServlet {
 	 if(getbutton.equals("endorsewithremarks")) {
 		if(ifchecked != null){
 		d.registrarIndorsed(conn);
+		notif.getEmail(getstudentid);
 		d.insertLogs(conn);
 		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 		    .include(request, response);
@@ -77,6 +80,7 @@ public class RegistrarIndorseProcess extends HttpServlet {
 		else {
 		d.registrarNotIndorsed(conn);
 		d.insertLogs(conn);
+		notif.sendNotif(getstudentid);
 		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+getstudentid+" was rejected!');</script>");
@@ -85,6 +89,7 @@ public class RegistrarIndorseProcess extends HttpServlet {
 	 else if(getbutton.equals("endorsenow")) {
 		 d.registrarIndorsed(conn);
 		 d.insertLogs(conn);
+		 notif.sendNotif(getstudentid);
 		 request.getRequestDispatcher("RegistrarEndorse_Shifter.jsp")
 		    .include(request, response);
 		    out.print("<script>alert('Memo of "+getstudentid+" forwarded!');</script>");

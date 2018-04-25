@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.dean.DeanVerifyDAO;
 import ust.registrar.model.dean.DeanVerifyTransferDAO;
+import ust.registrar.utility.NotifSender;
 
 /**
  * Servlet implementation class Dean_verifyTransfer
@@ -51,6 +52,7 @@ public class Dean_verifyTransfer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		NotifSender notif = new NotifSender();
 		String gettransferid = request.getParameter("transferid");
 		String getdeanid = request.getParameter("getuser");
 		String getButton = request.getParameter("optionverify");
@@ -70,12 +72,14 @@ public class Dean_verifyTransfer extends HttpServlet {
 	    verified="Approved";
 	    d.setApproved(verified);
 		d.verifyStudent(conn);
+		notif.sendNotif(gettransferid);
 	    }
 	    else if(getButton.equals("Disapproved")) {
 	    	verified = "Disapproved";
 	    	d.setApproved(verified);
 	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
+		notif.sendNotif(gettransferid);
 	    }
 	    
 	    d.insertLogs(conn);

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.secgen.OSGVerifyDAO;
+import ust.registrar.utility.NotifSender;
 
 
 /**
@@ -47,6 +48,7 @@ public class OSG_verifyprocess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		NotifSender notif = new NotifSender();
 		String getstudentid = request.getParameter("studentid");
 		String getosgname = request.getParameter("getuser");
 		String remarks = request.getParameter("remarks");
@@ -66,12 +68,14 @@ public class OSG_verifyprocess extends HttpServlet {
 			verified = "Approved";
 	    osg.setApproved(verified);
 		osg.verifyStudent(conn);
+		notif.sendNotif(getstudentid);
 		}
 		else if(getButton.equals("Disapproved")){
 			verified = "Dispproved";
 			osg.setRemarks(remarks);
 		    osg.setApproved(verified);
 	    osg.dontverifyStudent(conn);
+	    notif.sendNotif(getstudentid);
 		}
 		
 		osg.insertLogs(conn);
