@@ -28,14 +28,14 @@ var country_arr = new Array
 String getColleges = "SELECT * FROM faculty ORDER BY faculty_name";
 String getCourses = "SELECT * FROM courses WHERE status = 'active' ORDER BY faculty";
 try{
-PreparedStatement pst = conn.prepareStatement(getColleges);
+PreparedStatement pst = conn.prepareStatement(getCourses);
 ResultSet colleges = pst.executeQuery();
 while(colleges.next()) { 
 	
 	
 %>
 //Notice the quotation marks
-"<%= colleges.getString("faculty_name") %>",
+"<%= colleges.getString("courses_name") %>",
 
 <%	
 }
@@ -61,30 +61,13 @@ try{
 		%>
 		<%
 		while(courses.next()){
-			if(courses.getString("faculty").equals(colleges.getString("faculty_name")))
-			{
-				courseArray[arrayIndex] = courses.getString("courses_name");
-				arrayIndex++;
-			}
 			
-		}
-	    int count = 0;
-	    for(String S : courseArray){
-	        if (S != null)
-	            ++count;
-		}
-	    String[] courseArrayFinal = new String[count];
-	    int indexCount = 0;
-	    for(String S : courseArray){
-	        if (S != null)
-	        	courseArrayFinal[indexCount] = S;
-	            ++indexCount;
-		}
-		String coursesString = String.join("|", courseArrayFinal);
 		%>
-		s_a[<%= index %>] = "<%= coursesString %>";
+		s_a[<%= index %>] = "<%= courses.getString("faculty") %>,";
 		<%
-		index++;
+
+			index++;
+		}
 	}
 }catch(Exception e) {
 	e.printStackTrace();
@@ -101,8 +84,7 @@ function populateStates(countryElementId, stateElementId) {
  var stateElement = document.getElementById(stateElementId);
 
  stateElement.length = 0; // Fixed by Julian Woods
- stateElement.options[0] = new Option('------Select Program------', '');
- stateElement.selectedIndex = 0;
+ stateElement.selectedIndex = 1;
 
  var state_arr = s_a[selectedCountryIndex].split("|");
 
@@ -115,7 +97,7 @@ function populateCountries(countryElementId, stateElementId) {
  // given the id of the <select class="form-control"> tag as function argument, it inserts <option> tags
  var countryElement = document.getElementById(countryElementId);
  countryElement.length = 0;
- countryElement.options[0] = new Option('------Select Faculty------', '-1');
+ countryElement.options[0] = new Option('------Select Program------', '-1');
  countryElement.selectedIndex = 0;
  for (var i = 0; i < country_arr.length; i++) {
      countryElement.options[countryElement.length] = new Option(country_arr[i], country_arr[i]);
