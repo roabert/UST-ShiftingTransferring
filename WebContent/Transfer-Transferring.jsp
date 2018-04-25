@@ -63,7 +63,7 @@ try{
 		while(courses.next()){
 			
 		%>
-		s_a[<%= index %>] = "<%= courses.getString("faculty") %>,";
+		s_a[<%= index %>] = "<%= courses.getString("faculty") %>";
 		<%
 
 			index++;
