@@ -128,7 +128,7 @@ String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
     <br>
     
       <div class="container-fluid">
-      <h3>Current School Year is <%=  actualSchoolYear %></h3>
+      <h3>Total Transferees for <%=  actualSchoolYear %>:</h3>
        <div class="table-responsive" style="overflow:auto; height:450px;">
       <center>
       <table class="table table-striped table-sortable">
