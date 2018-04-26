@@ -208,21 +208,14 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
          <input type="hidden" class="getuser" name="getuser">
          <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
          <br>
-          <center>
-          
+  <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
+
 <h5>Fill out checkboxes of erroneous requirements: </h5>
-<form action="">
-  <input type="radio" name="otr" value="otr"> Official OTR <br>
-  <input type="radio" name="letterdean" value="letterdean"> Letter of Intent to the Dean<br>
-  <input type="radio" name="letterguide" value="letterguide"> Letter of Intent to the Guidance<br>
-  <input type="radio" name="studid" value="studid"> Student ID <br>
-  <input type="radio" name="good" value="good"> Good Moral <br>
-</form>
-
-<!--
-
-          <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea>--><br><br>
-            </center>
+  <input type="checkbox" name="otr" value="otr"> Official OTR <br>
+  <input type="checkbox" name="letterdean" value="letterdean"> Letter of Intent to the Dean<br>
+  <input type="checkbox" name="letterguide" value="letterguide"> Letter of Intent to the Guidance<br>
+  <input type="checkbox" name="studid" value="studid"> Student ID <br>
+  <input type="checkbox" name="good" value="good"> Good Moral <br>
        </div>
        <div class="modal-footer">
        <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>

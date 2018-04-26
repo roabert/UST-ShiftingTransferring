@@ -183,22 +183,15 @@ int totalTransfers = notifs.getOSATransactions(conn);
          <input type="hidden" class="transfer_id" name="transferid">
          <input type="hidden" class="getuser" name="getuser">
          <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
-         <br>
-          <center>
-         
-<h5>Fill out checkboxes of erroneous requirements: </h5>
-<form action="">
+         <br>         
+<textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
+
+<h5>Click checkbox of erroneous requirements: Select None if Not Applicable </h5>
   <input type="checkbox" name="otr" value="otr"> Official OTR <br>
   <input type="checkbox" name="letterdean" value="letterdean"> Letter of Intent to the Dean<br>
   <input type="checkbox" name="letterguide" value="letterguide"> Letter of Intent to the Guidance<br>
-  <input type="checkbox" name="studid" value="studid"> Student ID <br>
   <input type="checkbox" name="good" value="good"> Good Moral <br>
-</form>
-
-<!--
-
-          <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea>--><br><br>
-            </center>
+  
        </div>
        <div class="modal-footer">
        <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>

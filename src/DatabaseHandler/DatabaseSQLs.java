@@ -7,7 +7,7 @@ public interface DatabaseSQLs {
 	String shiftRegisterSQL = "INSERT INTO student_shifter (lastname, firstname, middlei, gender, typeofstudent, birthday, studentid"
 	 		+ ", oldcourse, oldprogram, idpicture) "
 	 		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-	 String transferRegisterSQL = "INSERT INTO student_transfer (userid, lastname, firstname, middlei, email, gender, typeofstudent, birthday, oldschool, oldcourse, oldprogram, newcourse, newprogram, idpicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)";
+	 String transferRegisterSQL = "INSERT INTO student_transfer (userid, school_year, lastname, firstname, middlei, email, gender, typeofstudent, birthday, oldschool, oldcourse, oldprogram, newcourse, newprogram, idpicture) VALUES (?, 'NA', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)";
 	 
 	 String loginsql = "SELECT userid, password, roles FROM users WHERE userid = ? AND password = ? "
 				+ "UNION"
