@@ -7,6 +7,8 @@
     
     <%@ page import="java.time.format.DateTimeFormatter" %>
     <%@ page import="java.time.LocalDateTime" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
         <%@ page import = "ust.registrar.model.admin.*" %>
    <% Connection conn = SingletonDB.getConnection(); %>
@@ -58,6 +60,7 @@ if(getuser == null) {
 }
 ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();	
 SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
 String schoolYear = scDAO.getSchoolYear(conn);
 int schoolYearToo = Integer.parseInt(schoolYear)+1;
 String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
@@ -131,6 +134,8 @@ String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
       <table class="table table-striped table-sortable">
          <thead>
          <tr>
+          <th>School Year</th>
+          <th>No. of Tries</th>
           <th>ID</th>
           <th>Student Name</th>
           <th>Type</th>
@@ -151,6 +156,8 @@ String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
         	   String status = clearDocs.checkStatusTransfer(conn, rs.getString("userid"));
         %>
         <tr>
+			<td><%= actualSchoolYear %></td>
+			<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("userid"), getuser) %></td>
 			<td><%=rs.getString("userid") %></td>
 			<td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
 			<td><%=rs.getString("typeofstudent") %></td>
