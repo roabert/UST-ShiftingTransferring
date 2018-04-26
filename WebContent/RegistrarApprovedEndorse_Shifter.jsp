@@ -129,6 +129,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
   <div id="content">
     <div class="container-fluid">
     <br><br>
+    <h5>Total Shifters approved for enrollment AY <%=  actualSchoolYear %>:</h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>

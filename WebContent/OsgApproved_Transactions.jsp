@@ -141,6 +141,9 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
           </ul>
      <div class="tab-content">
      <br>
+    <h5>Total Shifters for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Shifters with valid requirements submissions for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Shifters with invalid requirements submissions for <%=  actualSchoolYear %>:</h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>

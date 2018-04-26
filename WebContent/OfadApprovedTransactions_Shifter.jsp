@@ -140,6 +140,9 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 <br><br>
  <div id="content">
     <div class="container-fluid">
+        <h5>Total Shifters for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Shifters with valid requirements submissions for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Shifters with invalid requirements submissions for <%=  actualSchoolYear %>:</h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
