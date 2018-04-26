@@ -36,7 +36,7 @@ public class MailSender {
            Message mailMessage = new MimeMessage(mailSession);
            forgotpassword f = new forgotpassword();
            
-           mailMessage.setFrom(new InternetAddress("ustadministrator@ust-ics.mygbiz.com"));
+           mailMessage.setFrom(new InternetAddress("ustshiftdummy@gmail.com"));
            mailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
            mailMessage.setText(message);
            mailMessage.setSubject("Password recovery code for "+ email);

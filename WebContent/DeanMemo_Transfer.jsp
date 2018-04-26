@@ -4,6 +4,8 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
     <%@ page import = "ust.registrar.model.studentprocess.notification" %>
 <%        
     response.setHeader("Pragma", "No-cache");
@@ -58,6 +60,11 @@ int totalShifts = notifs.getDeanShiftTransactions(conn);
 int totalTransfers = notifs.getDeanTransferTransactions(conn);
 int totalShiftsExam = notifs.getDeanShiftScores(conn);
 int totalTransfersExam = notifs.getDeanTransferScores(conn);
+SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 %>
 
   <div off-canvas="slidebar-1 left reveal">
@@ -200,6 +207,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
       <table class="table table-striped table-sortable">
 		<thead>
         <tr>
+          <th>School Year</th>
           <th>Student Name</th>
           <th>Incoming</th>
           <th>Student Memo</th>
@@ -220,6 +228,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
         	   cout++;
         %>
         <tr>
+        <td><%=rs.getString("school_year") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
        <td><button class = "fancybox btn" href="#<%=rs.getString("transferee_id")%>">View Memo</button></td>

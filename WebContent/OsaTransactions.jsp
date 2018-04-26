@@ -143,8 +143,8 @@ int totalTransfers = notifs.getOSATransactions(conn);
         %>
          
         <tr>
-        <td><%= actualSchoolYear %></td>
-		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("transferee_id"), "osa") %></td>
+        <td><%= rs.getString("school_year") %></td>
+		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("transferee_id"), "osa")+1 %></td>
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>

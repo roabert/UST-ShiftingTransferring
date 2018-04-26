@@ -172,8 +172,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         %>
         
         <tr>
-        <td><%= actualSchoolYear %></td>
-		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("shifter_id"), getuser) %></td>
+        <td><%= rs.getString("school_year") %></td>
+		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("shifter_id"), "ofad")+1 %></td>
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
