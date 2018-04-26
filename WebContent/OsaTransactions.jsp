@@ -109,7 +109,10 @@ int totalTransfers = notifs.getOSATransactions(conn);
    <br> 
    <div id="content">
     <div class="container-fluid">
-
+	<h5>Total Transferee Attempts for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Transferees with valid requirements submissions for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Transferees with invalid requirements submissions for <%=  actualSchoolYear %>:</h5>
+ 
 		<fieldset>
 		 <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
