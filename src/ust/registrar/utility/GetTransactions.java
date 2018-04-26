@@ -23,7 +23,7 @@ public class GetTransactions implements DatabaseSQLs{
 	public int CountShiftTransactions(Connection conn) {
 		int count = 0;
 		try {
-	  		PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM transactions INNER JOIN student_shifter on student_id = student_shifter.studentid");
+	  		PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM transactions INNER JOIN student_shifter on student_id = student_shifter.studentid WHERE user_role = 'dean'");
 	  		ResultSet getSY = ps.executeQuery();
 	  		while (getSY.next()){
 	  			count = getSY.getInt(1);
@@ -38,7 +38,7 @@ public class GetTransactions implements DatabaseSQLs{
 	public int CountTransferTransactions(Connection conn) {
 		int count = 0;
 		try {
-	  		PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM transactions INNER JOIN student_transfer on student_id = student_transfer.userid");
+	  		PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM transactions INNER JOIN student_transfer on student_id = student_transfer.userid WHERE user_role = 'osa'");
 	  		ResultSet getSY = ps.executeQuery();
 	  		while (getSY.next()){
 	  			count = getSY.getInt(1);
