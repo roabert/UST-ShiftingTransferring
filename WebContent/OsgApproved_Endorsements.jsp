@@ -141,6 +141,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
           <li><a href="OsgApproved_Endorsements2.jsp">Transferees</a></li>
           </ul>
      <div class="tab-content">
+     <h5>Total Shifters endorsed for <%=  actualSchoolYear %>:</h5>
      <br>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
