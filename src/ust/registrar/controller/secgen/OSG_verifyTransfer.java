@@ -53,6 +53,18 @@ public class OSG_verifyTransfer extends HttpServlet {
 		String getosgname = request.getParameter("getuser");
 		String getButton = request.getParameter("optionverify");
 		String remarks = request.getParameter("remarks");
+		if(request.getParameter("otr")!=null){
+			remarks = remarks+"<br> OTR Invalid";
+		}
+		if(request.getParameter("letterdean")!=null){
+			remarks = remarks+"<br> Letter of Intent to the Dean Invalid";
+		}
+		if(request.getParameter("letterguide")!=null){
+			remarks = remarks+"<br> Letter of Intent to the Guidance Invalid";
+		}
+		if(request.getParameter("good")!=null){
+			remarks = remarks+"<br> Certificate of Good Moral Invalid";
+		}
 		String verified;
 		
 		String event = "Requirements Approval";

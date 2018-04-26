@@ -60,6 +60,21 @@ public class Ofad_verifyprocess extends HttpServlet {
 		String getofadid = request.getParameter("getuser");
 		String getButton = request.getParameter("optionverify");
 		String getremarks = request.getParameter("remarks");
+		if(request.getParameter("otr")!=null){
+			getremarks = getremarks+"<br> OTR Invalid";
+		}
+		if(request.getParameter("letterdean")!=null){
+			getremarks = getremarks+"<br> Letter of Intent to the Dean Invalid";
+		}
+		if(request.getParameter("letterguide")!=null){
+			getremarks = getremarks+"<br> Letter of Intent to the Guidance Invalid";
+		}
+		if(request.getParameter("good")!=null){
+			getremarks = getremarks+"<br> Certificate of Good Moral Invalid";
+		}
+		if(request.getParameter("studid")!=null){
+			getremarks = getremarks+"<br> Student ID Invalid";
+		}
 	    String verified;
 	    
 	    String event = "Requirements Approval";

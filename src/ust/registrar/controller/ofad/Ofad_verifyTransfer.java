@@ -59,6 +59,18 @@ public class Ofad_verifyTransfer extends HttpServlet {
 		String gettransferid = request.getParameter("transferid");
 		String getofadid = request.getParameter("getuser");
 		String getremarks = request.getParameter("remarks");
+		if(request.getParameter("otr")!=null){
+			getremarks = getremarks+"<br> OTR Invalid";
+		}
+		if(request.getParameter("letterdean")!=null){
+			getremarks = getremarks+"<br> Letter of Intent to the Dean Invalid";
+		}
+		if(request.getParameter("letterguide")!=null){
+			getremarks = getremarks+"<br> Letter of Intent to the Guidance Invalid";
+		}
+		if(request.getParameter("good")!=null){
+			getremarks = getremarks+"<br> Certificate of Good Moral Invalid";
+		}
 		String getButton = request.getParameter("optionverify");
 		String verified;
 		
