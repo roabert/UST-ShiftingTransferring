@@ -514,7 +514,7 @@ function transferSubmit() {
        
           <br>
           <br><p><br></p>
-      <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="determineStudent()"><span class="glyphicon glyphicon-chevron-right" style="color:white"></span> Next</button></center>
+      <center><button class="btn btn-warning btn-lg" style="width:100px;" onclick="determineStudent(); checkDOB();"><span class="glyphicon glyphicon-chevron-right" style="color:white"></span> Next</button></center>
        </div>
      
        </div>
@@ -675,6 +675,34 @@ function transferSubmit() {
             }
         }; */	        
         </script>
-        
+<script type="text/javascript">
+    function checkDOB() {
+        var dateString = document.getElementById('register_bday').value;
+        var myDate = new Date(dateString);
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth();
+        var day = d.getDate();
+        var today = new Date();
+        var sobrangbata = new Date(year-10, month, day);
+        var sobrangtanda = new Date(year-50, month, day);
+        if ( myDate > today ) { 
+            alert('Invalid Date!');
+            document.getElementById("register_bday").value = "";
+            return false;
+        }
+        if ( myDate > sobrangbata ) { 
+            alert('Invalid Date!');
+            document.getElementById("register_bday").value = "";
+            return false;
+        }
+        if ( myDate < sobrangtanda ) { 
+            alert('Invalid Date!');
+            document.getElementById("register_bday").value = "";
+            return false;
+        }
+        return true;
+    }
+</script>        
 </body>
 </html>
