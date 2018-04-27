@@ -199,9 +199,9 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 <br>
  <div id="content">
     <div class="container-fluid">
-    <h5>Total Shifter Attempts for <%=  actualSchoolYear %>:</h5>
-    <h5>Total Shifters with valid requirements submissions for <%=  actualSchoolYear %>:</h5>
-    <h5>Total Shifters with invalid requirements submissions for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Shifter Attempts : <%= gT.CountShifterSpecificTransactions(conn, getuser) %></h5>
+    <h5>Total Shifter Attempts with valid requirements submissions : <%= gT.CountTransactionsDeanGood(conn, getuser) %></h5>
+    <h5>Total Shifter Attempts with invalid requirements submissions : <%= gT.CountTransactionsDeanBad(conn, getuser) %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
@@ -233,7 +233,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
          
         <tr>
         <td><%= rs.getString("school_year") %></td>
-		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("shifter_id"), "dean")+1 %></td>
+		<td><%= gT.CountTransactionsSpecificDeanBad(conn, rs.getString("shifter_id"), getuser)+1 %></td>
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>

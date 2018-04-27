@@ -141,9 +141,9 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
           </ul>
      <div class="tab-content">
      <br>
-    <h5>Total Shifter Attempts for <%=  actualSchoolYear %>:</h5>
-    <h5>Total Shifters with valid requirements submissions for <%=  actualSchoolYear %>:</h5>
-    <h5>Total Shifters with invalid requirements submissions for <%=  actualSchoolYear %>:</h5>
+        <h5>Total Shifter Attempts : <%= gT.CountShifterSpecificTransactions(conn, getuser) %></h5>
+    <h5>Total Shifters with valid requirements submissions : <%= gT.CountTransactionsDeanGood(conn, getuser) %></h5>
+    <h5>Total Shifters with invalid requirements submissions : <%= gT.CountTransactionsDeanBad(conn, getuser) %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>

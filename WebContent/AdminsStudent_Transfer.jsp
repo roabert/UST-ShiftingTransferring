@@ -128,7 +128,7 @@ String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
     <br>
     
       <div class="container-fluid">
-      <h3>Total Transferees for <%=  actualSchoolYear %>:</h3>
+      <h3>Total Transferees :</h3>
        <div class="table-responsive" style="overflow:auto; height:450px;">
       <center>
       <table class="table table-striped table-sortable">
@@ -209,7 +209,7 @@ String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 	        
    			<a id="archive" download="TransfereeArchive<%= dtf.format(now) %>.zip" type=".zip">
    			<button type="submit" class="btn btn-warning btn-lg pull-right" style="margin-right:10px;">
-   			Archive Documents
+   			Download All Documents
    			</button>
    			</a>
    			

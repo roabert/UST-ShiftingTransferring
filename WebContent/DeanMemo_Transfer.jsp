@@ -201,6 +201,7 @@ String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 <br>
    <div id="content">
     <div class="container-fluid">
+     <h5>Total Transferees enrollment approved :<%= gT.CountTransferSuccessDeanTransactions(conn, getuser) %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>

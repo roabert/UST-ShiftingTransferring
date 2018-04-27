@@ -228,7 +228,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
          
         <tr>
         <td><%= rs.getString("school_year") %></td>
-		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("transferee_id"), "dean")+1 %></td>
+		<td><%= gT.CountTransactionsSpecificDeanBad(conn, rs.getString("transferee_id"), getuser)+1 %></td>
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>

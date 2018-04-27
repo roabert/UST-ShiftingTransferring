@@ -142,7 +142,7 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
           </ul>
      <div class="tab-content">
      <br>
-     <h5>Total Shifters endorsed for <%=  actualSchoolYear %>:</h5>
+     <h5>Total Shifters fully endorsed : <%= gT.CountShifterSuccessTransactions(conn)  %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>

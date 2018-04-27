@@ -128,7 +128,7 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
   <div id="content">
     <div class="container-fluid">
     <br><br>
-    <h5>Total Transferees approved for enrollment AY <%=  actualSchoolYear %>:</h5>
+    <h5>Total Transferees approved for enrollment: <%= gT.CountTransferSuccessTransactions(conn) %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>

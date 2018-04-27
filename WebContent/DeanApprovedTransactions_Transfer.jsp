@@ -196,9 +196,9 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 <br>
     <div id="content">
     <div class="container-fluid">
-    <h5>Total Transferee Attempts for <%=  actualSchoolYear %>:</h5>
-    <h5>Total Transferees with valid requirements submissions for <%=  actualSchoolYear %>:</h5>
-    <h5>Total Transferees with invalid requirements submissions for <%=  actualSchoolYear %>:</h5>
+    <h5>Total Transferee Attempts : <%= gT.CountTransferSpecificTransactions(conn, getuser) %></h5>
+    <h5>Total Transferee Attempts with valid requirements submissions : <%= gT.CountTransactionsTrDeanGood(conn, getuser) %></h5>
+    <h5>Total Transferee Attempts with invalid requirements submissions : <%= gT.CountTransactionsTrDeanBad(conn, getuser) %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
@@ -230,7 +230,7 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
          
         <tr>
         <td><%= rs.getString("school_year") %></td>
-		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("transferee_id"), "dean")+1 %></td>
+		<td><%= gT.CountTransactionsSpecificDeanBad(conn, rs.getString("transferee_id"), getuser)+1 %></td>
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
