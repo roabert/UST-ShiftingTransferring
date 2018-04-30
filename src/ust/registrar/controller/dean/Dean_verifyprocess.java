@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.dean.DeanVerifyDAO;
 import ust.registrar.utility.NotifSender;
+import ust.registrar.model.registrar.LogTransactionsDAO;;
 
 
 /**
@@ -49,9 +50,25 @@ public class Dean_verifyprocess extends HttpServlet {
 		
 		PrintWriter out  = response.getWriter();
 		NotifSender notif = new NotifSender();
+		LogTransactionsDAO logs = new LogTransactionsDAO();
 		String getstudentid = request.getParameter("studentid");
 		String getdeanname = request.getParameter("getuser");
 		String remarks = request.getParameter("remarks");
+		if(request.getParameter("otr")!=null){
+			remarks = remarks+"<br> OTR Invalid";
+		}
+		if(request.getParameter("letterdean")!=null){
+			remarks = remarks+"<br> Letter of Intent to the Dean Invalid";
+		}
+		if(request.getParameter("letterguide")!=null){
+			remarks = remarks+"<br> Letter of Intent to the Guidance Invalid";
+		}
+		if(request.getParameter("good")!=null){
+			remarks = remarks+"<br> Certificate of Good Moral Invalid";
+		}
+		if(request.getParameter("studid")!=null){
+			remarks = remarks+"<br> Student ID Invalid";
+		}
 		String verified;
 	    String getButton = request.getParameter("optionverify");
 	    
@@ -69,6 +86,7 @@ public class Dean_verifyprocess extends HttpServlet {
 	    	d.setApproved(verified);
 		d.verifyStudent(conn);
 		notif.sendNotif(getstudentid);
+		logs.insertLogs(conn, getstudentid, getdeanname, "dean");
 	    }
 	    else if(getButton.equals("Disapproved")){
 	    	verified = "Disapproved";
@@ -76,6 +94,7 @@ public class Dean_verifyprocess extends HttpServlet {
 	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
 		notif.sendNotif(getstudentid);
+		logs.insertBadLogs(conn, getstudentid, getdeanname, "dean");
 	    }
 	    
 	    d.insertLogs(conn);

@@ -6,6 +6,8 @@
     
     <%@ page import="java.time.format.DateTimeFormatter" %>
     <%@ page import="java.time.LocalDateTime" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
         <%@ page import = "ust.registrar.model.admin.*" %>
    <% Connection conn = SingletonDB.getConnection(); %>
@@ -59,7 +61,12 @@ if(getuser == null) {
 	response.setDateHeader ("Expires", 0); //prevents caching at the proxy server 
 	 response.sendRedirect("logout.jsp");
 }
-ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();		
+ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
+SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 %>
 
 
@@ -125,11 +132,14 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
     <br>
     
       <div class="container-fluid">
+      <h3>Total Shifters :</h3>
        <div class="table-responsive" style="overflow:auto; height:450px;">
       <center>
       <table class="table table-striped table-sortable">
          <thead>
-         <tr>
+         <tr> 
+          <th>School Year</th>
+          <th>No. of Tries</th>
           <th>ID</th>
           <th>Student Name</th>
           <th>Type</th>
@@ -137,6 +147,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
           <th>Incoming</th>
           <th>View Documents</th>
 		  <th>Clear Documents</th>
+		 
 		  </tr>    
         </thead>
         
@@ -150,6 +161,8 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
         	   String status = clearDocs.checkStatusShifter(conn, rs.getString("studentid"));
         %>
         <tr>
+			<td><%= actualSchoolYear %></td>
+			<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("studentid"), getuser) %></td>
 			<td><%=rs.getString("studentid") %></td>
 			<td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
 			<td><%=rs.getString("typeofstudent") %></td>
@@ -186,6 +199,13 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
       
       </div>
       
+	        <form method="POST" action ="SetSchoolYear">
+	        <input name="getadmin" type=hidden value="<%=getuser %>">
+   			<button type="submit" class="btn btn-warning btn-lg pull-right" style="margin-right:10px;">
+   			End Current School Year
+   			</button>
+	        </form>
+      
       		<%
       	   	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
       	   	LocalDateTime now = LocalDateTime.now();  
@@ -193,7 +213,7 @@ ClearDocumentsDAO clearDocs = new ClearDocumentsDAO();
 	        
    			<a id="archive" download="ShifterArchive<%= dtf.format(now) %>.zip" type=".zip">
    			<button type="submit" class="btn btn-warning btn-lg pull-right" style="margin-right:10px;">
-   			Archive Documents
+   			Download All Documents
    			</button>
    			</a>
    			

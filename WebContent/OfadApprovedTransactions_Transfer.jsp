@@ -4,6 +4,8 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
     <%@ page import = "ust.registrar.model.studentprocess.notification" %>
 <%        
     response.setHeader("Pragma", "No-cache");
@@ -52,6 +54,11 @@ if(getuser == null) {
 	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
+SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 int totalShifters = notifs.getOFADShiftTransactions(conn);
 int totalTransfers = notifs.getOFADTransferTransactions(conn);
 int totalShiftersExam = notifs.getOFADShiftForSched(conn);
@@ -133,12 +140,17 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
 <br><br>
  <div id="content">
     <div class="container-fluid">
+    <h5>Total Transferee Attempts : <%= gT.CountTransferSpecificTransactions(conn, getuser) %></h5>
+    <h5>Total Transferees with valid requirements submissions : <%= gT.CountTransactionsTrDeanGood(conn, getuser) %></h5>
+    <h5>Total Transferees with invalid requirements submissions :<%= gT.CountTransactionsTrDeanBad(conn, getuser) %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
       <table class="table table-striped table-sortable">
         <thead>
         <tr>
+          <th>School Year</th>
+          <th>No. of Tries</th>
           <th>ID</th>
           <th>Student Name</th>
           <th>Current School</th>
@@ -159,6 +171,8 @@ int totalTransfersScores = notifs.getOFADTransferExams(conn);
         %>
         
         <tr>
+        <td><%= rs.getString("school_year") %></td>
+		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("transferee_id"), "ofad")+1 %></td>
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>

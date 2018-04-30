@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.ofad.OFADVerifyDAO;
 import ust.registrar.model.ofad.OFADVerifyTransferDAO;
+import ust.registrar.model.registrar.LogTransactionsDAO;
 import ust.registrar.utility.NotifSender;
 
 /**
@@ -54,9 +55,22 @@ public class Ofad_verifyTransfer extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		NotifSender notif = new NotifSender();
+		LogTransactionsDAO logs = new LogTransactionsDAO();
 		String gettransferid = request.getParameter("transferid");
 		String getofadid = request.getParameter("getuser");
 		String getremarks = request.getParameter("remarks");
+		if(request.getParameter("otr")!=null){
+			getremarks = getremarks+"<br> OTR Invalid";
+		}
+		if(request.getParameter("letterdean")!=null){
+			getremarks = getremarks+"<br> Letter of Intent to the Dean Invalid";
+		}
+		if(request.getParameter("letterguide")!=null){
+			getremarks = getremarks+"<br> Letter of Intent to the Guidance Invalid";
+		}
+		if(request.getParameter("good")!=null){
+			getremarks = getremarks+"<br> Certificate of Good Moral Invalid";
+		}
 		String getButton = request.getParameter("optionverify");
 		String verified;
 		
@@ -74,6 +88,7 @@ public class Ofad_verifyTransfer extends HttpServlet {
 		ofad.setApproved(verified);
 		ofad.doVerifyStudent(conn);
 		notif.sendNotif(gettransferid);
+		logs.insertLogs(conn, gettransferid, getofadid, "ofad");
 		}
 		else if(getButton.equals("Disapproved")) {
 		verified = "Disapproved";
@@ -81,6 +96,7 @@ public class Ofad_verifyTransfer extends HttpServlet {
 		ofad.setRemarks(getremarks);
 		ofad.dontverifyOfad(conn);
 		notif.sendNotif(gettransferid);
+		logs.insertBadLogs(conn, gettransferid, getofadid, "ofad");
 		}
          ofad.insertLogs(conn);
 		request.getRequestDispatcher("OfadTransaction_Transfer.jsp").include(request, response);

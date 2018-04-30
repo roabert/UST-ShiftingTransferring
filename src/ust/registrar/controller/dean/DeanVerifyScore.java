@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.dean.DeanExamStatusShifterDAO;
 import ust.registrar.utility.NotifSender;
+import ust.registrar.model.registrar.LogTransactionsDAO;
 
 /**
  * Servlet implementation class DeanVerifyScore
@@ -52,6 +53,7 @@ public class DeanVerifyScore extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		NotifSender notif = new NotifSender();
+		LogTransactionsDAO logs = new LogTransactionsDAO();
 		String getstudent = request.getParameter("getstudent");
 		String getdeanid = request.getParameter("getuser");
 		String getstatus = request.getParameter("studentstatus");
@@ -72,6 +74,7 @@ public class DeanVerifyScore extends HttpServlet {
 		else if(getstatus.equals("Disapproved")) {
 			d.doFailStudent(conn);
 			notif.sendNotif(getstudent);
+			logs.insertVeryBadLogs(conn, getstudent, getdeanid);
 		}
 		d.insertLogs(conn);
 		request.getRequestDispatcher("DeanExam_Shifter.jsp").include(request, response);

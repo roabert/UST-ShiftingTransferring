@@ -4,6 +4,8 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
     <%@ page import = "ust.registrar.model.studentprocess.notification" %>
 <%        
     response.setHeader("Pragma", "No-cache");
@@ -50,6 +52,11 @@ if(getuser == null) {
 	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
+SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 int totalIndorseShifters = notifs.getRegistrarShiftEndorsement(conn);
 int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);	
 %>
@@ -121,12 +128,15 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
   <div id="content">
     <div class="container-fluid">
     <br><br>
+    <h5>Total Transferees approved for enrollment: <%= gT.CountTransferSuccessTransactions(conn) %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
       <table class="table table-striped table-sortable">
 		<thead>
         <tr>
+         <th>School Year</th>
+          <th>No. of Tries</th>
           <th>Student Name</th>
           <th>Incoming</th>
           <th>Student Memo</th>
@@ -144,6 +154,8 @@ int totalIndorseTransfers = notifs.getRegistrarTransferEndorsement(conn);
     	cout++;
         %>
         <tr>
+        <td><%= actualSchoolYear %></td>
+		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("transferee_id"), getuser) %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button href="#<%=rs.getString("transferee_id")+cout%>" class="fancybox btn">View Memo</button></td>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import DatabaseHandler.SingletonDB;
 import ust.registrar.model.dean.DeanVerifyDAO;
 import ust.registrar.model.dean.DeanVerifyTransferDAO;
+import ust.registrar.model.registrar.LogTransactionsDAO;
 import ust.registrar.utility.NotifSender;
 
 /**
@@ -53,11 +54,24 @@ public class Dean_verifyTransfer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		NotifSender notif = new NotifSender();
+		LogTransactionsDAO logs = new LogTransactionsDAO();
 		String gettransferid = request.getParameter("transferid");
 		String getdeanid = request.getParameter("getuser");
 		String getButton = request.getParameter("optionverify");
 		String verified;
 		String remarks = request.getParameter("remarks");
+		if(request.getParameter("otr")!=null){
+			remarks = remarks+"<br> OTR Invalid";
+		}
+		if(request.getParameter("letterdean")!=null){
+			remarks = remarks+"<br> Letter of Intent to the Dean Invalid";
+		}
+		if(request.getParameter("letterguide")!=null){
+			remarks = remarks+"<br> Letter of Intent to the Guidance Invalid";
+		}
+		if(request.getParameter("good")!=null){
+			remarks = remarks+"<br> Certificate of Good Moral Invalid";
+		}
 		
 		String event = "Requirements Approval";
 		String description = "Checking the requirements of "+gettransferid+"";
@@ -73,6 +87,7 @@ public class Dean_verifyTransfer extends HttpServlet {
 	    d.setApproved(verified);
 		d.verifyStudent(conn);
 		notif.sendNotif(gettransferid);
+		logs.insertLogs(conn, gettransferid, getdeanid, "dean");
 	    }
 	    else if(getButton.equals("Disapproved")) {
 	    	verified = "Disapproved";
@@ -80,6 +95,7 @@ public class Dean_verifyTransfer extends HttpServlet {
 	    	d.setRemarks(remarks);
 		d.dontverifyStudent(conn);
 		notif.sendNotif(gettransferid);
+		logs.insertBadLogs(conn, gettransferid, getdeanid, "dean");
 	    }
 	    
 	    d.insertLogs(conn);

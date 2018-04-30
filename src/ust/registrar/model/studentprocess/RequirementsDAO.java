@@ -5,10 +5,12 @@ import java.sql.*;
 import javax.servlet.http.Part;
 
 import DatabaseHandler.DatabaseSQLs;
+import ust.registrar.model.admin.SchoolYearDAO;
 
 public class RequirementsDAO implements DatabaseSQLs{
   public String studentid, newcourse, newprogram;
   public String event, description;
+  SchoolYearDAO SD = new SchoolYearDAO();
   public String getNewcourse() {
 	return newcourse;
 }
@@ -62,11 +64,15 @@ public void setRequirements(Part requirements) {
 	 }
  }
  public void updateCourseShifter(Connection conn) {
+	 String schoolYear = SD.getSchoolYear(conn);
+	 int schoolYearToo = Integer.parseInt(schoolYear)+1;
+	 String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 	 try {
-	 PreparedStatement ps1 = conn.prepareStatement("UPDATE student_shifter SET newcourse = ?, newprogram = ? WHERE studentid = ?");
-		ps1.setString(1, newcourse);
-		ps1.setString(2, newprogram);
-		ps1.setString(3, studentid);
+	 PreparedStatement ps1 = conn.prepareStatement("UPDATE student_shifter SET school_year = ?, newcourse = ?, newprogram = ? WHERE studentid = ?");
+		ps1.setString(1, actualSchoolYear);
+		ps1.setString(2, newcourse);
+		ps1.setString(3, newprogram);
+		ps1.setString(4, studentid);
 		ps1.executeUpdate(); 
 	 }
 	 catch(SQLException e) {
@@ -94,11 +100,15 @@ public void setRequirements(Part requirements) {
  
  
  public void updateCourseTransfer(Connection conn) {
+	 String schoolYear = SD.getSchoolYear(conn);
+	 int schoolYearToo = Integer.parseInt(schoolYear)+1;
+	 String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 	 try {
-	 PreparedStatement ps1 = conn.prepareStatement("UPDATE student_transfer SET newcourse = ?, newprogram = ? WHERE userid = ?");
-		ps1.setString(1, newcourse);
-		ps1.setString(2, newprogram);
-		ps1.setString(3, studentid);
+	 PreparedStatement ps1 = conn.prepareStatement("UPDATE student_transfer SET school_year = ?, newcourse = ?, newprogram = ? WHERE userid = ?");
+	 	ps1.setString(1, actualSchoolYear);
+	 	ps1.setString(2, newcourse);
+		ps1.setString(3, newprogram);
+		ps1.setString(4, studentid);
 		ps1.executeUpdate(); 
 	 }
 	 catch(SQLException e) {

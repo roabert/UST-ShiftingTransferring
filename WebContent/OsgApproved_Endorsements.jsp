@@ -4,6 +4,8 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
         <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
     <%@ page import = "ust.registrar.model.studentprocess.notification" %>
 <%        
     response.setHeader("Pragma", "No-cache");
@@ -50,6 +52,11 @@ if(getuser == null) {
 	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
+SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 int totalShifters = notifs.getSecGenShiftTransactions(conn);
 int totalTransfers = notifs.getSecGenTransferTransactions(conn);
 int totalIndorseShifters = notifs.getSecGenShiftEndorsement(conn);
@@ -135,12 +142,15 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
           </ul>
      <div class="tab-content">
      <br>
+     <h5>Total Shifters fully endorsed : <%= gT.CountShifterSuccessTransactions(conn)  %></h5>
   <fieldset>
       <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
       <table class="table table-striped table-sortable">
 		<thead>
         <tr>
+          <th>School Year</th>
+          <th>No. of Tries</th>
           <th>Student Name</th>
           <th>Incoming</th>
           <th>Student Memo</th>
@@ -158,6 +168,8 @@ int totalIndorseTransfers = notifs.getSecGenTransferEndorsement(conn);
 
         %>
         <tr>
+        <td><%= actualSchoolYear %></td>
+		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("shifter_id"), getuser) %></td>
         <td><input type ="hidden" name="getstudent" value = "<%=rs.getString("shifter_id")%>"><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><input type="hidden" name="getuser" value="<%=getuser%>"><%=rs.getString("newcourse") %> - <%=rs.getString("newprogram") %></td>
         <td><button href="#<%=rs.getString("shifter_id") %>" class="fancybox btn">View Memo</button></td>

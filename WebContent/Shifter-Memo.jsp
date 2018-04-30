@@ -258,7 +258,25 @@ Term # <select name="semester" placeholder="Term #" style="width:100px">
 populateCountries("country", "state");
 </script>
 <script>
-
+function checkYear() {
+	
+	var OyO = document.getElementById(firstterm_1year).value;
+	var OyT = document.getElementById(firstterm_2year).value;
+	var TyO = document.getElementById(secondterm_1year).value;
+	var TyT = document.getElementById(secondterm_2year).value;
+	var ThyO = document.getElementById(thirdterm_1year).value;
+	var ThyT = document.getElementById(thirdterm_2year).value;
+	var FyO = document.getElementById(fourthterm_1year).value;
+	var FyT = document.getElementById(fourthterm_2year).value;
+	var FiyO = document.getElementById(fifthterm_1year).value;
+	var FiyT = document.getElementById(fifthterm_2year).value;
+	var SyO = document.getElementById(sixthterm_1year).value;
+	var SyT = document.getElementById(sixthterm_2year).value;
+	var SeyO = document.getElementById(seventhterm_1year).value;
+	var SeyT = document.getElementById(seventhterm_2year).value;
+	var EyO = document.getElementById(eightterm_1year).value;
+	var EyT = document.getElementById(eightterm_2year).value;
+}
 function id(x) {
 	return document.getElementById(x);
 }

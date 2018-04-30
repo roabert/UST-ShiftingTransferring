@@ -4,6 +4,8 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
     <%@ page import = "ust.registrar.model.studentprocess.notification" %>
 <%        
     response.setHeader("Pragma", "No-cache");
@@ -53,6 +55,11 @@ if(getuser == null) {
 }
 notification notifs = new notification();
 notifs.setDeanCollege(conn, getuser);
+SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 int totalShifts = notifs.getDeanShiftTransactions(conn);
 int totalTransfers = notifs.getDeanTransferTransactions(conn);
 int totalShiftsExam = notifs.getDeanShiftScores(conn);
@@ -201,6 +208,8 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
       <table class="table table-striped table-sortable">
       	<thead>
 	        <tr>
+	          <th>School Year</th>
+              <th>No. of Tries</th>
 	          <th>ID</th>
 	          <th>Student Name</th>
 	          <th>Current Course/Program</th>
@@ -222,6 +231,8 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
 %>
          
         <tr>
+        <td><%= rs.getString("school_year") %></td>
+		<td><%= gT.CountTransactionsSpecificDeanBad(conn, rs.getString("shifter_id"), getuser)+1 %></td>
         <td><%=rs.getString("shifter_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldcourse") %> - <%=rs.getString("oldprogram") %></td>
@@ -276,9 +287,15 @@ int totalTransfersExam = notifs.getDeanTransferScores(conn);
          <input type="hidden" class="getuser" name="getuser">
          <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
          <br>
-          <center>
-          <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
-            </center>
+  <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
+
+<h5>Fill out checkboxes of erroneous requirements: </h5>
+  <input type="checkbox" name="otr" value="otr"> Official OTR <br>
+  <input type="checkbox" name="letterdean" value="letterdean"> Letter of Intent to the Dean<br>
+  <input type="checkbox" name="letterguide" value="letterguide"> Letter of Intent to the Guidance<br>
+  <input type="checkbox" name="studid" value="studid"> Student ID <br>
+  <input type="checkbox" name="good" value="good"> Good Moral <br>
+  
        </div>
        <div class="modal-footer">
        <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>

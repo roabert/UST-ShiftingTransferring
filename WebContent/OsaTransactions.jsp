@@ -4,6 +4,8 @@
     <%@ page import ="java.util.*" %>
     <%@ page import="java.sql.*" %>
     <%@ page import = "DatabaseHandler.SingletonDB" %>
+    <%@ page import="ust.registrar.utility.GetTransactions"%>
+    <%@ page import="ust.registrar.model.admin.SchoolYearDAO" %>
     <%@ page import = "ust.registrar.model.studentprocess.notification" %>
 <%        
     response.setHeader("Pragma", "No-cache");
@@ -48,6 +50,11 @@ if(getuser == null) {
 	 response.sendRedirect("logout.jsp");
 }
 notification notifs = new notification();
+SchoolYearDAO scDAO = new SchoolYearDAO();
+GetTransactions gT = new GetTransactions();
+String schoolYear = scDAO.getSchoolYear(conn);
+int schoolYearToo = Integer.parseInt(schoolYear)+1;
+String actualSchoolYear = schoolYear+" - "+Integer.toString(schoolYearToo);
 int totalTransfers = notifs.getOSATransactions(conn);	
 %>
 
@@ -102,7 +109,7 @@ int totalTransfers = notifs.getOSATransactions(conn);
    <br> 
    <div id="content">
     <div class="container-fluid">
-
+ 
 		<fieldset>
 		 <div class="table-responsive" style="overflow:auto; height:500px;">
       <center>
@@ -110,6 +117,8 @@ int totalTransfers = notifs.getOSATransactions(conn);
       <table class="table table-striped table-sortable">
 	  <thead>
         <tr>
+         <th>School Year</th>
+          <th>No. of Tries</th>
           <th>ID</th>
           <th>Student Name</th>
           <th>Current School</th>
@@ -131,6 +140,8 @@ int totalTransfers = notifs.getOSATransactions(conn);
         %>
          
         <tr>
+        <td><%= rs.getString("school_year") %></td>
+		<td><%= gT.CountTransactionsSpecificBad(conn, rs.getString("transferee_id"), "osa")+1 %></td>
         <td><%=rs.getString("transferee_id") %></td>
         <td><%=rs.getString("lastname") %>, <%=rs.getString("firstname") %> <%=rs.getString("middlei") %></td>
         <td><%=rs.getString("oldschool") %></td>
@@ -183,10 +194,15 @@ int totalTransfers = notifs.getOSATransactions(conn);
          <input type="hidden" class="transfer_id" name="transferid">
          <input type="hidden" class="getuser" name="getuser">
          <h4>Are you sure you want to disapprove <i id="studentid"></i>'s request?</h4>
-         <br>
-          <center>
-          <textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
-            </center>
+         <br>         
+<textarea required name="remarks" rows="30" cols="60" placeholder="Remarks.." style="margin: 0px; width: 100%; height: 270px;"></textarea><br><br>
+
+<h5>Click checkbox of erroneous requirements: Select None if Not Applicable </h5>
+  <input type="checkbox" name="otr" value="otr"> Official OTR <br>
+  <input type="checkbox" name="letterdean" value="letterdean"> Letter of Intent to the Dean<br>
+  <input type="checkbox" name="letterguide" value="letterguide"> Letter of Intent to the Guidance<br>
+  <input type="checkbox" name="good" value="good"> Good Moral <br>
+  
        </div>
        <div class="modal-footer">
        <button class="btn btn-default btn-md" type="button" data-dismiss="modal">Cancel</button>

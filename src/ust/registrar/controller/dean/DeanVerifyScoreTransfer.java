@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DatabaseHandler.SingletonDB;
-import ust.registrar.model.dean.DeanExamStatusShifterDAO;
 import ust.registrar.model.dean.DeanExamStatusTransferDAO;
 import ust.registrar.utility.NotifSender;
+import ust.registrar.model.registrar.LogTransactionsDAO;
 
 /**
  * Servlet implementation class DeanVerifyScoreTransfer
@@ -55,6 +55,7 @@ public class DeanVerifyScoreTransfer extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		NotifSender notif = new NotifSender();
+		LogTransactionsDAO logs = new LogTransactionsDAO();
 		String getstudent = request.getParameter("getstudent");
 		String getdeanid = request.getParameter("getuser");
 		String getstatus = request.getParameter("studentstatus");
@@ -76,6 +77,7 @@ public class DeanVerifyScoreTransfer extends HttpServlet {
 		else if(getstatus.equals("Disapproved")) {
 			d.doFailStudent(conn);
 			notif.sendNotif(getstudent);
+			logs.insertVeryBadLogs(conn, getstudent, getdeanid);
 		}
 		d.insertLogs(conn);
 		request.getRequestDispatcher("DeanExam_Transfer.jsp").include(request, response);
