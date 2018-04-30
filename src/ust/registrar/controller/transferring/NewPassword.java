@@ -72,6 +72,8 @@ public class NewPassword extends HttpServlet {
 	         }
 	         else if(getpassword.equals(f.getGetpassword())){
 	        	 request.getRequestDispatcher("Transfer-Transferring.jsp").include(request, response);
+	        	 out.print("<script>alert('This is your default password. Please type a new and secured password');</script>");
+	 	        
 	            out.print("<script type = \"text/javascript\"> $(window).on('load',function(){  $('#changepassword').modal('show');  });</script>");
 	        		
 	         }
